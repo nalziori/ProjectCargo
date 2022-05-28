@@ -6,11 +6,10 @@ exports.isLogin = doAsync(async (req, res, next) => {
   if (user) {
     next();
   } else {
-    //flash.create({
-     // status: false,
-     // message: '로그인이 필요합니다',
-    // });
-    alert("로그인이 필요합니다");
+    flash.create({
+      status: false,
+      message: '로그인이 필요합니다',
+     });
     res.redirect('/login');
   }
 });
@@ -20,11 +19,10 @@ exports.isWorkingUser = doAsync(async (req, res, next) => {
   if (user?.workingUser || user.isManager || user.isAdmin) {
     next();
   } else {
-   // flash.create({
-   //   status: false,
-   //   message: '로그인이 필요합니다',
-   // });
-   alert("로그인이 필요합니다");
+    flash.create({
+      status: false,
+      message: '로그인이 필요합니다',
+    });
     res.redirect('/login');
   }
 });
@@ -34,11 +32,10 @@ exports.isAdmin = doAsync(async (req, res, next) => {
   if (user?.isAdmin) {
     next();
   } else {
-    //  flash.create({
-   //   status: false,
-   //   message: '관리자 권한이 필요합니다',
-  //  });
-    alert("관리자 권한이 필요합니다");
+      flash.create({
+      status: false,
+      message: '관리자 권한이 필요합니다',
+    });
     res.redirect('/login');
   }
 });

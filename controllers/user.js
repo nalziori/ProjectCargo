@@ -27,35 +27,31 @@ exports.mypage = doAsync(async (req, res, next) => {
               password,
             };
             await userClass.update(user.id, data);
-            //  flash.create({
-         //     status: true,
-         //     message: '회원정보를 변경하였습니다',
-         //   });
-         alert("회원정보를 변경하였습니다");
+              flash.create({
+                status: true,
+                message: '회원정보를 변경하였습니다',
+              });
           } else {
-            // flash.create({
-            //  status: false,
-            //  message: '기존 패스워드가 다릅니다',
-           // });
-           alert("기존 패스워드가 다릅니다");
+            flash.create({
+              status: false,
+              message: '기존 패스워드가 다릅니다',
+            });
           }
         } else {
-          // flash.create({
-          //  status: false,
-          //  message: '입력한 패스워드가 서로 다릅니다',
-         // });
-         alert("입력한 패스워드가 서로 다릅니다");
+          flash.create({
+            status: false,
+            message: '입력한 패스워드가 서로 다릅니다',
+         });
         }
       } else {
         const data = {
           nickName,
         };
         await userClass.update(user.id, data);
-        // flash.create({
-       //   status: true,
-       //   message: '회원정보를 변경하였습니다',
-       // });
-       alert("회원정보를 변경하였습니다");
+          flash.create({
+            status: true,
+            message: '회원정보를 변경하였습니다',
+        });
       }
       res.redirect(req.headers.referer);
     }
@@ -129,11 +125,10 @@ exports.message = doAsync(async (req, res, next) => {
         pageTitle: `메시지 - ${res.locals.setting.siteName}`,
       });
     } else {
-      // flash.create({
-     //   status: false,
-     //   message: '권한이 없습니다',
-    //  });
-    alert("권한이 없습니다");
+      flash.create({
+        status: false,
+        message: '권한이 없습니다',
+      });
       res.redirect('/login');
     }
   } finally {
@@ -163,24 +158,21 @@ exports.messageNew = doAsync(async (req, res, next) => {
           const [result, ] = await conn.query(`INSERT INTO message (message_sender_ID, message_recipient_ID, content) VALUES (?, ?, ?)`, [user.id, targetUser.id, content]);
           if (result.insertId) {
             await conn.query(`INSERT INTO alarm (type, alarm_user_ID, alarm_relatedUser_ID, alarm_message_ID) VALUES (?, ?, ?, ?)`, ['message', targetUser.id, user.id, result.insertId]);
-             // flash.create({
-            //  status: true,
-            //  message: '메시지를 전송하였습니다',
-           // });
-           alert("메시지를 전송하였습니다");
+            flash.create({
+              status: true,
+              message: '메시지를 전송하였습니다',
+            });
           } else {
-            // .create({
-            //  status: false,
-            //  message: '메시지 전송에 실패했습니다',
-           // });
-           alert("메시지 전송에 실패했습니다");
+            flash.create({
+              status: false,
+              message: '메시지 전송에 실패했습니다',
+            });
           }
         } else {
-          /*flash.create({
+          flash.create({
             status: false,
             message: '아이디 또는 닉네임이 존재하지 않습니다',
-          });*/
-          alert("아이디 또는 닉네임이 존재하지 않습니다");
+          });
         }
         res.redirect(req.headers.referer);
       }

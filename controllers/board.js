@@ -248,11 +248,10 @@ exports.list = doAsync(async (req, res, next) => {
           searchUrl: board.slug,
         });
       } else { // 리스트 권한이 없을 때
-        /*flash.create({
+        flash.create({
           status: false,
           message: '권한이 없습니다',
-        });*/
-        alert("권한이 없습니다.");
+        });
         user ? res.redirect(req.headers.referer) : res.redirect('/login');
       }
     } else {
@@ -354,11 +353,10 @@ exports.read = doAsync(async (req, res, next) => {
                 category,
               });
             } else {
-              /*flash.create({
+              flash.create({
                 status: false,
                 message: '포인트가 부족합니다',
-              });*/
-              alert("포인트가 부족합니다.");
+              });
               res.redirect(req.headers.referer);
             }
           } else {
@@ -372,11 +370,10 @@ exports.read = doAsync(async (req, res, next) => {
           next();
         }
       } else { // 권한 없음
-        /*flash.create({
+        flash.create({
           status: false,
           message: '권한이 없습니다',
-        });*/
-        alert("권한이 없습니다.");
+        });
         if (user) {
           res.redirect(req.headers.referer);
         } else {
@@ -411,22 +408,20 @@ exports.new = doAsync(async (req, res, next) => {
             user,
           };
           if (req.cookies.writingTerm && !user?.isAdmin) {
-            /*flash.create({
+            flash.create({
               status: false,
               message: `글쓰기는 ${setting.writingTerm.toLocaleString()}초 마다 가능합니다`,
-            });*/
-            alert("글쓰기는 ${setting.writingTerm.toLocaleString()}초 마다 가능합니다");
+            });
             res.redirect(req.headers.referer);
           } else {
             const articleId = await articleClass.createTemp(data);
             if (board.useOnce) {
               const [onceCheckResult, ] = await conn.query(`SELECT * FROM article WHERE article_board_ID=? AND article_user_ID=? AND status=?`, [board?.id, user?.id, 2]);
               if (onceCheckResult.length && !user?.isAdmin) {
-                /*flash.create({
+                flash.create({
                   status: false,
                   message: `${board.title} 게시판은 한번만 작성가능합니다`,
-                });*/
-                alert("${board.title} 게시판은 한 번만 작성 가능합니다");
+                });
                 res.redirect(req.headers.referer);
               } else {
                 if (res.locals.setting.editor === 'engine') {
@@ -464,11 +459,10 @@ exports.new = doAsync(async (req, res, next) => {
             }
           }
         } else {
-          /*flash.create({
+          flash.create({
             status: false,
             message: '권한이 없습니다',
-          });*/
-          alert("권한이 없습니다.");
+          });
           res.redirect(req.headers.referer);
         }
       } else {
@@ -520,61 +514,55 @@ exports.new = doAsync(async (req, res, next) => {
             res.redirect(`/${boardSlug}/${articleId}`);
           } else if (res.locals.setting.editor === 'ckeditor') {
             if (req.cookies.writingTerm && !user?.isAdmin) {
-              /*flash.create({
+              flash.create({
                 status: false,
                 message: `글쓰기는 ${setting.writingTerm.toLocaleString()}초 마다 가능합니다`,
-              });*/
-              alert(`글쓰기는 ${setting.writingTerm.toLocaleString()}초 마다 가능합니다`);
+              });
               res.redirect(req.headers.referer);
             } else {
               if (board.useOnce) {
                 const [onceCheckResult, ] = await conn.query(`SELECT * FROM article WHERE article_board_ID=? AND article_user_ID=? AND status=?`, [board.id, user.id, 2]);
                 if (onceCheckResult.length && !user?.isAdmin) {
-                  /*flash.create({
+                  flash.create({
                     status: false,
                     message: `${board.title} 게시판은 한번만 작성가능합니다`,
-                  });*/
-                  alert(`${board.title} 게시판은 한번만 작성가능합니다`);
+                  });
                   res.redirect(`/${boardSlug}/new`);
                 } else {
                   const result = await articleClass.create(article.id, data);
                   if (result) {
-                    /*flash.create({
+                    flash.create({
                       status: true,
                       message: '글쓰기에 성공했습니다',
-                    });*/
-                    alert("글쓰기에 성공했습니다");
+                    });
                     res.cookie('writingTerm', true, {
                       maxAge: setting.writingTerm * 1000,
                     });
                     res.redirect(`/${boardSlug}/${articleId}`);
                   } else {
-                    /*flash.create({
+                    flash.create({
                       status: false,
                       message: '글쓰기에 실패했습니다',
-                    });*/
-                    alert("글쓰기에 실패했습니다");
+                    });
                     res.redirect(req.headers.referer);
                   }
                 }
               } else {
                 const result = await articleClass.create(article.id, data);
                 if (result) {
-                  /*flash.create({
+                  flash.create({
                     status: true,
                     message: '글쓰기에 성공했습니다',
-                  });*/
-                  alert("글쓰기에 성공했습니다");
+                  });
                   res.cookie('writingTerm', true, {
                     maxAge: setting.writingTerm * 1000,
                   });
                   res.redirect(`/${boardSlug}/${articleId}`);
                 } else {
-                  /*flash.create({
+                  flash.create({
                     status: false,
                     message: '글쓰기에 실패했습니다',
-                  });*/
-                  alert("글쓰기에 실패했습니다");
+                  });
                   res.redirect(req.headers.referer);
                 }
               }
@@ -634,18 +622,16 @@ exports.edit = doAsync(async (req, res, next) => {
           };
           try {
             await articleClass.remove(articleId, data);
-            /*flash.create({
+            flash.create({
               status: true,
               message: '게시글을 삭제하였습니다',
-            });*/
-            alert("게시글을 삭제하였습니다");
+            });
             res.redirect(`/${boardSlug}`);
           } catch (e) {
-            /*flash.create({
+            flash.create({
               status: false,
               message: e.message,
-            });*/
-            alert(e.message);
+            });
             res.redirect(req.headers.referer);
           }
         } else {
@@ -698,11 +684,10 @@ exports.update = doAsync(async (req, res, next) => {
       const result = await articleClass.update(articleId, data);
       res.redirect(`/${boardSlug}/${articleId}`);
     } catch (e) {
-      /*flash.create({
+      flash.create({
         status: false,
         message: e.message,
-      });*/
-      alert(e.message);
+      });
       res.redirect(req.headers.referer);
     }
   } finally {
@@ -719,11 +704,10 @@ exports.pullUp = doAsync(async (req, res, next) => {
     const board = boards.find(board => board.slug === boardSlug);
     if (board && board.useOnce) {
       await conn.query(`UPDATE article SET updatedAt=NOW(), createdAt=NOW() WHERE article_board_ID=? AND article_user_ID=? AND status=? ORDER BY createdAt DESC LIMIT 1`, [board.id, user.id, 2]);
-      /*flash.create({
+      flash.create({
         status: true,
         message: '내 게시글을 끌어 올렸습니다',
-      });*/
-      alert("내 게시물을 끌어 올렸습니다");
+      });
     }
     res.redirect(req.headers.referer);
   } finally {

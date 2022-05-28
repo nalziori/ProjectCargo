@@ -68,7 +68,7 @@ exports.authKakao = doAsync(async (req, res, next) => {
   const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback`);
   res.redirect(kakaoAuthUrl);
 });
-/*
+
 exports.authAppleCallback = doAsync(async (req, res, next) => {
   const { code } = req.body;
   const user = await apple.auth(code);
@@ -80,7 +80,6 @@ exports.authAppleCallback = doAsync(async (req, res, next) => {
       status: false,
       message: '로그인에 실패했습니다',
     });
-    alert("로그인에 실패했습니다");
     res.redirect('/login');
   }
 });
@@ -96,7 +95,6 @@ exports.authGoogleCallback = doAsync(async (req, res, next) => {
       status: false,
       message: '로그인에 실패했습니다',
     });
-    alert("로그인에 실패했습니다");
     res.redirect('/login');
   }
 });
@@ -112,7 +110,6 @@ exports.authFacebookCallback = doAsync(async (req, res, next) => {
       status: false,
       message: '로그인에 실패했습니다',
     });
-    alert("로그인에 실패했습니다");
     res.redirect('/login');
   }
 });
@@ -128,7 +125,6 @@ exports.authTwitterCallback = doAsync(async (req, res, next) => {
       status: false,
       message: '로그인에 실패했습니다',
     });
-    alert("로그인에 실패했습니다");
     res.redirect('/login');
   }
 });
@@ -147,7 +143,7 @@ exports.authNaverCallback = doAsync(async (req, res, next) => {
     res.redirect('/login');
   }
 });
-*/
+
 exports.authKakaoCallback = doAsync(async (req, res, next) => {
   const { code } = req.query;
   const user = await kakao.auth(code);
@@ -265,11 +261,10 @@ exports.emailAuthentication = doAsync(async (req, res, next) => {
                 res.redirect('/');
               }
             } else {
-              /*flash.create({
+              flash.create({
                 status: false,
                 message: '인증번호가 틀립니다',
-              });*/
-              alert("인증번호가 틀립니다.")
+              });
               res.redirect('/emailAuthentication');
             }
           }
@@ -300,11 +295,10 @@ exports.emailAuthentication = doAsync(async (req, res, next) => {
               // console.log('Message send: ', info);
             }}
           });
-          /*flash.create({
+          flash.create({
             status: true,
             message: '이메일이 발송되었습니다',
-          });*/
-          alert("이메일이 발송되었습니다");
+          });
           res.redirect('/emailAuthentication');
         }
       } catch (e) {
@@ -314,11 +308,10 @@ exports.emailAuthentication = doAsync(async (req, res, next) => {
         conn.release();
       }
     } else {
-      /*flash.create({
+      flash.create({
         status: false,
         message: '해당 사이트의 이메일 설정이 되어있지 않습니다',
-      });*/
-      alert("해당 사이트의 이메일 설정이 되어있지 않습니다");
+      });
       res.redirect(req.headers.referer);
     }
   }
@@ -360,11 +353,10 @@ exports.smsAuthentication = doAsync(async (req, res, next) => {
               res.redirect('/');
             }
           } else {
-            /*flash.create({
+            flash.create({
               status: false,
               message: '인증번호가 틀립니다',
-            });*/
-            alert("인증번호가 틀립니다");
+            });
             res.redirect('/smsAuthentication');
           }
         }
@@ -375,11 +367,10 @@ exports.smsAuthentication = doAsync(async (req, res, next) => {
         VALUES (?, ?, ?)`;
         await conn.query(query, [user.id, 'sms', verifyNumber]);
         sendMessage(user.phone, `[${res.locals.setting.siteNameRaw}] 인증번호는 ${verifyNumber} 입니다`);
-        /*flash.create({
+        flash.create({
           status: true,
           message: 'SMS가 발송되었습니다',
-        });*/
-        alert("SMS가 발송되었습니다");
+        });
         res.redirect('/smsAuthentication');
       }
     } catch (e) {
@@ -541,11 +532,10 @@ exports.login = doAsync(async (req, res, next) => {
           });
         }
       } catch (e) {
-        /*flash.create({
+        flash.create({
           status: false,
           message: e.message,
-        });*/
-        alert("e.message");
+        });
         res.redirect(req.headers.referer);
       }
     } finally {
@@ -889,11 +879,10 @@ exports.findIdSms = doAsync(async (req, res, next) => {
         sendMessage(phoneNumber, `[${res.locals.setting.siteName}] 인증번호는 ${verifyNumber} 입니다`);
         res.redirect('/findId/sms/verify');
       } else {
-        /*flash.create({
+        flash.create({
           status: false,
           message: '휴대폰 번호가 없습니다',
-        });*/
-        alert("휴대폰 번호가 없습니다.");
+        });
         res.redirect('/findId/sms');
       }
     } finally {
@@ -929,11 +918,10 @@ exports.findIdSmsAuth = doAsync(async (req, res, next) => {
           result,
         });
       } else {
-        /*flash.create({
+        flash.create({
           status: false,
           message: `인증번호가 틀립니다`,
-        });*/
-        alert("인증번호가 틀립니다");
+        });
         res.redirect('/findId/sms/verify');
       }
     } finally {
@@ -1000,19 +988,17 @@ exports.findPasswordEmail = doAsync(async (req, res, next) => {
               // console.log('Message send: ', info);
             }}
           });
-          /*flash.create({
+          flash.create({
             status: true,
             message: '이메일이 발송되었습니다.',
-          })*/
-          alert("이메일이 발송되었습니다");
+          })
           res.redirect('/');
         } else {
           // 이메일이 존재하지 않습니다.
-          /*flash.create({
+          flash.create({
             status: false,
             message: '이메일이 존재하지 않습니다',
-          })*/
-          alert("이메일이 존재하지 않습니다");
+          })
           res.redirect('/findPassword/email');
         }
       } else {
@@ -1048,11 +1034,10 @@ exports.findPasswordSms = doAsync(async (req, res, next) => {
         sendMessage(phoneNumber, `[${res.locals.setting.siteName}] 인증번호는 ${verifyNumber} 입니다`);
         res.redirect('/findPassword/sms/verify');
       } else {
-        /*flash.create({
+        flash.create({
           status: false,
           message: '휴대폰 번호가 없습니다',
-        });*/
-        alert("휴대폰 번호가 없습니다");
+        });
         res.redirect('/findPassword/sms');
       }
     } finally {
