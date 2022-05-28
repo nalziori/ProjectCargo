@@ -1,0 +1,19 @@
+<% if (locals.bookmark) { %>
+  <div class="bookmark">
+    <% locals.bookmark.forEach(a => { %>
+      <div class="item">
+        <div class="image"><a href="/<%= a.boardSlug %>/<%= a.id %>"><img src="/assets/empty.png" alt="<%= a.image %>" style="background-image: url('<%= locals.s3Host %>/thumb/<%= a.image %>');"></a></div>
+        <div class="info">
+          <a href="/<%= a.boardSlug %>/<%= a.id %>" class="direct">바로가기</a>
+          <a href="/<%= a.boardSlug %>/<%= a.id %>" class="siteInfo">사이트정보</a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+  <% } %>
+  <script>
+    const bookmark = document.querySelector('.bookmark');
+    if (window.location.pathname === '/24x40h' || window.location.pathname === '/t641w5') {
+      bookmark.style.display = 'none';
+    }
+  </script>

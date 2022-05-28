@@ -1,0 +1,206 @@
+<article id="mypage">
+  <%- include('../../../flash') %>
+  <h1>SURVEY</h1>
+  <div class="center">
+    <div class="member_image">
+    </div>
+    <form action="/mypage/survey" method="POST">
+      <div class="survey">
+        <div class="item">
+          <div class="title">이름</div>
+          <input type="text" name="realName" value="<%= survey?.realName %>" placeholder="이름" style="border: 1px solid #bbb;border-radius: 0;">
+        </div>
+        <div class="item">
+          <div class="title">지역</div>
+          <select name="location">
+            <option value="Seoul"<% if (survey?.location === 'Seoul') { %>selected<% } %>>서울</option>
+            <option value="Gyeonggi-do"<% if (survey?.location === 'Gyeonggi-do') { %>selected<% } %>>경기도</option>
+            <option value="Incheon"<% if (survey?.location === 'Incheon') { %>selected<% } %>>인천광역시</option>
+            <option value="Daejeon"<% if (survey?.location === 'Daejeon') { %>selected<% } %>>대전광역시</option>
+            <option value="Gwangju"<% if (survey?.location === 'Gwangju') { %>selected<% } %>>광주광역시</option>
+            <option value="Daegu"<% if (survey?.location === 'Daegu') { %>selected<% } %>>대구광역시</option>
+            <option value="Ulsan"<% if (survey?.location === 'Ulsan') { %>selected<% } %>>울산광역시</option>
+            <option value="Busan"<% if (survey?.location === 'Busan') { %>selected<% } %>>부산광역시</option>
+            <option value="Sejong-si"<% if (survey?.location === 'Sejong-si') { %>selected<% } %>>세종특별자치시</option>
+            <option value="Jeju-do"<% if (survey?.location === 'Jeju-do') { %>selected<% } %>>제주특별자치시</option>
+            <option value="Gangwon-do"<% if (survey?.location === 'Gangwon-do') { %>selected<% } %>>강원도</option>
+            <option value="Chungcheongbuk-do"<% if (survey?.location === 'Chungcheongbuk-do') { %>selected<% } %>>충청북도</option>
+            <option value="Chungcheongnam-do"<% if (survey?.location === 'Chungcheongnam-do') { %>selected<% } %>>충청남도</option>
+            <option value="Jeollabuk-do"<% if (survey?.location === 'Jeollabuk-do') { %>selected<% } %>>전라북도</option>
+            <option value="Jeollanam-do"<% if (survey?.location === 'Jeollanam-do') { %>selected<% } %>>전라남도</option>
+            <option value="Gyeongsangbuk-do"<% if (survey?.location === 'Gyeongsangbuk-do') { %>selected<% } %>>경상북도</option>
+            <option value="Gyeongsangnam-do"<% if (survey?.location === 'Gyeongsangnam-do') { %>selected<% } %>>경상남도</option>
+          </select>
+        </div>
+        <div class="item">
+          <div class="title">성별</div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="sex" id="sex" value="1"<% if (survey?.sex) { %>checked<% } %>>
+              <div class="select">남</div>
+            </label>
+            <label>
+              <input type="radio" name="sex" id="sex" value="0"<% if (!survey?.sex) { %>checked<% } %>>
+              <div class="select">여</div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">만약 상대방이 흡연자라면?</div>
+            <div class="english">Are you okay with smorking friend? or don't like it<br>Could you relationship someone who smokes?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="smoking" id="1" value="1"<% if (survey?.smoking) { %>checked<% } %>>
+              <div class="select">
+                <div>흡연자 괜찮아요 OK</div>
+                <div class="english">I don't mind with smorking</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="smoking" id="0" value="0"<% if (!survey?.smoking) { %>checked<% } %>>
+              <div class="select">
+                <div>No Only 비흡연자만</div>
+                <div class="english">I only want to be friends with non-smokers.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">만약 상대방이 음주를 즐기는 편이라면?</div>
+            <div class="english">How about making friends with someone who likes to drink?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="drinking" id="drinking" value="1"<% if (survey?.drinking) { %>checked<% } %>>
+              <div class="select">
+                <div>음주 즐기는거 괜찮아요 OK</div>
+                <div class="english">It's okay who likes to drink</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="drinking" id="drinking" value="0"<% if (!survey?.drinking) { %>checked<% } %>>
+              <div class="select">
+                <div>NO Only 노알콜</div>
+                <div class="english">I don't drink often. So No.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">상대방이 종교가 있다면?</div>
+            <div class="english">What do you think about making friends with someone of religion?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="religion" id="religion" value="1"<% if (survey?.religion) { %>checked<% } %>>
+              <div class="select">
+                <div>종교 괜찮아요 OK</div>
+                <div class="english">I'm Ok with any religion person</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="religion" id="religion" value="0"<% if (!survey?.religion) { %>checked<% } %>>
+              <div class="select">
+                <div>종교는 별로 관심 없어요 NO</div>
+                <div class="english">I don't intersting religious. So No Thank you.</div>
+              </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">나의 여행 취향은 어느쪽?</div>
+            <div class="english">What are your travel preferences?</div>
+          </div>
+          <div class="comment">본인이 더 좋아하는 쪽을 선택해 주세요</div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="travel" id="travel" value="1"<% if (survey?.travel) { %>checked<% } %>>
+              <div class="select">
+                <div>나는 산이나 계곡 (캠핑 및 탐험) 좋아</div>
+                <div class="english">I like to travel in mountains or valleys (camping and exploring)</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="travel" id="travel" value="0"<% if (!survey?.travel) { %>checked<% } %>>
+              <div class="select">
+                <div>나는 바다 (휴양지)나 도심 핫플 좋아</div>
+                <div class="english">I like to travel to the sea (chilling) or take a look city hot spots</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">나는 삼시세끼?</div>
+            <div class="english">Are you the type to take care of all three meals a day?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="meal" id="meal" value="1"<% if (survey?.meal) { %>checked<% } %>>
+              <div class="select">
+                <div>나는 먹는거 즐기고 중요한 편</div>
+                <div class="english">Yes, I'm , and I tend to enjoy food.</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="meal" id="meal" value="0"<% if (!survey?.meal) { %>checked<% } %>>
+              <div class="select">
+                <div>먹는거 즐기지만 한끼 정도 걸러도 OK</div>
+                <div class="english">I like delicious things, but it's okay to skip one meal. The meal doesn't matter.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">나는 주말에는 거의</div>
+            <div class="english">How do you spend your weekend?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="weekend" id="weekend" value="1"<% if (survey?.weekend) { %>checked<% } %>>
+              <div class="select">
+                <div>나는 주말에 활동적인편 (외출)</div>
+                <div class="english">I am mostly active on the weekends (going out).</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="weekend" id="weekend" value="0"<% if (!survey?.weekend) { %>checked<% } %>>
+              <div class="select">
+                <div>나는 주말엔 집에서 노는게 좋아</div>
+                <div class="english">I tend to rest at home on the weekends.(Chilling)</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">만약에 반려동물?</div>
+            <div class="english">Would you mind live with pets?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="pet" id="pet" value="1"<% if (survey?.pet) { %>checked<% } %>>
+              <div class="select">
+                <div>나는 애완견 (애완묘) OK</div>
+                <div class="english">Yes, I like to live with dog ​​or cat.</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="pet" id="pet" value="0"<% if (!survey?.pet) { %>checked<% } %>>
+              <div class="select">
+                <div>동물은 같이 못 살아요 ㅜㅜ</div>
+                <div class="english">No. I can't get along with pets.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <button>설문조사 수정</button>
+    </form>
+  </div>
+</article>

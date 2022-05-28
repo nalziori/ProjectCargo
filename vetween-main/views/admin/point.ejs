@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <section>
+            <h2>포인트</h2>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>날짜</th>
+                    <th>아이디 (닉네임)</th>
+                    <th>타입</th>
+                    <th>포인트</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% points.forEach(point => { %>
+                    <tr>
+                      <td><%= point.datetime %></td>
+                      <td><%= point.uId %> (<%= point.nickName %>)</td>
+                      <td>
+                        <% if (point.type === 'visit') { %>
+                          방문
+                        <% } else if (point.type === 'charge') { %>
+                          충전
+                        <% } else if (point.type === 'order') { %>
+                          주문
+                        <% } else if (point.type === 'orderCancel') { %>
+                          주문취소
+                        <% } else if (point.type === 'deposit') { %>
+                          입금
+                        <% } else if (point.type === 'withdraw') { %>
+                          출금
+                        <% } else if (point.type === 'invite') { %>
+                          초대
+                        <% } else { %>
+                          <%= point.type %>
+                        <% } %>
+                      </td>
+                      <td><%= point.point.toLocaleString() %></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <%- include('../pagination') %>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

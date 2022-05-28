@@ -1,0 +1,70 @@
+<% const setting = locals.setting %>
+<% if (setting.license) { %>
+<!-- 와플보드 (Waffle Board) -->
+<!-- https://waffleboard.io -->
+<% } %>
+<link rel="stylesheet" href="/stylesheets/reset.css">
+<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="stylesheet" href="/stylesheets/indexBoard.css">
+<link rel="stylesheet" href="/stylesheets/layout.css">
+<link rel="stylesheet" href="/stylesheets/headerLayout/<%= setting.headerLayout %>.css">
+<link rel="stylesheet" href="/stylesheets/footerLayout/<%= setting.footerLayout %>.css">
+<meta name="robots" content="index,follow">
+<meta name="viewport" content="width=device-width">
+<meta name="waffleBoardCheck" content="<%= setting.hash %>">
+<script src="/javascripts/main.js" defer></script>
+<% if (setting.naverSiteVerification) { %>
+<%- setting.naverSiteVerification %>
+<% } %>
+<!-- Favicon Start -->
+<% if (setting.faviconImage) { %>
+<link rel="apple-touch-icon" sizes="57x57" href="<%= s3Host %>/assets/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="<%= s3Host %>/assets/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="<%= s3Host %>/assets/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="<%= s3Host %>/assets/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="<%= s3Host %>/assets/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="<%= s3Host %>/assets/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="<%= s3Host %>/assets/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="<%= s3Host %>/assets/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="<%= s3Host %>/assets/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="<%= s3Host %>/assets/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="<%= s3Host %>/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="<%= s3Host %>/assets/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="<%= s3Host %>/assets/favicon-16x16.png">
+<link rel="manifest" href="<%= s3Host %>/assets/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="<%= s3Host %>/assets/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" type="image/icon" href="<%= s3Host %>/assets/favicon.ico">
+<% } %>
+<!-- Favicon End -->
+<!-- Fonts Start -->
+<% if (setting.font === 'basic') { %>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
+<% } else if (setting.font === 'nexon') { %>
+<style>
+  @font-face {
+    font-family: 'NEXON Lv2 Gothic';
+    src: url('/fonts/NEXON Lv2 Gothic.woff');
+  }
+
+  body {
+    font-family: 'NEXON Lv2 Gothic', Arial, Helvetica, sans-serif;
+  }
+</style>
+<% } else if (setting.font === 'gmarket') { %>
+  <style>
+    @font-face {
+      font-family: 'Gmarket Sans';
+      src: url('/fonts/GmarketSansMedium.otf');
+    }
+  
+    body {
+      font-family: 'Gmarket Sans', Arial, Helvetica, sans-serif;
+    }
+  </style>
+<% } %>

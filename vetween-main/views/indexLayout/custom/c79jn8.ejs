@@ -1,0 +1,158 @@
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<!-- Slick Start -->
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js" defer></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js" defer></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer></script>
+<script src="/theme/c79jn8/javascripts/slick.js" defer></script>
+<!-- Slick End -->
+<style>
+  body {
+    background-color: #fff;
+  }
+  main {
+    margin-top: 0;
+  }
+</style>
+<article>
+  <div class="slider">
+    <div class="slide first">
+      <div class="title">커플의 68%는 친구로 시작</div>
+      <div class="content">2021년 8월 12일 발간된 학술 저널 '사회심리학과 성격심리학 (SPPS)'에 실린 새로운 연구결과</div>
+    </div>
+    <div class="slide second">
+      <div class="title"></div>
+    </div>
+    <div class="slide third">
+      <div class="title">What are Friends For</div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="gridContainer">
+      <a href="/notice" class="grid notice">
+        <div class="image"></div>
+        <div class="title">모임 공지</div>
+        <div class="content">
+          매주 금, 토요일<br>
+          매달 2째, 3째주<br>
+          원데이 클래스, 운동, 취미, 생각 등<br>
+          가치관이 같은 사람들의 모임입니다.
+        </div>
+      </a>
+      <a href="/review" class="grid review">
+        <div class="image"></div>
+        <div class="title">모임 후기</div>
+        <div class="content">
+          다양한 모임에 참가했던 추억들<br>
+          모든 순간들에 한사람 한사람이 모여<br>
+          모두가 만들어가는 프렌즈입니다.
+        </div>
+      </a>
+      <a href="/proposal" class="grid proposal">
+        <div class="image"></div>
+        <div class="title">모임 제안</div>
+        <div class="content">
+          하고싶은 운동, 보고싶은 영화,<br>
+          체험하고 싶은 원데이클래스<br>
+          가고 싶은 국내여행, 해외여행<br>
+          궁금한 맛집이 있나요?<br>
+          그밖에 좋은 아이디어 제안 주시면<br>
+          저희가 모임으로 만들어 드릴께요.
+        </div>
+      </a>
+      <a href="/groupChat" class="grid talk">
+        <div class="image"></div>
+        <div class="title">그룹 Talk</div>
+        <div class="content">
+          설문조사 답변이 동일한 회원들만 그룹이 됩니다<br>
+          동일 답변의 동일 가치관인 회원끼리<br>
+          생각을 나눌 수 있는 공간입니다.
+        </div>
+      </a>
+    </div>
+  </div>
+  <!-- let youtubeId = null;
+  const query = `SELECT a.*
+  FROM article AS a
+  LEFT JOIN board AS b
+  ON a.article_board_ID = b.id
+  WHERE b.slug = 'psychology' AND a.status = 2
+  ORDER BY id DESC
+  LIMIT 1`;
+  const [articles, ] = await conn.query(query);
+  if (articles.length) {
+    const article = articles[0];
+    // Youtube
+    if (article.content.match(match.youtube)) {
+      youtubeId = article.content.match(match.youtube)[1];
+    }
+  } -->
+  <div class="background">
+    <div class="wrap">
+      <div class="youtubeContainer">
+        <div class="youtube">
+          <div class="media">
+            <% if (typeof (youtubeId) !== 'undefined' && youtubeId) { %>
+              <iframe src="https://www.youtube.com/embed/<%= youtubeId %>" allow="fullscreen"></iframe>
+            <% } %>
+          </div>
+        </div>
+        <div class="boards">
+          <a href="/class" class="board class">
+            <div class="icon"></div>
+            <div class="info">
+              <div class="title">원데이 클래스</div>
+              <div class="content">
+                펜싱 체험 , 케익 만들기, 실내 클라이밍 체험 등등 다양한 체험을 해보고 숨겨진 재능을 찾을 수 있어요 새로운 도전을 같이 할 프렌즈들과 함께
+              </div>
+            </div>
+          </a>
+          <a href="/exhibition" class="board eye">
+            <div class="icon"></div>
+            <div class="info">
+              <div class="title">공연 & 전시</div>
+              <div class="content">
+                가보고 싶은 공연, 퍼포먼스, 기다리던 콘서트, 힐링이 될 전시회 등 다양한 공연, 전시 소식입니다. 그룹Talk 회원들과 함께 참석 신청해 보세요
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" id="about">
+    <div class="about">
+      <h2>ABOUT US</h2>
+      <div class="comment">
+        프렌즈는 7문항 설문조사를 통해 나를 알아주는 친구를, 서로를 알아볼 수 있는 누군가를 만날 수 있는 공간입니다<br>다양하지만 그중에 같은 관심사와 다르지만 같은 방향으로 생각하는 여러분들이 만들어가는 공간 프렌즈가 여러분들과 함께 합니다.
+      </div>
+      <div class="item">
+        <div class="image"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.heyfriendsus.club/assets/1642925922112-r9fwyimui7g.jpg"></div>
+        <div class="info">
+          <div class="title">"커플의 68%는 친구로 시작"</div>
+          <div class="content">
+            <p>2021년 8월 12일 발간된 학술 저널 '사회심리학과 성격심리학 (SPPS)'에 실린 새로운 연구결과 입니다.</p>
+            <p>취향이 같은 사람과의 대화는 공통관심사가 있어서 훨씬 편하고 유대감도 생기겠죠.<br>소개팅을 나갔는데 나와 안맞는 습관이 있어도 상대방 앞에서는 괜찮은척 참고 넘어가는것이 매너라 생각하지만 참는건 한계가 있기 마련입니다.<br>그래서 오래 못사귀고 헤어지면 또 다시 만남을 시작해야 되고 시행착오를 겪나요?</p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <div class="title">"Friends"</div>
+          <div class="content">
+            <p>"프렌즈"는 7문항 설문조사를 통해 내가 상대방에게 기대하는 최소한의 라이프 스타일과 취향이 동일한 (음주, 흡연, 반려동물, 종교관, 여가생활 등) 친구들만 그룹으로 분류하여 서로 소통하고 만남까지 이어져도 보다 성숙한 대인관계와 오래 지속되는 인연으로 서로 삶의 질을 높이고 더 발전할 수 있도록 도움이 되고자 합니다.</p>
+            <p>연예는 쉽게 할 수 있지만 사랑은 노력이 필요합니다.</p>
+            <p>그 노력 중에 최소한 나와 라이프 스타일, 즉 취향의 가치관이 맞는 사람을 만나서 서로 다른 점을 더 알아가려고 노력한다면 어려워도 더 좋은점이 많겠죠.</p>
+            <p>수많은 파티주최의 노하우로 가치관이 맞는 좋은 인연들을 위해 여러분의 의견에 귀기울이고 업그레이드하는 "프렌즈"가 되겠습니다.</p>
+          </div>
+        </div>
+        <div class="image"><img src="https://s3.ap-northeast-2.amazonaws.com/cdn.heyfriendsus.club/assets/1642925922316-4zb2ujiw85m.jpg"></div>
+      </div>
+    </div>
+  </div>
+</article>
+<script>
+  
+</script>

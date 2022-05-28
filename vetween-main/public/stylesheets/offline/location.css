@@ -1,0 +1,123 @@
+/* location */
+article .location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+article .location .cities {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+article .location .city {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+article .location .city a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+article .location .city .selected {
+  color: #fff;
+}
+
+article .location .provinces {
+  /* height: 200px; */
+  flex: 1;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  box-sizing: border-box;
+  padding: 4px;
+  overflow-y: scroll;
+}
+
+article .location .province {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+article .location .province .selected {
+  color: #fff;
+}
+
+article .location .province a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+article .location .province .selected {
+  color: #fff;
+}
+
+/* align */
+article .align {
+  margin-bottom: 20px;
+}
+
+article .align ul {
+  display: flex;
+}
+
+article .align ul li {
+  margin-right: 20px;
+}
+
+article .align ul li:last-child {
+  margin-right: 0;
+}
+
+article .align ul li .selected {
+  color: red;
+  font-weight: bold;
+}
+
+@media (max-width: 1280px) {
+  article .location {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  article .location .cities {
+    width: 100px;
+    height: 150px;
+  }
+
+  article .location .provinces {
+    grid-template-columns: repeat(4, 1fr);
+    height: 150px;
+  }
+
+  article .align {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

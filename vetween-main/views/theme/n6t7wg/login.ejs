@@ -1,0 +1,21 @@
+<style>
+  <% if (locals.setting.theme === 'black') { %>
+  article input {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  <% } %>
+</style>
+<article>
+  <div class="wrap">
+    <%- include('../../flash') %>
+    <h1>로그인</h1>
+    <form action="/login" method="POST">
+      <div><input type="text" name="id" placeholder="아이디 또는 이메일"></div>
+      <div><input type="password" name="password" placeholder="비밀번호"></div>
+      <div><button>로그인</button></div>
+      <div class="etc">아직 회원이 아니라면? <a href="/join">회원가입</a></div>
+      <div class="find"><a href="/findId">아이디 찾기</a><span class="slash">|</span><a href="/findPassword">비밀번호 찾기</a></div>
+    </form>
+  </div>
+</article>

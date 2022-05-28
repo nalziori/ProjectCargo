@@ -1,0 +1,46 @@
+<style>
+  <% if (locals.setting.theme === 'black') { %>
+  article h1 {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  article .content {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  <% } %>
+</style>
+<% if (page.type === 'editor') { %>
+  <style>
+    article > .content {
+      color: <%= locals.setting.bodyFontColor %>;
+    }
+  
+    article > .content .image {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  
+    article > .content .media {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+  
+  <article>
+    <%- include('./title', { title: page.title }) %>
+    <div class="content">
+      <%- page.content %>
+    </div>
+  </article>
+
+<% } else { %>
+  <link rel="stylesheet" href="/theme/<%= locals.setting.hash %>/stylesheets/commons.css">
+  <link rel="stylesheet" href="/theme/<%= locals.setting.hash %>/stylesheets/<%= page.slug %>.css">
+  <%- include(`./theme/${locals.setting.hash}/page/commons`) %>
+  <%- include(`./theme/${locals.setting.hash}/page/${page.slug}`) %>
+<% } %>

@@ -1,0 +1,35 @@
+article {
+}
+
+article .permission {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+article .comment {
+  margin-bottom: 30px;
+}
+
+article .button a {
+  width: 400px;
+  height: 50px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #434B57;
+  padding: 10px;
+  border-radius: 8px;
+  border: 0;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+article .button a:hover,
+article .button a:active {
+  background-color: #353C45;
+}

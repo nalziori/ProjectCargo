@@ -1,0 +1,57 @@
+<article>
+  <h1>내 지갑주소</h1>
+  <section class="wallet">
+    <div class="items">
+      <% userWallets.forEach(w => { %>
+      <div class="item">
+        <div class="titleContainer">
+          <div class="icon" style="background-color: <%= w.color %>;"></div>
+          <div class="title"><%= w.walletTitle %> (<%= w.title %>)</div>
+        </div>
+        <div class="hash"><%= w.hash %></div>
+      </div>
+      <% }) %>
+  </section>
+  <section class="addWallet">
+    <div class="spaceBetween">
+      <div></div>
+      <button class="addBtn">+ 지갑주소 추가하기</button>
+    </div>
+    <form action="/wallet/new" method="POST">
+      <div class="items">
+        <div class="item">
+          <label>지갑이름</label>
+          <div class="input"><input type="text" name="title"></div>
+        </div>
+        <div class="item">
+          <label>지갑종류</label>
+          <div class="input">
+            <select name="type">
+              <% wallets.forEach(w => { %>
+              <option value="<%= w.id %>"><%= w.title %></option>
+              <% }) %>
+            </select>
+          </div>
+        </div>
+        <div class="item">
+          <label>지갑주소</label>
+          <div class="input"><textarea name="hash"></textarea></div>
+        </div>
+      </div>
+      <div class="buttonContainer">
+        <div class="guide">* 띄워쓰기와 영문대소문자 정확히 표기해 주세요.</div>
+        <div class="buttons">
+          <button type="button" class="prev">이전</button>
+          <button name="submit" value="add" class="complete">확인</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</article>
+<script>
+  const addBtn = document.querySelector('.addBtn');
+  const addForm = document.querySelector('.addWallet form');
+  addBtn.addEventListener('click', () => {
+    addForm.className = 'active';
+  });
+</script>

@@ -1,0 +1,176 @@
+:root {
+  --point: #0055B1;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  color: #fff;
+  background-color: #333;
+  z-index: 3;
+}
+
+main {
+  margin-top: 100px;
+}
+
+header .toggleBtn {
+  display: none;
+}
+
+header .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header nav {
+  flex: 1;
+}
+
+header nav > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+header nav > ul > li {
+  /* flex: 1; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header nav > ul > li > a {
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 16px;
+}
+
+header nav > ul > li > a:hover {
+  color: var(--point);
+  background-color: #fff;
+}
+
+header .mypage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+header .mypage .slash {
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0 10px;
+}
+
+header .mypage a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+header .mypage a:hover {
+  color: #fff;
+}
+
+@media (max-width: 1280px) {
+  header {
+    padding: 0;
+    height: unset;
+  }
+
+  main {
+    margin-top: 90px;
+  }
+
+  header .toggleBtn {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+  }
+
+  header .toggleBtn svg {
+    color: #bbb;
+    width: 20px;
+    height: 20px;
+  }
+
+  header .wrap {
+    flex-direction: column;
+  }
+
+  header .logo {
+    margin: 0;
+    height: 70px;
+  }
+  
+  header .logo img {
+    width: 200px;
+    margin-left: 13px;
+    margin-top: 6px;
+  }
+
+  header nav {
+    display: none;
+    width: 90%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    order: 2;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  header nav > ul {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  header nav > ul > li {
+    width: 100%;
+  }
+
+  header nav > ul > li > a {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 10px 0;
+    border-radius: 4px;
+  }
+
+  header nav > ul > li > a:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  header .mypage {
+    display: none;
+    order: 1;
+    padding: 10px 0;
+  }
+
+  header .mypage.active {
+    display: flex;
+  }
+}

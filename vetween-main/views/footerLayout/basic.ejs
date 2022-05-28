@@ -1,0 +1,66 @@
+<style>
+  
+  <% if (locals.setting.theme === 'black') { %>
+  footer .license {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  footer .license a {
+    color: <%= locals.setting.bodyFontColor %>;
+  }
+
+  footer .license a:hover,
+  footer .license a:active {
+    color: <%= locals.setting.bodyFontColor %>;
+  }
+
+  footer .copyright {
+    color: <%= locals.setting.bodyFontColor %>;
+  }
+
+  footer .count {
+    color: <%= locals.setting.bodyFontColor %>;
+  }
+  <% } %>
+  footer .company {
+    color : rgba(255, 255, 255, 0.5);
+  }
+  footer .guide {
+    color : rgba(255, 255, 255, 0.1);
+  }
+</style>
+<!--
+<footer>
+  <div class="wrap">
+    <div class="guide"><%- locals.setting.footerGuide %></div>
+    <div class="license">Made by<span class="bold"><%= locals.setting.siteNameRaw %></span></div>
+    <% if (locals.setting.useVisitCount) { %>
+    <div class="count">
+      <div class="today">오늘 <%= Number(locals.count?.today).toLocaleString() %></div>
+      <div class="yesterday">어제 <%= Number(locals.count?.yesterday).toLocaleString() %></div>
+      <div class="month">한달 <%= Number(locals.count?.month).toLocaleString() %></div>
+    </div>
+    <% } %>
+  </div>
+</footer>
+-->
+<footer>
+  <div class="wrap">
+    <!--<div class="logo"><img src="<%= s3Host %>/assets/<%= locals.setting.logoImage %>" alt="<%= locals.setting.siteName %>"></div>-->
+    <div class="info">
+      <div class="company">
+        <div>
+          <span class="bold">브이메디 대표자 김민성</span> | 대구광역시 북구 경대로 7길 43-6, 102호 
+          <span class="bold">이메일</span> : vetweenus@gmail.com
+          <!--<span class="bold">카톡</span> : swedish365</div>-->
+          </div>
+          <div>
+            <span class="bold">사업자등록번호</span> : 225-05-98485
+          </div>
+        </div>
+      <div> <span class="bold">Copyright &copy 2022-2022 Vetween. All Rights Reserved.</span></div>
+      <div class="guide"><a href="/terms" target="_blank">이용약관</a> | <a href="/privacy" target="_blank">개인정보 취급방침</a> | <a href="/business_info" target="_blank">사업자등록정보</a></div>
+    </div>
+    <div></div>
+  </div>
+</footer>

@@ -1,0 +1,569 @@
+/* commons */
+header .moveTop {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  background-color: #aaa;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+header .moveTop svg {
+  width: 30px;
+  height: 30px;
+}
+
+header .top .favorite {
+  cursor: pointer;
+}
+
+@media (min-width: 1281px) {
+  header {
+    position: relative;
+    background-color: #fff;
+    border-bottom: 1px solid #000;
+  }
+
+  header .toggleBtn,
+  header .alarmBtn {
+    display: none;
+  }
+
+  /* top */
+  header .top {
+    width: 100%;
+    height: 50px;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+    border-bottom: 1px solid #bbb;
+  }
+
+  header .top .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header .top ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .top .slash {
+    color: #bbb;
+    padding: 0 10px;
+  }
+
+  /* middle */
+  header .middle {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .middle .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header .middle .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .middle .logo {
+    width: 380px;
+  }
+
+  header .middle .logo img {
+    max-height: 120px;
+  }
+
+  header .middle .search {
+    font-size: 0.9em;
+    width: 380px;
+    height: 40px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+  }
+
+  header .middle .search form {
+    height: 100%;
+    flex-direction: row;
+  }
+
+  header .middle .search input {
+    flex: 1;
+    border: 0;
+  }
+
+  header .middle .search button {
+    width: 40px;
+    background-color: #fff;
+    border: 0;
+  }
+
+  header .middle .search svg {
+    color: red;
+    width: 20px;
+  }
+
+  header .middle .headerBanner img {
+    max-width: 470px;
+    max-height: 110px;
+  }
+
+  header nav {
+    width: 1280px;
+  }
+
+  header nav > .mypage,
+  header nav > .etc {
+    display: none;
+  }
+
+  header nav > .main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header nav > .main > li {
+    width: 100%;
+    position: relative;
+    flex: 1;
+    border-bottom: 2px solid #fff;
+  }
+
+  header nav > .main > li .button {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header nav > .main > li svg {
+    width: 20px;
+  }
+
+  header nav > .main > li .more {
+    display: none;
+  }
+
+  header nav > .main > li:hover::after {
+    background-color: #FF4500;
+  }
+
+  header nav > .main > li::after {
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    content: "";
+    width: 100%;
+    height: 4px;
+  }
+
+  header nav > .main > li > .button > a {
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header nav > .main > li > ul {
+    position: absolute;
+    top: 53px;
+    left: 0;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  header nav > .main > li:hover ul {
+    display: flex;
+  }
+
+  header nav > .main > li > ul > li {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+  }
+
+  header nav > .main > li > ul > li:last-child {
+    border-bottom: unset;
+  }
+
+  header nav > .main > li > ul > li:hover a {
+    font-weight: bold;
+    color: #fff;
+    background-color: #FF4500;
+  }
+
+  header nav > .main > li > ul > li > a {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 50px;
+    padding: 0 14px;
+  }
+
+  header nav > .main > .home,
+  header nav > .main > .totalBtn {
+    flex: unset;
+    width: 50px;
+    cursor: pointer;
+  }
+
+  header .total {
+    position: absolute;
+    left: 0;
+    top: 243px;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1px solid #bbb;
+    z-index: 3;
+  }
+
+  header .total.active {
+    display: flex;
+  }
+
+  header .total .wrap {
+    padding: 30px 0;
+  }
+
+  header .total .items {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid #bbb;
+    border-left: 1px solid #bbb;
+  }
+
+  header .total .items > div {
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+  }
+
+  header .total .item {
+    background-color: #fff;
+  }
+
+  header .total .item .title {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    background-color: #F6F6F6;
+    border-bottom: 1px solid #bbb;
+  }
+
+  header .total .item ul {
+    font-size: 0.9em;
+    padding: 8px 0;
+  }
+
+  header .total .item ul li a {
+    width: 100%;
+    display: flex;
+    padding: 4px 8px;
+  }
+
+  header .total .item ul li a:hover {
+    color: #DC153D;
+  }
+
+  header .headerModalBackground {
+    display: none;
+  }
+
+  header .count {
+    display: none;
+  }
+}
+
+@media (max-width: 1280px) {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #000;
+    z-index: 5;
+  }
+
+  main {
+    margin-top: 90px;
+  }
+
+  header .toggleBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  header .alarmBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  header .toggleBtn svg,
+  header .alarmBtn svg {
+    color: #000;
+    width: 24px;
+  }
+
+  header .alarmBtn .count {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 0.7em;
+    background-color: red;
+    border-radius: 100%;
+  }
+
+  header .top {
+    display: none;
+  }
+
+  header .middle {
+    width: 100%;
+  }
+
+  header .middle .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+  }
+
+  header .middle .logo img {
+    max-height: 50px;
+  }
+
+  header .middle .search {
+    display: none;
+  }
+
+  header .middle .headerBanner {
+    display: none;
+  }
+
+  header nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 400px;
+    height: 100%;
+    display: none;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+    background-color: #fff;
+    z-index: 5;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  header nav > .mypage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+  }
+
+  header nav > .mypage .slash {
+    display: none;
+  }
+
+  header nav > .mypage li {
+    flex: 1;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  header nav > .mypage li:last-child {
+    border-right: unset;
+  }
+
+  header nav > .mypage li a {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+
+  header nav > .mypage li a:hover {
+    background-color: #444;
+  }
+
+  header nav > .main {
+    width: 100%;
+    border-top: 1px solid #ddd;
+  }
+
+  header nav > .main > .home,
+  header nav > .main > .totalBtn {
+    display: none;
+  }
+
+  header nav > .main > li {
+    width: 100%;
+  }
+  
+  header nav > .main > li > .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  header nav > .main > li > .button .more {
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #bbb;
+    cursor: pointer;
+  }
+
+  header nav > .main > li > .button .more svg {
+    width: 12px;
+  }
+  
+  header nav > .main > li > .button > a {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  header nav > .main > li > .button > a:hover {
+    color: #DC153D;
+  }
+
+  header nav > .main > li > ul {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #eee;
+  }
+
+  header nav > .main > li > ul.active {
+    display: flex;
+  }
+
+  header nav > .main > li > ul > li {
+    width: 100%;
+  }
+  
+  header nav > .main > li > ul > li > a {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  header nav > .main > li > ul > li > a:hover {
+    color: #DC153D;
+  }
+
+  header nav .count {
+    width: 100%;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* font-size: 0.9em; */
+    padding: 20px 10px;
+    box-sizing: border-box;
+  }
+  
+  header nav .count li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    box-sizing: border-box;
+  }
+
+  header .total {
+    display: none;
+  }
+
+  header .headerModalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  header .headerModalBackground.active {
+    display: flex;
+  }
+}

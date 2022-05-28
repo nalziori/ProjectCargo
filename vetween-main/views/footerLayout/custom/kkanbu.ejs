@@ -1,0 +1,36 @@
+<style>
+  footer .contact a {
+    color: <%= locals.setting.pointColor %>;
+  }
+</style>
+<footer>
+  <div class="wrap">
+    <ul class="contact">
+      <li><a href="/privacy">Privacy Policy</a></li>
+      <li class="line">|</li>
+      <li><a href="/dmca">DMCA</a></li>
+      <li class="line">|</li>
+      <li><a href="/ad">광고문의</a></li>
+    </ul>
+    <div class="guide">
+      <div class="korean">
+        본 사이트는 성인콘텐츠가 합법인 미국, 일본, 호주, 캐나다 등 해외에 거주하는 한글 사용 유저를 위한 사이트 입니다.<br>
+        리벤지포르노와 아동포르노를 절대로 업데이트하지 않습니다.<br>
+        영상속 모든 사람은 성인입니다.
+      </div>
+      <div class="english">
+        We are strongly against illegal pornography! We also do not own, produce or host any of the videos that you see at the website.<br>
+        We offer you numerous links to third party websites and you are supposed to use them at your own discretion.<br>
+        We never update Revenge porn and Child porn. Everybody in video is Adult.<br>
+        All rights reserved. Powered by <%= locals.setting.siteName %>
+      </div>
+    </div>
+    <% if (locals.setting.useVisitCount) { %>
+    <div class="count">
+      <div class="today">오늘 <%= Number(locals.count.today).toLocaleString() %></div>
+      <div class="yesterday">어제 <%= Number(locals.count.yesterday).toLocaleString() %></div>
+      <div class="month">한달 <%= Number(locals.count.month).toLocaleString() %></div>
+    </div>
+    <% } %>
+  </div>
+</footer>

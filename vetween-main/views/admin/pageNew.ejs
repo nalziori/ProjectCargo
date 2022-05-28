@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+    <link rel="stylesheet" href="/stylesheets/board/editor.css">
+    <script src="/javascripts/editor.js" defer></script>
+    <%- include('../editorHeaderPage') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <h2>페이지</h2>
+          <form name="frm" action="/admin/page/new" method="POST" style="margin-left: 0; margin-right: 0;">
+            <div>
+              <select name="type" id="type">
+                <option value="editor">Editor</option>
+                <option value="source">Source</option>
+              </select>
+            </div>
+            <h2>제목</h2>
+            <div><input type="text" name="title" id="title" placeholder="제목"></div>
+            <h2>연결 주소</h2>
+            <div><input type="text" name="slug" id="slug" placeholder="연결 주소"></div>
+            <div class="content">
+              <div class="textareaContainer">
+                <textarea name="content" id="editor"></textarea>
+              </div>
+            </div>
+            <div><button name="submit" id="submit" value="new">등록</button></div>
+          </form>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

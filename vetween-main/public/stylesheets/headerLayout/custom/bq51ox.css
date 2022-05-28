@@ -1,0 +1,133 @@
+main {
+  margin-top: 130px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(51, 51, 51, 1);
+  height: 100px;
+  z-index: 3;
+}
+
+header.active {
+  background-color: rgb(51, 51, 51, 0.5);
+}
+
+header .toggleBtn {
+  display: none;
+}
+
+header .wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+}
+
+header .logo {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+header nav > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+header nav > ul > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 18px;
+  height: 100%;
+}
+
+header nav > ul > li > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  height: 100%;
+}
+
+header nav > ul > li > a:hover {
+  color: #50AFEC;
+}
+
+@media (max-width: 1280px) {
+  main {
+    margin-top: 100px;
+  }
+
+  header {
+    height: unset;
+  }
+
+  header .toggleBtn {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+  }
+
+  header .toggleBtn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  header .wrap {
+    flex-direction: column;
+  }
+
+  header .logo {
+    width: 100%;
+    height: 70px;
+  }
+
+  header .logo img {
+    max-height: 46px;
+  }
+
+  header nav {
+    display: none;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  header nav > ul {
+    flex-direction: column;
+  }
+
+  header nav > ul > li {
+
+  }
+
+  header nav > ul > li > a {
+    padding: 20px 0;
+  }
+}

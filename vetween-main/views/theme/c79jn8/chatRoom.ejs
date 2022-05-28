@@ -1,0 +1,48 @@
+<script src="/socket.io/socket.io.js"></script>
+<script src="/theme/c79jn8/javascripts/singleChat.js" defer></script>
+<article>
+  <% if (locals.user) { %>
+  <h1>1:1 채팅</h1>
+  <div class="chatRooms">
+    <div class="chatList">
+      <% chatList.forEach(r => { %>
+        <a href="/chatRoom/<%= r.hash %>" class="room" id="<%= r.hash %>">
+          <div class="line"></div>
+          <div class="image"><img src="/assets/emptyRect.png" alt="<%= r.userImage %>" style="<% if (r.userImage) { %>background-image: url('<%= s3Host %>/userImage/<%= r.userImage %>');<% } else { %>background-image: url('/assets/userImage.svg');<% } %>"></div>
+          <div class="info">
+            <div class="nickName"><%= r.nickName %></div>
+            <div class="chat"><%= r.recentMessage?.slice(0, 20) %></div>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+    <div class="chatContainer">
+      <div class="chatBox" id="chatBox">
+        <iframe src="/roomChatWindow.html" id="chatWindow" class="chatWindow"></iframe>
+      </div>
+      <% if (locals.user) { %>
+      <div class="messageBox">
+        <input type="text" name="msg" id="msg" class="msg" onkeydown="moveFocus('send')" placeholder="채팅 입력">
+        <button name="submit" id="send" class="send" onkeydown="moveFocus('msg')">전송</button>
+      </div>
+      <% } else { %>
+      <div class="messageBox">
+        <input type="text" name="msg" id="msg" class="msg" onkeydown="moveFocus('send')" placeholder="로그인 필요" disabled>
+        <button name="submit" id="send" class="send" onkeydown="moveFocus('msg')" disabled>전송</button>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <% } %>
+</article>
+<script>
+  const selectedRoom = window.location.pathname.replace('/chatRoom/', '');
+  const rooms = document.querySelectorAll('.room');
+  rooms.forEach(r => {
+    const line = r.querySelector('.line');
+    if (r.id === selectedRoom) {
+      r.classList.toggle('active');
+      line.classList.toggle('active');
+    }
+  });
+</script>

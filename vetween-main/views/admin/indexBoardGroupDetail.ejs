@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <section>
+            <h2><%= indexBoardGroup.title %> 첫페이지</h2>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>게시판</th>
+                    <th>타입</th>
+                    <th>게시글 순서</th>
+                    <th>제외 게시판</th>
+                    <th>출력 갯수</th>
+                    <th>표시 순서</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% indexBoards.forEach(indexBoard => { %>
+                    <form action="/admin/indexBoard/edit/<%= indexBoard.id %>" method="POST">
+                      <tr>
+                        <td>
+                          <select name="board">
+                            <option value="0">전체 게시글</option>
+                            <% boards.forEach(b => { %>
+                            <option value="<%= b.id %>"<% if (indexBoard.indexBoard_board_ID === b.id) { %> selected<% } %>><%= b.title %></option>
+                            <% }) %>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="type">
+                            <option value="text"<% if (indexBoard.type === 'text') { %> selected<% } %>>텍스트</option>
+                            <option value="image"<% if (indexBoard.type === 'image') { %> selected<% } %>>이미지</option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="articleOrder">
+                            <option value="lately"<% if (indexBoard.articleOrder === 'lately') { %> selected<% } %>>최신</option>
+                            <option value="older"<% if (indexBoard.articleOrder === 'older') { %> selected<% } %>>오래된</option>
+                            <option value="best"<% if (indexBoard.articleOrder === 'best') { %> selected<% } %>>인기</option>
+                            <option value="random"<% if (indexBoard.articleOrder === 'random') { %> selected<% } %>>랜덤</option>
+                          </select>
+                        </td>
+                        <td><input type="text" name="exceptBoards" value="<%= indexBoard.exceptBoards %>" placeholder="제외 게시판"></td>
+                        <td><input type="text" name="viewCount" value="<%= indexBoard.viewCount %>" placeholder="출력 갯수"></td>
+                        <td><input type="text" name="viewOrder" value="<%= indexBoard.viewOrder %>" placeholder="표시 순서"></td>
+                        <td><button name="submit" value="edit">수정</button></td>
+                        <td><button name="submit" value="delete">삭제</button></td>
+                      </tr>
+                    </form>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section>
+            <h2>첫페이지 등록</h2>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>게시판</th>
+                    <th>타입</th>
+                    <th>게시글 순서</th>
+                    <th>등록</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <form action="/admin/indexBoard/new" method="POST">
+                    <tr>
+                      <input type="hidden" name="indexBoardGroup" value="<%= indexBoardGroup.id %>">
+                      <td>
+                        <select name="board">
+                          <option value="0">전체 게시글</option>
+                          <% boards.forEach(board => { %>
+                          <option value="<%= board.id %>"><%= board.title %></option>
+                          <% }) %>
+                        </select>
+                      </td>
+                      <td>
+                        <select name="type">
+                          <option value="text">텍스트</option>
+                          <option value="image">이미지</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select name="articleOrder">
+                          <option value="lately">최신</option>
+                          <option value="older">오래된순</option>
+                          <option value="best">인기</option>
+                          <option value="random">랜덤</option>
+                        </select>
+                      </td>
+                      <td><button>등록</button></td>
+                    </tr>
+                  </form>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

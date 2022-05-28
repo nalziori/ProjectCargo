@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <section>
+            <h2>메시지 목록</h2>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>날짜</th>
+                    <th>발신</th>
+                    <th>수신</th>
+                    <th>내용</th>
+                    <th>삭제</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% messages.forEach(message => { %>
+                    <form action="/admin/message/edit/<%= message.id %>" method="POST">
+                      <tr>
+                        <td><%= message.datetime %></td>
+                        <td><%= message.senderUid %> (<%= message.senderNickName %>)</td>
+                        <td><%= message.recipientUid %> (<%= message.recipientNickName %>)</td>
+                        <td><textarea name="content" disabled><%= message.content %></textarea></td>
+                        <td><button name="submit" value="delete">삭제</button></td>
+                      </tr>
+                    </form>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <%- include('../pagination') %>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

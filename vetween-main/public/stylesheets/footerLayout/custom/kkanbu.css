@@ -1,0 +1,64 @@
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 100px 0;
+}
+
+footer .wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 20px;
+}
+
+footer .contact {
+  display: flex;
+  margin: 50px 0;
+}
+
+footer .contact a {
+  font-weight: bold;
+}
+
+footer .contact .line {
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0 20px;
+}
+
+footer .guide {
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+}
+
+footer .guide .korean {
+  margin-bottom: 20px;
+}
+
+footer .count {
+  display: flex;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+footer .count div {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+footer .count div:last-child {
+  margin-right: 0;
+}
+
+b,
+footer .bold {
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+@media (max-width: 1280px) {
+  
+}

@@ -1,0 +1,155 @@
+/* commons */
+body {
+  background-color: #fff;
+}
+
+main > .wrap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 30px;
+}
+
+@media (max-width: 1280px) {
+  main .wrap {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* aside */
+aside {
+  width: 300px;
+}
+
+aside .index {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #EBECED;
+}
+
+aside .index .title {
+  color: #103355;
+  font-weight: bold;
+}
+
+aside .index ol {
+  list-style: decimal;
+  margin-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+aside .index ol li {
+  
+}
+
+aside .index ol li a {
+  color: #596F87;
+  /* text-decoration: underline; */
+}
+
+aside .index ol li a:hover,
+aside .index ol li a:active {
+  color: #5282F3;
+  text-decoration: underline;
+}
+
+@media (max-width: 1280px) {
+  main aside {
+    width: 100%;
+  }
+}
+
+/* article */
+article {
+  color: #525866;
+  align-items: flex-start;
+}
+
+article h1,
+article h2,
+article h2,
+article h4,
+article h5,
+article h6 {
+  color: #060F19;
+  position: relative;
+}
+
+article .sites {
+  width: 100%;
+  border: 1px solid #E5E6E8;
+}
+
+article .site {
+  display: flex;
+}
+
+article .site:hover,
+article .site:active {
+  background-color: #FBFBFB;
+}
+
+article .header {
+  display: flex;
+  font-size: 0.8em;
+  /* font-weight: bold; */
+}
+
+article .header > div,
+article .site > div {
+  padding: 10px;
+}
+
+article .site a {
+  color: #0052FF;
+}
+
+article .rank {
+  flex: unset;
+  width: 60px;
+}
+
+article .title {
+  width: 140px;
+}
+
+article .direct {
+  width: 200px;
+}
+
+article .direct a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+
+article .direct svg {
+  fill: currentColor;
+  width: 12px;
+  padding-bottom: 3px;
+}
+
+article .feature {
+  flex: 1;
+}
+
+article .site .feature {
+  font-size: 0.9em;
+}
+
+article .event {
+  width: 180px;
+}
+
+article .site .event {
+  font-size: 0.9em;
+}

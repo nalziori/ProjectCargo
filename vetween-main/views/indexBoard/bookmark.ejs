@@ -1,0 +1,29 @@
+<div class="indexBoards bookmark <%= indexBoardGroup.type %>">
+  <% indexBoardGroup.indexBoards.forEach(indexBoard => { %>
+  <div class="indexBoard <%= indexBoard.type %>">
+    <% if (indexBoardGroup.showTitleAndContent) { %>
+    <div class="indexBoardTitleContainer">
+      <h2><a href="/<%= indexBoard.slug %>"><%= indexBoard.title %></a></h2>
+      <div class="content"><%- indexBoardGroup.content %></div>
+    </div>
+    <% } %>
+    <div class="articles <%= indexBoard.type %>">
+      <% indexBoard.articles.forEach(article => { %>
+      <div class="article">
+        <% if (article.images.length) { %>
+        <a href="/<%= indexBoard.slug %>/<%= article.id %>" class="image"><img src="<%= locals.s3Host %>/article/<%= article.images[0].key %>" alt="<%= article.title %>"></a>
+        <% } %>
+        <div class="info">
+          <div class="title"><%= article.title %></div>
+          <div class="code">가입코드 : <%= article.customField02 %></div>
+        </div>
+        <div class="buttons">
+          <a href="/<%= indexBoard.slug %>/<%= article.id %>" class="detail">상세보기</a>
+          <a href="<%= article.customField01 %>" target="_blank" class="join">가입하기</a>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+  <% }) %>
+</div>

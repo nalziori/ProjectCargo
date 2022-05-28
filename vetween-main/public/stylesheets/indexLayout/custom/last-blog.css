@@ -1,0 +1,233 @@
+article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+article video {
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 60px;
+}
+
+article .content h2 {
+  color: #FFCC00;
+  font-size: 3em;
+}
+
+article .content p {
+  font-size: 1.2em;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+
+article section {
+  margin-bottom: 60px;
+  text-align: center;
+  word-break: keep-all;
+}
+
+article .content img {
+  max-width: 100%;
+  margin: 30px 0;
+}
+
+article .phone {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+article .event {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+article .join {
+  color: #fff;
+  font-weight: bold;
+  font-size: 2em;
+  background: linear-gradient(to right, rgba(93, 72, 255, 1), rgba(142, 0, 255, 1));
+  padding: 20px 40px;
+  border-radius: 12px;
+  margin-bottom: 100px;
+}
+
+article .join:hover,
+article .join:active {
+  background: #5D48FF;
+}
+
+article .wrap {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 1280px;
+}
+
+article .list {
+  margin-bottom: 20px;
+}
+
+article .list h2 {
+  margin-bottom: 10px;
+}
+
+article .gridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+article .gridItem {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+article .more {
+  font-size: 14px;
+}
+
+article .titleSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+article .titleSpaceBetween h2 {
+  font-weight: 800;
+  color: #000;
+}
+
+article .contentSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+article .contentSpaceBetween a:hover,
+article .contentSpaceBetween a:active {
+  text-decoration: underline;
+}
+
+article .contentSpaceBetween .title {
+  width: 100px;
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  min-width: 0;
+  box-sizing: border-box;
+  word-break: keep-all;
+}
+
+article .contentSpaceBetween .title a {
+  margin-right: 6px;
+}
+
+article .contentSpaceBetween .boardTitle,
+article .contentSpaceBetween .category {
+  color: #697183;
+  background-color: #f5f6f9;
+  border-radius: 6px;
+  padding: 4px 6px;
+  margin-right: 8px;
+  font-size: 0.9em;
+  word-break: keep-all;
+  box-sizing: border-box;
+}
+
+article .contentSpaceBetween .title {
+  margin-right: 10px;
+}
+
+article .contentSpaceBetween .title a {
+  width: 100%;
+}
+
+article .contentSpaceBetween .commentCount {
+  color: #9da5b6;
+}
+
+article .contentSpaceBetween img {
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+article .contentSpaceBetween .image img {
+  width: 14px;
+  height: 14px;
+  background-image: url('/assets/image.svg');
+}
+
+article .contentSpaceBetween .commentCount img {
+  width: 14px;
+  height: 14px;
+  background-image: url('/assets/comment-dots-regular.svg');
+}
+
+article .contentSpaceBetween .datetime {
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  color: #9da5b6;
+  font-size: 0.9em;
+  margin-left: 10px;
+  word-break: keep-all;
+}
+
+@media (min-width: 1281px) {
+  article video {
+    height: 600px;
+  }
+}
+
+@media (max-width: 1280px) {
+  article .phone {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  article .event {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  article .join {
+    font-size: 1.5em;
+    padding: 10px 20px;
+    margin-bottom: 100px;
+  }
+
+  article .wrap {
+    width: 100%;
+  }
+
+  article .content {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  article .gridContainer {
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  article .gridItem {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  article {
+    font-size: 0.9em;
+  }
+}

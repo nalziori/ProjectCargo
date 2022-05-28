@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <section>
+            <div class="spaceBeetween">
+              <h2>로그</h2>
+              <div class="count">오늘 : <%= Number(today).toLocaleString() %> / 어제 : <%= Number(yesterday).toLocaleString() %> / 한달 : <%= Number(month).toLocaleString() %></div>
+            </div>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>날짜</th>
+                    <th>위치</th>
+                    <th>게시글</th>
+                    <th>IP</th>
+                    <th>이전 위치</th>
+                    <th>유저 에이전트</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% logs.forEach(log => { %>
+                  <tr>
+                    <td><%= log.id %></td>
+                    <td><%= log.datetime %></td>
+                    <td class="location"><%= log.location %></td>
+                    <td class="article"><a href="/<%= log.boardSlug %>/<%= log.log_article_ID %>"><%= log.title %></a></td>
+                    <td><%= log.viewIp %></td>
+                    <td class="referer"><%= log.referer %></td>
+                    <td class="userAgent"><%= log.userAgent %></td>
+                  </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <%- include('../pagination') %>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

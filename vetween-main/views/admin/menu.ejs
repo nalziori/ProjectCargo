@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <section>
+            <h2>메뉴 목록</h2>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>연결 주소</th>
+                    <th>표시 순서</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                    <th>표시</th>
+                    <th>하위메뉴 추가</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% totalMenus.forEach(menu => { %>
+                  <form action="/admin/menu/edit/<%= menu.id %>" method="POST">
+                    <tr>
+                      <td><%= menu.id %></td>
+                      <td><input type="text" name="title" value="<%= menu.title %>" placeholder="이름"></td>
+                      <td><input type="text" name="target" value="<%= menu.target %>" placeholder="연결 주소"></td>
+                      <td><input type="text" name="viewOrder" value="<%= menu.viewOrder %>" placeholder="표시 순서"></td>
+                      <td><button name="submit" value="edit">수정</button></td>
+                      <td><button name="submit" value="delete">삭제</button></td>
+                      <td><button name="submit" value="status">
+                        <% if (menu.status) { %>
+                          표시
+                        <% } else { %>
+                          표시안함
+                        <% } %>
+                      </button></td>
+                      <td><button name="submit" value="add">추가</button></td>
+                    </tr>
+                  </form>
+                  <% menu.subMenus.forEach(subMenu => { %>
+                    <form action="/admin/menu/edit/<%= subMenu.id %>" method="POST">
+                      <tr>
+                        <td>ㄴ</td>
+                        <td><input type="text" name="title" value="<%= subMenu.title %>" placeholder="이름"></td>
+                        <td><input type="text" name="target" value="<%= subMenu.target %>" placeholder="연결 주소"></td>
+                        <td><input type="text" name="viewOrder" value="<%= subMenu.viewOrder %>" placeholder="표시 순서"></td>
+                        <td><button name="submit" value="edit">수정</button></td>
+                        <td><button name="submit" value="delete">삭제</button></td>
+                        <td><button name="submit" value="status">
+                          <% if (subMenu.status) { %>
+                            표시
+                          <% } else { %>
+                            표시안함
+                          <% } %>
+                        </button></td>
+                      </tr>
+                    </form>
+                  <% }) %>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section>
+            <h2>새로 등록</h2>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>이름</th>
+                    <th>연결 주소</th>
+                    <th>등록</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <form action="/admin/menu/new" method="POST">
+                    <tr>
+                      <td><input type="text" name="title" placeholder="이름"></td>
+                      <td><input type="text" name="target" placeholder="연결 주소"></td>
+                      <td><button name="submit" value="new">등록</button></td>
+                    </tr>
+                  </form>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

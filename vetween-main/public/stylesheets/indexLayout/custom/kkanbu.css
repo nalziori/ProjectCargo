@@ -1,0 +1,261 @@
+article .list {
+  margin-bottom: 20px;
+}
+
+article .list h2 {
+  margin-bottom: 10px;
+}
+
+article .gridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+article .gridItem {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+article .more {
+  font-size: 14px;
+}
+
+article .titleSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+article .titleSpaceBetween h2 {
+  font-weight: 800;
+}
+
+article .contentSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+article .contentSpaceBetween a:hover,
+article .contentSpaceBetween a:active {
+  text-decoration: underline;
+}
+
+article .contentSpaceBetween .title {
+  width: 100px;
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  min-width: 0;
+  box-sizing: border-box;
+  word-break: keep-all;
+}
+
+article .contentSpaceBetween .title a {
+  margin-right: 6px;
+}
+
+article .contentSpaceBetween .boardTitle,
+article .contentSpaceBetween .category {
+  color: #697183;
+  background-color: #f5f6f9;
+  border-radius: 6px;
+  padding: 4px 6px;
+  margin-right: 8px;
+  font-size: 0.9em;
+  word-break: keep-all;
+  box-sizing: border-box;
+}
+
+article .contentSpaceBetween .title {
+  margin-right: 10px;
+}
+
+article .contentSpaceBetween .title a {
+  width: 100%;
+}
+
+article .contentSpaceBetween .commentCount {
+  color: #9da5b6;
+}
+
+article .contentSpaceBetween img {
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+article .contentSpaceBetween .image img {
+  width: 14px;
+  height: 14px;
+  background-image: url('/assets/image.svg');
+}
+
+article .contentSpaceBetween .commentCount img {
+  width: 14px;
+  height: 14px;
+  background-image: url('/assets/comment-dots-regular.svg');
+}
+
+article .contentSpaceBetween .datetime {
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  color: #9da5b6;
+  font-size: 0.9em;
+  margin-left: 10px;
+  word-break: keep-all;
+}
+
+/* Board Pick */
+.boardPick {
+  margin-bottom: 30px;
+}
+
+.boardPick .boardTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.3em;
+  background-color: #0F1318;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.boardPick .boardTitle .more {
+  color: #fff;
+}
+
+.boardPick .items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.boardPick .item {
+  display: flex;
+  flex-direction: column;
+  color: #ddd;
+}
+
+.boardPick .item .image {
+  position: relative;
+}
+
+.boardPick .item .image img {
+  width: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.boardPick .item .image .border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.boardPick .item:hover .border {
+  /* border: 4px solid #EF8F10; */
+  animation-duration: 0.4s;
+  animation-name: fadeinBorder;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeinBorder {
+  from {
+    border: unset;
+  }
+
+  to {
+    border: 4px solid #EF8F10;
+  }
+}
+
+.boardPick .item:hover .hd {
+  animation-duration: 0.4s;
+  animation-name: fadeinHd;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeinHd {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  to {
+    background-color: #EF8F10;
+  }
+}
+
+.boardPick .item .image .hd {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-weight: bold;
+  font-style: italic;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.boardPick .item .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 0.9em;
+}
+
+.boardPick .item .title a {
+  color: #ddd;
+}
+
+@media (max-width: 1280px) {
+  article .gridContainer {
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  article .gridItem {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  article .boardPick {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  article .boardPick .items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  article .boardPick .hd {
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 320px) {
+  article {
+    font-size: 0.9em;
+  }
+}

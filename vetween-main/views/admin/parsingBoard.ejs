@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <h2>"<%= parsingSite.title %>" 상세 설정</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>URL 구조</th>
+                <th>게시글 ID</th>
+                <th>딜레이</th>
+                <th>수정</th>
+              </tr>
+            </thead>
+            <tbody>
+              <form action="/admin/parsing/site/detail/edit/<%= parsingSite.id %>" method="POST">
+                <tr>
+                  <td><input type="text" name="urlStructure" value="<%= parsingSite.urlStructure %>" placeholder="URL 구조"></td>
+                  <td><input type="text" name="articleIdRegex" value="<%= parsingSite.articleIdRegex %>" placeholder="게시글 ID"></td>
+                  <td><input type="text" name="delay" value="<%= parsingSite.delay %>" placeholder="딜레이"></td>
+                  <td rowspan="3"><button name="submit" value="edit">수정</button></td>
+                </tr>
+                <tr>
+                  <th>목록 선택자</th>
+                  <th>제목 선택자</th>
+                  <th>내용 선택자</th>
+                </tr>
+                <tr>
+                  <td><input type="text" name="listSelector" value="<%= parsingSite.listSelector %>" placeholder="선택자"></td>
+                  <td><input type="text" name="titleSelector" value="<%= parsingSite.titleSelector %>" placeholder="제목 선택자"></td>
+                  <td><input type="text" name="contentSelector" value="<%= parsingSite.contentSelector %>" placeholder="내용 선택자"></td>
+                </tr>
+              </form>
+            </tbody>
+            <thead>
+              
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table>
+          <div class="list">
+            <h2>"<%= parsingSite.title %>" 게시판 목록</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>게시판명</th>
+                  <th>SLUG</th>
+                  <th>목록 선택자</th>
+                  <th>제목 선택자</th>
+                  <th>내용 선택자</th>
+                  <th>대상 게시판</th>
+                  <th>수정</th>
+                  <th>삭제</th>
+                  <th>시작페이지</th>
+                  <th>마지막페이지</th>
+                  <th>가져오기</th>
+                  <th>게시글 보기</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% parsingBoards.forEach(b => { %>
+                <form action="/admin/parsing/board/edit/<%= b.id %>" method="POST">
+                  <tr>
+                    <td><input type="text" name="title" value="<%= b.title %>" placeholder="게시판명"></td>
+                    <td><input type="text" name="slug" value="<%= b.slug %>" placeholder="연결 주소"></td>
+                    <td><input type="text" name="listSelector" value="<%= b.listSelector %>" placeholder="목록 선택자"></td>
+                    <td><input type="text" name="titleSelector" value="<%= b.titleSelector %>" placeholder="제목 선택자"></td>
+                    <td><input type="text" name="contentSelector" value="<%= b.contentSelector %>" placeholder="내용 선택자"></td>
+                    <td>
+                      <select name="targetBoard">
+                        <% targetBoards.forEach(t => { %>
+                          <option value="<%= t.id %>" <% if (b.parsingBoard_targetBoard_ID === t.id) { %> selected<% } %>><%= t.title %></option>
+                        <% }) %>
+                      </select>
+                    </td>
+                    <td><button name="submit" value="edit">수정</button></td>
+                    <td><button name="submit" value="delete">삭제</button></td>
+                    <td><input type="text" name="startPage" value="1" placeholder="시작 페이지"></td>
+                    <td><input type="text" name="lastPage" value="1" placeholder="마지막 페이지"></td>
+                    <td><button name="submit" value="get">가져오기</button></td>
+                    <td><a href="/admin/parsing/board/<%= b.id %>/article"><button type="button">게시글 보기</button></a></td>
+                  </tr>
+                </form>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+          <div class="new">
+            <h2>게시판 신규 등록</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>게시판명</th>
+                  <th>SLUG</th>
+                  <th>대상 게시판</th>
+                  <th>등록</th>
+                </tr>
+              </thead>
+              <tbody>
+                <form action="/admin/parsing/board/new" method="POST">
+                  <tr>
+                    <input type="hidden" name="siteId" value="<%= parsingSite.id %>">
+                    <td><input type="text" name="title" placeholder="게시판명"></td>
+                    <td><input type="text" name="slug" placeholder="SLUG"></td>
+                    <td>
+                      <select name="targetBoard">
+                        <% targetBoards.forEach(t => { %>
+                          <option value="<%= t.id %>"><%= t.title %></option>
+                        <% }) %>
+                      </select>
+                    </td>
+                    <td><button>등록</button></td>
+                  </tr>
+                </form>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

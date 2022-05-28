@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <h2>사이트 목록</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>사이트명</th>
+                <th>URL</th>
+                <th>수정</th>
+                <th>삭제</th>
+                <th>상세설정</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% sites.forEach(s => { %>
+              <form action="/admin/parsing/site/edit/<%= s.id %>" method="POST">
+                <tr>
+                  <td><input type="text" name="title" value="<%= s.title %>" placeholder="사이트명"></td>
+                  <td><input type="text" name="url" value="<%= s.url %>" placeholder="URL"></td>
+                  <td><button name="submit" value="edit">수정</button></td>
+                  <td><button name="submit" value="delete">삭제</button></td>
+                  <td><a href="/admin/parsing/board/<%= s.id %>"><button type="button">상세설정</button></a></td>
+                </tr>
+              </form>
+              <% }) %>
+            </tbody>
+          </table>
+          <h2>사이트 신규 등록</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>사이트명</th>
+                <th>URL</th>
+                <th>등록</th>
+              </tr>
+            </thead>
+            <tbody>
+              <form action="/admin/parsing/site/new" method="POST">
+                <tr>
+                  <td><input type="text" name="title" placeholder="사이트명"></td>
+                  <td><input type="text" name="url" placeholder="URL"></td>
+                  <td><button>등록</button></td>
+                </tr>
+              </form>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

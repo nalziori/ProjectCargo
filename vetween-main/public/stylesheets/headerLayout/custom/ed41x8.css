@@ -1,0 +1,337 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+header .top .search form {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+header .top .search input {
+  flex: 1;
+  color: #fff;
+  background-color: #2C3542;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0 10px;
+  height: 100%;
+}
+
+header .top .search button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  color: #fff;
+  background-color: unset;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  box-sizing: border-box;
+  background-image: url('/theme/kkanbu/assets/search-solid.svg');
+  background-position: center;
+  background-size: 16px;
+  background-repeat: no-repeat;
+}
+
+header .notice {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  padding: 14px 0;
+  color: #fff;
+  background-color: #CC2A44;
+}
+
+header .domain {
+  color: #FFD36B;
+  margin-left: 10px;
+  text-decoration: underline;
+}
+
+@media (min-width: 1281px) {
+  header .toggleBtn {
+    display: none;
+  }
+
+  header .wrap {
+    width: 1280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header .top {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+
+  header .top .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .top .search {
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .top .mypage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header .top .mypage .slash {
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 10px;
+  }
+
+  header .top .mypage a {
+    color: #fff;
+  }
+  
+  /* Nav */
+  header nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0F1318;
+  }
+  
+  header nav > ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header nav > ul > li {
+    flex: 1;
+    position: relative;
+  }
+  
+  header nav > ul > li:before {
+    background-color: #495464;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1px;
+    height: 16px;
+    content: "";
+  }
+  
+  header nav > ul > li:first-child:before {
+    display: none;
+  }
+  
+  header nav > ul > li > a {
+    flex: 1;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 44px;
+    color: #fff;
+    font-weight: bold;
+    padding-left: 30px;
+  }
+  
+  header nav > ul > li:hover {
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  header nav > ul > li:hover > ul {
+    display: flex;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  header nav > ul > li > ul {
+    position: absolute;
+    /* top: 0; */
+    left: 0;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    background-color: #161B21;
+    z-index: 2;
+  }
+  
+  header nav > ul > li > ul > li {
+    width: 100%;
+    border-bottom: 1px solid #2E3237;
+  }
+  
+  header nav > ul > li > ul > li:last-child {
+    /* border-bottom: 0; */
+  }
+  
+  header nav > ul > li > ul > li > a {
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 44px;
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 1280px) {
+  header {
+    
+  }
+
+  header .toggleBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .top {
+    width: 100%;
+  }
+
+  header .wrap {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+  }
+  
+  header .logo img {
+    max-height: 60px;
+  }
+
+  header .search {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 40px;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  header .search.active {
+    display: flex;
+  }
+
+  header .search form {
+    height: 100%;
+  }
+
+  header .search input {
+    height: 100%;
+  }
+
+  header .search button {
+
+  }
+
+  header .top .mypage {
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
+
+  header .top .mypage.active {
+    display: flex;
+  }
+
+  header .top .mypage .slash {
+    display: none;
+  }
+
+  header .top .mypage li {
+    flex: 1;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+  }
+
+  header .top .mypage li:last-child {
+    border-right: 0;
+  }
+
+  header .top .mypage a {
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Nav */
+  header nav {
+    width: 100%;
+    display: none;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  header nav > ul > li {
+    width: 100%;
+  }
+  
+  header nav > ul > li > a {
+    width: 100%;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  header nav > ul > li > ul > li > a {
+    width: 100%;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
+}

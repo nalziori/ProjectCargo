@@ -1,0 +1,98 @@
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 800px;
+}
+
+article h1 {
+  margin-bottom: 20px;
+}
+
+article form {
+  width: 400px;
+  flex-direction: column;
+}
+
+article form > div {
+  width: 100%;
+}
+
+article input {
+  width: 100%;
+  height: 50px;
+  font-size: 1em;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 0;
+  box-sizing: border-box;
+}
+
+article button {
+  width: 100%;
+  height: 50px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #434B57;
+  border-radius: 8px;
+  padding: 10px;
+  border: 0;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+article button:hover,
+article button:active {
+  background-color: #353C45;
+}
+
+article .button {
+  width: 400px;
+}
+
+article .button a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #434B57;
+  border-radius: 8px;
+  padding: 10px;
+  border: 0;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+article .button a:hover,
+article .button a:active {
+  background-color: #353C45;
+}
+
+article .second {
+  background-color: #697183;
+}
+
+article .second:hover,
+article .second:active {
+  background-color: #545A68;
+}
+
+@media (max-width: 1130px) {
+  article {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  article form {
+    width: 95%;
+  }
+
+  article .button {
+    width: 95%;
+  }
+}

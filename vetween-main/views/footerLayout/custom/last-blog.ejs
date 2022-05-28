@@ -1,0 +1,13 @@
+<footer>
+  <div class="wrap">
+    <div class="guide"><%- locals.setting.footerGuide %></div>
+    <div class="license"><img src="https://last-365.s3.ap-northeast-2.amazonaws.com/assets/footer.png" alt="license"></div>
+    <% if (locals.setting.useVisitCount) { %>
+    <div class="count">
+      <div class="today">오늘 <%= Number(locals.count.today).toLocaleString() %></div>
+      <div class="yesterday">어제 <%= Number(locals.count.yesterday).toLocaleString() %></div>
+      <div class="month">한달 <%= Number(locals.count.month).toLocaleString() %></div>
+    </div>
+    <% } %>
+  </div>
+</footer>

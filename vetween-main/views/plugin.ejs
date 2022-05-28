@@ -1,0 +1,17 @@
+<% if (locals.setting.hash) { %>
+<link rel="stylesheet" href="/plugin/seo/stylesheets/commons.css">
+<% } %>
+<% if (type === 'deposit') { %>
+  <link rel="stylesheet" href="/plugin/seo/stylesheets/deposit.css">
+  <%- include('./plugin/seo/deposit') %>
+<% } else if (type === 'order') { %>
+  <link rel="stylesheet" href="/plugin/seo/stylesheets/order.css">
+  <%- include('./plugin/seo/order') %>
+<% } else if (type === 'history') { %>
+  <link rel="stylesheet" href="/plugin/seo/stylesheets/history.css">
+  <%- include('./plugin/seo/history') %>
+<% } %>
+<% if (type === 'waffleRanking') { %>
+  <link rel="stylesheet" href="/plugin/waffle/stylesheets/ranking.css">
+  <%- include('./plugin/waffle/ranking') %>
+<% } %>

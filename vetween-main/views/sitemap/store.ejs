@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <% stores.forEach(s => { %>
+  <url>
+      <loc><%= host %>/store/<%= s.id %></loc>
+      <lastmod><%= s.datetime %></lastmod>
+  </url>
+  <% }) %>
+</urlset>

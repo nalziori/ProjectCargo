@@ -1,0 +1,49 @@
+<footer>
+  <div class="wrap">
+    <div class="newsletter"></div>
+    <nav>
+      <% locals.topMenus.forEach(m => { %>
+        <% if (!m.parentId) { %>
+          <% if (m.title !== 'Home' && m.title !== 'Contact Us') { %>
+          <div class="item">
+            <div class="title"><a href="/<%= m.target %>"><%= m.title %></a></div>
+            <ul class="content">
+              <% const subMenu = topMenus.filter(s => m.id === s.parentId) %>
+              <% if (subMenu.length) { %>
+                <% subMenu.forEach(s => { %>
+                  <li><a href="/<%= s.target %>"><%= s.title %></a></li>
+                <% }) %>
+              <% } %>
+            </ul>
+          </div>
+          <% } %>
+        <% } %>
+      <% }) %>
+      <div class="item">
+        <div class="title"><a href="/terms">이용약관</a></div>
+      </div>
+      <div class="item">
+        <div class="title"><a href="/privacy">개인정보수집 정책</a></div>
+      </div>
+      <div class="item company">
+        <div class="title"><a href="/contactUs">Contact Us</a></div>
+        <div class="content companyContainer">
+          <div class="company">KOSTAR</div>
+          <div class="address">
+            428, Teheran-ro,<br>
+            Gangnam-gu, Seoul,<br>
+            Republic of Korea
+          </div>
+          <div class="phone">
+            Phone: 0504-392-0731
+          </div>
+          <div>
+            529-03-01869<br>
+            제휴 & 이벤트 문의<br>
+            <a href="mailto:friendsusclub@gmail.com">friendsusclub@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</footer>

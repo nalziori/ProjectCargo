@@ -1,0 +1,286 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #000;
+}
+
+header .toggleBtn {
+  display: none;
+}
+
+header .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+header .top .logoAndSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .top .logo {
+  position: relative;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+}
+
+header .top .search {
+  width: 300px;
+  height: 38px;
+}
+
+header .top .search form {
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+
+header .top .search input {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  border: 2px solid #fff;
+  background-color: unset;
+  border-radius: 18px;
+  margin: 0;
+  font-size: 1em;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+
+header .top .search button {
+  width: 60px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  color: #fff;
+  background-color: unset;
+  border: 0;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+header nav {
+  background-color: #1A1A1A;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 5px solid #424242;
+  border-bottom: 2px solid #424242;
+  box-sizing: border-box;
+}
+
+header nav > ul {
+  width: 1280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header nav > ul > li {
+  position: relative;
+  flex: 1;
+}
+
+header nav > ul > li::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 1px;
+  height: 100%;
+  background-image: url('https://last-muk.s3.ap-northeast-2.amazonaws.com/assets/1640269835118-rhrfkrf01zn.svg');
+}
+
+header nav > ul > li:last-child::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: "";
+  width: 1px;
+  height: 100%;
+  background-image: url('https://last-muk.s3.ap-northeast-2.amazonaws.com/assets/1640269835118-rhrfkrf01zn.svg');
+}
+
+header nav > ul > li:hover > ul {
+  display: flex;
+}
+
+header nav > ul > li > a {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  font-weight: bold;
+}
+
+header nav > ul > li > a:hover {
+  background-color: red;
+}
+
+header nav > ul > li > ul {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  width: 100%;
+  z-index: 2;
+}
+
+header nav > ul > li > ul > li {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
+header nav > ul > li > ul > li:last-child {
+  border-bottom: 0;
+}
+
+header nav > ul > li > ul > li:hover a {
+  color: #fff;
+  background-color: red;
+  font-weight: bold;
+}
+
+header nav > ul > li > ul > li > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+/* mypage */
+header .mypage {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+header .mypage.active {
+  display: flex;
+}
+
+header .mypage .slash {
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0 10px;
+}
+
+header .mypage a {
+  color:rgba(255, 255, 255, 0.8);
+}
+
+header .mypage a:hover {
+  color:rgba(255, 255, 255, 1);
+}
+
+@media (max-width: 1280px) {
+  header .toggleBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .top {
+    width: 100%;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  header .top .logoAndSearch {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  header .top .logo {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  header .top .logo img {
+    max-height: 60px;
+  }
+
+  header .top .search {
+    display: none;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
+  header .top .search.active {
+    display: flex;
+  }
+
+  header .top .banner {
+    display: none;
+  }
+
+  header nav {
+    display: none;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  header nav > ul {
+    flex-direction: column;
+  }
+  
+  header nav > ul > li {
+    width: 100%;
+    border-bottom: 1px solid #424242;
+  }
+  
+  header nav > ul > li > a {
+    padding: 10px 0;
+  }
+
+  header nav > ul > li > a:hover {
+    background-color: red;
+  }
+
+  header nav > ul > li::before {
+    width: 0;
+  }
+
+  header nav > ul > li:last-child::after {
+    width: 0;
+  }
+
+  header nav > ul > li > ul {
+    position: static;
+    display: flex;
+    border-top: 1px solid #424242;
+  }
+
+  header nav > ul > li > ul > li {
+    background-color: #111;
+    border-bottom: 1px solid #222;
+  }
+
+  header nav > ul > li > ul > li > a {
+    color: #666;
+  }
+}

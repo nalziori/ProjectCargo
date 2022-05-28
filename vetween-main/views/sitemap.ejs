@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc><%= host %>/sitemap/board.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc><%= host %>/sitemap/article.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc><%= host %>/sitemap/page.xml</loc>
+  </sitemap>
+  <% if (locals.setting.index === 'offline') { %>
+  <sitemap>
+    <loc><%= host %>/sitemap/store.xml</loc>
+  </sitemap>
+  <% } %>
+</sitemapindex>

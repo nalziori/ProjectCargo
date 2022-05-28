@@ -1,0 +1,577 @@
+/* commons */
+header .customCounter {
+  color: red;
+}
+
+/* modalNav */
+header .modalNav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100%;
+  overflow-y: scroll;
+  display: none;
+  /* display: flex; */
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background-color: #F8F9FA;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+header .modalNav.active {
+  display: flex;
+}
+
+header .modalNav .siteNameContainer {
+  position: relative;
+  width: 100%;
+  font-size: 1.1em;
+  line-height: 24px;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+header .modalNav .siteNameContainer a {
+  color: #fff;
+}
+
+header .modalNav .siteNameContainer .modalClose {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+header .modalNav .siteNameContainer .modalClose img {
+  width: 12px;
+}
+
+header .modalNav .option {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+header .modalNav .option li {
+  width: calc(25% - 1px);
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  font-size: 0.9em;
+  box-sizing: border-box;
+}
+
+header .modalNav .option li.hide {
+  display: none;
+}
+
+header .modalNav .option li.active {
+  display: flex;
+}
+
+header .modalNav .option li.active {
+  display: flex;
+}
+
+header .modalNav .option li a {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+header .modalNav .option li a:hover {
+  color: #DC153D;
+}
+
+header .modalNav .option .blank {
+  background-color: #fff;
+  flex: 1;
+}
+
+header .modalNav .option svg {
+  width: 20px;
+  height: 20px;
+  padding-bottom: 4px;
+}
+
+header .modalNav .mypage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+header .modalNav .mypage li {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .modalNav .mypage li a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: 10px 0;
+}
+
+header .modalNav .mypage li a:hover,
+header .modalNav .mypage li a:active {
+  color: #DC153D;
+}
+
+header .modalNav .menuTitle {
+  width: 100%;
+  color: #000;
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+header .modalNav .nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  color: #000;
+}
+
+header .modalNav .nav > li {
+  width: 100%;
+  background-color: #fff;
+}
+
+header .modalNav .nav > li > .title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+header .modalNav .nav > li > .title > a {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+header .modalNav .nav > li > .title > a:hover,
+header .modalNav .nav > li > .title > a:active {
+  color: #DC153D;
+}
+
+header .modalNav .nav > li > .title .subBtn {
+  padding-left: 20px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+header .modalNav .nav > li > .title svg {
+  width: 16px;
+  height: 16px;
+  color: #aaa;
+  box-sizing: border-box;
+}
+
+header .modalNav .nav > li > ul {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+header .modalNav .nav > li > ul.active {
+  display: flex;
+}
+
+header .modalNav .nav > li > ul > li {
+  width: 100%;
+}
+
+header .modalNav .nav > li > ul > li > a {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #F8F9FA;
+  padding: 10px;
+  padding-left: 30px;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+header .modalNav .nav > li > ul > li a:hover,
+header .modalNav .nav > li > ul > li a:active {
+  color: #DC153D;
+}
+
+header .modalNav .count {
+  width: 100%;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* font-size: 0.9em; */
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+
+header .modalNav .count li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1281px) {
+  header .toggleBtn,
+  header .searchBtn {
+    display: none;
+  }
+  
+  /* top */
+  header .top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95em;
+    height: 50px;
+  }
+
+  header .top ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .top ul li a {
+    color: #ccc;
+  }
+
+  header .top ul .slash {
+    color: #ccc;
+    padding: 0 10px;
+    margin-bottom: 2px;
+  }
+
+  header .top ul li a:hover {
+    color: #fff;
+  }
+
+  header .top .favorite {
+    cursor: pointer;
+  }
+
+  /* middle */
+  header .middle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+  }
+
+  header .middle .search {
+    width: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+  }
+
+  header .middle .search form {
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+  }
+
+  header .middle .search input {
+    flex: 1;
+    height: 100%;
+    background-color: #fff;
+    padding: 0;
+    padding-left: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: unset;
+  }
+
+  header .middle .search button {
+    width: 40px;
+    height: 100%;
+    background-color: #fff;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: unset;
+  }
+
+  header .middle .search button img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* nav */
+  header nav {
+    width: 100%;
+    height: 50px;
+    top: 0;
+    left: 0;
+  }
+
+  header nav.active {
+    position: fixed;
+    z-index: 3;
+  }
+
+  header nav > ul {
+    width: 1280px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  header nav > ul > li {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  header nav > ul > .home,
+  header nav > ul > .modalBtn {
+    flex: unset;
+  }
+
+  header nav > ul > .home a,
+  header nav > ul > .modalBtn a {
+    padding: 0 20px;
+    cursor: pointer;
+  }
+
+  header nav > ul > li > a {
+    width: 100%;
+    font-size: 1.2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  header nav > ul > li:hover,
+  header nav > ul > li:active {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  header nav > ul > li:hover > ul {
+    display: flex;
+  }
+
+  header nav > ul > li img {
+    width: 20px;
+    height: 20px;
+  }
+
+  header nav > ul > li > ul {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+    z-index: 3;
+  }
+
+  header nav > ul > li > ul > li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+  }
+
+  header nav > ul > li > ul > li:last-child {
+    border-bottom: 0;
+  }
+
+  header nav > ul > li > ul > li > a {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 14px 14px;
+  }
+
+  header nav > ul > li > ul > li > a:hover,
+  header nav > ul > li > ul > li > a:active {
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.03);
+    pointer-events: all;
+  }
+}
+
+@media (max-width: 1280px) {
+  html.active,
+  body.active {
+    height: 100%;
+    overflow-y: hidden;
+  }
+
+  main {
+    margin-top: 90px;
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+  }
+
+  header .toggleBtn,
+  header .searchBtn {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  header .toggleBtn {
+    top: 0;
+    left: 0;
+  }
+
+  header .searchBtn {
+    top: 0;
+    right: 0;
+  }
+
+  header .toggleBtn svg,
+  header .searchBtn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  header .modalNav {
+    left: 0;
+  }
+
+  header .top {
+    display: none;
+  }
+
+  header nav {
+    display: none;
+  }
+
+  header .logo {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .logo img {
+    max-height: 50px;
+  }
+
+  header .middle .search {
+    width: 100%;
+    display: none;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  header .middle .search form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+  }
+
+  header .middle .search.active {
+    display: flex;
+  }
+
+  header .middle .search input {
+    height: 100%;
+    flex: 1;
+    padding: 0;
+    padding-left: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: 0;
+  }
+
+  header .middle .search button {
+    width: 40px;
+    height: 100%;
+    background-color: #fff;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: 0;
+    box-sizing: border-box;
+  }
+
+  header .middle .search img {
+    width: 20px;
+  }
+
+  header .modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  header .modalBackground.active {
+    display: flex;
+  }
+}

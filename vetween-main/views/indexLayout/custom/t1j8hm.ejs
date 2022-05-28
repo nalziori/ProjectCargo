@@ -1,0 +1,165 @@
+<article>
+  <!-- <div class="titleBar">
+    <div class="title">보증업체</div>
+    <div class="content">사고발생시 먹튀라스트 보증금으로 책임져 드립니다.</div>
+  </div> -->
+  <% if (locals.banners.filter(b => b.position === 'indexTop' && b.status === 1).length) { %>
+    <%- include('../../banner', { position: 'indexTop' }); %>
+  <% } %>
+  <div class="titleBar">
+    <!-- <div class="title">업체 배너광고</div> -->
+    <div class="content">
+      <%- locals.setting.footerGuide %>
+    </div>
+  </div>
+  <% if (indexBoards[0]) { %>
+  <section class="guide">
+    <h2><%= indexBoards[0].title %></h2>
+    <div class="items">
+      <% indexBoards[0].articles.reverse().forEach(a => { %>
+        <div class="item">
+          <h3><%= a.title %></h3>
+          <div class="content"><%- a.content %></div>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+  <% } %>
+  <% if (boards && indexBoards[1]) { %>
+  <section class="dropdown">
+    <h2><%= indexBoards[1].title %></h2>
+    <div class="items">
+      <% indexBoards[1].articles.reverse().forEach(a => { %>
+        <div class="item" itemId="<%= a.id %>">
+          <div class="title">
+            <h3><%= a.title %></h3>
+            <div class="more">펼치기</div>
+          </div>
+          <div class="content"><%- a.content %></div>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+  <% } %>
+  <% if (boards && indexBoards[2]) { %>
+  <section class="dropdown">
+    <h2><%= indexBoards[2].title %></h2>
+    <div class="items">
+      <% indexBoards[2].articles.reverse().forEach(a => { %>
+        <div class="item" itemId="<%= a.id %>">
+          <div class="title">
+            <h3><%= a.title %></h3>
+            <div class="more">펼치기</div>
+          </div>
+          <div class="content"><%- a.content %></div>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+  <% } %>
+  <% if (boards && indexBoards[3]) { %>
+  <section class="blog">
+    <h2><a href="/<%= indexBoards[3].slug %>"><%= indexBoards[3].title %></a></h2>
+    <div class="items">
+      <% indexBoards[3].articles.forEach(a => { %>
+      <div class="item">
+        <div class="image">
+          <a href="/<%= indexBoards[3].slug %>/<%= a.id %>">
+            <% if (a.images) { %>
+            <img src="/assets/empty.png" style="background-image: url('<%= s3Host %>/article/<%= a.images[0].image %>');">
+            <% } else { %>
+            <img src="/assets/empty.png" style="background-image: url('/assets/noneBlack.png');">
+            <% } %>
+          </a>
+        </div>
+        <div class="info">
+          <h3><a href="/<%= indexBoards[3].slug %>/<%= a.id %>"><%= a.title %></a></h3>
+          <div class="content"><%= a.content %></div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </section>
+  <% } %>
+  <div class="list" id="summary">
+    <div class="gridContainer">
+      <% if (indexBoards) { %>
+      <% let boardCount = 0; %>
+      <% indexBoards.forEach(b => { %>
+        <% if (boardCount !== 0 && boardCount !== 1 && boardCount !== 2 && boardCount !== 3 && boardCount !== 4) { %>
+        <% if (b.id === 0) { %>
+          <div class="gridItem">
+            <div class="titleSpaceBetween">
+              <h2><%= b.title %></a></h2>
+            </div>
+            <% b.articles.forEach(a => { %>
+              <div class="contentSpaceBetween">
+                <div class="title">
+                  <% if (a.boardTitle) { %><span class="boardTitle" style="color: <%= a.boardColor %>;"><%= a.boardTitle %></span><% } %>
+                  <a href="/<%= a.boardSlug %>/<%= a.id %>"><%= a.title %></a>
+                  <% if (a.images) { %><span class="image"><img src="/assets/empty.png"></span><% } %>
+                  <% if (a.commentCount) { %><span class="commentCount"><img src="/assets/empty.png"><%= a.commentCount %></span><% } %>
+                </div>
+                <div class="datetime"><%= a.datetime %></div>
+              </div>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="gridItem">
+            <div class="titleSpaceBetween">
+              <h2><a href="/<%= b.slug %>"><%= b.title %></a></h2>
+              <div class="more"><a href="/<%= b.slug %>">더보기</a></div>
+            </div>
+            <% b.articles.forEach(a => { %>
+              <div class="contentSpaceBetween">
+                <div class="title">
+                  <% if (a.category) { %><span class="category" style="color: <%= a.categoryColor %>;"><%= a.category %></span><% } %>
+                  <a href="/<%= b.slug %>/<%= a.id %>"><%= a.title %></a>
+                  <% if (a.images) { %><span class="image"><img src="/assets/empty.png"></span><% } %>
+                  <% if (a.commentCount) { %><span class="commentCount"><img src="/assets/empty.png"><%= a.commentCount %></span><% } %>
+                </div>
+                <div class="datetime"><%= a.datetime %></div>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+        <% } %>
+        <% boardCount ++ %>
+      <% }) %>
+      <% } %>
+    </div>
+  </div>
+  <% if (indexBoards[4]) { %>
+  <% const youtubeMatch = /<oembed url="http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)[&(amp;)[\w=.]*]?"><\/oembed>/ %>
+  <% let youtubeId = null %>
+  <% if (indexBoards[4].articles[0]?.content?.match(youtubeMatch)) { %>
+  <% youtubeId = indexBoards[4].articles[0]?.content?.match(youtubeMatch)[1] %>
+  <% } %>
+  <% if (youtubeId) { %>
+  <section id="youtube">
+    <div class="media">
+      <iframe src="https://www.youtube.com/embed/<%= youtubeId %>" allow="fullscreen"></iframe>
+    </div>
+  </section>
+  <% } %>
+  <% } %>
+  <% if (locals.banners.filter(b => b.position === 'indexBottom' && b.status === 1).length) { %>
+    <%- include('../../banner', { position: 'indexBottom' }); %>
+  <% } %>
+</article>
+<script>
+  const dropdownItems = document.querySelectorAll('.dropdown .item');
+  dropdownItems.forEach(d => {
+    const title = d.querySelector('.title');
+    const content = d.querySelector('.content');
+    title.addEventListener('click', () => {
+      dropdownItems.forEach(another => {
+        if (another.attributes.itemId.value !== d.attributes.itemId.value) {
+          const c = another.querySelector('.content');
+          c.className = 'content';
+        }
+      });
+      content.classList.toggle('active');
+    });
+  });
+</script>

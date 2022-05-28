@@ -1,0 +1,189 @@
+/* Commons */
+article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+article h1 {
+  font-size: 3em;
+}
+
+article h2 {
+  display: inline-block;
+  padding: 14px 38px;
+  color: #fff;
+  font-weight: unset;
+  margin-bottom: 40px;
+}
+
+article .guide {
+  font-size: 1.4em;
+  text-align: center;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 60px;
+  box-sizing: border-box;
+}
+
+section:last-child {
+  margin-bottom: 0;
+}
+
+article .top {
+  padding-top: 30px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* accounts */
+article .accounts {
+  
+}
+
+article .accounts .items {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+article .accounts .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+article .accounts .item .image {
+  width: 100px;
+  height: 100px;
+  margin-right: 60px;
+}
+
+article .accounts .item .title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+article .accounts .item .content {
+  font-size: 1.2em;
+}
+
+/* prepare */
+article .prepare {
+}
+
+article .prepare .image {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+article .prepare .image img {
+  width: 100px;
+  height: 100px;
+}
+
+article .prepare .title {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+article .prepare .content {
+  font-size: 1.2em;
+  width: 400px;
+  text-align: center;
+}
+
+/* stepByStep */
+article .stepByStep {
+  box-sizing: border-box;
+}
+
+article .stepByStep .items {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+article .stepByStep .item {
+  border: 1px solid #555;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
+  text-align: center;
+  background-color: #fff;
+}
+
+article .stepByStep .item .image {
+  margin-bottom: 20px;
+}
+
+article .stepByStep .item .image {
+  width: 60px;
+}
+
+article .stepByStep .item .step {
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  font-size: 1.2em;
+}
+
+article .stepByStep .item .title {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1280px) {
+  article h1 {
+    font-size: 10vw;
+  }
+
+  article .guide {
+    font-size: 5vw;
+  }
+  
+  article .top,
+  article .accounts,
+  article .prepare,
+  article .stepByStep {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  article .accounts .items {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  article .accounts .item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  article .accounts .item .image {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+
+  article .stepByStep .items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}

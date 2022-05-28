@@ -1,0 +1,18 @@
+<html>
+<head>
+<script language="JavaScript">
+function onopen()
+{
+var url =
+"http://www.ftc.go.kr/bizCommPop.do?wrkr_no="+frm1.wrkr_no.value;
+window.open(url, "bizCommPop", "width=750, height=700;");
+}
+</script>
+</head>
+<body>
+<form name="frm1">
+<input name="wrkr_no" type="text" value="2250598485"/>
+<input type="button" value="팝업" onclick="onopen();"/>
+</form>
+</body>
+</html>

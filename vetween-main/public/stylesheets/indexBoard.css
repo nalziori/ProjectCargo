@@ -1,0 +1,661 @@
+#indexBoard {
+  width: 100%;
+}
+
+/* commons */
+#indexBoard .category {
+  color: #697183;
+  background-color: #f5f6f9;
+  border-radius: 6px;
+  padding: 4px 6px;
+  margin-right: 8px;
+  font-size: 0.9em;
+  word-break: keep-all;
+  box-sizing: border-box;
+}
+
+#indexBoard .titleContainer svg {
+  width: 14px;
+  margin-right: 4px;
+}
+
+#indexBoard .titleContainer .image,
+#indexBoard .titleContainer .commentCount {
+  color: #9DA5B6;
+}
+
+#indexBoard .indexBoardTitleContainer {
+  margin-bottom: 10px;
+}
+
+#indexBoard .indexBoardTitleContainer h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+#indexBoard .indexBoardTitleContainer .content {
+  color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* indexBoardGroups */
+#indexBoard .indexBoardGroups {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+#indexBoard .indexBoardGroups .rowTwo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+#indexBoard .indexBoardGroups .rowOne,
+#indexBoard .indexBoardGroups .side {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+/* row */
+#indexBoard .indexBoardGroups .rowTwo .indexBoard,
+#indexBoard .indexBoardGroups .rowOne .indexBoard,
+#indexBoard .indexBoardGroups .side .indexBoard {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+}
+
+#indexBoard .indexBoardGroups .rowTwo .indexBoardTitleContainer,
+#indexBoard .indexBoardGroups .rowOne .indexBoardTitleContainer,
+#indexBoard .indexBoardGroups .side .indexBoardTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#indexBoard .indexBoardGroups .rowTwo .indexBoardTitleContainer h3,
+#indexBoard .indexBoardGroups .rowOne .indexBoardTitleContainer h3,
+#indexBoard .indexBoardGroups .side .indexBoardTitleContainer h3 {
+  font-size: 1.2em;
+}
+
+#indexBoard .indexBoardGroups .rowTwo .indexBoardTitleContainer .more,
+#indexBoard .indexBoardGroups .rowOne .indexBoardTitleContainer .more,
+#indexBoard .indexBoardGroups .side .indexBoardTitleContainer .more {
+  font-size: 14px;
+}
+
+#indexBoard .indexBoardGroups .rowTwo .text .articles,
+#indexBoard .indexBoardGroups .rowOne .text .articles,
+#indexBoard .indexBoardGroups .side .text .articles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#indexBoard .indexBoardGroups .rowTwo .text .articles .article,
+#indexBoard .indexBoardGroups .rowOne .text .articles .article,
+#indexBoard .indexBoardGroups .side .text .articles .article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#indexBoard .indexBoardGroups .rowTwo .text .articles .article .titleContainer,
+#indexBoard .indexBoardGroups .rowOne .text .articles .article .titleContainer,
+#indexBoard .indexBoardGroups .side .text .articles .article .titleContainer {
+  flex: 1;
+  width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#indexBoard .indexBoardGroups .rowTwo .text .articles .article .title,
+#indexBoard .indexBoardGroups .rowOne .text .articles .article .title,
+#indexBoard .indexBoardGroups .side .text .articles .article .title {
+  margin-right: 4px;
+}
+
+#indexBoard .indexBoardGroups .rowTwo .text .articles .article .title:hover,
+#indexBoard .indexBoardGroups .rowTwo .text .articles .article .title:active,
+#indexBoard .indexBoardGroups .rowOne .text .articles .article .title:hover,
+#indexBoard .indexBoardGroups .rowOne .text .articles .article .title:active,
+#indexBoard .indexBoardGroups .side .text .articles .article .title:hover,
+#indexBoard .indexBoardGroups .side .text .articles .article .title:active {
+  text-decoration: underline;
+}
+
+#indexBoard .indexBoardGroups .rowTwo .text .articles .article .datetime,
+#indexBoard .indexBoardGroups .rowOne .text .articles .article .datetime,
+#indexBoard .indexBoardGroups .side .text .articles .article .datetime {
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  color: #9da5b6;
+  font-size: 0.9em;
+  margin-left: 10px;
+  word-break: keep-all;
+}
+
+#indexBoard .indexBoardGroups .rowTwo > .image .articles,
+#indexBoard .indexBoardGroups .side > .image .articles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+#indexBoard .indexBoardGroups .rowOne > .image .articles {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+#indexBoard .indexBoardGroups .rowTwo > .image .article,
+#indexBoard .indexBoardGroups .rowOne > .image .article,
+#indexBoard .indexBoardGroups .side > .image .article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#indexBoard .indexBoardGroups .rowTwo > .image .article .image img,
+#indexBoard .indexBoardGroups .rowOne > .image .article .image img,
+#indexBoard .indexBoardGroups .side > .image .article .image img {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+}
+
+#indexBoard .indexBoardGroups .rowTwo > .image .article .title,
+#indexBoard .indexBoardGroups .rowOne > .image .article .title,
+#indexBoard .indexBoardGroups .side > .image .article .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  text-align: center;
+}
+
+#indexBoard .indexBoardGroups .rowTwo > .image .article .image,
+#indexBoard .indexBoardGroups .rowOne > .image .article .image,
+#indexBoard .indexBoardGroups .side > .image .article .image {
+  position: relative;
+}
+
+#indexBoard .indexBoardGroups .rowTwo > .image .article .image .count,
+#indexBoard .indexBoardGroups .rowOne > .image .article .image .count,
+#indexBoard .indexBoardGroups .side > .image .article .image .count {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  font-size: 0.7em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+#indexBoard .indexBoardGroups .rowTwo > .image .article .title:hover,
+#indexBoard .indexBoardGroups .rowTwo > .image .article .title:active,
+#indexBoard .indexBoardGroups .rowOne > .image .article .title:hover,
+#indexBoard .indexBoardGroups .rowOne > .image .article .title:active,
+#indexBoard .indexBoardGroups .side > .image .article .title:hover,
+#indexBoard .indexBoardGroups .side > .image .article .title:active {
+  /* text-decoration: underline; */
+}
+
+@media (max-width: 1280px) {
+  #indexBoard .indexBoardGroups .rowTwo {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  #indexBoard .indexBoardGroups .rowTwo > .image .articles,
+  #indexBoard .indexBoardGroups .rowOne > .image .articles,
+  #indexBoard .indexBoardGroups .side > .image .articles {
+    gap: 10px;
+  }
+
+  #indexBoard .indexBoardGroups .rowOne > .image .articles,
+  #indexBoard .indexBoardGroups .side > .image .articles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* tab */
+#indexBoard .indexBoardGroups .tab {
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+}
+
+#indexBoard .indexBoardGroups .tab .titles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#indexBoard .indexBoardGroups .tab .titles .title {
+  flex: 1;
+}
+
+#indexBoard .indexBoardGroups .tab .titles .title label {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: #CACFD8;
+  cursor: pointer;
+}
+
+#indexBoard .indexBoardGroups .tab .titles .title:first-child label {
+  border-top-left-radius: 12px;
+}
+
+#indexBoard .indexBoardGroups .tab .titles .title:last-child label {
+  border-top-right-radius: 12px;
+}
+
+#indexBoard .indexBoardGroups .tab .titles .title label:focus {
+  outline: none;
+}
+
+#indexBoard .indexBoardGroups .tab .titles .title input {
+  display: none;
+}
+
+#indexBoard .indexBoardGroups .tab .titles .title input:checked + label {
+  color: #000;
+  background-color: #fff;
+}
+
+#indexBoard .indexBoardGroups .tab .text {
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 25px;
+  gap: 10px;
+}
+
+#indexBoard .indexBoardGroups .tab .text.selected {
+  display: flex;
+}
+
+#indexBoard .indexBoardGroups .tab > .image {
+  width: 100%;
+  display: none;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  padding: 25px;
+}
+#indexBoard .indexBoardGroups .tab > .image.selected {
+  display: grid;
+}
+
+#indexBoard .indexBoardGroups .tab .text .article {
+  width: 100%;  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#indexBoard .indexBoardGroups .tab .text .article .titleContainer {
+  flex: 1;
+  width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#indexBoard .indexBoardGroups .tab .text .article .title {
+  margin-right: 4px;
+}
+
+#indexBoard .indexBoardGroups .tab .text .article .title:hover,
+#indexBoard .indexBoardGroups .tab .text .article .title:active {
+  text-decoration: underline;
+}
+
+#indexBoard .indexBoardGroups .tab .text .article .datetime {
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  color: #9da5b6;
+  font-size: 0.9em;
+  margin-left: 10px;
+  word-break: keep-all;
+}
+
+#indexBoard .indexBoardGroups .tab > .image .article .image img {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+}
+
+#indexBoard .indexBoardGroups .tab > .image .article .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  text-align: center;
+}
+
+@media (max-width: 1280px) {
+  #indexBoard .indexBoardGroups .tab > .image {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+
+/* dropdown */
+#indexBoard .indexBoardGroups .dropdown .articles {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#indexBoard .indexBoardGroups .dropdown .article {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+#indexBoard .indexBoardGroups .dropdown .article .titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 25px;
+  cursor: pointer;
+}
+
+#indexBoard .indexBoardGroups .dropdown .article .titleContainer h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+#indexBoard .indexBoardGroups .dropdown .article .titleContainer svg {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+#indexBoard .indexBoardGroups .dropdown .article .content {
+  display: none;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 18px 25px;
+  padding-top: 0;
+}
+
+#indexBoard .indexBoardGroups .dropdown .article .content.active {
+  display: flex;
+}
+
+#indexBoard .indexBoardGroups .dropdown .article .content p:last-child {
+  margin: 0;
+}
+
+#indexBoard .indexBoardGroups .dropdown .article .content img {
+  width: 100%;
+}
+
+/* blog */
+#indexBoard .indexBoardGroups .blog .articles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+#indexBoard .indexBoardGroups .blog .article {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+}
+
+#indexBoard .indexBoardGroups .blog .article .image img {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+#indexBoard .indexBoardGroups .blog .article .info {
+  padding: 20px;
+}
+
+#indexBoard .indexBoardGroups .blog .article .info h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+
+#indexBoard .indexBoardGroups .blog .article .info .content {
+  color: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+@media (max-width: 1280px) {
+  #indexBoard .indexBoardGroups .blog .articles {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  #indexBoard .indexBoardGroups .blog .article .info {
+    padding: 10px;
+  }
+}
+
+/* content */
+#indexBoard .indexBoardGroups .indexBoardGroup > .content .articles {
+  display: grid;
+  gap: 20px;
+}
+
+#indexBoard .indexBoardGroups .indexBoardGroup > .content .article {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  gap: 20px;
+}
+
+#indexBoard .indexBoardGroups .indexBoardGroup > .content .article h3 {
+  font-size: 1.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#indexBoard .indexBoardGroups .indexBoardGroup > .content .article p:last-child {
+  margin: 0;
+}
+
+#indexBoard .indexBoardGroups .indexBoardGroup > .content .article img {
+  width: 100%;
+}
+
+/* imageAndTitle */
+#indexBoard .indexBoardGroups .imageAndTitle .articles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+#indexBoard .indexBoardGroups .imageAndTitle .article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#indexBoard .indexBoardGroups .imageAndTitle .image {
+  width: 100%;
+}
+
+#indexBoard .indexBoardGroups .imageAndTitle .image img {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+}
+
+#indexBoard .indexBoardGroups .imageAndTitle .title {
+  font-weight: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  text-align: center;
+}
+
+@media (max-width: 1280px) {
+  #indexBoard .indexBoardGroups .imageAndTitle .articles {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+/* bookmark */
+#indexBoard .indexBoardGroups .bookmark .articles {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+#indexBoard .indexBoardGroups .bookmarkThree .articles {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#indexBoard .indexBoardGroups .bookmarkFour .articles {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#indexBoard .indexBoardGroups .bookmarkFive .articles {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+#indexBoard .indexBoardGroups .bookmark .article {
+  /* background-color: #fff; */
+  border: 1px solid #bbb;
+}
+
+#indexBoard .indexBoardGroups .bookmark .article .image {
+  width: 100%;
+}
+
+#indexBoard .indexBoardGroups .bookmark .article .image img {
+  width: 100%;
+}
+
+#indexBoard .indexBoardGroups .bookmark .article .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px 0;
+  gap: 4px;
+}
+
+#indexBoard .indexBoardGroups .bookmark .article .info .title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#indexBoard .indexBoardGroups .bookmark .article .buttons {
+  display: flex;
+}
+
+#indexBoard .indexBoardGroups .bookmark .article .buttons a {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+#indexBoard .indexBoardGroups .bookmark .article .buttons .detail {
+  color: #fff;
+  background-color: #00306E;
+}
+
+#indexBoard .indexBoardGroups .bookmark .article .buttons .join {
+  color: #fff;
+  background-color: #474748;
+}
+
+@media (max-width: 1280px) {
+  #indexBoard .indexBoardGroups .bookmark .articles {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}

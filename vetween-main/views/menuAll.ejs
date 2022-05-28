@@ -1,0 +1,75 @@
+<style>
+  article .banner__box__articleTop {
+    grid-template-columns: repeat(<%= locals.setting.bannerRowsArticleTop %>, 1fr);
+  }
+
+  article .banner__box__articleBottom {
+    grid-template-columns: repeat(<%= locals.setting.bannerRowsArticleBottom %>, 1fr);
+  }
+
+  article .banner__box__custom {
+    grid-template-columns: repeat(<%= locals.setting.bannerRowsCustom %>, 1fr);
+  }
+</style>
+<article id="summary">
+  <% if (locals.setting.adsenseTop) { %>
+  <div class="adsense">
+    <%- locals.setting.adsenseTop %>
+  </div>
+  <% } %>
+  <% if (locals.banners.filter(b => b.position === 'articleTop' && b.status === 1).length) { %>
+    <%- include('./banner', { position: 'articleTop' }); %>
+  <% } %>
+  <div class="list">
+    <div class="gridContainer">
+      <% if (boards) { %>
+      <% boards.forEach(b => { %>
+        <% if (b.id === 0) { %>
+          <div class="gridItem">
+            <div class="titleSpaceBetween">
+              <h2><%= b.title %></a></h2>
+            </div>
+            <% b.articles.forEach(a => { %>
+              <div class="contentSpaceBetween">
+                <div class="title">
+                  <% if (a.boardTitle) { %><span class="boardTitle" style="color: <%= a.boardColor %>;"><%= a.boardTitle %></span><% } %>
+                  <a href="/<%= a.boardSlug %>/<%= a.id %>"><%= a.title %></a>
+                  <% if (a.image) { %><span class="image"><img src="/assets/empty.png"></span><% } %>
+                  <% if (a.commentCount) { %><span class="commentCount"><img src="/assets/empty.png"><%= a.commentCount %></span><% } %>
+                </div>
+                <div class="datetime"><%= a.datetime %></div>
+              </div>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="gridItem">
+            <div class="titleSpaceBetween">
+              <h2><a href="/<%= b.slug %>"><%= b.title %></a></h2>
+              <div class="more"><a href="/<%= b.slug %>">전체보기</a></div> <!--더보기-->
+            </div>
+            <% b.articles.forEach(a => { %>
+              <div class="contentSpaceBetween">
+                <div class="title">
+                  <% if (a.category) { %><span class="category" style="color: <%= a.categoryColor %>;"><%= a.category %></span><% } %>
+                  <a href="/<%= b.slug %>/<%= a.id %>"><%= a.title %></a>
+                  <% if (a.image) { %><span class="image"><img src="/assets/empty.png"></span><% } %>
+                  <% if (a.commentCount) { %><span class="commentCount"><img src="/assets/empty.png"><%= a.commentCount %></span><% } %>
+                </div>
+                <div class="datetime"><%= a.datetime %></div>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+      <% }) %>
+      <% } %>
+    </div>
+  </div>
+  <% if (locals.setting.adsenseBottom) { %>
+  <div class="adsense">
+    <%- locals.setting.adsenseBottom %>
+  </div>
+  <% } %>
+  <% if (locals.banners.filter(b => b.position === 'articleBottom' && b.status === 1).length) { %>
+    <%- include('./banner', { position: 'articleBottom' }); %>
+  <% } %>
+</article>

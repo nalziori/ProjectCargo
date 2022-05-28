@@ -1,0 +1,83 @@
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 50px 0;
+}
+
+footer .wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+footer .guide {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+footer .license {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+footer .license a {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+footer .license a:hover,
+footer .license a:active {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+footer .copyright {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #bbb;
+  text-align: center;
+  flex-direction: column;
+}
+
+footer .count {
+  display: flex;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+footer .count div {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+footer .count div:last-child {
+  margin-right: 0;
+}
+
+b,
+footer .bold {
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+@media (max-width: 1280px) {
+  
+}

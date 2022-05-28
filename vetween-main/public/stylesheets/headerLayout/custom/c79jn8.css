@@ -1,0 +1,505 @@
+header {
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: 2;
+}
+
+header .wrap {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+header .logo {
+  justify-content: flex-start;
+}
+
+header nav {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 60px;
+}
+
+header nav ul {
+  display: flex;
+}
+
+header nav > ul > li {
+  position: relative;
+  margin: 0 16px;
+  word-break: keep-all;
+}
+
+header nav > ul > li > a {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  height: 70px;
+  box-sizing: border-box;
+}
+
+header nav > ul > li:hover > .sub {
+  display: flex;
+}
+
+header nav > ul > li > .sub {
+  position: absolute;
+  top: 60px;
+  left: -20px;
+  display: none;
+  flex-direction: column;
+  background-color: #fff;
+  min-width: 200px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+}
+
+header nav > ul > li > .sub > li > a {
+  color: #000;
+  display: flex;
+  padding: 14px;
+}
+
+/* User */
+header .user {
+  justify-content: flex-end;
+}
+
+header .user {
+  display: flex;
+  align-items: center;
+}
+
+header .user > ul > li {
+  margin-left: 30px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  word-break: keep-all;
+}
+
+header .user li a {
+  color: #fff;
+}
+
+header .user li img {
+  width: 20px;
+}
+
+header .user .chat,
+header .user .alarm {
+  cursor: pointer;
+}
+
+header .user .chat {
+  position: relative;
+}
+
+header .user .chat .newChat {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  background-color: red;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+header .user .chat ul {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 2px;
+  top: 60px;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, 0%);
+  min-width: 250px;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  padding: 10px;
+}
+
+header .user .chat ul.active {
+  display: flex;
+}
+
+header .user .chat ul li {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+header .user .chat ul li:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+header .user .chat ul li a {
+  color: #000;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .user .chat ul li .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 100%;
+  margin-right: 10px;
+}
+
+header .user .chat ul li .image img {
+  width: 30px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+header .user .chat ul li .info {
+  flex: 1;
+}
+
+header .user .chat ul li .info .nickName {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+header .user .chat ul li .info .message {
+  color: #bbb;
+}
+
+header .user .chat ul.active {
+  display: flex;
+}
+
+header .user .mypage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+header .user .mypage ul {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 2px;
+  top: 60px;
+  right: 0;
+  min-width: 120px;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+}
+
+header .user .mypage ul.active {
+  display: flex;
+}
+
+header .user .mypage ul li {
+  display: flex;
+  width: 100%;
+}
+
+header .user .mypage ul li a {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: #000;
+  min-width: 200px;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+header .user > li > ul > li {
+  margin-right: 20px;
+}
+
+header .user > li > ul > li:last-child {
+  margin-right: 0;
+}
+
+header .user .mypage .userImage {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .user .mypage .userImage img {
+  display: flex;
+  width: 46px;
+  height: 46px;
+  background-color: #fff;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+header .user .mypage .arrow {
+  margin-left: 6px;
+}
+
+header .user .mypage .arrow img {
+  height: 16px;
+  height: 16px;
+  display: flex;
+  background-image: url('/theme/c79jn8/assets/header/chevron-down-solid.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+header .toggleBtn {
+  display: none;
+}
+
+header .chatBtn {
+  position: relative;
+  display: none;
+}
+
+header .chatBtn .newChat {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  background-color: red;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+@media (min-width: 1281px) {
+  
+}
+
+@media (max-width: 1280px) {
+  header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: unset;
+  }
+
+  header .wrap {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  header .toggleBtn {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+  }
+
+  header .toggleBtn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  header .chatBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+  }
+
+  header .chatBtn {
+    display: flex;
+  }
+
+  header .chatBtn img {
+    width: 24px;
+    height: 24px;
+  }
+
+  header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+  }
+
+  header nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    background-color: #142E37;
+    margin: 0;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  header nav .menu {
+    order: 2;
+  }
+
+  header nav ul {
+    flex-direction: column;
+  }
+
+  header nav > ul > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  header nav > ul > li > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: unset;
+    padding: 10px 0;
+    border-bottom: 1px solid #0C1A20;
+    font-weight: bold;
+  }
+  
+  header nav > ul > li .sub {
+    display: flex;
+    position: unset;
+    background-color: rgba(30, 66, 80, 1);
+    box-shadow: unset;
+    width: 100%;
+  }
+
+  header nav > ul > li .sub li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #0C1A20;
+  }
+
+  header .user {
+    order: 1;
+    display: flex;
+    flex-direction: row;
+  }
+
+  header .user > li {
+    width: 100%;
+    padding: 10px;
+  }
+
+  header .user > li > ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  header .user > li > ul > li {
+    flex: 1;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    margin-right: 0;
+  }
+
+  header .user > li > ul > li:last-child {
+    border-right: 0;
+  }
+
+  header .user > li > ul > li a:hover,
+  header .user > li > ul > li a:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  header .user > li > ul > li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  header .user .chat,
+  header .user .mypage .userImage,
+  header .user .mypage .arrow {
+    display: none;
+  }
+
+  header .user .mypage {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  header .user .mypage ul {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    background-color: unset;
+    box-shadow: unset;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  header .user .mypage ul li {
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  header .user .mypage ul li:last-child {
+    border-right: 0;
+  }
+
+  header .user .mypage ul li a {
+    color: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: unset;
+  }
+
+  header .user .mypage ul li a:hover,
+  header .user .mypage ul li a:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}

@@ -1,0 +1,68 @@
+<style>
+  article .main .contact .complete .info .status {
+    background-color: <%= locals.setting.pointColor %>;
+  }
+  
+  article .buttons .item .download {
+    background-color: <%= locals.setting.pointColor %>;
+  }
+</style>
+<article>
+  <section class="main">
+    <div class="wrap">
+      <div class="contact">
+        <div class="title">상담 신청 현황</div>
+        <div class="articles">
+          <% locals.contacts.forEach(c => { %>
+          <div class="article <% if (c.status) { %>yet<% } else { %>complete<% } %>">
+            <div class="name"><%= c.name %>님이 문의하셨습니다.</div>
+            <div class="info">
+              <div class="status"><% if (c.status) { %>미답변<% } else { %>답변완료<% } %></div>
+              <div class="datetime"><%= c.datetime %></div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <div class="notice">
+        <div class="title">
+          <div>공지사항</div>
+          <a href="/1cj138" class="more">+</a>
+        </div>
+        <div class="articles">
+          <% boards[0].articles.forEach(a => { %>
+            <a href="/<%= boards[0].slug %>/<%= a.id %>" class="article"><%= a.title %></a>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="buttons">
+    <div class="items">
+      <div class="item news">
+        <div class="title">증시뉴스</div>
+        <div class="articles">
+          <% boards[1].articles.forEach(a => { %>
+            <a href="/<%= boards[1].slug %>/<%= a.id %>" class="article"><%= a.title %></a>
+          <% }) %>
+        </div>
+        <a href="/fv08x8" class="more">더 보기</a>
+      </div>
+      <div class="item hts">
+        <div class="title"><%= locals.setting.siteName %> 차별화된 서비스</div>
+        <a href="/015qb1" class="download">HTS, MTS 다운로드</a>
+      </div>
+      <div class="item join">
+        <div class="comment">회원님들 모두를 위한 수수료혜택 까지</div>
+        <div class="title">모의투자 가능 !!</div>
+      </div>
+    </div>
+  </section>
+  <section class="youtube">
+    <div class="wrap">
+      <div class="media">
+        <iframe src="https://www.youtube.com/embed/wEoPiL3UKc4?autoplay=1&mute=1" allow="fullscreen;autoplay"></iframe>
+      </div>
+    </div>
+  </section>
+</article>

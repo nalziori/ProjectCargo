@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <section>
+            <h2>게시글</h2>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>날짜</th>
+                    <th>게시판</th>
+                    <th>카테고리</th>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                    <th>조회수</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% articles.forEach(article => { %>
+                  <form action="/admin/article/edit/<%= article.id %>" method="POST">
+                    <tr>
+                      <td><%= article.id %></td>
+                      <td><input type="datetime" name="datetime" value="<%= article.datetime %>"></td>
+                      <td class="wordBreakKeep">
+                        <select name="board">
+                          <% boards.forEach(b => { %>
+                          <option value="<%= b.id %>"<% if (b.id === article.article_board_ID) { %> selected<% } %>><%= b.title %></option>
+                          <% }) %>
+                        </select>
+                      </td>
+                      <td class="wordBreakKeep"><%= article.category %></td>
+                      <td><a href="/<%= article.boardSlug %>/<%= article.id %>"><%= article.title %></a></td>
+                      <td class="wordBreakKeep">
+                        <div><input type="text" name="uId" value="<%= article.uId %>"></div>
+                        <div class="nickName"><%= article.nickName %></div>
+                      </td>
+                      <td><input type="text" name="viewCount" value="<%= article.viewCount %>" placeholder="조회수"></td>
+                      <td><button name="submit" value="edit">수정</button></td>
+                      <td><button name="submit" value="delete">삭제</button></td>
+                    </tr>
+                  </form>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <%- include('../pagination') %>
+          <div class="search">
+            <form action="/admin/article" method="GET">
+              <select name="searchType">
+                <option value="title">제목</option>
+                <option value="titleAndContent">제목 + 내용</option>
+                <option value="nickName">글쓴이</option>
+              </select>
+              <input type="text" name="keyword">
+              <button>검색</button>
+            </form>
+          </div>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

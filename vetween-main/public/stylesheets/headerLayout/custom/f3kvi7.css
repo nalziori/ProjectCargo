@@ -1,0 +1,603 @@
+/* commons */
+:root {
+  --point: #635AE1;
+}
+
+header .moveTop {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  color: #999;
+  background-color: #333;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+header .moveTop svg {
+  width: 30px;
+  height: 30px;
+}
+
+header .top .favorite {
+  cursor: pointer;
+}
+
+@media (min-width: 1281px) {
+  header {
+    position: relative;
+    background-color: #000;
+  }
+
+  header .toggleBtn,
+  header .alarmBtn {
+    display: none;
+  }
+
+  /* top */
+  header .top {
+    width: 100%;
+    height: 50px;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+    border-bottom: 1px solid #333;
+  }
+
+  header .top .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header .top ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .top a {
+    color: #999;
+  }
+
+  header .top a:hover {
+    color: #fff;
+  }
+
+  header .top .slash {
+    color: #666;
+    padding: 0 10px;
+  }
+
+  /* middle */
+  header .middle {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .middle .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header .middle .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .middle .logo {
+    width: 380px;
+  }
+
+  header .middle .logo img {
+    max-height: 120px;
+  }
+
+  header .middle .search {
+    width: 380px;
+    height: 40px;
+    border: 2px solid var(--point);
+    border-radius: 18px;
+  }
+
+  header .middle .search form {
+    height: 100%;
+    flex-direction: row;
+  }
+
+  header .middle .search input {
+    flex: 1;
+    color: #fff;
+    background-color: unset;
+    border: 0;
+  }
+
+  header .middle .search button {
+    width: 40px;
+    background-color: unset;
+    border: 0;
+  }
+
+  header .middle .search svg {
+    color: var(--point);
+    width: 20px;
+  }
+
+  header .middle .headerBanner img {
+    max-width: 470px;
+    max-height: 110px;
+  }
+
+  header nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--point);
+  }
+
+  header nav .wrap {
+    width: 1280px;
+  }
+
+  header nav .wrap > .mypage,
+  header nav .wrap > .etc {
+    display: none;
+  }
+
+  header nav .wrap > .main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header nav .main > li {
+    width: 100%;
+    position: relative;
+    flex: 1;
+  }
+
+  header nav .main > li .button {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header nav .main > li svg {
+    width: 20px;
+  }
+
+  header nav .main > li .more {
+    display: none;
+  }
+
+  header nav .main > li:hover {
+    background-color: #fff;
+  }
+
+  header nav .main > li:hover > .button > a {
+    color: var(--point);
+  }
+
+  header nav .main > li::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: "";
+    width: 100%;
+    height: 4px;
+  }
+
+  header nav .main > li > .button > a {
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+
+  header nav .main > li > ul {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  header nav .main > li:hover ul {
+    display: flex;
+  }
+
+  header nav .main > li > ul > li {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+  }
+
+  header nav .main > li > ul > li:last-child {
+    border-bottom: unset;
+  }
+
+  header nav .main > li > ul > li:hover a {
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--point);
+  }
+
+  header nav .main > li > ul > li > a {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 50px;
+    padding: 0 14px;
+  }
+
+  header nav .main > .home,
+  header nav .main > .totalBtn {
+    flex: unset;
+    width: 50px;
+    cursor: pointer;
+  }
+
+  header .total {
+    position: absolute;
+    left: 0;
+    top: 243px;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+    border-bottom: 1px solid #333;
+    z-index: 3;
+  }
+
+  header .total.active {
+    display: flex;
+  }
+
+  header .total .wrap {
+    padding: 30px 0;
+  }
+
+  header .total .items {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid #333;
+    border-left: 1px solid #333;
+  }
+
+  header .total .items > div {
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+  }
+
+  header .total .item {
+    background-color: #000;
+  }
+
+  header .total .item .title {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    background-color: #111;
+    border-bottom: 1px solid #333;
+  }
+
+  header .total .item .title a {
+    color: #eee;
+  }
+
+  header .total .item .title a:hover {
+    color: var(--point);
+  }
+
+  header .total .item ul {
+    font-size: 0.9em;
+    padding: 8px 0;
+  }
+
+  header .total .item ul li a {
+    width: 100%;
+    display: flex;
+    padding: 4px 8px;
+    color: #eee;
+  }
+
+  header .total .item ul li a:hover {
+    color: var(--point);
+  }
+
+  header .headerModalBackground {
+    display: none;
+  }
+
+  header .count {
+    display: none;
+  }
+}
+
+@media (max-width: 1280px) {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    border-bottom: 1px solid #333;
+    z-index: 5;
+  }
+
+  main {
+    margin-top: 90px;
+  }
+
+  header .toggleBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  header .alarmBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  header .toggleBtn svg,
+  header .alarmBtn svg {
+    color: #666;
+    width: 24px;
+  }
+
+  header .alarmBtn .count {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 0.7em;
+    background-color: red;
+    border-radius: 100%;
+  }
+
+  header .top {
+    display: none;
+  }
+
+  header .middle {
+    width: 100%;
+  }
+
+  header .middle .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+  }
+
+  header .middle .logo img {
+    max-height: 50px;
+  }
+
+  header .middle .search {
+    display: none;
+  }
+
+  header .middle .headerBanner {
+    display: none;
+  }
+
+  header nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 400px;
+    height: 100%;
+    display: none;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+    background-color: #111;
+    z-index: 5;
+  }
+
+  header nav.active {
+    display: flex;
+  }
+
+  header nav .wrap > .mypage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+  }
+
+  header nav .wrap > .mypage .slash {
+    display: none;
+  }
+
+  header nav .wrap > .mypage li {
+    flex: 1;
+    border-right: 1px solid #000;
+  }
+
+  header nav .wrap > .mypage li:last-child {
+    border-right: unset;
+  }
+
+  header nav .wrap > .mypage li a {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+
+  header nav .wrap > .mypage li a:hover {
+    background-color: #444;
+  }
+
+  header nav .main {
+    width: 100%;
+    border-top: 1px solid #000;
+  }
+
+  header nav .main > .home,
+  header nav .main > .totalBtn {
+    display: none;
+  }
+
+  header nav .main > li {
+    width: 100%;
+  }
+  
+  header nav .main > li > .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #000;
+  }
+
+  header nav .main > li > .button .more {
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    cursor: pointer;
+  }
+
+  header nav .main > li > .button .more svg {
+    width: 12px;
+  }
+  
+  header nav .main > li > .button > a {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+    color: #bbb;
+  }
+
+  header nav .main > li > .button > a:hover {
+    color: var(--point);
+  }
+
+  header nav .main > li > ul {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #222;
+  }
+
+  header nav .main > li > ul.active {
+    display: flex;
+  }
+
+  header nav .main > li > ul > li {
+    width: 100%;
+  }
+  
+  header nav .main > li > ul > li > a {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #000;
+    color: #aaa;
+  }
+
+  header nav .main > li > ul > li > a:hover {
+    color: var(--point);
+  }
+
+  header nav .count {
+    width: 100%;
+    color: #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 10px;
+    box-sizing: border-box;
+  }
+  
+  header nav .count li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    box-sizing: border-box;
+  }
+
+  header .total {
+    display: none;
+  }
+
+  header .headerModalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  header .headerModalBackground.active {
+    display: flex;
+  }
+}

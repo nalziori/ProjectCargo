@@ -1,0 +1,259 @@
+<article>
+  <div class="wrap">
+    <%- include('../../flash') %>
+    <h1>회원가입</h1>
+    <form name="frm" action="/join" method="POST" onsubmit="return onSubmit()">
+      <div>
+        <div class="emailJoin">
+          <input type="text" name="emailFront" placeholder="이메일">
+          <div class="at">@</div>
+          <select name="emailBack">
+            <option value="gmail.com">gmail.com</option>
+            <option value="naver.com">naver.com</option>
+            <option value="hanmail.net">hanmail.net</option>
+          </select>
+        </div>
+        <div class="guide"></div>
+      </div>
+      <div>
+        <input type="password" name="password" placeholder="비밀번호">
+        <div class="guide"></div>
+      </div>
+      <div>
+        <input type="password" name="passwordCheck" placeholder="비밀번호 확인">
+        <div class="guide"></div>
+      </div>
+      <div id="nickName">
+        <input type="text" name="nickName" placeholder="닉네임">
+        <div class="guide"></div>
+      </div>
+      <div>
+        <input type="hidden" name="email" placeholder="이메일">
+        <div class="guide"></div>
+      </div>
+      <div id="uId">
+        <input type="hidden" name="uId" placeholder="아이디">
+        <div class="guide"></div>
+      </div>
+      <h2 class="surveyTitle">SURVEY</h2>
+      <div class="survey">
+        <div class="item">
+          <div class="title">이름</div>
+          <input type="text" name="realName" placeholder="이름">
+        </div>
+        <div class="item">
+          <div class="title">지역</div>
+          <select name="location">
+            <option value="Seoul">서울</option>
+            <option value="Gyeonggi-do">경기도</option>
+            <option value="Incheon">인천광역시</option>
+            <option value="Daejeon">대전광역시</option>
+            <option value="Gwangju">광주광역시</option>
+            <option value="Daegu">대구광역시</option>
+            <option value="Ulsan">울산광역시</option>
+            <option value="Busan">부산광역시</option>
+            <option value="Sejong-si">세종특별자치시</option>
+            <option value="Jeju-do">제주특별자치시</option>
+            <option value="Gangwon-do">강원도</option>
+            <option value="Chungcheongbuk-do">충청북도</option>
+            <option value="Chungcheongnam-do">충청남도</option>
+            <option value="Jeollabuk-do">전라북도</option>
+            <option value="Jeollanam-do">전라남도</option>
+            <option value="Gyeongsangbuk-do">경상북도</option>
+            <option value="Gyeongsangnam-do">경상남도</option>
+          </select>
+        </div>
+        <div class="item">
+          <div class="title">성별</div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="sex" id="sex" value="1">
+              <div class="select">남</div>
+            </label>
+            <label>
+              <input type="radio" name="sex" id="sex" value="0">
+              <div class="select">여</div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">만약 상대방이 흡연자라면?</div>
+            <div class="english">Are you okay with smorking friend? or don't like it<br>Could you relationship someone who smokes?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="smoking" id="1" value="1">
+              <div class="select">
+                <div>흡연자 괜찮아요 OK</div>
+                <div class="english">I don't mind with smorking</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="smoking" id="0" value="0">
+              <div class="select">
+                <div>No Only 비흡연자만</div>
+                <div class="english">I only want to be friends with non-smokers.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">만약 상대방이 음주를 즐기는 편이라면?</div>
+            <div class="english">How about making friends with someone who likes to drink?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="drinking" id="drinking" value="1">
+              <div class="select">
+                <div>음주 즐기는거 괜찮아요 OK</div>
+                <div class="english">It's okay who likes to drink</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="drinking" id="drinking" value="0">
+              <div class="select">
+                <div>NO Only 노알콜</div>
+                <div class="english">I don't drink often. So No.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">상대방이 종교가 있다면?</div>
+            <div class="english">What do you think about making friends with someone of religion?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="religion" id="religion" value="1">
+              <div class="select">
+                <div>종교 괜찮아요 OK</div>
+                <div class="english">I'm Ok with any religion person</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="religion" id="religion" value="0">
+              <div class="select">
+                <div>종교는 별로 관심 없어요 NO</div>
+                <div class="english">I don't intersting religious. So No Thank you.</div>
+              </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">나의 여행 취향은 어느쪽?</div>
+            <div class="english">What are your travel preferences?</div>
+          </div>
+          <div class="comment">본인이 더 좋아하는 쪽을 선택해 주세요</div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="travel" id="travel" value="1">
+              <div class="select">
+                <div>나는 산이나 계곡 (캠핑 및 탐험) 좋아</div>
+                <div class="english">I like to travel in mountains or valleys (camping and exploring)</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="travel" id="travel" value="0">
+              <div class="select">
+                <div>나는 바다 (휴양지)나 도심 핫플 좋아</div>
+                <div class="english">I like to travel to the sea (chilling) or take a look city hot spots</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">나는 삼시세끼?</div>
+            <div class="english">Are you the type to take care of all three meals a day?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="meal" id="meal" value="1">
+              <div class="select">
+                <div>나는 먹는거 즐기고 중요한 편</div>
+                <div class="english">Yes, I'm , and I tend to enjoy food.</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="meal" id="meal" value="0">
+              <div class="select">
+                <div>먹는거 즐기지만 한끼 정도 걸러도 OK</div>
+                <div class="english">I like delicious things, but it's okay to skip one meal. The meal doesn't matter.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">나는 주말에는 거의</div>
+            <div class="english">How do you spend your weekend?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="weekend" id="weekend" value="1">
+              <div class="select">
+                <div>나는 주말에 활동적인편 (외출)</div>
+                <div class="english">I am mostly active on the weekends (going out).</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="weekend" id="weekend" value="0">
+              <div class="select">
+                <div>나는 주말엔 집에서 노는게 좋아</div>
+                <div class="english">I tend to rest at home on the weekends.(Chilling)</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">
+            <div class="korean">만약에 반려동물?</div>
+            <div class="english">Would you mind live with pets?</div>
+          </div>
+          <div class="radioBox">
+            <label>
+              <input type="radio" name="pet" id="pet" value="1">
+              <div class="select">
+                <div>나는 애완견 (애완묘) OK</div>
+                <div class="english">Yes, I like to live with dog ​​or cat.</div>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="pet" id="pet" value="0">
+              <div class="select">
+                <div>동물은 같이 못 살아요 ㅜㅜ</div>
+                <div class="english">No. I can't get along with pets.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <% if (locals.setting.invitePoint) { %>
+      <div>
+        <input type="text" name="inviteId" class="inviteId" placeholder="추천인 아이디 또는 닉네임">
+        <div class="guide"></div>
+      </div>
+      <% } %>
+      <div><button id="joinBtn">회원가입</button></div>
+      <% if (locals.setting.useTermsAndPrivacy) { %>
+      <div class="agreement">
+        <label for="agreement">
+          <div><input type="checkbox" name="agreement" id="agreement"></div>
+          <div class="agreementText">이용약관 & 개인정보수집 정책 동의</div>
+        </label>
+      </div>
+      <% } %>
+      <div class="etc">이미 회원이라면? <a href="/login">로그인</a></div>
+      <% if (locals.setting.useTermsAndPrivacy) { %>
+      <div class="termsAndPrivacy">
+        <div><a href="/terms" target="_blank">이용약관</a></div>
+        <div class="slash">|</div>
+        <div><a href="/privacy" target="_blank">개인정보수집 정책</a></div>
+      </div>
+      <% } %>
+    </form>
+  </div>
+</article>

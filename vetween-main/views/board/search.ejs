@@ -1,0 +1,18 @@
+<article id="list">
+  <% if (locals.setting.adsenseTop) { %>
+  <div class="adsense"><%- locals.setting.adsenseTop %></div>
+  <% } %>
+  <% if (locals.banners.filter(b => b.position === 'articleTop' && b.status === 1).length) { %>
+    <%- include('../banner', { position: 'articleTop' }) %>
+  <% } %>
+  <%- include('../title', { title: `${keyword} 검색결과` }) %>
+  <%- include(`./type/board`, { articles }) %>
+  <%- include('../pagination') %>
+  <%- include('./searchAndWrite') %>
+  <% if (locals.setting.adsenseBottom) { %>
+  <div class="adsense"><%- locals.setting.adsenseBottom %></div>
+  <% } %>
+  <% if (locals.banners.filter(b => b.position === 'articleBottom' && b.status === 1).length) { %>
+    <%- include('../banner', { position: 'articleBottom' }) %>
+  <% } %>
+</article>

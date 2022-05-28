@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../../head') %>
+    <%- include('../head') %>
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+  </head>
+  <body>
+    <%- include('../../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('../header') %>
+          <%- include('../../flash') %>
+          <h2>"<%= store.title %>" 기본 설정</h2>
+          <div class="tableWrap">
+            <table id="basic" provinceId="<%= store.offlineStore_offlineProvince_ID %>">
+              <thead>
+                <tr>
+                  <th>위치</th>
+                  <th>스토어명</th>
+                  <th>키워드</th>
+                  <th>연락처</th>
+                  <th>수정</th>
+                  <th>삭제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <form action="/admin/store/detail/<%= store.id %>/edit/basic" method="POST">
+                  <tr>
+                    <td>
+                      <select name="city">
+                        <% cities.forEach(c => { %>
+                        <option value="<%= c.id %>"<% if (store.offlineStore_offlineCity_ID === c.id) { %> selected<% } %>><%= c.title %></option>
+                        <% }) %>
+                      </select>
+                      <select name="province"></select>
+                    </td>
+                    <td><input type="text" name="title" value="<%= store.title %>" placeholder="스토어명"></td>
+                    <td><input type="text" name="keyword" value="<%= store.keyword %>" placeholder="키워드"></td>
+                    <td><input type="text" name="phone" value="<%= store.phone %>" placeholder="연락처"></td>
+                    <td rowspan="3"><button name="submit" value="edit">수정</button></td>
+                    <td rowspan="3"><button name="submit" value="delete">삭제</button></td>
+                  </tr>
+                  <tr>
+                    <th>주소1</th>
+                    <th>주소2</th>
+                    <th>오픈시간</th>
+                    <th>마감시간</th>
+                  </tr>
+                  <tr>
+                    <td><input type="text" name="addressLine01" value="<%= store.addressLine01 %>" placeholder="주소1"></td>
+                    <td><input type="text" name="addressLine02" value="<%= store.addressLine02 %>" placeholder="주소2"></td>
+                    <td><input type="text" name="startTime" value="<%= store.startTime %>" placeholder="오픈시간"></td>
+                    <td><input type="text" name="endTime" value="<%= store.endTime %>" placeholder="마감시간"></td>
+                  </tr>
+                </form>
+              </tbody>
+            </table>
+          </div>
+          <h2>"<%= store.title %>" 추가 설정</h2>
+          <div class="tableWrap">
+            <table>
+              <form action="/admin/store/detail/<%= store.id %>/edit/type" method="POST">
+              <% for (let i = 0; i < totalLine; i ++) { %>
+                <% if (i === 0) { %>
+                <tr>
+                  <% for (let j = 0; j < types[i].length; j ++) { %>
+                  <th><%= types[i][j].title %></th>
+                  <% } %>
+                  <th>수정</th>
+                </tr>
+                <tr>
+                  <% for (let j = 0; j < types[i].length; j ++) { %>
+                  <% check = checks.find(s => s.slug === types[i][j].slug) %>
+                  <td><input type="checkbox" name="<%= types[i][j].slug %>" value="1"<% if (check) { %> checked<% } %>></td>
+                  <% } %>
+                  <td rowspan="<%= totalLine * 2 %>"><button>수정</button></td>
+                </tr>
+                <% } else { %>
+                <tr>
+                  <% for (let j = 0; j < types[i].length; j ++) { %>
+                  <th><%= types[i][j].title %></th>
+                  <% } %>
+                  <!-- <th>수정</th> -->
+                </tr>
+                <tr>
+                  <% for (let j = 0; j < types[i].length; j ++) { %>
+                    <% check = checks.find(s => s.slug === types[i][j].slug) %>
+                  <td><input type="checkbox" name="<%= types[i][j].slug %>" value="1"<% if (check) { %> checked<% } %>></td>
+                  <% } %>
+                </tr>
+                <% } %>
+              <% } %>
+              </form>
+            </table>
+          </div>
+          <h2>내용 설정</h2>
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>내용</th>
+                  <th>수정</th>
+                </tr>
+              </thead>
+              <tbody>
+                <form action="/admin/store/detail/<%= store.id %>/edit/content" method="POST">
+                  <tr>
+                    <td><textarea name="content" id="editor" placeholder="내용"><%= store.content %></textarea></td>
+                    <td><button>수정</button></td>
+                  </tr>
+                </form>
+              </tbody>
+            </table>
+          </div>
+          <h2>코스 목록</h2>
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>코스명</th>
+                  <th>내용</th>
+                  <th>오리지널 가격</th>
+                  <th>할인 가격</th>
+                  <th>할인율</th>
+                  <th>표시 순서</th>
+                  <th>수정</th>
+                  <th>삭제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% products.forEach(p => { %>
+                <form action="/admin/store/detail/<%= store.id %>/product/edit/<%= p.id %>" method="POST">
+                  <tr>
+                    <td><input type="text" name="title" value="<%= p.title %>" placeholder="코스명"></td>
+                    <td><input type="text" name="content" value="<%= p.content %>" placeholder="내용"></td>
+                    <td><input type="text" name="originalPrice" value="<%= p.originalPrice %>" placeholder="오리지널 가격"></td>
+                    <td><input type="text" name="discountPrice" value="<%= p.discountPrice %>" placeholder="할인 가격"></td>
+                    <td><input type="text" name="discountRate" value="<%= p.discountRate %>" placeholder="할인율"></td>
+                    <td><input type="text" name="viewOrder" value="<%= p.viewOrder %>" placeholder="표시 순서"></td>
+                    <td><button name="submit" value="edit">수정</button></td>
+                    <td><button name="submit" value="delete">삭제</button></td>
+                  </tr>
+                </form>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+          <h2>코스 등록</h2>
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>코스명</th>
+                  <th>내용</th>
+                  <th>오리지널 가격</th>
+                  <th>할인 가격</th>
+                  <th>할인율</th>
+                  <th>등록</th>
+                </tr>
+              </thead>
+              <tbody>
+                <form action="/admin/store/detail/<%= store.id %>/product/new" method="POST">
+                  <tr>
+                    <td><input type="text" name="title" placeholder="코스명"></td>
+                    <td><input type="text" name="content" placeholder="내용"></td>
+                    <td><input type="text" name="originalPrice" placeholder="오리지널 가격"></td>
+                    <td><input type="text" name="discountPrice" placeholder="할인 가격"></td>
+                    <td><input type="text" name="discountRate" placeholder="할인율"></td>
+                    <td><button>등록</button></td>
+                  </tr>
+                </form>
+              </tbody>
+            </table>
+          </div>
+          <h2>이미지 목록</h2>
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>이미지</th>
+                  <th>내용</th>
+                  <th>표시 순서</th>
+                  <th>수정</th>
+                  <th>삭제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% images.forEach(i => { %>
+                <form action="/admin/store/detail/<%= store.id %>/image/edit/<%= i.id %>" method="POST">
+                  <tr>
+                    <td><a href="<%= s3Host %>/offlineImage/<%= i.image %>" target="_blank"><img src="<%= s3Host %>/offlineImage/<%= i.image %>"></a></td>
+                    <td><input type="text" name="content" value="<%= i.content %>" placeholder="내용"></td>
+                    <td><input type="text" name="viewOrder" value="<%= i.viewOrder %>" placeholder="표시 순서"></td>
+                    <td><button name="submit" value="edit">수정</button></td>
+                    <td><button name="submit" value="delete">삭제</button></td>
+                  </tr>
+                </form>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+          <h2>이미지 등록</h2>
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>이미지</th>
+                  <th>등록</th>
+                </tr>
+              </thead>
+              <tbody>
+                <form action="/admin/store/detail/<%= store.id %>/image/new" method="POST" enctype="multipart/form-data">
+                  <tr>
+                    <td><input type="file" name="images" multiple></td>
+                    <td><button>등록</button></td>
+                  </tr>
+                </form>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+    </main>
+    <%- include('../../footer') %>
+    <script>
+      ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+          console.error(error);
+        });
+    </script>
+    <script>
+      const city = document.querySelector('select[name="city"]');
+      const province = document.querySelector('select[name="province"]');
+      const currentProvince = document.querySelector('#basic').attributes.provinceid.value;
+
+      const getProvinces = () => {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/api/offline/provinces');
+          xhr.onload = () => {
+            const result = JSON.parse(xhr.responseText);
+            resolve(result);
+          };
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send();
+        });
+      };
+      const rewirteProvinces = (selectProvinces, currentProvince) => {
+        let line = '';
+        selectProvinces.forEach(p => {
+          if (p.id === currentProvince) {
+            line += `<option value="${p.id}" selected>${p.title}</option>`;
+          } else {
+            line += `<option value="${p.id}">${p.title}</option>`;
+          }
+        });
+        province.innerHTML = line;
+      };
+
+      (async () => {
+        const provinces = await getProvinces();
+        const selectCity = city.selectedIndex + 1;
+        const selectProvinces = provinces.filter(p => p.offlineProvince_offlineCity_ID === selectCity);
+        rewirteProvinces(selectProvinces, currentProvince);
+        city.addEventListener('change', () => {
+          const selectCity = city.selectedIndex + 1;
+          const selectProvinces = provinces.filter(p => p.offlineProvince_offlineCity_ID === selectCity);
+          rewirteProvinces(selectProvinces);
+        });
+      })();
+    </script>
+  </body>
+</html>

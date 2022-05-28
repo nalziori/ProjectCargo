@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+    <link rel="stylesheet" href="/stylesheets/board/editorClassic.css">
+    <script src="/javascripts/editorClassic.js" defer></script>
+    <%- include('../editorHeaderPage') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <h2>페이지</h2>
+          <form name="frm" action="/admin/page/edit/<%= page.id %>/update" method="POST">
+            <div>
+              <select name="type" id="type">
+                <option value="editor" <% if (page.type === 'editor') { %> selected<% } %>>Editor</option>
+                <option value="source" <% if (page.type === 'source') { %> selected<% } %>>Source</option>
+              </select>
+            </div>
+            <h2>제목</h2>
+            <div><input type="text" name="title" id="title" value="<%= page.title %>" placeholder="제목"></div>
+            <h2>연결 주소</h2>
+            <div><input type="text" name="slug" id="slug" value="<%= page.slug %>" placeholder="연결 주소"></div>
+            <div class="content">
+              <div class="textareaContainer">
+                <textarea name="content" id="editor"><%= page.content %></textarea>
+              </div>
+            </div>
+            <h2>HTML</h2>
+            <div class="content">
+              <div class="textareaContainer">
+                <textarea name="html"><%= page.html %></textarea>
+              </div>
+            </div>
+            <h2>CSS</h2>
+            <div class="content">
+              <div class="textareaContainer">
+                <textarea name="css"><%= page.css %></textarea>
+              </div>
+            </div>
+            <div><button id="submit">등록</button></div>
+          </form>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

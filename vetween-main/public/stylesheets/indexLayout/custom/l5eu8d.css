@@ -1,0 +1,296 @@
+/* Main */
+article .main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+  box-sizing: border-box;
+}
+
+article .main .wrap {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+}
+
+article .main .contact {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-right: 60px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+article .main .contact .title {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+article .main .contact .articles {
+  height: 250px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+}
+
+article .main .contact .article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  border-bottom: 1px solid #bbb;
+  box-sizing: border-box;
+}
+
+article .main .contact .article:first-child {
+  border-top: 1px solid #bbb;
+}
+
+article .main .contact .article .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+article .main .contact .article .info .status {
+  color: #fff;
+  font-weight: bold;
+  background-color: #bbb;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+article .main .contact .article .info .datetime {
+  margin-left: 10px;
+}
+
+article .main .notice {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-right: 60px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+article .main .notice .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+article .main .notice .title .more {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+article .main .notice .articles {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+article .main .notice .article {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #bbb;
+  box-sizing: border-box;
+}
+
+article .main .notice .article:first-child {
+  border-top: 1px solid #bbb;
+}
+
+/* Buttons */
+article .buttons {
+  margin: 60px 0;
+  color: #fff;
+}
+
+article .buttons a {
+  color: #fff;
+}
+
+article .buttons .items {
+  display: flex;
+  background-color: #000;
+}
+
+article .buttons .item {
+  flex: 1;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 0 50px;
+}
+
+article .buttons .news {
+  background-color: #4E4A34;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+article .buttons .news .more {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+article .buttons .news .articles {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 0;
+  margin: 6px 0;
+}
+
+article .buttons .news .article {
+  padding: 4px 0;
+}
+
+article .buttons .news .article:hover {
+  text-decoration: underline;
+}
+
+article .buttons .hts {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://idfy22.s3.ap-northeast-2.amazonaws.com/assets/1639957383960-vag25ohpddb.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+article .buttons .join {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://idfy22.s3.ap-northeast-2.amazonaws.com/assets/1639957043278-5osotjvyy7.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-in-out;
+}
+
+article .buttons .item .title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+article .buttons .item .comment {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 10px;
+}
+
+article .buttons .item .download {
+  border: 0;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+/* Youtube */
+article .youtube {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+article .media {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+article .media iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 1280px) {
+  article .gridContainer {
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  article .gridItem {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  article .main .wrap {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 10px;
+  }
+
+  article .main .contact {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+
+  article .buttons .news .article {
+    text-align: center;
+  }
+
+  article .buttons .items {
+    flex-direction: column;
+  }
+
+  article .buttons .item {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  article .buttons .hts {
+    align-items: center;
+  }
+
+  article .buttons .join {
+    align-items: center;
+  }
+}
+
+@media (max-width: 320px) {
+  article {
+    font-size: 0.9em;
+  }
+}

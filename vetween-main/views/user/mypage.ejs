@@ -1,0 +1,82 @@
+<style>
+  article .userImage {
+    <% if (locals.user.image) { %>
+    background-image: url('<%= s3Host %>/userImage/<%= locals.user.image %>');
+    <% } else { %>
+    background-image: url('/assets/userImage.svg');
+    <% } %>
+  }
+  <% if (locals.setting.theme === 'black') { %>
+  #mypage input {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  <% } %>
+</style>
+<article id="mypage">
+  <h1>마이페이지</h1>
+  <div class="userImage">
+    <label for="imageUpload"></label>
+    <input type="file" name="userImage" id="imageUpload">
+  </div>
+  <form action="/mypage" method="POST">
+    <div class="permission">회원등급 : <%= user.permissionName %></div>
+    <div class="nickName">
+      <div><h3>닉네임 변경</h3></span>
+      <div><input type="text" name="nickName" value="<%= user.nickName %>" placeholder="닉네임"></div>
+    </div>
+    <!--
+    <div class="password">
+      <div><input type="password" name="oldPassword" placeholder="기존 비밀번호"></div>
+      <div><input type="password" name="password" placeholder="비밀번호"></div>
+      <div><input type="password" name="passwordCheck" placeholder="비밀번호 확인"></div>
+    </div>
+  -->
+    <div><button>닉네임 변경</button></div>
+    <div class="second"><a href="/mypage/article"><button type="button" class="qnaBtn">내가 쓴 게시글</button></a></div>
+    <div class="second"><a href="/qna"><button type="button" class="qnaBtn">1:1 문의</button></a></div>
+    <% if (locals.setting.useWithdraw) { %>
+    <div class="second"><a href="/mypage/withdraw"><button type="button" id="withdraw">회원 탈퇴</button></a></div>
+    <% } %>
+    <% if (locals.setting.usePointWithdraw) { %>
+    <div class="pointWithdraw"><a href="/mypage/pointWithdraw"><button type="button">포인트 출금신청</button></a></div>
+    <% } %>
+  </form>
+</article>
+<script>
+  const nickNameInput = document.querySelector('input[name="nickName"]');
+  const passwordInputContainer = document.querySelector('.password');
+
+  nickNameInput.addEventListener('click', () => {
+    passwordInputContainer.classList.add('active');
+  });
+
+  const userImage = document.querySelectorAll('.userImage');
+  const imageUpload = document.querySelector('#imageUpload');
+  imageUpload.addEventListener('change', async () => {
+    const key = await setUserImage(imageUpload.files[0]);
+    if (key) {
+      userImage.forEach(i => {
+        i.style.backgroundImage = `url('<%= s3Host %>/userImage/${key}')`;
+      });
+    }
+  });
+
+  const setUserImage = (userImage) => {
+    return new Promise((resolve, reject) => {
+      const data = new FormData();
+      data.append('userImage', userImage);
+      const xhr = new XMLHttpRequest();
+      xhr.onload = () => {
+        if (xhr.status === 200 || xhr.status === 201) {
+          const result = JSON.parse(xhr.responseText);
+          resolve(result.key);
+        } else {
+          console.error(xhr.responseText);
+        }
+      };
+      xhr.open('POST', '/api/userImage');
+      xhr.send(data);
+    });
+  };
+</script>

@@ -1,0 +1,95 @@
+<article>
+  <section class="top">
+    <div class="image">
+      <img src="https://st3b78.s3.ap-northeast-2.amazonaws.com/assets/1639835277161-0cs6accw8qf.png" alt="">
+    </div>
+  </section>
+  <section class="wrap">
+    <% if (locals.banners.filter(b => b.position === 'indexTop' && b.status === 1).length) { %>
+      <%- include('../banner', { position: 'indexTop' }); %>
+    <% } %>
+    <% if (boards && boards.length && boards[0]) { %>
+  </section>
+  <section class="bookmark">
+    <div class="wrap">
+      <div class="boardTitle">
+        <h2><%= boards[0].title %></h2>
+        <div class="more"><a href="/<%= boards[0].slug %>">더보기 +</a></div>
+      </div>
+      <div class="items">
+        <% boards[0].articles.forEach(a => { %>
+          <div class="item">
+            <a href="/<%= boards[0].slug %>/<%= a.id %>" class="image"><img src="<%= locals.s3Host %>/article/<%= a.image %>" alt="<%= a.title %>"></a>
+            <div class="info">
+              <div class="title"><%= a.title %></div>
+              <div class="code">가입코드 : <%= a.customField02 %></div>
+            </div>
+            <div class="buttons">
+              <a href="/<%= boards[0].slug %>/<%= a.id %>" class="detail">상세보기</a>
+              <a href="<%= a.customField01 %>" target="_blank" class="join">가입하기</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+  <section class="list">
+    <div class="wrap">
+      <div class="gridContainer">
+        <% if (boards) { %>
+        <% let boardCount = 0; %>
+        <% boards.forEach(b => { %>
+          <% if (boardCount !== 0) { %>
+          <% if (b.id === 0) { %>
+            <div class="gridItem">
+              <div class="titleSpaceBetween">
+                <h2><%= b.title %></a></h2>
+              </div>
+              <% b.articles.forEach(a => { %>
+                <div class="contentSpaceBetween">
+                  <div class="title">
+                    <% if (a.boardTitle) { %><span class="boardTitle" style="color: <%= a.boardColor %>;"><%= a.boardTitle %></span><% } %>
+                    <a href="/<%= a.boardSlug %>/<%= a.id %>"><%= a.title %></a>
+                    <% if (a.image) { %><span class="image"><img src="/assets/empty.png"></span><% } %>
+                    <% if (a.commentCount) { %><span class="commentCount"><img src="/assets/empty.png"><%= a.commentCount %></span><% } %>
+                  </div>
+                  <div class="datetime"><%= a.datetime %></div>
+                </div>
+              <% }) %>
+            </div>
+          <% } else { %>
+            <div class="gridItem">
+              <div class="titleSpaceBetween">
+                <h2><a href="/<%= b.slug %>"><%= b.title %></a></h2>
+                <div class="more"><a href="/<%= b.slug %>">더보기</a></div>
+              </div>
+              <% b.articles.forEach(a => { %>
+                <div class="contentSpaceBetween">
+                  <div class="title">
+                    <% if (a.category) { %><span class="category" style="color: <%= a.categoryColor %>;"><%= a.category %></span><% } %>
+                    <a href="/<%= b.slug %>/<%= a.id %>"><%= a.title %></a>
+                    <% if (a.image) { %><span class="image"><img src="/assets/empty.png"></span><% } %>
+                    <% if (a.commentCount) { %><span class="commentCount"><img src="/assets/empty.png"><%= a.commentCount %></span><% } %>
+                  </div>
+                  <div class="datetime"><%= a.datetime %></div>
+                </div>
+              <% }) %>
+            </div>
+          <% } %>
+          <% } %>
+          <% boardCount ++ %>
+        <% }) %>
+        <% } %>
+      </div>
+    </div>
+  </section>
+  <% if (locals.setting.adsenseBottom) { %>
+  <div class="adsense">
+    <%- locals.setting.adsenseBottom %>
+  </div>
+  <% } %>
+  <% if (locals.banners.filter(b => b.position === 'indexBottom' && b.status === 1).length) { %>
+    <%- include('../banner', { position: 'indexBottom' }); %>
+  <% } %>
+</article>

@@ -1,0 +1,103 @@
+footer {
+  background-color: #0D2735;
+  color: #fff;
+  margin-top: 100px;
+}
+
+footer .wrap {
+  display: flex;
+}
+
+footer nav {
+  width: 100%;
+  display: flex;
+  padding: 60px 0;
+}
+
+footer nav > div {
+  flex: 1;
+}
+
+footer nav .title {
+  color: #A2CCE4;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 14px;
+}
+
+footer nav .title a {
+  color: #A2CCE4;
+}
+
+footer nav ul li {
+  margin: 16px 0;
+}
+
+footer nav ul li a {
+  color: #fff;
+}
+
+footer nav ul li a:hover,
+footer nav ul li a:active {
+  color: #A2CCE4;
+}
+
+footer nav .content div {
+  margin-bottom: 10px;
+  line-height: 24px;
+}
+
+footer nav .content a {
+  color: #fff;
+}
+
+footer nav .content .address {
+  margin-bottom: 20px;
+}
+
+footer nav .content .phone {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1280px) {
+  footer {
+    margin-top: 30px;
+  }
+
+  footer nav {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  footer nav > .item {
+    display: none;
+  }
+
+  footer nav > .company {
+    display: flex;
+    flex-direction: column;
+  }
+
+  footer nav > .company .title {
+    display: none;
+  }
+
+  footer .item .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  footer .item .content {
+    display: none;
+  }
+
+  footer .item .companyContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+}

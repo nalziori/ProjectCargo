@@ -1,0 +1,121 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 290px;
+  /* padding: 10px; */
+  word-break: break-all;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.wrap {
+  width: 290px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chat {
+  display: flex;
+  padding: 10px;
+  position: relative;
+}
+
+.chat .image {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.chat .image img {
+  width: 40px;
+  height: 40px;
+  margin: 6px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.chat .content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.chat .top {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.chat .nickName {
+  font-weight: bold;
+}
+
+.chat .datetime {
+  color: #bbb;
+}
+
+li ul {
+  position: absolute;
+  top: 38px;
+  left: 70px;
+  border: 1px solid #bbb;
+  background-color: #fff;
+  display: none;
+  flex-direction: column;
+  width: 100px;
+}
+
+li ul.active {
+  display: flex;
+}
+
+li ul li {
+  cursor: pointer;
+  border-bottom: 1px solid #bbb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+}
+
+li ul li:hover,
+li ul li:active {
+  background-color: #eee;
+}
+
+li ul li:last-child {
+  border-bottom: 0;
+}
+
+.nickName {
+  font-weight: bold;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.nickName img {
+  width: 14px;
+  margin-right: 5px;
+}
+
+@media (max-width: 1280px) {
+  body {
+    width: 100%;
+  }
+
+  .wrap {
+    width: 100%;
+  }
+}

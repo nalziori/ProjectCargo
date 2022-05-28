@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../../../head') %>
+    <%- include('../../head') %>
+  </head>
+  <body>
+    <%- include('../../../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('../../header') %>
+          <%- include('../../../flash') %>
+          <h2><%= package.title %> 패키지 상세설정</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>제목</th>
+                <th>요약</th>
+                <th>수정</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="title" value="<%= package.title %>" placeholder="제목"></td>
+                <td><input type="text" name="summary" value="<%= package.summary %>" placeholder="요약"></td>
+                <td rowspan="3"><button name="submit" value="edit">수정</button></td>
+                <td rowspan="3"><button name="submit" value="delete">삭제</button></td>
+              </tr>
+              <tr>
+                <th colspan="2">내용</th>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <textarea name="content" value="<%= package.content %>" placeholder="내용"></textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>서비스 목록</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>제목</th>
+                <th>포인트</th>
+                <th>수량</th>
+                <th>총 포인트</th>
+                <th>표시 순서</th>
+                <th>수정</th>
+                <th>삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% let totalPoint = 0 %>
+              <% package.services.forEach(s => { %>
+              <form action="/admin/package/detail/<%= package.id %>/service/edit/<%= s.id %>" method="POST">
+                <tr>
+                  <td><%= s.title %></td>
+                  <td><%= s.point.toLocaleString() %></td>
+                  <td><input type="text" name="count" value="<%= s.count %>" placeholder="수량"></td>
+                  <% totalPoint += s.point * s.count %>
+                  <td><%= (s.point * s.count).toLocaleString() %></td>
+                  <td><input type="text" name="viewOrder" value="<%= s.psViewOrder %>" placeholder="표시 순서"></td>
+                  <td><button name="submit" value="edit">수정</button></td>
+                  <td><button name="submit" value="delete">삭제</button></td>
+                </tr>
+              </form>
+              <% }) %>
+              <tr>
+                <td colspan="3"></td>
+                <td class="bold"><%= totalPoint.toLocaleString() %></td>
+                <td colspan="3"></td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>서비스 등록</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>서비스 이름</th>
+                <th>수량</th>
+                <th>등록</th>
+              </tr>
+            </thead>
+            <tbody>
+              <form action="/admin/package/detail/<%= package.id %>/service/new" method="POST">
+                <tr>
+                  <td>
+                    <select name="service">
+                      <% services.forEach(s => { %>
+                      <option value="<%= s.id %>"><%= s.title %></option>
+                      <% }) %>
+                    </select>
+                  </td>
+                  <td><input type="text" name="count" value="1" placeholder="수량"></td>
+                  <td><button>등록</button></td>
+                </tr>
+              </form>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </main>
+    <%- include('../../../footer') %>
+  </body>
+</html>

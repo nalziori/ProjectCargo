@@ -1,0 +1,46 @@
+<article>
+  <div class="wrap">
+    <section class="title">
+      <h1>회원가입</h1>
+      <ul class="flow">
+        <li class="active">01 약관동의</li>
+        <li class="slash">></li>
+        <li>02 정보입력</li>
+        <li class="slash">></li>
+        <li>03 가입완료</li>
+      </ul>
+    </section>
+    <form action="/join/agreement" method="POST" onsubmit="return agreementSubmit()">
+      <section class="terms">
+        <div class="subTitle">
+          <h2>이용약관</h2>
+          <div class="guide"></div>
+        </div>
+        <div class="content"><%- terms %></div>
+      </section>
+      <section class="privacy">
+        <div class="subTitle">
+          <h2>개인정보 수집정책</h2>
+          <div class="guide"></div>
+        </div>
+        <div class="content"><%- privacy %></div>
+      </section>
+      <section class="agreement">
+        <input type="checkbox" name="agreement" id="agreement">
+        <label for="agreement">이용약관 및 개인정보 수집정책에 동의합니다.</label>
+      </section>
+      <section class="joinBtn">
+          <button class="join">가입하기</button>
+      </section>
+    </form>
+  </div>
+</article>
+<script>
+  const agreement = document.querySelector('#agreement');
+  const agreementSubmit = () => {
+    if (!agreement.checked) {
+      alert('이용약관 및 개인정보 수집정책에 동의해야 합니다.');
+      return false;
+    }
+  };
+</script>

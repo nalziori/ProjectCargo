@@ -1,0 +1,39 @@
+<style>
+  <% if (locals.setting.theme === 'black') { %>
+  #alarm h1 {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  #alarm .item {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  #alarm .item a {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  #alarm .read {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  <% } %>
+</style>
+<article id="alarm">
+  <h1>알림</h1>
+  <section class="items">
+    <% locals.alarms.forEach(a => { %>
+      <div class="item<% if (a.status === 2) { %> read<% } %>">
+        <div>
+          <div class="info"><%= a.datetime %></div>
+          <div><a href="<%= a.link %>"><%= a.content %></a></div>
+        </div>
+        <div class="status">
+          <% if (a.status === 1) { %>
+          새 알림
+          <% } else if (a.status === 2) { %>
+          읽음
+          <% } %>
+        </div>
+      </div>
+    <% }) %>
+  </section>
+</article>

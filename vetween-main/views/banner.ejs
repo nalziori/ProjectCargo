@@ -1,0 +1,48 @@
+<% let banners = locals.banners.filter(banner => banner.position === position && banner.status === 1) %>
+<% let bannerAlign = null %>
+<% if (position === 'header') { %><% bannerAlign = setting.bannerAlignHeader %><% } %>
+<% if (position === 'indexTop') { %><% bannerAlign = setting.bannerAlignIndexTop %><% } %>
+<% if (position === 'indexBottom') { %><% bannerAlign = setting.bannerAlignIndexBottom %><% } %>
+<% if (position === 'sideTop') { %><% bannerAlign = setting.bannerAlignSideTop %><% } %>
+<% if (position === 'sideBottom') { %><% bannerAlign = setting.bannerAlignSideBottom %><% } %>
+<% if (position === 'articleTop') { %><% bannerAlign = setting.bannerAlignArticleTop %><% } %>
+<% if (position === 'articleBottom') { %><% bannerAlign = setting.bannerAlignArticleBottom %><% } %>
+<% if (position === 'leftWing') { %><% bannerAlign = setting.bannerAlignLeftWing %><% } %>
+<% if (position === 'rightWing') { %><% bannerAlign = setting.bannerAlignRightWing %><% } %>
+<% if (position === 'custom') { %><% bannerAlign = setting.bannerAlignCustom %><% } %>
+<% if (bannerAlign === 'random') { %>
+  <% banners = shuffle(banners) %>
+<% } %>
+<style>
+  aside .banner img,
+  article .banner img {
+    <% if (locals.setting.bannerBorderRounding) { %>
+      border-radius: 12px;
+    <% } else { %>
+      border-radius: 0;
+    <% } %>
+  }
+</style>
+<section class="banner_box banner__box__<%= position %>">
+  <% banners.forEach(banner => { %>
+    <div class="banner" id="banner<%= banner.id %>"><a href="<%= banner.link %>"<% if (banner.newPage) { %> target="_blank"<% } %>><img src="<%= locals.s3Host %>/banner/<%= banner.image %>" alt="<%= banner.image %>"></a></div>
+    <% if (banner.desktopHide) { %>
+      <style>
+        @media (min-width: 1281px) {
+          #banner<%= banner.id %> {
+            display: none;
+          }
+        }
+      </style>
+    <% } %>
+    <% if (banner.mobileHide) { %>
+      <style>
+        @media (max-width: 1280px) {
+          #banner<%= banner.id %> {
+            display: none;
+          }
+        }
+      </style>
+    <% } %>
+  <% }) %>
+</section>

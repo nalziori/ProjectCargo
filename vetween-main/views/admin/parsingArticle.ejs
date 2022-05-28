@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <div class="list">
+            <h2>"<%= parsingBoard.title %>" 게시글 목록</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>날짜</th>
+                  <th>글 ID</th>
+                  <th>제목</th>
+                  <th>내용</th>
+                  <th>상태</th>
+                  <th>삭제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% articles.forEach(a => { %>
+                <form action="/admin/parsing/article/edit/<%= a.id %>" method="POST">
+                  <tr>
+                    <td><%= a.datetime %></td>
+                    <td><%= a.articleId %></td>
+                    <td><%= a.title %></td>
+                    <td><textarea disabled><%= a.content %></textarea></td>
+                    <td>
+                      <% if (a.submit) { %>
+                        등록완료
+                      <% } else { %>
+                        등록전
+                      <% } %>
+                    </td>
+                    <td><button name="submit" name="delete">삭제</button></td>
+                  </tr>
+                </form>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+          <%- include('../pagination') %>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

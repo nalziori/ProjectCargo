@@ -1,0 +1,220 @@
+article .list {
+  margin-bottom: 20px;
+}
+
+article .list h2 {
+  margin-bottom: 10px;
+}
+
+article .gridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+article .gridItem {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+article .more {
+  font-size: 14px;
+}
+
+article .titleSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+article .titleSpaceBetween h2 {
+  font-weight: 800;
+}
+
+article .contentSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+article .contentSpaceBetween a:hover,
+article .contentSpaceBetween a:active {
+  text-decoration: underline;
+}
+
+article .contentSpaceBetween .title {
+  width: 100px;
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  min-width: 0;
+  box-sizing: border-box;
+  word-break: keep-all;
+}
+
+article .contentSpaceBetween .title a {
+  margin-right: 6px;
+}
+
+article .contentSpaceBetween .boardTitle,
+article .contentSpaceBetween .category {
+  color: #697183;
+  background-color: #f5f6f9;
+  border-radius: 6px;
+  padding: 4px 6px;
+  margin-right: 8px;
+  font-size: 0.9em;
+  word-break: keep-all;
+  box-sizing: border-box;
+}
+
+article .contentSpaceBetween .title {
+  margin-right: 10px;
+}
+
+article .contentSpaceBetween .title a {
+  width: 100%;
+}
+
+article .contentSpaceBetween .commentCount {
+  color: #9da5b6;
+}
+
+article .contentSpaceBetween img {
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+article .contentSpaceBetween .image img {
+  width: 14px;
+  height: 14px;
+  background-image: url('/assets/image.svg');
+}
+
+article .contentSpaceBetween .commentCount img {
+  width: 14px;
+  height: 14px;
+  background-image: url('/assets/comment-dots-regular.svg');
+}
+
+article .contentSpaceBetween .datetime {
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  color: #9da5b6;
+  font-size: 0.9em;
+  margin-left: 10px;
+  word-break: keep-all;
+}
+
+/* Board Pick */
+article .boardPick {
+  margin-bottom: 30px;
+}
+
+article .boardPick .boardTitle {
+  font-weight: bold;
+  font-size: 1.5em;
+  border-bottom: 2px solid rgba(0,0,0,0.3);
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+article .boardPick .boardTitle .title {
+  display: flex;
+}
+
+article .boardPick .boardTitle .title img {
+  width: 24px;
+  height: 24px;
+  background-color: #000;
+  border-radius: 100%;
+  background-image: url('https://last-onca.s3.ap-northeast-2.amazonaws.com/assets/1640166718183-nabcd0mrn3s.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 14px;
+  margin-right: 6px;
+}
+
+article .boardPick .boardTitle .more {
+  border: 1px solid #bbb;
+  padding: 8px;
+  background-color: #fff;
+}
+
+article .boardPick .items {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+article .boardPick .item {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.3);
+  position: relative;
+  min-width: 0;
+}
+
+article .boardPick .item .title {
+  padding: 8px;
+}
+
+article .boardPick .item .title .titleContent {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+article .boardPick .item .image {
+
+}
+
+article .boardPick .item .image img {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+}
+
+@media (max-width: 1280px) {
+  article .gridContainer {
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  article .gridItem {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 1280px) {
+  article .boardPick {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  article .boardPick .items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 320px) {
+  article {
+    font-size: 0.9em;
+  }
+}

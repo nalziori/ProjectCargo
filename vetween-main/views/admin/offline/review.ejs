@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../../head') %>
+    <%- include('../head') %>
+  </head>
+  <body>
+    <%- include('../../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('../header') %>
+          <%- include('../../flash') %>
+          <h2>리뷰</h2>
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>닉네임</th>
+                  <th>리뷰</th>
+                  <th>작성일</th>
+                  <th>삭제</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% reviews.forEach(r => { %>
+                <form action="/admin/review/edit/<%= r.id %>" method="POST">
+                  <tr>
+                    <td><%= r.nickName %></td>
+                    <td><textarea name="content" disabled><%= r.content %></textarea></td>
+                    <td><%= r.datetime %></td>
+                    <td><button name="submit" value="delete">삭제</button></td>
+                  </tr>
+                </form>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+          <%- include('../../pagination') %>
+        </div>
+      </article>
+    </main>
+    <%- include('../../footer') %>
+  </body>
+</html>

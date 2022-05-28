@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <article>
+        <div class="wrap">
+          <%- include('./header') %>
+          <section>
+            <h2>리포트 목록</h2>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>날짜</th>
+                    <th>타입</th>
+                    <th>대상회원</th>
+                    <th>내용</th>
+                    <th>신고회원</th>
+                    <th>신고내용</th>
+                    <th>삭제</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% reports.forEach(report => { %>
+                    <form action="/admin/report/edit/<%= report.id %>" method="POST">
+                      <tr>
+                        <td><%= report.datetime %></td>
+                        <td><%= report.type %></td>
+                        <td><%= report.targetUid %> (<%= report.targetNickName %>)</td>
+                        <td><textarea><%= report.content %></textarea></td>
+                        <td><%= report.uId %> (<%= report.nickName %>)</td>
+                        <td><textarea><%= report.content %></textarea></td>
+                        <td><button name="submit" value="delete">삭제</button></td>
+                      </tr>
+                    </form>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <%- include('../pagination') %>
+        </div>
+      </article>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<section id="indexBoard">
+  <div class="indexBoardGroups">
+    <% let i = 1; %>
+    <% indexBoardGroups.forEach(indexBoardGroup => { %>
+    <% if (typeof (scope) === 'undefined' || typeof (scope) === 'null' || i === scope) { %>
+    <div class="indexBoardGroup">
+      <% if (indexBoardGroup.type === 'rowTwo' || indexBoardGroup.type === 'rowOne' || indexBoardGroup.type === 'side') { %>
+        <%- include('./row', { indexBoardGroup }); %>
+      <% } else if (indexBoardGroup.type === 'tab') { %>
+        <%- include('./tab', { indexBoardGroup }); %>
+      <% } else if (indexBoardGroup.type === 'dropdown') { %>
+        <%- include('./dropdown', { indexBoardGroup }); %>
+      <% } else if (indexBoardGroup.type === 'blog') { %>
+        <%- include('./blog', { indexBoardGroup }); %>
+      <% } else if (indexBoardGroup.type === 'content') { %>
+        <%- include('./content', { indexBoardGroup }); %>
+      <% } else if (indexBoardGroup.type === 'imageAndTitle') { %>
+        <%- include('./imageAndTitle', { indexBoardGroup }); %>
+      <% } else if (indexBoardGroup.type.match('bookmark')) { %>
+        <%- include('./bookmark', { indexBoardGroup }); %>
+      <% } else if (indexBoardGroup.type === 'customBanner') { %>
+        <%- include('./customBanner', { indexBoardGroup }); %>
+      <% } %>
+    </div>
+    <% } %>
+    <% i ++ %>
+    <% }) %>
+  </div>
+</section>

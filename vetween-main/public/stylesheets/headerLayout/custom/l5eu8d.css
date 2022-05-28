@@ -1,0 +1,433 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+  background-color: #313538;
+}
+
+header > .kakao {
+  position: fixed;
+  top: 50%;
+  right: 50px;
+  width: 100px;
+  height: 100px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #000;
+  background-color: #ffe812;
+  text-align: center;
+  border-radius: 2px;
+}
+
+header > .kakao img {
+  width: 40px;
+  margin-bottom: 8px;
+}
+
+header .top .kakao a {
+  color: #ffe812;
+  font-weight: bold;
+}
+
+header .bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://idfy22.s3.ap-northeast-2.amazonaws.com/assets/1639925322422-qibwz6d9d9.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #000;
+  padding: 40px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+header .bottom .wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+header .bottom .wrap .image {
+  margin-right: 60px;
+}
+
+header .bottom .wrap .text {
+  color: #E3DBB8;
+}
+
+header .bottom .wrap .text .comment {
+  font-weight: bold;
+  font-size: 1.6em;
+  /* font-size: 2em; */
+  margin-bottom: 14px;
+}
+
+header .bottom .wrap .text .sub {
+  color: #fff;
+  font-weight: bold;
+  font-size: 2.6em;
+}
+
+header .bottom .wrap .text .title {
+  font-weight: bold;
+  font-size: 2.6em;
+  margin-bottom: 14px;
+}
+
+header .bottom .wrap .text .etc {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+header .bottom .join {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+header .bottom .join.active {
+  
+}
+
+header .bottom .join .title {
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+header .bottom .join form {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .bottom .join form input {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 1em;
+  padding: 0 10px;
+  border: 0;
+  margin-right: 10px;
+}
+
+header .bottom .join form button {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-size: 1em;
+  color: #fff;
+  padding: 0 30px;
+}
+
+@media (min-width: 1281px) {
+  header .toggleBtn {
+    display: none;
+  }
+
+  header .wrap {
+    width: 1280px;
+  }
+  
+  header .top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 10px 0;
+  }
+  
+  header .top .wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  header .top .contact {
+    display: flex;
+    align-items: center;
+  }
+  
+  header .top .contact img {
+    width: 16px;
+    margin-right: 8px;
+  }
+
+  header .top ul {
+    display: flex;
+    font-size: 0.8em;
+  }
+
+  header .top ul li {
+    margin-left: 10px;
+  }
+
+  header .top ul .slash {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  header .top ul li a {
+    color: #fff;
+  }
+  
+  header .middle {
+    width: 100%;
+    background-color: #313538;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  header .middle .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header .middle .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header .middle nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header .middle nav > ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+  }
+  
+  header .middle nav > ul > li {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  header .middle nav > ul > li > a {
+    padding: 0 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header .middle nav > ul > li:hover > ul {
+    display: flex;
+  }
+  
+  header .middle nav > ul > li > a {
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  header .middle nav > ul > li > a:hover {
+    color: #c19f34;
+  }
+
+  header .middle nav > ul > li > ul {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: #eee;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+    border: 1px solid #ccc;
+  }
+  
+  header .middle nav > ul > li > ul > li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  header .middle nav > ul > li > ul > li:last-child {
+    border-bottom: 0;
+  }
+  
+  header .middle nav > ul > li > ul > li:hover {
+    background-color: #ccc;
+  }
+  
+  header .middle nav > ul > li > ul > li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1280px) {
+  header .toggleBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  header .top {
+    width: 100%;
+    display: none;
+  }
+
+  header .middle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .middle .wrap {
+    flex-direction: column;
+  }
+
+  header .logo {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .middle nav {
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .middle nav.active {
+    display: flex;
+  }
+
+  header .middle nav > ul {
+    width: 100%;
+    height: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  header .middle nav > ul > li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  header .middle nav > ul > li > a {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+  }
+
+  header .middle nav > ul > li > a:hover {
+    background-color: rgba(0,0,0,5);
+  }
+
+  header .middle nav > ul > li > ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  header .middle nav > ul > li > ul > li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .middle nav > ul > li > ul > li > a {
+    width: 100%;
+    padding: 10px 0;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+  }
+
+  header .middle nav > ul > li > ul > li > a:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  header .bottom .join {
+    display: none;
+  }
+
+  header > .kakao {
+    top: 50%;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #000;
+    background-color: #ffe812;
+    text-align: center;
+    border-radius: 2px;
+    font-size: 0.7em;
+    padding: 10px;
+  }
+  
+  header > .kakao img {
+    width: 30px;
+    margin-bottom: 4px;
+  }
+}

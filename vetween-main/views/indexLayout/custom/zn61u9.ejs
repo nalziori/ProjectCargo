@@ -1,0 +1,104 @@
+<article>
+  <% if (locals.setting.adsenseTop) { %>
+  <div class="adsense">
+    <%- locals.setting.adsenseTop %>
+  </div>
+  <% } %>
+  <% if (locals.banners.filter(b => b.position === 'indexTop' && b.status === 1).length) { %>
+    <%- include('../banner', { position: 'indexTop' }); %>
+  <% } %>
+  <% if (boards && boards.length && boards[0]) { %>
+    <div class="boardPick boardPick01">
+      <div class="boardTitle">
+        <div class="title">
+          <div><img src="/assets/empty.png"></div>
+          <div><%= boards[0].title %></div>
+        </div>
+        <a href="/<%= boards[0].slug %>" class="more">더보기 +</a>
+      </div>
+      <div class="items">
+        <% boards[0].articles.forEach(a => { %>
+        <a href="/<%= boards[0].slug %>/<%= a.id %>" class="item">
+          <div class="title"><div class="titleContent"><%= a.title %></div></div>
+          <div class="image"><img src="/assets/empty.png" alt="<%= a.image %>" style="background-image: url('<%= locals.s3Host %>/thumb/<%= a.image %>');"></div>
+        </a>
+        <% }) %>
+      </div>
+    </div>
+  <% } %>
+  <% if (boards && boards.length && boards[1]) { %>
+    <div class="boardPick boardPick01">
+      <div class="boardTitle">
+        <div class="title">
+          <div><img src="/assets/empty.png"></div>
+          <div><%= boards[1].title %></div>
+        </div>
+        <a href="/<%= boards[1].slug %>" class="more">더보기 +</a>
+      </div>
+      <div class="items">
+        <% boards[1].articles.forEach(a => { %>
+        <a href="/<%= boards[1].slug %>/<%= a.id %>" class="item">
+          <div class="title"><%= a.title %></div>
+          <div class="image"><img src="/assets/empty.png" alt="<%= a.image %>" style="background-image: url('<%= locals.s3Host %>/thumb/<%= a.image %>');"></div>
+        </a>
+        <% }) %>
+      </div>
+    </div>
+  <% } %>
+  <div class="list">
+    <div class="gridContainer">
+      <% if (boards) { %>
+      <% let boardCount = 0; %>
+      <% boards.forEach(b => { %>
+        <% if (boardCount !== 0 && boardCount !== 1) { %>
+        <% if (b.id === 0) { %>
+          <div class="gridItem">
+            <div class="titleSpaceBetween">
+              <h2><%= b.title %></a></h2>
+            </div>
+            <% b.articles.forEach(a => { %>
+              <div class="contentSpaceBetween">
+                <div class="title">
+                  <% if (a.boardTitle) { %><span class="boardTitle"><%= a.boardTitle %></span><% } %>
+                  <a href="/<%= a.boardSlug %>/<%= a.id %>"><%= a.title %></a>
+                  <% if (a.image) { %><span class="image"><img src="/assets/empty.png"></span><% } %>
+                  <% if (a.commentCount) { %><span class="commentCount"><img src="/assets/empty.png"><%= a.commentCount %></span><% } %>
+                </div>
+                <div class="datetime"><%= a.datetime %></div>
+              </div>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="gridItem">
+            <div class="titleSpaceBetween">
+              <h2><a href="/<%= b.slug %>"><%= b.title %></a></h2>
+              <div class="more"><a href="/<%= b.slug %>">더보기</a></div>
+            </div>
+            <% b.articles.forEach(a => { %>
+              <div class="contentSpaceBetween">
+                <div class="title">
+                  <% if (a.category) { %><span class="category" style="color: <%= a.categoryColor %>;"><%= a.category %></span><% } %>
+                  <a href="/<%= b.slug %>/<%= a.id %>"><%= a.title %></a>
+                  <% if (a.image) { %><span class="image"><img src="/assets/empty.png"></span><% } %>
+                  <% if (a.commentCount) { %><span class="commentCount"><img src="/assets/empty.png"><%= a.commentCount %></span><% } %>
+                </div>
+                <div class="datetime"><%= a.datetime %></div>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+        <% } %>
+        <% boardCount ++ %>
+      <% }) %>
+      <% } %>
+    </div>
+  </div>
+  <% if (locals.setting.adsenseBottom) { %>
+  <div class="adsense">
+    <%- locals.setting.adsenseBottom %>
+  </div>
+  <% } %>
+  <% if (locals.banners.filter(b => b.position === 'indexBottom' && b.status === 1).length) { %>
+    <%- include('../banner', { position: 'indexBottom' }); %>
+  <% } %>
+</article>

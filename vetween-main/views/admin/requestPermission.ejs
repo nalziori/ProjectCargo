@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title><%= pageTitle %></title>
+    <%- include('../head') %>
+    <%- include('./head') %>
+  </head>
+  <body>
+    <%- include('../header') %>
+    <main>
+      <div class="wrap">
+        <%- include('./header') %>
+        <div class="list">
+          <h2>회원 목록</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>아이디</th>
+                <th>닉네임</th>
+                <th>등업신청</th>
+                <th>이미지</th>
+                <th>승인</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% requestPermissions.forEach(r => { %>
+                <form action="/admin/requestPermission" method="POST">
+                  <input type="hidden" name="id" value="<%= r.id %>">
+                  <input type="hidden" name="userId" value="<%= r.requestPermission_user_ID %>">
+                  <input type="hidden" name="permission" value="<%= r.permission %>">
+                  <tr>
+                    <td><%= r.uId %></td>
+                    <td><%= r.nickName %></td>
+                    <td><%= r.permission %></td>
+                    <td><a href="<%= locals.s3Host %>/requestPermission/<%= r.image %>" target="_blank"><img src="<%= locals.s3Host %>/requestPermission/<%= r.image %>" alt="<%= r.image %>"></a></td>
+                    <td><button>승인</button></td>
+                  </tr>
+                </form>
+              <% }) %>
+            </tbody>
+          </table>
+          <%- include('../pagination') %>
+        </div>
+      </div>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

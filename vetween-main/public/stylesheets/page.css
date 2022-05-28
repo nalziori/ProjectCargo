@@ -1,0 +1,27 @@
+article h1 {
+  width: 100%;
+  font-size: 1.5em;
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+article .content {
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
+}
+
+article .content img {
+  width: 100%;
+}
+
+@media (max-width: 1280px) {
+  article {
+    padding: 0 10px;
+  }
+}

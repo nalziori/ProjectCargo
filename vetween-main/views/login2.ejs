@@ -1,0 +1,45 @@
+<% const setting = locals.setting %>
+<style>
+  article .userImage {
+  <% if (locals.user.image) { %>
+    background-image: url('<%= s3Host %>/userImage/<%= locals.user.image %>');
+    <% } else { %>
+    background-image: url('/assets/userImage.svg');
+    <% } %>
+  }
+  <% if (locals.setting.theme === 'black') { %>
+  article input {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  <% } %>
+   b {
+       color:rgb(57, 155, 253);
+   }
+</style>
+<article id="mypage">
+    <h1>회원가입</h1>
+    <div class="userImage">
+        <label for="imageUpload"></label>
+        <input type="file" name="userImage" id="imageUpload">
+    </div>
+    <form action="/mypage" method="POST">
+        <div class="permission">회원등급 : <%= user.permissionName %></div>
+        <div class="nickName">
+            <h3>닉네임 설정</h3>
+            <div>베트윈의 닉네임 디폴트 값은 카카오톡 닉네임입니다. 원치않으시면 새로운 닉네임을 설정해주세요.</div>
+            <!--<div><input type="text" name="realname " value="<%= user.nickName %>" placeholder="성명"-->
+            <div><input type="text" name="nickName"  placeholder="닉네임"></div>
+        </div>
+        <div>
+            *<b>베트윈</b>은 오직 <b>수의대생, 수의사</b>로만 이루어진 커뮤니티로,
+             인증과정을 거쳐야만 회원이 되어 사용할 수 있습니다.
+            <p\>
+            *인증방법: 아래 회원가입 버튼을 눌러 완료한 뒤,
+             카카오채널(구: 플러스채널) "베트윈" 채팅창 이용 사진증명
+            <p\>
+            *인증까지 최대 1영업일이 소요될 수 있습니다.
+        </div>
+        <div><button>회원가입</button></div>
+    </form>
+</article>

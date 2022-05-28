@@ -1,0 +1,96 @@
+<style>
+  .content a {
+    color: <%= locals.setting.pointColor %>;
+  }
+  <% if (locals.setting.theme === 'black') { %>
+  article h1 {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  article .categoryContainer {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  article .notice {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  article input[type="text"],
+  article input[type="password"] {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  article .content {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  <% } %>
+</style>
+<script src="/javascripts/editorClassic.js" defer></script>
+<article>
+  <h1><%= board.title %></h1>
+  <form action="/<%= board.slug %>/<%= article.id %>/update" method="POST" enctype="multipart/form-data" onsubmit="onSubmit(this); return false;">
+    <% if (board.categories.length || locals.user?.isAdmin) { %>
+    <div class="subContainer">
+      <% if (board.categories.length) { %>
+      <div class="categoryContainer">
+        <select name="category" id="category">
+          <% board.categories.forEach(c => { %>
+          <option value="<%= c.id %>"<% if (c.id === article.article_category_ID) { %> selected<% } %>><%= c.title %></option>
+          <% }) %>
+        </select>
+      </div>
+      <% } else { %>
+      <input type="hidden" id="category" value="0">
+      <% } %>
+      <div class="checkBox">
+        <% if (locals.user?.isAdmin) { %>
+        <div class="notice">
+          <label for="notice">공지</label>
+          <input type="checkbox" name="notice" id="notice" value="1"<% if (article.notice) { %> checked<% } %>>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <% } %>
+    <% if (!article.article_user_ID) { %>
+    <div class="nonMember">
+      <input type="text" name="nickName" value="<%= article.nickName %>" placeholder="닉네임">
+      <input type="password" name="password" placeholder="비밀번호">
+    </div>
+    <% } %>
+    <div class="title"><input type="text" name="title" id="title" value="<%= article.title %>" placeholder="제목"></div>
+    <div class="customFieldContainer">
+      <% if (board.useCustomField01) { %><div><input type="text" name="customField01" value="<%= article.customField01 %>" placeholder="<%= board.customFieldTitle01 %>"></div><% } %>
+      <% if (board.useCustomField02) { %><div><input type="text" name="customField02" value="<%= article.customField02 %>" placeholder="<%= board.customFieldTitle02 %>"></div><% } %>
+      <% if (board.useCustomField03) { %><div><input type="text" name="customField03" value="<%= article.customField03 %>" placeholder="<%= board.customFieldTitle03 %>"></div><% } %>
+      <% if (board.useCustomField04) { %><div><input type="text" name="customField04" value="<%= article.customField04 %>" placeholder="<%= board.customFieldTitle04 %>"></div><% } %>
+      <% if (board.useCustomField05) { %><div><input type="text" name="customField05" value="<%= article.customField05 %>" placeholder="<%= board.customFieldTitle05 %>"></div><% } %>
+      <% if (board.useCustomField06) { %><div><input type="text" name="customField06" value="<%= article.customField06 %>" placeholder="<%= board.customFieldTitle06 %>"></div><% } %>
+      <% if (board.useCustomField07) { %><div><input type="text" name="customField07" value="<%= article.customField07 %>" placeholder="<%= board.customFieldTitle07 %>"></div><% } %>
+      <% if (board.useCustomField08) { %><div><input type="text" name="customField08" value="<%= article.customField08 %>" placeholder="<%= board.customFieldTitle08 %>"></div><% } %>
+      <% if (board.useCustomField09) { %><div><input type="text" name="customField09" value="<%= article.customField09 %>" placeholder="<%= board.customFieldTitle09 %>"></div><% } %>
+      <% if (board.useCustomField10) { %><div><input type="text" name="customField10" value="<%= article.customField10 %>" placeholder="<%= board.customFieldTitle10 %>"></div><% } %>
+    </div>
+    <div class="content">
+      <div class="textareaContainer">
+        <textarea name="content" id="editor"><%= article.content %></textarea>
+      </div>
+    </div>
+    <div class="tags">
+      <% let tagString = '' %>
+      <% article.tags.forEach(tag => tagString += `${tag.key},`) %>
+      <input type="text" name="tags" value="<%= tagString %>" placeholder="태그">
+    </div>
+    <% if (board.useLinks) { %>
+    <div class="links">
+      <input type="text" name="links" value="<%= article.links %>" placeholder="링크">
+    </div>
+    <% } %>
+    <% if (board.useFiles) { %>
+    <div class="files">
+      <input type="file" name="files" placeholder="파일" multiple>
+    </div>
+    <% } %>
+    <div class="button"><button>수정</button></div>
+  </form>
+</article>

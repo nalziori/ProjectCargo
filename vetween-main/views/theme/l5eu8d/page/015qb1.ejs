@@ -1,0 +1,91 @@
+<style>
+  article .point {
+    color: <%= locals.setting.pointColor %>;
+  }
+  article .download .content .left {
+    border-top: 10px solid <%= locals.setting.pointColor %>;
+    border-left: 10px solid <%= locals.setting.pointColor %>;
+    border-bottom: 10px solid <%= locals.setting.pointColor %>;
+  }
+
+  article .download .content .right {
+    border-top: 10px solid <%= locals.setting.pointColor %>;
+    border-right: 10px solid <%= locals.setting.pointColor %>;
+    border-bottom: 10px solid <%= locals.setting.pointColor %>;
+  }
+
+  article .join form button {
+    background-color: <%= locals.setting.pointColor %>;
+  }
+
+  article .contact .complete .info .status {
+    background-color: <%= locals.setting.pointColor %>;
+  }
+</style>
+<article>
+  <section class="top">
+    <div class="wrap">
+      <h1>HTS 다운로드</h1>
+      <div class="guide">항상 고객입장에서 고객의 편의와 만족을 최우선으로 생각하겠습니다.</div>
+    </div>
+  </section>
+  <section class="comment">
+    <div class="wrap">
+      <div><span class="point">간단회원가입 신청</span> 후 관리자 본인인증을 마친 후 <span class="point">HTS 프로그램 지원</span>해 드립니다. </div>
+    </div>
+  </section>
+  <section class="download">
+    <div class="wrap">
+      <div class="content">
+        <div class="left"></div>
+        <div class="text">
+          <div>고객의 성장과 함께하는 든든한 파트너 <span class="point">서해에셋</span></div>
+          <div>초보자는 물론 시스템 <span class="bold">트레이딩, 선물옵션</span> 등</div>
+          <div>고급투자자들까지 모두 만족하는 <span class="bold">종합매매프로그램</span></div>
+        </div>
+        <div class="right"></div>
+      </div>
+      <div class="join">
+        <form action="/sendEmail" method="POST" onsubmit="joinSubmit()">
+          <div class="title">간단회원가입 신청</div>
+          <div class="input">
+            <label>이름</label>
+            <input type="text" name="name">
+          </div>
+          <div class="input">
+            <label>연락처</label>
+            <input type="text" name="phone">
+          </div>
+          <div class="input">
+            <label>이메일</label>
+            <input type="text" name="email">
+          </div>
+          <div><button>가입신청</button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="contact">
+        <div class="title">상담 신청 현황</div>
+        <div class="articles">
+          <% locals.contacts.forEach(c => { %>
+          <div class="article <% if (c.status) { %>yet<% } else { %>complete<% } %>">
+            <div class="name"><%= c.name %>님이 문의하셨습니다.</div>
+            <div class="info">
+              <div class="status"><% if (c.status) { %>미답변<% } else { %>답변완료<% } %></div>
+              <div class="datetime"><%= c.datetime %></div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+<script>
+  const joinSubmit = () => {
+    alert('신청완료 되었습니다.');
+  };
+</script>

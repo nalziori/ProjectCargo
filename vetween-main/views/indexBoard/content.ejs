@@ -1,0 +1,20 @@
+<div class="indexBoards <%= indexBoardGroup.type %>">
+  <% if (indexBoardGroup.showTitleAndContent) { %>
+  <div class="indexBoardTitleContainer">
+    <h2><%= indexBoardGroup.title %></h2>
+    <div class="content"><%- indexBoardGroup.content %></div>
+  </div>
+  <% } %>
+  <% indexBoardGroup.indexBoards.forEach(indexBoard => { %>
+  <div class="indexBoard <%= indexBoard.type %>">
+    <div class="articles <%= indexBoard.type %>">
+      <% indexBoard.articles.forEach(article => { %>
+      <div class="article">
+        <h3><%= article.title %></h3>
+        <div class="content"><%- article.content %></div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+  <% }) %>
+</div>
