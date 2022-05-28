@@ -204,7 +204,7 @@ const authCheckout = async (req, res, next, userInfo) => {
               const userClass = new User(req, res, conn);
               await userClass.checkout(user);
             }
-            res.redirect('/login2')
+            res.redirect('/views/login2')
           }
         }
       }
