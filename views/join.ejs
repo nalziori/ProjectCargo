@@ -5,49 +5,6 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
   <% } %>
-
-  .dropdown{
-    position : relative;
-    display: inline-block;
-  }
-
-  .dropbtn{
-    border : 1px solid rgb(37, 37, 37);
-    border-radius : 4px;
-    background-color: #f5f5f5;
-    font-weight: 400;
-    color : rgb(37, 37, 37);
-    padding : 12px;
-    width :200px;
-    text-align: left;
-    cursor : pointer;
-    font-size : 12px;
-  }
-
-  .dropdown-content{
-  display : none;
-  position : absolute;
-  z-index : 1; /*다른 요소들보다 앞에 배치*/
-  font-weight: 400;
-  background-color: #f9f9f9;
-  min-width : 200px;
-}
-
-.dropdown-content p{
-  display : block;
-  text-decoration : none;
-  color : rgb(37, 37, 37);
-  font-size: 12px;
-  padding : 12px 20px;
-}
-
-.dropdown-content a:hover{
-  background-color : #ececec
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
 </style>
 <article>
   <h1>회원가입</h1>
@@ -90,55 +47,17 @@
           <% } %>
         </td>
         <td>
-          <div class="dropdown">
-            <button class="dropbtn"><span>성별</span></button>
-              <div class="dropdown-content">
-                <a href="#">남자</a>
-                <a href="#">여자</a>
-              </div>
-          </div>
+             <input type="text" name="gender" placeholeder="성별(남/여)">
         </td>
       </tr>
     </table>
     <table>
       <tr>
         <td>
-          <input type="text" name="birthyear" placeholder="출생년도">
+          <input type="text" name="birthyear" placeholder="출생년도 4자리">
         </td>
         <td>
-          <div class="dropdown">
-            <button class="dropbtn"><div>월</div></button>
-              <div class="dropdown-content">
-                <p>01</p>
-                <p>02</p>
-                <p>03</p>
-                <p>04</p>
-                <p>05</p>
-                <p>06</p>
-                <p>07</p>
-                <p>08</p>
-                <p>09</p>
-                <p>10</p>
-                <p>11</p>
-                <p>12</p>
-              </div>
-        </td>
-        <td>
-          <div class="dropdown">
-            <button class="dropbtn"><div>일</div></button>
-              <div class="dropdown-content">
-                <p>01</p><p>02</p><p>03</p>
-                <p>04</p><p>05</p><p>06</p>
-                <p>07</p><p>08</p><p>09</p>
-                <p>10</p><p>11</p><p>12</p>
-                <p>13</p><p>14</p><p>15</p>
-                <p>16</p><p>17</p><p>18</p>
-                <p>19</p><p>20</p><p>21</p>
-                <p>22</p><p>23</p><p>24</p>
-                <p>25</p><p>26</p><p>27</p>
-                <p>28</p><p>29</p><p>30</p>
-                <p>31</p>
-              </div>
+          <input type="text" name="birthday" placeholder="생일 4자리">
         </td>
       </tr>
     </table>
