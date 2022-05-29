@@ -21,10 +21,12 @@
       <input type="password" name="passwordCheck" placeholder="비밀번호 확인">
       <div class="guide"></div>
     </div>
+    <!--
     <div id="nickName">
       <input type="text" name="nickName" placeholder="닉네임">
       <div class="guide"></div>
     </div>
+  -->
     <div id="email">
       <input type="text" name="email" placeholder="이메일">
       <div class="guide"></div>
@@ -35,17 +37,97 @@
       <div class="guide"></div>
     </div>
     <% } %>
-    <% if (locals.setting.useJoinRealName) { %>
-    <div>
-      <input type="text" name="realName" placeholder="이름">
-    </div>
-    <% } %>
+
+    <script>
+      function dropdown(){
+        document.getElementById("dropdowns").classList.toggle("show");
+      }
+
+      window.onclick = function(event){
+        if(!event.target.matches('.dropbtn')){
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i=0;i<dropdowns.length;i++)
+          {
+            var openDropdown = dropdowns[i];
+            if(openDropdown.classList.contains('show')){
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      }
+    </script>
+
+    <table>
+      <tr>
+        <td>
+          <% if (locals.setting.useJoinRealName) { %>
+          <div>
+            <input type="text" name="realName" placeholder="이름">
+          </div>
+          <% } %>
+        </td>
+        <td>
+          <div class="dropdown">
+            <button onclick="dropdown()" class="dropbtn">성별</button>
+              <div id="dropdowns" class="dropdown-content">
+                <a href="#">남자</a>
+                <a href="#">여자</a>
+              </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          <input type="text" name="birthyear" placeholder="출생년도">
+        </td>
+        <td>
+          <div class="dropdown">
+            <button onclick="dropdown()" class="dropbtn">월</button>
+              <div id="dropdowns" class="dropdown-content">
+                <a href="#">1월</a>
+                <a href="#">2월</a>
+                <a href="#">3월</a>
+                <a href="#">4월</a>
+                <a href="#">5월</a>
+                <a href="#">6월</a>
+                <a href="#">7월</a>
+                <a href="#">8월</a>
+                <a href="#">9월</a>
+                <a href="#">10월</a>
+                <a href="#">11월</a>
+                <a href="#">12월</a>
+              </div>
+        </td>
+        <td>
+          <div class="dropdown">
+            <button onclick="dropdown()" class="dropbtn">일</button>
+              <div id="dropdowns" class="dropdown-content">
+                <a href="#">1</a><a href="#">2</a><a href="#">3</a>
+                <a href="#">4</a><a href="#">5</a><a href="#">6</a>
+                <a href="#">7</a><a href="#">8</a><a href="#">9</a>
+                <a href="#">10</a><a href="#">11</a><a href="#">12</a>
+                <a href="#">13</a><a href="#">14</a><a href="#">15</a>
+                <a href="#">16</a><a href="#">17</a><a href="#">18</a>
+                <a href="#">19</a><a href="#">20</a><a href="#">21</a>
+                <a href="#">22</a><a href="#">23</a><a href="#">24</a>
+                <a href="#">25</a><a href="#">26</a><a href="#">27</a>
+                <a href="#">28</a><a href="#">29</a><a href="#">30</a>
+                <a href="#">31</a>
+              </div>
+        </td>
+      </tr>
+    </table>
+    <!--
     <% if (locals.setting.invitePoint) { %>
     <div>
       <input type="text" name="inviteId" class="inviteId" placeholder="추천인 아이디 또는 닉네임">
       <div class="guide"></div>
     </div>
     <% } %>
+  -->
     <div><button id="joinBtn">회원가입</button></div>
     <% if (locals.setting.useTermsAndPrivacy === 1) { %>
     <div class="agreement">

@@ -1520,7 +1520,9 @@ const update = async () => {
     }
   }
 };
-
+//이메일 email -> account_email, 생일 추가 : birthday 출생연도 : birthyear
+//핸드폰 번호 phone -> phone_number
+//카카오톡 : 실명, 전화번호, 이메일, 생일, 출생연도, 성별
 const user = async () => {
   try {
     const conn = await pool.getConnection();
@@ -1532,7 +1534,7 @@ const user = async () => {
         uId varchar(200) NOT NULL,
         password varchar(200) NOT NULL,
         nickName varchar(45) NOT NULL,
-        email varchar(200) DEFAULT NULL,
+        email varchar(200) DEFAULT NULL, 
         emailAuthentication tinyint DEFAULT '0',
         permission int DEFAULT '1',
         workingUser tinyint unsigned DEFAULT '0',
