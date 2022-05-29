@@ -188,6 +188,24 @@
         <% } %>
         -->
       </ul>
+            <div>
+        <% if (locals.user && locals.user.permission >= 1) { %>
+          <div class="KakaoTalk_Vet_Auth_Nav">
+          <div><p>베트윈은 <span class="blue">수의사, 수의대생</span>만 이용가능한 서비스입니다.<br>
+          추가 기능을 원하시면 아래 플러스 친구로 연결해<br>
+        본인의 신분을 인증해주세요.</p></div>
+            <div
+            id="kakao-talk-channel-chat-button"
+            data-channel-public-id="_kixhxkb" 
+            data-title="consult"
+            data-size="small"
+            data-color="yellow"
+            data-shape="pc"
+            data-support-multiple-densities="true"
+          ></div>
+        </div> 
+        <% } %><!--카카오 채널 //public-id 에 플친 주소id 삽입-->
+      </div>
       <div class="menuTitle">메뉴</div>
       <ul class="nav">
         <% locals.menus.forEach(menu => { %>
