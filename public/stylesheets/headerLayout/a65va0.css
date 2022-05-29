@@ -40,7 +40,7 @@ header .modalNav .siteNameContainer {
 }
 
 header .modalNav .siteNameContainer a {
-  color: #fff;
+  color: rgb(27, 52, 108);
 }
 
 header .modalNav .siteNameContainer .modalClose {
@@ -92,7 +92,7 @@ header .modalNav .option li a {
 }
 
 header .modalNav .option li a:hover {
-  color: #DC153D;
+  color: rgb(10, 54, 113);
 }
 
 header .modalNav .option .blank {
@@ -126,13 +126,13 @@ header .modalNav .mypage li a {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: #000;
   padding: 10px 0;
 }
 
 header .modalNav .mypage li a:hover,
 header .modalNav .mypage li a:active {
-  color: #DC153D;
+  color: rgb(10, 54, 113);
 }
 
 header .modalNav .menuTitle {
@@ -178,7 +178,7 @@ header .modalNav .nav > li > .title > a {
 
 header .modalNav .nav > li > .title > a:hover,
 header .modalNav .nav > li > .title > a:active {
-  color: #DC153D;
+  color: rgb(10, 54, 113);
 }
 
 header .modalNav .nav > li > .title .subBtn {
@@ -223,7 +223,7 @@ header .modalNav .nav > li > ul > li > a {
 
 header .modalNav .nav > li > ul > li a:hover,
 header .modalNav .nav > li > ul > li a:active {
-  color: #DC153D;
+  color: rgb(10, 54, 113);
 }
 
 header .modalNav .count {
