@@ -39,6 +39,15 @@ header .modalNav .siteNameContainer {
   box-sizing: border-box;
 }
 
+header .modalNav .KakaoTalk_Vet_Auth_Nav {
+  position: relative;
+  width: 100%;
+  font-size: 1.1em;
+  line-height: 24px;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
 header .modalNav .siteNameContainer a {
   color: rgb(27, 52, 108);
 }
