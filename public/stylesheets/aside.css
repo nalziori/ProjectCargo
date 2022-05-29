@@ -62,7 +62,7 @@ aside .userMenu {
   margin: 0 10px;
 }
 
-aside .KakaoTalk_Vet_Auth {
+aside .KakaoTalk_Vet_Auth div {
   text-align: center;
   background-color: #fff;
   display: flex;
