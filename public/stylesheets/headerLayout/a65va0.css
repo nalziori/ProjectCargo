@@ -46,6 +46,7 @@ header .modalNav .KakaoTalk_Vet_Auth_Nav {
   line-height: 24px;
   padding: 14px;
   box-sizing: border-box;
+  justify-content: center;
 }
 
 header .modalNav .siteNameContainer a {
