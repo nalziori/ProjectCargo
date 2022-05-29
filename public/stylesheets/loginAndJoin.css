@@ -38,11 +38,6 @@ article input[type=password] {
   box-sizing: border-box;
 }
 
-article .dropdown-content{
-  display: none;
-  position : absolute;
-}
-
 article button {
   width: 100%;
   height: 50px;
