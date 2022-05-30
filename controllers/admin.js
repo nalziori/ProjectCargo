@@ -204,7 +204,6 @@ exports.userEdit = doAsync(async (req, res, next) => {
           await pointClass.remove(data);
         }
       }
-      */
       await userClass.update(userId, data);
     } else if (submit === 'delete') {
       await userClass.remove(userId);
