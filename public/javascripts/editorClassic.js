@@ -57,8 +57,7 @@ const onSubmit = async (form) => {
         upload: imageUploadConfig,
       },
       toolbar: [ 'heading', '|', 'ImageUpload', 'mediaEmbed', 'link', '|', 'bold', 'italic', 'fontColor', 'fontBackgroundColor', 'bulletedList', 'numberedList', '|', 'blockQuote', 'insertTable', 'undo', 'redo', '|', 'sourceEditing', 'htmlEmbed'],
-      extraPlugins: [MyCustomUploadAdapterPlugin],
-      plugins : [ HtmlEmbed, ],
+      extraPlugins: [MyCustomUploadAdapterPlugin, HtmlEmbed],
     })
     .then(editor => {
       editor.editing.view.change(writer => {
