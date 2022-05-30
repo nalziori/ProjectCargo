@@ -58,19 +58,7 @@ const onSubmit = async (form) => {
       },
       toolbar: [ 'heading', '|', 'ImageUpload', 'mediaEmbed', 'link', '|', 'bold', 'italic', 'fontColor', 'fontBackgroundColor', 'bulletedList', 'numberedList', '|', 'blockQuote', 'insertTable', 'undo', 'redo', '|', 'sourceEditing', 'htmlEmbed'],
       extraPlugins: [MyCustomUploadAdapterPlugin],
-     //여기부터
-      htmlEmbed: {
-        showPreviews:true,
-        sanitizeHtml: (inputHtml)=>{
-          const outputHtml=sanitize(inputHtml);
-
-          return {
-            html: outputHtml,
-            hasChanged: true
-          };
-        }
-      }
-      //여기까지 수정됨
+     
     })
     .then(editor => {
       editor.editing.view.change(writer => {
