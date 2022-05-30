@@ -170,10 +170,10 @@ exports.userEdit = doAsync(async (req, res, next) => {
     const { userId } = req.params;
     const { submit } = req.body;
     const userClass = new User(req, res, conn);
-    const pointClass = new Point(req, res, conn);
+    //const pointClass = new Point(req, res, conn);
     if (submit === 'edit') {
       const { userGroup, uId, password, nickName, email, phone, permission } = req.body;
-      const { pointMethod, point } = req.body;
+      //const { pointMethod, point } = req.body;
       const workingUser = req.body.workingUser || 0;
       const data = {
         userGroup,
@@ -185,6 +185,7 @@ exports.userEdit = doAsync(async (req, res, next) => {
         permission,
         workingUser,
       };
+      /*
       if (pointMethod && point) {
         const user = await userClass.get(userId);
         if (pointMethod === 'create') {
@@ -203,6 +204,7 @@ exports.userEdit = doAsync(async (req, res, next) => {
           await pointClass.remove(data);
         }
       }
+      */
       await userClass.update(userId, data);
     } else if (submit === 'delete') {
       await userClass.remove(userId);

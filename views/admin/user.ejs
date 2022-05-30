@@ -25,8 +25,8 @@
                     <th>이메일</th>
                     <th>연락처</th>
                     <th>권한</th>
-                    <th>포인트</th>
-                    <th>포인트 지급/차감</th>
+                    <!--<th>포인트</th>
+                    <th>포인트 지급/차감</th>-->
                     <th>작업회원</th>
                     <th>수정</th>
                     <th>삭제</th>
@@ -58,6 +58,7 @@
                             <% }) %>
                           </select>
                         </td>
+                        <!--
                         <td><%= user.point.toLocaleString() %></td>
                         <td>
                           <div class="row">
@@ -68,6 +69,7 @@
                             <input type="text" name="point" placeholder="포인트">
                           </div>
                         </td>
+                      -->
                         <td><input type="checkbox" name="workingUser" value="1"<% if (user.workingUser) { %> checked<% } %>></td>
                         <td><button name="submit" value="edit">수정</button></td>
                         <td><button name="submit" value="delete">삭제</button></td>
