@@ -92,7 +92,7 @@ aside .message .messageCount {
 
 aside .alarm,
 aside .message,
-aside .admin
+aside .admin,
 aside .Kakao_Vet_Auth {
   display: flex;
   justify-content: center;
@@ -110,7 +110,7 @@ aside .getMessage {
 
 aside .alarm a,
 aside .message a,
-aside .admin a
+aside .admin a,
 aside .Kakao_Vet_Auth a{
   color: #697183;
   display: flex;
@@ -131,6 +131,8 @@ aside .alarm a:hover,
 aside .alarm a:active,
 aside .message a:hover,
 aside .message a:active,
+aside .Kakao_Vet_Auth a:hover,
+aside .Kakao_Vet_Auth a:active,
 aside .admin a:hover,
 aside .admin a:active {
   font-weight: bold;
