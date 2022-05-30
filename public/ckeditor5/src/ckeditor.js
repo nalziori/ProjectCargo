@@ -81,7 +81,7 @@ Editor.defaultConfig = {
 			'blockQuote',
 			'insertTable',
 			'mediaEmbed',
-			'HtmlEmbed',
+			'htmlEmbed',
 			'undo',
 			'redo'
 		]
