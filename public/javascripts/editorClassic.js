@@ -56,8 +56,22 @@ const onSubmit = async (form) => {
       image: {
         upload: imageUploadConfig,
       },
-      toolbar: [ 'heading', '|', 'ImageUpload', 'mediaEmbed', 'link', '|', 'bold', 'italic', 'fontColor', 'fontBackgroundColor', 'bulletedList', 'numberedList', '|', 'blockQuote', 'insertTable', 'undo', 'redo', '|', 'sourceEditing', 'htmlEmbed'],
-      extraPlugins: [MyCustomUploadAdapterPlugin, HtmlEmbed],
+      toolbar: [ 'heading', '|', 'ImageUpload', 'mediaEmbed', 'link', '|', 'bold', 'italic', 'fontColor', 'fontBackgroundColor', 'bulletedList', 'numberedList', '|', 'blockQuote', 'insertTable', 'undo', 'redo', '|', 'sourceEditing'],
+      extraPlugins: [MyCustomUploadAdapterPlugin],
+    })
+    .create(document.querySelector('#editor'),{
+      plugins: [HtmlEmbed ],
+      toolbar : ['htmlembed'],
+      HtmlEmbed:{
+        showPreviews: true,
+        sanitizeHtml: (inputHtml) => {
+          const outputHtml=sanitize(inputHtml);
+          return{
+            html: outputHtml,
+            hasChanged:true
+          };
+        }
+      }
     })
     .then(editor => {
       editor.editing.view.change(writer => {
