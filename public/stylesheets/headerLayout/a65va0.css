@@ -40,15 +40,12 @@ header .modalNav .siteNameContainer {
 }
 
 header .modalNav .KakaoTalk_Vet_Auth_Nav {
-  position: relative;
   width: 100%;
-  font-size: 1.1em;
-  line-height: 24px;
-  padding: 14px;
+  color: #000;
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
   box-sizing: border-box;
-  justify-content: center;
-  text-align: center;
-  background-color: #fff;
 }
 
 header .modalNav .siteNameContainer a {
