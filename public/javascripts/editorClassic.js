@@ -56,7 +56,7 @@ const onSubmit = async (form) => {
       image: {
         upload: imageUploadConfig,
       },
-      toolbar: [ 'heading', '|', 'ImageUpload', 'mediaEmbed', 'link', '|', 'bold', 'italic', 'fontColor', 'fontBackgroundColor', 'bulletedList', 'numberedList', '|', 'blockQuote', 'insertTable', 'undo', 'redo', '|', 'sourceEditing', 'htmlEmbed'],
+      toolbar: [ 'heading', '|', 'htmlEmbed', 'ImageUpload', 'mediaEmbed', 'link', '|', 'bold', 'italic', 'fontColor', 'fontBackgroundColor', 'bulletedList', 'numberedList', '|', 'blockQuote', 'insertTable', 'undo', 'redo', '|', 'sourceEditing'],
       extraPlugins: [MyCustomUploadAdapterPlugin],
     })
     .then(editor => {

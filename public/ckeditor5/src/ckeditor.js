@@ -43,6 +43,7 @@ Editor.builtinPlugins = [
 	FontBackgroundColor,
 	FontColor,
 	Heading,
+	HtmlEmbed,
 	Image,
 	ImageCaption,
 	ImageStyle,
@@ -58,8 +59,7 @@ Editor.builtinPlugins = [
 	SourceEditing,
 	Table,
 	TableToolbar,
-	TextTransformation,
-	HtmlEmbed
+	TextTransformation
 ];
 
 // Editor configuration.
@@ -71,6 +71,7 @@ Editor.defaultConfig = {
 			'bold',
 			'italic',
 			'link',
+			'htmlEmbed',
 			'bulletedList',
 			'numberedList',
 			'|',
@@ -81,7 +82,6 @@ Editor.defaultConfig = {
 			'blockQuote',
 			'insertTable',
 			'mediaEmbed',
-			'htmlEmbed',
 			'undo',
 			'redo'
 		]
