@@ -172,7 +172,7 @@ exports.userEdit = doAsync(async (req, res, next) => {
     const userClass = new User(req, res, conn);
     //const pointClass = new Point(req, res, conn);
     if (submit === 'edit') {
-      const { userGroup, uId, password, nickName, email, phone, permission } = req.body;
+      const { userGroup, uId, password, nickName, email, phone, realName, gender, birthyear, birthday, permission } = req.body;
       //const { pointMethod, point } = req.body;
       const workingUser = req.body.workingUser || 0;
       const data = {
