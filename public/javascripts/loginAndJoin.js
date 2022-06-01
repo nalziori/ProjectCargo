@@ -96,7 +96,7 @@ if (nickName) {
 
     timeout = setTimeout(async () => {
       const result = await nickNameCheck(frm.nickName.value);
-      if (frm.nickName.value.length >= 6) {
+      if (frm.nickName.value.length >= 6 && frm.nickName.va.length <= 12) {
         if (result) {
           nickNameGuide.className = 'guide green marginBottom10';
           nickNameGuide.innerHTML = '생성가능한 닉네임 입니다';

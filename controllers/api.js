@@ -133,9 +133,6 @@ exports.nickNameCheck = doAsync(async (req, res, next) => {
     if (result.length) {
       res.send(false);
     } else {
-      if (nickName.length > 12){
-        res.send(false);
-      }
       res.send(true);
     }
   } finally {
