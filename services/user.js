@@ -122,7 +122,7 @@ class User extends Class {
         const salt = bcrypt.genSaltSync(SALT_COUNT);
         const hash = bcrypt.hashSync(password, salt);
         const query = `INSERT INTO user (uId, password, nickName, email, permission, workingUser, emailAuthentication, phone, realName, gender, birthyear, birthday) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        const [result, ] = await this.conn.query(query, [uId, hash, nickName, email, permission, workingUser, emailAuthentication, phone, realName, gender, birthyear, birthday]);
+        const [result, ] = await this.conn.query(query, [uId, hash, nickName, email, permission, workingUser, emailAuthentication, phone, realName, gender, birthyear, birthdayse]);
         if (result.insertId) {
           const user = await this.get(result.insertId);
           return user;
