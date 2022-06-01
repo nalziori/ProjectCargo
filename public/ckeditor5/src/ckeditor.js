@@ -28,7 +28,7 @@ import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting.
 import Table from '@ckeditor/ckeditor5-table/src/table.js';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar.js';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
-import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembedui.js';
+import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed.js';
 
 class Editor extends ClassicEditor {}
 

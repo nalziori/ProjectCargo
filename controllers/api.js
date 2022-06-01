@@ -128,7 +128,9 @@ exports.nickNameCheck = doAsync(async (req, res, next) => {
   try {
     const { nickName } = req.body;
     const [result, ] = await conn.query(`SELECT * FROM user WHERE nickName=?`, [nickName]);
-    if (result.length) {
+    
+    //여기
+    if (result.length > 12) {
       res.send(false);
     } else {
       res.send(true);

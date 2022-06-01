@@ -182,6 +182,10 @@ exports.userEdit = doAsync(async (req, res, next) => {
         nickName,
         email,
         phone,
+        realName,
+        gender,
+        birthyear,
+        birthday,
         permission,
         workingUser,
       };
@@ -2225,10 +2229,11 @@ exports.settingBlockWords = doAsync(async (req, res, next) => {
 exports.settingJoinForm = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
   try {
-    const { useJoinPhone, useJoinRealName } = req.body;
+    const { useJoinPhone, useJoinRealName, useJoinBirthDay} = req.body;
     const data = {
       useJoinPhone,
       useJoinRealName,
+      useJoinBirthDay
     };
     const settingClass = new Setting(req, res, conn);
     await settingClass.update(data);

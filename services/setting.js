@@ -80,6 +80,7 @@ class Setting extends Class {
       blockWords: setting.blockWords,
       useJoinPhone: setting.useJoinPhone,
       useJoinRealName: setting.useJoinRealName,
+      useJoinBirthDay: setting.useJoinBirthDay,
       useCheckComments: setting.useCheckComments,
       checkComments: setting.checkComments,
       useSocialApple: setting.useSocialApple,
@@ -140,7 +141,7 @@ class Setting extends Class {
     const { customHeadTags, customHeaderTags, customFooterTags, metaTagKeyword } = data;
     const { adsenseAds, adsenseSide, adsenseTop, adsenseBottom, adsenseCustom } = data;
     const { blockWords, useCheckComments, checkComments } = data;
-    const { useJoinPhone, useJoinRealName } = data;
+    const { useJoinPhone, useJoinRealName, useJoinBirthDay } = data;
     const { useSocialApple, useSocialGoogle, useSocialFacebook, useSocialTwitter, useSocialNaver, useSocialKakao, socialAppleServiceId, socialAppleTeamId, socialAppleKeyId, socialAppleAuthKey, socialGoogleClientId, socialGoogleClientSecret, socialFacebookAppId, socialFacebookAppSecret, socialTwitterApiKey, socialTwitterApiSecret, socialNaverClientId, socialNaverClientSecret, socialKakaoClientId, socialKakaoClientSecret } = data;
     const { smsCallerId, smsServiceId, smsServiceSecretKey } = data;
     const { telegramToken, telegramChatId, naverCloudPlatformAccessKeyId, naverCloudPlatformSecretKey, googleCloudPlatformApiKey } = data;
@@ -164,7 +165,7 @@ class Setting extends Class {
     customHeadTags=?, customHeaderTags=?, customFooterTags=?, metaTagKeyword=?,
     adsenseAds=?, adsenseSide=?, adsenseTop=?, adsenseBottom=?, adsenseCustom=?,
     blockWords=?, useCheckComments=?, checkComments=?,
-    useJoinPhone=?, useJoinRealName=?,
+    useJoinPhone=?, useJoinRealName=?, useJoinBirthDay=?,
     useSocialApple=?, useSocialGoogle=?, useSocialFacebook=?, useSocialTwitter=?, useSocialNaver=?, useSocialKakao=?, socialAppleServiceId=?, socialAppleTeamId=?, socialAppleKeyId=?, socialAppleAuthKey=?, socialGoogleClientId=?, socialGoogleClientSecret=?, socialFacebookAppId=?, socialFacebookAppSecret=?, socialTwitterApiKey=?, socialTwitterApiSecret=?, socialNaverClientId=?, socialNaverClientSecret=?, socialKakaoClientId=?, socialKakaoClientSecret=?,
     smsCallerId=?, smsServiceId=?, smsServiceSecretKey=?,
     telegramToken=?, telegramChatId=?, naverCloudPlatformAccessKeyId=?, naverCloudPlatformSecretKey=?, googleCloudPlatformApiKey=?,
@@ -183,7 +184,7 @@ class Setting extends Class {
       customHeadTags, customHeaderTags, customFooterTags, metaTagKeyword,
       adsenseAds, adsenseSide, adsenseTop, adsenseBottom, adsenseCustom,
       blockWords, useCheckComments, checkComments,
-      useJoinPhone, useJoinRealName,
+      useJoinPhone, useJoinRealName, useJoinBirthDay,
       useSocialApple, useSocialGoogle, useSocialFacebook, useSocialTwitter, useSocialNaver, useSocialKakao, socialAppleServiceId, socialAppleTeamId, socialAppleKeyId, socialAppleAuthKey, socialGoogleClientId, socialGoogleClientSecret, socialFacebookAppId, socialFacebookAppSecret, socialTwitterApiKey, socialTwitterApiSecret, socialNaverClientId, socialNaverClientSecret, socialKakaoClientId, socialKakaoClientSecret,
       smsCallerId, smsServiceId, smsServiceSecretKey,
       telegramToken, telegramChatId, naverCloudPlatformAccessKeyId, naverCloudPlatformSecretKey, googleCloudPlatformApiKey,
