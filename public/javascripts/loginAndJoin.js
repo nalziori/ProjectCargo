@@ -96,11 +96,18 @@ if (nickName) {
 
     timeout = setTimeout(async () => {
       const result = await nickNameCheck(frm.nickName.value);
-      if (frm.nickName.value.length >= 6 && frm.nickName.value.length <= 12) {
+      if (frm.nickName.value.length >= 6) {
         if (result) {
-          nickNameGuide.className = 'guide green marginBottom10';
-          nickNameGuide.innerHTML = '생성가능한 닉네임 입니다';
-          joinBtn.disabled = false;
+          if (frm.nickName.value.length <= 12){
+            nickNameGuide.className = 'guide green marginBottom10';
+            nickNameGuide.innerHTML = '생성가능한 닉네임 입니다';
+            joinBtn.disabled = false;
+          }
+          else {
+            nickNameGuide.className = 'guide red marginBottom10';
+            nickNameGuide.innerHTML = '닉네임은 최대 12자리 입니다.';
+            joinBtn.disabled = true;
+          }
         } else {
           nickNameGuide.className = 'guide red marginBottom10';
           nickNameGuide.innerHTML = '중복된 닉네임 입니다';
