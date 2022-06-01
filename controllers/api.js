@@ -130,9 +130,12 @@ exports.nickNameCheck = doAsync(async (req, res, next) => {
     const [result, ] = await conn.query(`SELECT * FROM user WHERE nickName=?`, [nickName]);
     
     //여기
-    if (result.length > 12) {
+    if (result.length) {
       res.send(false);
     } else {
+      if (nickName.length > 12){
+        res.send(false);
+      }
       res.send(true);
     }
   } finally {
