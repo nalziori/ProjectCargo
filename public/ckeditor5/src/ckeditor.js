@@ -7,11 +7,13 @@ import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat.js';
 import AutoLink from '@ckeditor/ckeditor5-link/src/autolink.js';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote.js';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold.js';
+import CKFinderUploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter.js';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices.js';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials.js';
 import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/fontbackgroundcolor.js';
 import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor.js';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading.js';
+import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed.js';
 import Image from '@ckeditor/ckeditor5-image/src/image.js';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption.js';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle.js';
@@ -28,7 +30,6 @@ import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting.
 import Table from '@ckeditor/ckeditor5-table/src/table.js';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar.js';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
-import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed.js';
 
 class Editor extends ClassicEditor {}
 
@@ -38,6 +39,7 @@ Editor.builtinPlugins = [
 	AutoLink,
 	BlockQuote,
 	Bold,
+	CKFinderUploadAdapter,
 	CloudServices,
 	Essentials,
 	FontBackgroundColor,
@@ -71,19 +73,22 @@ Editor.defaultConfig = {
 			'bold',
 			'italic',
 			'link',
-			'htmlEmbed',
+			'fontColor',
+			'fontBackgroundColor',
+			'|',
 			'bulletedList',
 			'numberedList',
 			'|',
 			'outdent',
 			'indent',
-			'|',
 			'imageUpload',
 			'blockQuote',
 			'insertTable',
 			'mediaEmbed',
 			'undo',
-			'redo'
+			'redo',
+			'sourceEditing',
+			'htmlEmbed'
 		]
 	},
 	language: 'ko',
