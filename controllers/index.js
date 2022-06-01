@@ -583,8 +583,8 @@ exports.join = doAsync(async (req, res, next) => {
   } else if (method === 'POST') {
     const conn = await pool.getConnection();
     try {
-      const { uId, password, passwordCheck, nickName, email, phone, realName, inviteId } = req.body;
-      if (emptyCheck(uId, password, passwordCheck, nickName, email)) {
+      const { uId, password, passwordCheck, nickName, email, phone, realName, gender, birthyear, birthday } = req.body;
+      if (emptyCheck(uId, password, passwordCheck, nickName, email, phone, realName, gender, birthyear, birthday)) {
         if (password === passwordCheck) {
           const userClass = new User(req, res, conn);
           const data = {
@@ -594,7 +594,9 @@ exports.join = doAsync(async (req, res, next) => {
             email,
             phone,
             realName,
-            inviteId,
+            gender,
+            birthyear,
+            birthday
           };
           const user = await userClass.create(data);
           if (user) {
