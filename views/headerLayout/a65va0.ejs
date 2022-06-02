@@ -232,9 +232,14 @@
             <div>접속자</div>
           </a>
         </li> 
-
-        
+      
       </ul>-->
+            <% if (locals.user && locals.user.permission>= 1) { %>          
+          <% }
+          else { %>
+            <a href="/login"><button class="LoginButton">로그인</button></a>
+            <% } %>
+            
       <ul class="mypage">
         <% if (locals.user && locals.user.permission>= 10) { %>
           <li><a href="/admin">관리자</a></li>
