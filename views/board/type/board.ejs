@@ -14,9 +14,9 @@
         <div class="etc">
           <!--<% if (locals.setting.usePermissionImage) { %><img src="<%= article.permissionImage %>" class="permissionImage"><% } %>-->
         <!-- <% if (!article.useAnonymous) { %>
-            <div class="userImage" style="background-image: url('<%= s3Host %>/userImage/<%= locals.user.image %>');"></div>
+            <div class="userImage" style="background-image: url('<%= s3Host %>/userImage/<%= locals.user.image %>'); width: 30px; height: 30px;" onerror="this.style.display='none';"></div>
           <% } else { %>
-            <div class="userImage" style="background-image: url('/assets/userImage.svg');"></div>
+            <div class="userImage" style="background-image: url('/assets/userImage.svg'); width: 30px; height: 30px;" onerror="this.style.display='none';"></div>
           <% } %>-->
           
           <div class="nickName"><%= article.nickName %></div>
