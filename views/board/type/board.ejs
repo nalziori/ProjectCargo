@@ -13,7 +13,11 @@
         </div>
         <div class="etc">
           <!--<% if (locals.setting.usePermissionImage) { %><img src="<%= article.permissionImage %>" class="permissionImage"><% } %>-->
-         
+        <!-- <% if (!article.useAnonymous) { %>
+            <div class="userImage" style="background-image: url('<%= s3Host %>/userImage/<%= locals.user.image %>');"></div>
+          <% } else { %>
+            <div class="userImage" style="background-image: url('/assets/userImage.svg');"></div>
+          <% } %>-->
           
           <div class="nickName"><%= article.nickName %></div>
           <div class="dot"></div>
