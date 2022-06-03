@@ -56,16 +56,16 @@
               <li><a href="/logout">로그아웃</a></li>
               <li class="slash">|</li>
               <% } else { %>
-                <li><a href="/login">로그인</a></li>
+                <!--<li><a href="/login">로그인</a></li>
                 <li class="slash">|</li>
                 <li><a href="/join">회원가입</a></li>
                 <li class="slash">|</li>
                 <li><a href="/findInfo">정보찾기</a></li>
-                <li class="slash">|</li>
+                <li class="slash">|</li>-->
                 <% } %>
-                  <li><a href="/faq">FAQ</a></li>
+                  <!--<li><a href="/faq">FAQ</a></li>
                   <li class="slash">|</li>
-                  <li><a href="/qna">1:1문의</a></li>
+                  <li><a href="/qna">1:1문의</a></li>-->
                   <% if (locals.setting.useVisitCount) { %>
                     <li class="slash">|</li>
                     <li><a>접속자 <%= Number(locals.count.today).toLocaleString() %> (<span id="customCounter"
@@ -122,7 +122,7 @@
           <img src="/assets/white/times-solid.svg">
         </div>
       </div>
-      <ul class="option">
+      <!--<ul class="option">
         <li class="menu">
           <a>
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars"
@@ -183,7 +183,7 @@
             <div>FAQ</div>
           </a>
         </li>
-        <li class="hide">
+   <li class="hide">
           <a href="/report">
             <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="eye-slash"
               class="svg-inline--fa fa-eye-slash fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -195,7 +195,7 @@
             <div>신고모음</div>
           </a>
         </li>
-        <!--<li class="blank"></li>-->
+        
         <li class="close hide">
           <a>
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times"
@@ -208,33 +208,38 @@
             <div>닫기</div>
           </a>
         </li>
-        <!--
+        
         <li>
           <a href="/search">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
             <div>검색</div>
           </a>
-        </li>-->
-        <!--
+        </li>
+        
         <li class="hide">
           <a href="/tags">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tags" class="svg-inline--fa fa-tags fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M497.941 225.941L286.059 14.059A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v204.118a48 48 0 0 0 14.059 33.941l211.882 211.882c18.744 18.745 49.136 18.746 67.882 0l204.118-204.118c18.745-18.745 18.745-49.137 0-67.882zM112 160c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm513.941 133.823L421.823 497.941c-18.745 18.745-49.137 18.745-67.882 0l-.36-.36L527.64 323.522c16.999-16.999 26.36-39.6 26.36-63.64s-9.362-46.641-26.36-63.64L331.397 0h48.721a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882z"></path></svg>
             <div>태그모음</div>
           </a>
         </li> 
-      -->
+      
 
 
-        <!--
+        
          <li class="hide">
           <a href="">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="users" class="svg-inline--fa fa-users fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 22.1 68.9 62 75.1 109.4h66c17.7 0 32-14.3 32-32v-32c0-35.3-28.7-64-64-64zm-256 0c61.9 0 112-50.1 112-112S381.9 32 320 32 208 82.1 208 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zm-223.7-13.4C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z"></path></svg>
             <div>접속자</div>
           </a>
-        </li> -->
-
-        <li class="blank"></li>
-      </ul>
+        </li> 
+      
+      </ul>-->
+            <% if (locals.user && locals.user.permission>= 1) { %>          
+          <% }
+          else { %>
+            <a href="/login"><div class="LoginButton">로그인</div></a>
+            <% } %>
+            
       <ul class="mypage">
         <% if (locals.user && locals.user.permission>= 10) { %>
           <li><a href="/admin">관리자</a></li>
@@ -243,9 +248,9 @@
               <li><a href="/mypage">마이페이지</a></li>
               <li><a href="/logout">로그아웃</a></li>
               <% } else { %>
-                <li></li>
-                <li><a href="/login">로그인</a></li>
-                <!--
+                
+                 <!--<li><a href="/login">로그인</a></li>
+               
         <li><a href="/join">회원가입</a></li>
         <li><a href="/findInfo">정보찾기</a></li>-->
                 <% } %>
@@ -254,7 +259,7 @@
       <div class="KakaoTalk_Vet_Auth_Nav">
         <% if (locals.user && locals.user.permission>= 1) { %>
 
-          <a href="https://pf.kakao.com/_kixhxkb"><img src="KaTalkLogoL.png"></a>
+          <a href="https://pf.kakao.com/_kixhxkb"><img src="FakeKaTalk.png" onerror="this.style.display='none';">카톡 채널로 인증하기</a>
 
           <% } %>
       </div>

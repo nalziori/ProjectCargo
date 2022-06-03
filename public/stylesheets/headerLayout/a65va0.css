@@ -48,6 +48,11 @@ header .modalNav .KakaoTalk_Vet_Auth_Nav {
   box-sizing: border-box;
 }
 
+header .modalNav .KakaoTalk_Vet_Auth_Nav img {
+  width: 20px;
+  height: 20px;
+}
+
 header .modalNav .siteNameContainer a {
   color: rgb(27, 52, 108);
 }
@@ -61,6 +66,19 @@ header .modalNav .siteNameContainer .modalClose {
 
 header .modalNav .siteNameContainer .modalClose img {
   width: 12px;
+}
+
+header .modalNav .LoginButton {
+background-color: #123772;
+text-align: center;
+font-size: 0.8em;
+border-radius: 8px;
+box-sizing: border-box;
+color:#fff;
+width: 100%;
+padding: 10px;
+text-align:center;
+
 }
 
 header .modalNav .option {
