@@ -347,9 +347,10 @@ class KakaoLogin {
         id: userRaw.id,
         //pw
         nickName: userRaw.properties.nickname,
-        image: userRaw.properties.profile_image,
+        //image: userRaw.properties.profile_image,
         email: userRaw.kakao_account.email,
         phone: userRaw.kakao_account.phone_number,
+        realName: userRaw.kakao_account.name,
         gender: userRaw.kakao_account.gender,
         birthyear: userRaw.kakao_account.birthyear,
         birthday: userRaw.kakao_account.birthday
