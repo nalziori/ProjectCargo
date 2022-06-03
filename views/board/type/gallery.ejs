@@ -21,6 +21,12 @@
         </div>
         <div class="etc">
           <!--<% if (locals.setting.usePermissionImage) { %><img src="<%= article.permissionImage %>" class="permissionImage"><% } %>-->
+                   <% if (gallery.useAnonymous) { %>
+            <div class="userImage" style="background-image: url('public\assets\userImage.svg'); width: 30px; height: 30px;" onerror="this.style.display='none';"></div>
+              
+            <% } else { %>
+             <div class="userImage" style="background-image: url('<%= s3Host %>/userImage/<%= locals.user.image %>'); width: 30px; height: 30px;" onerror="this.style.display='none';"></div>
+            <% } %>
           <span class="nickName"><%= article.nickName %></span>
           <span class="dot"></span>
           <span class="permissionName"><%= article.permissionName %></span>
