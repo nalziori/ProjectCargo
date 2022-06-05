@@ -303,7 +303,7 @@ class KakaoLogin {
     this.socialKakaoClientSecret = socialKakaoClientSecret;
     this.socialKakaoRedirect = socialKakaoRedirect;
 
-    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${this.socialKakaoClientId}&redirect_uri=${this.socialKakaoRedirect}&response_type=code&scope=account_email,profile_nickname`;
+    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${this.socialKakaoClientId}&redirect_uri=${this.socialKakaoRedirect}&response_type=code&scope=account_email`;
     return kakaoLoginUrl;
   }
   async auth (code) {
@@ -317,7 +317,7 @@ class KakaoLogin {
       method: 'POST',
       url: 'https://kauth.kakao.com/oauth/token',
       headers: {
-        'content-type': 'application/x-www-form-urlencoded;charset=utf-8    ',
+        'content-type': 'application/x-www-form-urlencoded',
       },
       data: queryString.stringify({
         grant_type: 'authorization_code',
@@ -341,13 +341,10 @@ class KakaoLogin {
     .catch(e => console.error(e));
     let user = null;
     if (userRaw) {
-      const nickname=null;
-
       user = {
         type: 'kakao',
         id: userRaw.id,
-        nickname : userRaw.kakao_account.properties.nickname,
-        email: userRaw.kakao_account.email
+        email: userRaw.kakao_account.email,
       };
     }
     return user;
