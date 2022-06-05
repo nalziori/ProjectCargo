@@ -191,8 +191,8 @@ const authCheckout = async (req, res, next, userInfo) => {
           const nickName = hashCreate(6);
           const salt = bcrypt.genSaltSync(SALT_COUNT);
           const hash = bcrypt.hashSync(password, salt);
-          const query = `INSERT INTO user (uId, password, nickName, email, phone, realName, ${type}Id) VALUES (?, ?, ?, ?, ?, ?, ?)`;
-          const [result, ] = await conn.query(query, [email, hash, nickName, email, phone, realName, id]);
+          const query = `INSERT INTO user (uId, password, nickName, email,${type}Id) VALUES (?, ?, ?, ?, ?)`;
+          const [result, ] = await conn.query(query, [email, hash, nickName, email, id]);
           if (result.insertId) {
             const [users, ] = await conn.query(`SELECT * FROM user WHERE id=?`, [result.insertId]);
             if (users.length) {
