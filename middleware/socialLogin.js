@@ -303,7 +303,7 @@ class KakaoLogin {
     this.socialKakaoClientSecret = socialKakaoClientSecret;
     this.socialKakaoRedirect = socialKakaoRedirect;
 
-    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${this.socialKakaoClientId}&redirect_uri=${this.socialKakaoRedirect}&response_type=code&scope=account_email`;
+    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${this.socialKakaoClientId}&redirect_uri=${this.socialKakaoRedirect}&response_type=code&scope=account_email, nickname`;
     return kakaoLoginUrl;
   }
   async auth (code) {
