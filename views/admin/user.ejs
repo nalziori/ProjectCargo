@@ -57,6 +57,7 @@
                         <td><input type="text" name="birthyear" value="<%= user.birthyear %>" placeholder="출생년도"></td>
                         <td><input type="text" name="birthday" value="<%= user.birthday %>" placeholder="생일"></td>
                         <td>
+                          
                           <select name="permission">
                             <option value="0"<% if (user.permission === 0) { %> selected<% } %>>차단</option>
                             <% locals.permissions.forEach(permission => { %>
