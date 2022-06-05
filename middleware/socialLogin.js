@@ -330,6 +330,7 @@ class KakaoLogin {
     .catch(e => console.error(e));
     return token;
   }
+  
   async getUser (token) {
     const userRaw = await axios({
       method: 'GET',
