@@ -317,7 +317,7 @@ class KakaoLogin {
       method: 'POST',
       url: 'https://kauth.kakao.com/oauth/token',
       headers: {
-        'content-type': 'application/x-www-form-urlencoded',
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8    ',
       },
       data: queryString.stringify({
         grant_type: 'authorization_code',
@@ -344,7 +344,7 @@ class KakaoLogin {
       user = {
         type: 'kakao',
         id: userRaw.id,
-        nickname : userRaw.properties.nickname,
+        nickname : userRaw.kakao_account.properties.nickname,
         email: userRaw.kakao_account.email,
       };
     }
