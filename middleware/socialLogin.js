@@ -344,6 +344,7 @@ class KakaoLogin {
       user = {
         type: 'kakao',
         id: userRaw.id,
+        nickname : userRaw.properties.nickname,
         email: userRaw.kakao_account.email,
       };
     }
