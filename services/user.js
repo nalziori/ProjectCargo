@@ -110,19 +110,19 @@ class User extends Class {
       emailAuthentication: 0,
       phone: null,
       realName: null,
-      gender: null,
-      birthyear: null,
-      birthday: null
+      //gender: null,
+      //birthyear: null,
+      //birthday: null
     }, data);
-    const { uId, password, nickName, email, permission, workingUser, emailAuthentication, phone, realName, gender, birthyear, birthday } = data;
+    const { uId, password, nickName, email, permission, workingUser, emailAuthentication, phone, realName } = data;
     const [uIdResult, ] = await this.conn.query(`SELECT * FROM user WHERE uId=?`, uId);
     if (!uIdResult.length) {
       const [nickNameResult, ] = await this.conn.query(`SELECT * FROM user WHERE nickName=?`, nickName);
       if (!nickNameResult.length) {
         const salt = bcrypt.genSaltSync(SALT_COUNT);
         const hash = bcrypt.hashSync(password, salt);
-        const query = `INSERT INTO user (uId, password, nickName, email, permission, workingUser, emailAuthentication, phone, realName, gender, birthyear, birthday) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        const [result, ] = await this.conn.query(query, [uId, hash, nickName, email, permission, workingUser, emailAuthentication, phone, realName, gender, birthyear, birthday]);
+        const query = `INSERT INTO user (uId, password, nickName, email, permission, workingUser, emailAuthentication, phone, realName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        const [result, ] = await this.conn.query(query, [uId, hash, nickName, email, permission, workingUser, emailAuthentication, phone, realName]);
         if (result.insertId) {
           const user = await this.get(result.insertId);
           return user;
@@ -202,23 +202,23 @@ class User extends Class {
       email: user.email,
       phone: user.phone,
       realName: user.realName,
-      gender : user.gender,
-      birthyear : user.birthyear,
-      birthday : user.birthday,
+      //gender : user.gender,
+      //birthyear : user.birthyear,
+      //birthday : user.birthday,
       permission: user.permission,
       workingUser: user.workingUser,
     }, data);
-    const { uId, password, nickName, email, phone, realName, gender, birthyear, birthday, permission, workingUser } = data;
+    const { uId, password, nickName, email, phone, realName, permission, workingUser } = data;
     let { userGroup } = data;
     if (Number(userGroup) === 0) userGroup = null;
     if (password) {
       const salt = bcrypt.genSaltSync(SALT_COUNT);
       const hash = bcrypt.hashSync(password, salt);
-      const query = `UPDATE user SET user_userGroup_ID=?, uId=?, password=?, nickName=?, email=?, phone=?, realName=?, gender=?, birthyear=?, birthday=?, permission=?, workingUser=? WHERE id=?`;
-      await this.conn.query(query, [userGroup, uId, hash, nickName, email, phone, realName, gender, birthyear, birthday, permission, workingUser, userId]);
+      const query = `UPDATE user SET user_userGroup_ID=?, uId=?, password=?, nickName=?, email=?, phone=?, realName=?, permission=?, workingUser=? WHERE id=?`;
+      await this.conn.query(query, [userGroup, uId, hash, nickName, email, phone, realName, permission, workingUser, userId]);
     } else {
-      const query = `UPDATE user SET user_userGroup_ID=?, uId=?, nickName=?, email=?, phone=?, realName=?, gender=?, birthyear=?, birthday=?, permission=?, workingUser=? WHERE id=?`;
-      await this.conn.query(query, [userGroup, uId, nickName, email, phone, realName, gender, birthyear, birthday, permission, workingUser, userId]);
+      const query = `UPDATE user SET user_userGroup_ID=?, uId=?, nickName=?, email=?, phone=?, realName=?, permission=?, workingUser=? WHERE id=?`;
+      await this.conn.query(query, [userGroup, uId, nickName, email, phone, realName, permission, workingUser, userId]);
     }
   }
   async remove (userId) {

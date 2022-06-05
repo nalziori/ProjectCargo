@@ -183,6 +183,7 @@ const authCheckout = async (req, res, next, userInfo) => {
             req.session.save(() => {
               
             });
+            res.redirect('/');
           } else {
             res.redirect('/login');
           }
