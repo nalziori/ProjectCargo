@@ -341,11 +341,13 @@ class KakaoLogin {
     .catch(e => console.error(e));
     let user = null;
     if (userRaw) {
+      const nickname=null;
+
       user = {
         type: 'kakao',
         id: userRaw.id,
-        nickName : userRaw.kakao_account.properties.nickname,
-        email: userRaw.kakao_account.email,
+        nickname : userRaw.kakao_account.properties.nickname,
+        email: userRaw.kakao_account.email
       };
     }
     return user;
