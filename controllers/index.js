@@ -183,7 +183,6 @@ const authCheckout = async (req, res, next, userInfo) => {
             req.session.save(() => {
               
             });
-            res.redirect('/');
           } else {
             res.redirect('/login');
           }
@@ -192,8 +191,8 @@ const authCheckout = async (req, res, next, userInfo) => {
           const nickName = hashCreate(6);
           const salt = bcrypt.genSaltSync(SALT_COUNT);
           const hash = bcrypt.hashSync(password, salt);
-          const query = `INSERT INTO user (uId, password, nickName, email, phone, realName, gender, birthyear, birthday, ${type}Id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-          const [result, ] = await conn.query(query, [email, hash, nickname, email, phone_number, name, gender, birthyear, birthday, id]);
+          const query = `INSERT INTO user (uId, password, nickName, email, ${type}Id) VALUES (?, ?, ?, ?, ?)`;
+          const [result, ] = await conn.query(query, [email, hash, nickName, email, id]);
           if (result.insertId) {
             const [users, ] = await conn.query(`SELECT * FROM user WHERE id=?`, [result.insertId]);
             if (users.length) {
@@ -205,7 +204,6 @@ const authCheckout = async (req, res, next, userInfo) => {
               const userClass = new User(req, res, conn);
               await userClass.checkout(user);
             }
-            res.redirect('/')
           }
         }
       }
@@ -584,8 +582,8 @@ exports.join = doAsync(async (req, res, next) => {
   } else if (method === 'POST') {
     const conn = await pool.getConnection();
     try {
-      const { uId, password, passwordCheck, nickName, email, phone, realName, gender, birthyear, birthday } = req.body;
-      if (emptyCheck(uId, password, passwordCheck, nickName, email, phone, realName, gender, birthyear, birthday)) {
+      const { uId, password, passwordCheck, nickName, email, phone, realName, inviteId } = req.body;
+      if (emptyCheck(uId, password, passwordCheck, nickName, email)) {
         if (password === passwordCheck) {
           const userClass = new User(req, res, conn);
           const data = {
@@ -595,9 +593,7 @@ exports.join = doAsync(async (req, res, next) => {
             email,
             phone,
             realName,
-            gender,
-            birthyear,
-            birthday
+            inviteId,
           };
           const user = await userClass.create(data);
           if (user) {
