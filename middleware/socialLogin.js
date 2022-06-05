@@ -303,7 +303,7 @@ class KakaoLogin {
     this.socialKakaoClientSecret = socialKakaoClientSecret;
     this.socialKakaoRedirect = socialKakaoRedirect;
 
-    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${this.socialKakaoClientId}&redirect_uri=${this.socialKakaoRedirect}&response_type=code&scope=account_email, nickname`;
+    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${this.socialKakaoClientId}&redirect_uri=${this.socialKakaoRedirect}&response_type=code&scope=account_email`;
     return kakaoLoginUrl;
   }
   async auth (code) {
@@ -348,12 +348,12 @@ class KakaoLogin {
         //pw
         //nickname: userRaw.properties.nickname,
         //image: userRaw.properties.profile_image,
-        email: userRaw.kakao_account.email
-        //phone: userRaw.kakao_account.phone_number,
-        //realName: userRaw.kakao_account.name,
-        //gender: userRaw.kakao_account.gender,
-        //birthyear: userRaw.kakao_account.birthyear,
-        //birthday: userRaw.kakao_account.birthday
+        email: userRaw.kakao_account.email,
+        phone_number: userRaw.kakao_account.phone_number,
+        name: userRaw.kakao_account.name,
+        gender: userRaw.kakao_account.gender,
+        birthyear: userRaw.kakao_account.birthyear,
+        birthday: userRaw.kakao_account.birthday
       };
     }
     return user;
