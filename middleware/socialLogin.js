@@ -340,20 +340,11 @@ class KakaoLogin {
     }).then(res => res.data)
     .catch(e => console.error(e));
     let user = null;
-    /*id pw  //image nickname email phone realname gender birthyear birthday */
     if (userRaw) {
       user = {
         type: 'kakao',
         id: userRaw.id,
-        //pw
-        //nickname: userRaw.properties.nickname,
-        //image: userRaw.properties.profile_image,
         email: userRaw.kakao_account.email,
-        phone_number: userRaw.kakao_account.phone_number,
-        name: userRaw.kakao_account.name,
-        gender: userRaw.kakao_account.gender,
-        birthyear: userRaw.kakao_account.birthyear,
-        birthday: userRaw.kakao_account.birthday
       };
     }
     return user;
