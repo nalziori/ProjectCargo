@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const axios = require('axios').default;
 const queryString = require('query-string');
 const hashCreate = require('./hash');
+const { urlencoded } = require('express');
 
 class AppleLogin {
   constructor () {
@@ -330,7 +331,26 @@ class KakaoLogin {
     .catch(e => console.error(e));
     return token;
   }
-  
+  /*
+  async unlinkUser (token) {
+    const userCut = await axios({
+      method: 'POST',
+      url: 'https://kapi.kakao.com/v1/user/unlink',
+      hearders: {
+        Autherization: `Bearer ${token.access_token}`,
+      },
+    }).then(res => res.data)
+    .catch(e => console.error(e));
+    let user = null;
+    if(userCut) {
+      user = {
+        type: 'kakao',
+        id: userCut.id
+      }
+    }
+    return user;
+  }
+*/
   async getUser (token) {
     const userRaw = await axios({
       method: 'GET',
@@ -359,6 +379,8 @@ class KakaoLogin {
     return user;
   }
 }
+
+
 
 module.exports = {
   AppleLogin,
