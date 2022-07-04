@@ -121,6 +121,11 @@ exports.userNew = doAsync(async (req, res, next) => {
       email = req.body.email;
       permission = req.body.permission;
       workingUser = req.body.workingUser || 0;
+      phone = req.body.phone;
+      realName = req.body.realName;
+      gender = req.body.gender;
+      birthyear = req.body.birthyear;
+      birthday = req.body.birthday;
     } else if (submit === 'random') {
       uId = userHash;
       password = userHash;
@@ -128,8 +133,13 @@ exports.userNew = doAsync(async (req, res, next) => {
       email = userHash;
       permission = 1;
       workingUser = 1;
+      phone = userHash;
+      realName = userHash;
+      gender = userHash;
+      birthyear = userHash;
+      birthday = userHash;
     }
-    if (emptyCheck(uId, password, nickName, email, permission, workingUser)) {
+    if (emptyCheck(uId, password, nickName, email, permission, workingUser, phone, realName, gender, birthyear, birthday)) {
       const data = {
         uId,
         password,
@@ -138,6 +148,11 @@ exports.userNew = doAsync(async (req, res, next) => {
         permission,
         workingUser,
         emailAuthentication: 1,
+        phone,
+        realName,
+        gender,
+        birthyear,
+        birthday
       };
       const userClass = new User(req, res, conn);
       try {
