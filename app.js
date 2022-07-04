@@ -41,7 +41,7 @@ const pluginRouter = require('./routes/plugin');
 
 const app = express();
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 // Chat
 const chat = require('./middleware/chat');
