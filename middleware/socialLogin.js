@@ -367,7 +367,7 @@ class KakaoLogin {
         type: 'kakao',
         id: userRaw.id,
         //pw
-        nickname: userRaw.kakao_account.profile.nickname,
+        nickName: userRaw.kakao_account.profile.nickname,
         image: userRaw.kakao_account.profile.profile_image_url,
         email: userRaw.kakao_account.email,
         phone: userRaw.kakao_account.phone_number,
