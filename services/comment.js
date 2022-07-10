@@ -411,8 +411,15 @@ class Comment extends Class {
       //console.log("data : " + JSON.stringify(writer));
       const a = writer[0].article_user_ID;
       const b = comment.comment_user_ID;
+      const [before, ] = await this.conn.query('SELECT * FROM comment WHERE id=?',[comment.id]);
+      var code = before[0].anonymous_code;
       if(a == b){
         comment.nickName = '익명(작성자)';
+        comment.permissionName = null;
+      }
+      //기존 유저 댓글 처리
+      else if(code == 0){
+        comment.nickName = '익명';
         comment.permissionName = null;
       }
       else{
