@@ -7,6 +7,7 @@ const Point = require('./point');
 const Alarm = require('./alarm');
 const datetime = require('../middleware/datetime');
 const config = require('../middleware/config');
+//const { stringify } = require('crypto-js/enc-base64');
 
 const SALT_COUNT = 10;
 
@@ -58,8 +59,36 @@ class Comment extends Class {
 
     const [result, ] = await this.conn.query(query, [this.user?.id, articleId, content, nickName, hash]);
     if (result.insertId) {
-      await this.conn.query(`UPDATE comment SET comment_group_ID=? WHERE id=?`, [result.insertId, result.insertId]);
-      await this.conn.query(`UPDATE article SET commentCount=commentCount+1, updatedAt=NOW() WHERE id=?`, [articleId]);
+      const query = 'SELECT * FROM comment WHERE comment_article_ID=?';
+      const [repple, ] = await this.conn.query(query, [articleId]);
+      var check=0;
+      const [temp, ] = await this.conn.query('SELECT * FROM comment WHERE comment_article_ID=? AND content=?', [articleId, content]);
+      for(var i=0;i<repple.length;i++)
+      {
+        const a = repple[i].comment_user_ID;
+        const b = temp[0].comment_user_ID;
+        if(a == b)
+        {
+          check = check+1;
+          break;
+        }
+      }
+      if(check < 2){
+        await this.conn.query(`UPDATE comment SET comment_group_ID=? WHERE id=?`, [result.insertId, result.insertId]);
+        await this.conn.query(`UPDATE article SET commentCount=commentCount+1, anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?`, [articleId]);
+        const [temp_article, ] = await this.conn.query('SELECT * FROM article WHERE id=?', [articleId]);
+        const code = temp_article[0].anonymous_count;
+        const query_c = 'UPDATE comment SET anonymous_code=? WHERE id=? AND comment_article_ID=?';
+        await this.conn.query(query_c, [code, result.insertId, articleId]);
+      }
+      else{
+        await this.conn.query(`UPDATE comment SET comment_group_ID=? WHERE id=?`, [result.insertId, result.insertId]);
+        await this.conn.query(`UPDATE article SET commentCount=commentCount+1, updatedAt=NOW() WHERE id=?`, [articleId]);
+        const [temp_article, ] = await this.conn.query('SELECT * FROM article WHERE id=?', [articleId]);
+        const code = temp_article[0].anonymous_count;
+        const query_c = 'UPDATE comment SET anonymous_code=? WHERE id=? AND comment_article_ID=?';
+        await this.conn.query(query_c, [code, result.insertId, articleId]);
+      }
       // 포인트
       if (this.user) {
         const pointClass = new Point(this.req, this.res, this.conn);
@@ -373,8 +402,27 @@ class Comment extends Class {
     // 익명
     const isAnonymous = comment.useAnonymous && (comment.comment_user_ID !== this.user?.id && !this.user?.isAdmin) && !comment.authorIsAdmin;
     if (isAnonymous) {
-      comment.nickName = '익명';
-      comment.permissionName = null;
+      //article.anonymous_count
+      //comment.anonymous_code
+      //댓글을 익명설정으로 작성 -> 게시글 작성자가 아닐경우-> article.annoymous_count+1->comment.anonymous_code로 복사->comment.nickname에 익명 + code
+      //                        -> 게시글 작성자인 경우 -> comment.nickname에 익명 + 작성자
+      const query = 'SELECT * FROM article where article.id=?';
+      const [writer, ] = await this.conn.query(query, [comment.comment_article_ID]);
+      //console.log("data : " + JSON.stringify(writer));
+      const a = writer[0].article_user_ID;
+      const b = comment.comment_user_ID;
+      if(a == b){
+        comment.nickName = '익명(작성자)';
+        comment.permissionName = null;
+      }
+      else{
+        const query = 'SELECT * FROM comment WHERE comment_user_ID = ? AND comment_article_ID=?';
+        const [usedID,] = await this.conn.query(query, [comment.comment_user_ID, comment.comment_article_ID]);
+        await this.conn.query('UPDATE comment SET anonymous_code=? WHERE comment_user_ID=? AND comment_article_ID=?', [usedID.anonymous_code, usedID.comment_user_ID, usedID.comment_article_ID]);
+        var code = usedID[0].anonymous_code;
+        comment.nickName = '익명' + code;
+        comment.permissionName = null;
+      }
     }
 
     // 등급 이미지
