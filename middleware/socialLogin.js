@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const axios = require('axios').default;
 const queryString = require('query-string');
 const hashCreate = require('./hash');
-//const { urlencoded } = require('express');
+const { urlencoded } = require('express');
 
 class AppleLogin {
   constructor () {
@@ -366,8 +366,7 @@ class KakaoLogin {
       user = {
         type: 'kakao',
         id: userRaw.id,
-        //pw
-        //nickName: userRaw.kakao_account.profile.nickname,
+        nickName: userRaw.kakao_account.profile.nickname,
         image: userRaw.kakao_account.profile.profile_image_url,
         email: userRaw.kakao_account.email,
         phone: userRaw.kakao_account.phone_number,
