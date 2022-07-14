@@ -36,6 +36,11 @@
   font-weight: bold;
 }
 
+#indexBoard .indexBoardTitleContainer h3,
+#indexBoard .indexBoardTitleContainer a {
+  color: #0072bb;
+}
+
 #indexBoard .indexBoardTitleContainer .content {
   color: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -79,6 +84,7 @@
 #indexBoard .indexBoardGroups .rowOne .indexBoardTitleContainer,
 #indexBoard .indexBoardGroups .side .indexBoardTitleContainer {
   display: flex;
+  color: #0072bb;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
