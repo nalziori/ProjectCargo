@@ -166,6 +166,7 @@
         <% } else { %>
           <div class="likeContainer"><button id="like" class="like">추천</button></div>
         <% } %>
+
       </div>
     </div>
     <%- include('./comments', { comments: article.comments }) %>
@@ -218,9 +219,23 @@
       <input type="password" name="password" placeholder="비밀번호">
       <button>확인</button>
     </div>
+    <style>
+      h4{
+        text-align: center;
+      }
+    </style>
+    
     <div class="container report">
+      <h4>게시글 신고하기</h4>
       <input type="hidden" name="type">
       <input type="hidden" name="id">
+      <div><input type="radio" name="reportCategory" value="상업적 광고 및 판매" checked><label>상업적 광고 및 판매</label></div>
+      <div><input type="radio" name="reportCategory" value="게시판 성격에 부적절함"><label>게시판 성격에 부적절함</label></div>
+      <div><input type="radio" name="reportCategory" value="욕설/비하"><label>욕설/비하</label></div>
+      <div><input type="radio" name="reportCategory" value="정당/정치인 비하 및 선거운동"><label>정당/정치인 비하 및 선거운동</label></div>
+      <div><input type="radio" name="reportCategory" value="낚시/놀림/도배"><label>낚시/놀림/도배</label></div>
+      <div><input type="radio" name="reportCategory" value="유출/사칭/사기"><label>유출/사칭/사기</label></div>
+      <div><input type="radio" name="reportCategory" value="음란물/불건전한 만남 및 대화"><label>음란물/불건전한 만남 및 대화</label></div>
       <textarea name="content" placeholder="신고 내용"></textarea>
       <button>확인</button>
     </div>

@@ -1279,6 +1279,7 @@ const report = async () => {
         report_article_ID int unsigned DEFAULT NULL,
         report_comment_ID int unsigned DEFAULT NULL,
         report_message_ID int unsigned DEFAULT NULL,
+        report_category VARCHAR(100) DEFAULT NULL,
         content longtext,
         status tinyint(1) DEFAULT '1',
         updatedAt datetime DEFAULT CURRENT_TIMESTAMP,

@@ -4,6 +4,7 @@ const Comment = require('./comment');
 const Message = require('./message');
 const datetime = require('../middleware/datetime');
 const pagination = require('../middleware/pagination');
+const { report } = require('process');
 
 class Report extends Class {
   async getReports () {
@@ -63,10 +64,11 @@ class Report extends Class {
     data = Object.assign({
       reportType: null,
       reportId: null,
+      reportCategory: null,
       content: null,
     }, data);
-    const { reportType, reportId, content } = data;
-    if (reportType && reportId && content) {
+    const { reportType, reportId, reportCategory, content } = data;
+    if (reportType && reportId && reportCategory && content) {
       if (this.user) {
         let result = [];
         if (reportType === 'article') {
@@ -98,18 +100,19 @@ class Report extends Class {
     data = Object.assign({
       reportType: null,
       reportId: null,
+      reportCategory: null,
       content: null,
     }, data);
-    const { reportType, reportId, content } = data;
-    if (reportType && reportId && content) {
+    const { reportType, reportId, reportCategory, content } = data;
+    if (reportType && reportId && reportCategory && content) {
       if (this.user) {
         if (await this.check(data)) {
           if (reportType === 'article') {
-            await this.conn.query(`INSERT INTO report (report_user_ID, report_article_ID, content) VALUES (?, ?, ?)`, [this.user.id, reportId, content]);
+            await this.conn.query(`INSERT INTO report (report_user_ID, report_article_ID, report_category, content) VALUES (?, ?, ?, ?)`, [this.user.id, reportId, reportCategory, content]);
           } else if (reportType === 'comment') {
-            await this.conn.query(`INSERT INTO report (report_user_ID, report_comment_ID, content) VALUES (?, ?, ?)`, [this.user.id, reportId, content]);
+            await this.conn.query(`INSERT INTO report (report_user_ID, report_comment_ID, report_category, content) VALUES (?, ?, ?, ?)`, [this.user.id, reportId, reportCategory, content]);
           } else if (reportType === 'message') {
-            await this.conn.query(`INSERT INTO report (report_user_ID, report_message_ID, content) VALUES (?, ?, ?)`, [this.user.id, reportId, content]);
+            await this.conn.query(`INSERT INTO report (report_user_ID, report_message_ID, report_category, content) VALUES (?, ?, ?, ?)`, [this.user.id, reportId, reportCategory, content]);
           }
           return {
             status: true,

@@ -20,6 +20,7 @@
                     <th>날짜</th>
                     <th>타입</th>
                     <th>대상회원</th>
+                    <th>카테고리</th>
                     <th>내용</th>
                     <th>신고회원</th>
                     <th>신고내용</th>
@@ -33,6 +34,7 @@
                         <td><%= report.datetime %></td>
                         <td><%= report.type %></td>
                         <td><%= report.targetUid %> (<%= report.targetNickName %>)</td>
+                        <td><%= report.reportCategory %></td>
                         <td><textarea><%= report.content %></textarea></td>
                         <td><%= report.uId %> (<%= report.nickName %>)</td>
                         <td><textarea><%= report.content %></textarea></td>

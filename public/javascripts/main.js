@@ -174,6 +174,7 @@ const report = (data, reportContainer) => {
 const reportContainer = document.querySelector('#modal .report');
 const reportType = document.querySelector('#modal .report input[name="type"]');
 const reportId = document.querySelector('#modal .report input[name="id"]');
+const reportCategory = document.querySelector('#modal .report input[name="reportCategory"]');
 const reportContent = document.querySelector('#modal .report textarea');
 const reportCompleteBtn = document.querySelector('#modal .report button');
 if (reportCompleteBtn) {
@@ -181,6 +182,7 @@ if (reportCompleteBtn) {
     const data = {
       reportType: reportType.value,
       reportId: reportId.value,
+      reportCategory: reportCategory.value,
       content: reportContent.value,
     };
     const result = await report(data);

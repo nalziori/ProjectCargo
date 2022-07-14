@@ -349,11 +349,12 @@ exports.getSetting = doAsync(async (req, res, next) => {
 exports.report = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
   try {
-    const { reportType, reportId, content } = req.body;
+    const { reportType, reportId, reportCategory, content } = req.body;
     const data = {
       reportType,
       reportId,
-      content,
+      reportCategory,
+      content
     };
     const reportClass = new Report(req, res, conn);
     const result = await reportClass.create(data);
