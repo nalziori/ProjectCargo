@@ -6,7 +6,7 @@
 #indexBoard .category {
   color: #697183;
   background-color: #f5f6f9;
-  /*border-radius: 6px;*/
+  border-radius: 6px;
   padding: 4px 6px;
   margin-right: 8px;
   font-size: 0.9em;
@@ -60,14 +60,14 @@
 #indexBoard .indexBoardGroups .rowTwo {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+  gap: 20px;
 }
 
 #indexBoard .indexBoardGroups .rowOne,
 #indexBoard .indexBoardGroups .side {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 15px;
+  gap: 20px;
 }
 
 /* row */
@@ -75,8 +75,8 @@
 #indexBoard .indexBoardGroups .rowOne .indexBoard,
 #indexBoard .indexBoardGroups .side .indexBoard {
   background-color: #fff;
-  /*border-radius: 12px;*/
-  padding: 10px;
+  border-radius: 12px;
+  padding: 20px;
   box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -185,7 +185,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /*border-radius: 12px;*/
+  border-radius: 12px;
 }
 
 #indexBoard .indexBoardGroups .rowTwo > .image .article .title,
@@ -219,7 +219,7 @@
   color: #fff;
   font-size: 0.7em;
   padding: 2px 6px;
-  /*border-radius: 4px;*/
+  border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.3);
   margin-right: 5px;
   margin-bottom: 10px;
@@ -253,7 +253,7 @@
 
 /* tab */
 #indexBoard .indexBoardGroups .tab {
-  /*border-radius: 12px;*/
+  border-radius: 12px;
   background-color: #fff;
   box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
 }
@@ -364,7 +364,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /*border-radius: 12px;*/
+  border-radius: 12px;
 }
 
 #indexBoard .indexBoardGroups .tab > .image .article .title {
@@ -402,7 +402,7 @@
   width: 100%;
   background-color: #fff;
   box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
-  /*border-radius: 12px;*/
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
 }
@@ -458,7 +458,7 @@
 
 #indexBoard .indexBoardGroups .blog .article {
   background-color: #fff;
-  /*border-radius: 12px;*/
+  border-radius: 12px;
   box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -518,7 +518,7 @@
   align-items: flex-start;
   flex-direction: column;
   background-color: #fff;
-  /*border-radius: 12px;*/
+  border-radius: 12px;
   padding: 25px;
   gap: 20px;
 }
@@ -562,7 +562,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /*border-radius: 12px;*/
+  border-radius: 12px;
 }
 
 #indexBoard .indexBoardGroups .imageAndTitle .title {
