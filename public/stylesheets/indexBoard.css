@@ -60,14 +60,14 @@
 #indexBoard .indexBoardGroups .rowTwo {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 15px;
 }
 
 #indexBoard .indexBoardGroups .rowOne,
 #indexBoard .indexBoardGroups .side {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 20px;
+  gap: 15px;
 }
 
 /* row */
@@ -76,7 +76,7 @@
 #indexBoard .indexBoardGroups .side .indexBoard {
   background-color: #fff;
   /*border-radius: 12px;*/
-  padding: 25px;
+  padding: 10px;
   box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
 }
 
