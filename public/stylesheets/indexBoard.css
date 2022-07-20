@@ -6,7 +6,7 @@
 #indexBoard .category {
   color: #697183;
   background-color: #f5f6f9;
-  border-radius: 6px;
+  /*border-radius: 6px;*/
   padding: 4px 6px;
   margin-right: 8px;
   font-size: 0.9em;
@@ -75,7 +75,7 @@
 #indexBoard .indexBoardGroups .rowOne .indexBoard,
 #indexBoard .indexBoardGroups .side .indexBoard {
   background-color: #fff;
-  border-radius: 12px;
+  /*border-radius: 12px;*/
   padding: 25px;
   box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
 }
@@ -185,7 +185,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  border-radius: 12px;
+  /*border-radius: 12px;*/
 }
 
 #indexBoard .indexBoardGroups .rowTwo > .image .article .title,
@@ -219,7 +219,7 @@
   color: #fff;
   font-size: 0.7em;
   padding: 2px 6px;
-  border-radius: 4px;
+  /*border-radius: 4px;*/
   background-color: rgba(0, 0, 0, 0.3);
   margin-right: 5px;
   margin-bottom: 10px;
@@ -253,7 +253,7 @@
 
 /* tab */
 #indexBoard .indexBoardGroups .tab {
-  border-radius: 12px;
+  /*border-radius: 12px;*/
   background-color: #fff;
   box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
 }
@@ -280,11 +280,11 @@
 }
 
 #indexBoard .indexBoardGroups .tab .titles .title:first-child label {
-  border-top-left-radius: 12px;
+  /*border-top-left-radius: 12px;*/
 }
 
 #indexBoard .indexBoardGroups .tab .titles .title:last-child label {
-  border-top-right-radius: 12px;
+  /*border-top-right-radius: 12px;*/
 }
 
 #indexBoard .indexBoardGroups .tab .titles .title label:focus {
@@ -364,7 +364,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  border-radius: 12px;
+  /*border-radius: 12px;*/
 }
 
 #indexBoard .indexBoardGroups .tab > .image .article .title {
@@ -402,7 +402,7 @@
   width: 100%;
   background-color: #fff;
   box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
+  /*border-radius: 12px;*/
   display: flex;
   flex-direction: column;
 }
@@ -458,7 +458,7 @@
 
 #indexBoard .indexBoardGroups .blog .article {
   background-color: #fff;
-  border-radius: 12px;
+  /*border-radius: 12px;*/
   box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -467,8 +467,8 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  /*border-top-left-radius: 12px;*/
+  /*border-top-right-radius: 12px;*/
 }
 
 #indexBoard .indexBoardGroups .blog .article .info {
@@ -518,7 +518,7 @@
   align-items: flex-start;
   flex-direction: column;
   background-color: #fff;
-  border-radius: 12px;
+  /*border-radius: 12px;*/
   padding: 25px;
   gap: 20px;
 }
@@ -562,7 +562,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  border-radius: 12px;
+  /*border-radius: 12px;*/
 }
 
 #indexBoard .indexBoardGroups .imageAndTitle .title {
