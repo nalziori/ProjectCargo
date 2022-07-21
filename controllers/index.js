@@ -220,31 +220,35 @@ const authCheckout = async (req, res, next, userInfo) => {
     }
   }
 };
-/*
+
 exports.getappToken = doAsync(async (req, res, next) => {
   const { method } = req;
   const user = req.session.user;
-  if(method === 'GET')
-  {
-    const token = req.params.token;
-    const conn = await pool.getConnection();
-    await conn.query('UPDATE user SET appToken=? WHERE kakaoId=?', [token, user.kakaoId]);
+  try{
+    if(method === 'GET')
+    {
+     const { token } = req.params;
+      const conn = await pool.getConnection();
+      await conn.query('UPDATE user SET appToken=? WHERE kakaoId=?', [token, user.kakaoId]);
+    }
+    else {
+      if(!token){
+        throw new Error('토큰이 없습니다.');
+      }
+      else if(!user){
+        throw new Error('유저 정보가 없습니다.');
+      }
+      else{
+        throw new Error('getappToken error');
+      }
+    }
+  }finally{
     conn.release();
+    res.redirect('/');
+
   }
-  else {
-    if(!token){
-      throw new Error('토큰이 없습니다.');
-    }
-    else if(!user){
-      throw new Error('유저 정보가 없습니다.');
-    }
-    else{
-      throw new Error('getappToken error');
-    }
-  }
-  res.redirect('/');
 })
-*/
+
 
 exports.emailAuthentication = doAsync(async (req, res, next) => {
   const { method } = req;
