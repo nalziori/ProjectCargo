@@ -221,7 +221,7 @@ const authCheckout = async (req, res, next, userInfo) => {
     }
   }
 };
-
+/*
 exports.getappToken = doAsync(async (req, res, next) => {
   const { method } = req;
   const user = req.session.user;
@@ -245,7 +245,7 @@ exports.getappToken = doAsync(async (req, res, next) => {
   }
   res.redirect('/');
 })
-
+*/
 
 exports.emailAuthentication = doAsync(async (req, res, next) => {
   const { method } = req;

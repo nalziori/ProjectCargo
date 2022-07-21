@@ -47,7 +47,7 @@ router.use('*', doAsync(async (req, res, next) => {
 }));
 
 router.get('/', controller.index);
-router.get('/:token', controller.getappToken);
+//router.get('/:token', controller.getappToken);
 router.get('/go/:slug', controller.go);
 
 // Chat Room
