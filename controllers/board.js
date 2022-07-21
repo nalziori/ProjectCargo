@@ -238,7 +238,7 @@ exports.list = doAsync(async (req, res, next) => {
 
         // Block Users
         const userBlockUserClass = new UserBlockUser(req, res, conn);
-        const blockUsers = await userBlockUserClass.getUsers(user.id);
+        const blockUsers = await userBlockUserClass.getUsers(user?.id);
         articles.forEach(article => {
           const match = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === article.article_user_ID);
           if (match) {
@@ -361,7 +361,7 @@ exports.read = doAsync(async (req, res, next) => {
 
               // Block Users
               const userBlockUserClass = new UserBlockUser(req, res, conn);
-              const blockUsers = await userBlockUserClass.getUsers(user.id);
+              const blockUsers = await userBlockUserClass.getUsers(user?.id);
               const match = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === article.article_user_ID);
               if (match) {
                 article.content = `차단된 사용자의 글입니다`;

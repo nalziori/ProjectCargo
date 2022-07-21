@@ -440,6 +440,25 @@ exports.getComments = doAsync(async (req, res, next) => {
     const board = boards.find(board => board.id === Number(boardId));
     const commentsClass = new Comment(req, res, conn);
     const comments = await commentsClass.getComments(articleId, board);
+
+    // Block Users
+    const userBlockUserClass = new UserBlockUser(req, res, conn);
+    const blockUsers = await userBlockUserClass.getUsers(user?.id);
+    comments.forEach(comment => {
+      const match = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === comment.comment_user_ID);
+      if (match) {
+        comment.block = true;
+        comment.content = `차단된 사용자의 댓글입니다`;
+      }
+      comment.replies.forEach(reply => {
+        const replyMatch = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === reply.comment_user_ID);
+        if (replyMatch) {
+          reply.block = true;
+          reply.content = `차단된 사용자의 댓글입니다`;
+        }
+      });
+    });
+    
     if (comments) {
       res.send({
         message: '댓글 가져오기 성공',
