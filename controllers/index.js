@@ -220,11 +220,11 @@ const authCheckout = async (req, res, next, userInfo) => {
     }
   }
 };
-
+/*
 exports.getappToken = doAsync(async (req, res, next) => {
   const { method } = req;
   const user = req.session.user;
-  const { token } = req.params.token;
+  const token = req.params.token;
   const conn = await pool.getConnection();
   try{
     if(method === 'GET')
@@ -252,7 +252,7 @@ exports.getappToken = doAsync(async (req, res, next) => {
     conn.release();
   }
 })
-
+*/
 
 exports.emailAuthentication = doAsync(async (req, res, next) => {
   const { method } = req;
