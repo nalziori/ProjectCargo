@@ -227,7 +227,7 @@ exports.getappToken = doAsync(async (req, res, next) => {
   try{
     if(method === 'GET')
     {
-     const { token } = req.params;
+      const { token } = req.params.token;
       const conn = await pool.getConnection();
       await conn.query('UPDATE user SET appToken=? WHERE kakaoId=?', [token, user.kakaoId]);
     }
