@@ -1,6 +1,6 @@
 <section id="boardList">
   <% articles.forEach(article => { %>
-    <a class="item" href="/<%= article.boardSlug %>/<%= article.id %>?page=<%= page %>">
+    <a class="item"<% if (!article.block) { %> href="/<%= article.boardSlug %>/<%= article.id %>?page=<%= page %>"<% } %>>
       <div class="info">
         <div class="titleContainer">
           <% if (article.notice) { %>

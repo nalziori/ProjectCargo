@@ -10,6 +10,7 @@ const Point = require('../services/point');
 const User = require('../services/user');
 const Alarm = require('../services/alarm');
 const UserGroupBoard = require('../services/userGroupBoard');
+const UserBlockUser = require('../services/userBlockUser');
 
 exports.all = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
@@ -234,6 +235,20 @@ exports.list = doAsync(async (req, res, next) => {
           const [onceCheckResult, ] = await conn.query(`SELECT * FROM article WHERE article_board_ID=? AND article_user_ID=? AND status=?`, [board?.id, user?.id, 2]);
           if (onceCheckResult.length) pullUp = true;
         }
+
+        // Block Users
+        const userBlockUserClass = new UserBlockUser(req, res, conn);
+        const blockUsers = await userBlockUserClass.getUsers(user.id);
+        articles.forEach(article => {
+          const match = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === article.article_user_ID);
+          if (match) {
+            article.block = true;
+            article.title = `차단된 사용자의 글입니다`;
+            article.nickName = '차단된 사용자';
+            article.permissionName = null;
+            article.permissionImage = null;
+          }
+        });
         res.render('layout', {
           pageTitle: `${board.title} - ${res.locals.setting.siteName}`,
           type: 'list',
@@ -246,6 +261,7 @@ exports.list = doAsync(async (req, res, next) => {
           category,
           pn,
           searchUrl: board.slug,
+          blockUsers,
         });
       } else { // 리스트 권한이 없을 때
         flash.create({
@@ -343,6 +359,28 @@ exports.read = doAsync(async (req, res, next) => {
                 
               }
 
+              // Block Users
+              const userBlockUserClass = new UserBlockUser(req, res, conn);
+              const blockUsers = await userBlockUserClass.getUsers(user.id);
+              const match = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === article.article_user_ID);
+              if (match) {
+                article.content = `차단된 사용자의 글입니다`;
+              }
+              article.comments.forEach(comment => {
+                const commentMatch = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === comment.comment_user_ID);
+                if (commentMatch) {
+                  comment.block = true;
+                  comment.content = `차단된 사용자의 댓글입니다`;
+                }
+                comment.replies.forEach(reply => {
+                  const replyMatch = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === reply.comment_user_ID);
+                  if (replyMatch) {
+                    reply.block = true;
+                    reply.content = `차단된 사용자의 댓글입니다`;
+                  }
+                });
+              });
+
               res.render('layout', {
                 type: 'read',
                 pageTitle: `${article.title} - ${board.title} - ${res.locals.setting.siteName}`,
@@ -351,6 +389,7 @@ exports.read = doAsync(async (req, res, next) => {
                 board,
                 page,
                 category,
+                blockUsers,
               });
             } else {
               flash.create({

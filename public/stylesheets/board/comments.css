@@ -131,6 +131,11 @@
   height: 14px;
 }
 
+.comment .main .info .right ul {
+  display: flex;
+  flex-direction: column;
+}
+
 .comment .main .nickName {
   position: relative;
   font-weight: bold;

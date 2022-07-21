@@ -11,6 +11,8 @@ const multerS3 = require('multer-s3');
 router.post('/image/new', multer().fields([{ name: 'images' }]), controller.imageNew);
 router.post('/image/delete', controller.imageDelete);
 
+router.post('/blockUser', controller.blockUser);
+
 // CKEditor5
 router.post('/image/upload', multer().fields([{ name: 'image' }]), controller.imageUpload);
 
