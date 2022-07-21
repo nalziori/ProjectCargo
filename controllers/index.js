@@ -224,14 +224,14 @@ const authCheckout = async (req, res, next, userInfo) => {
 exports.getappToken = doAsync(async (req, res, next) => {
   const { method } = req;
   const user = req.session.user;
+  const { token } = req.params.token;
   const conn = await pool.getConnection();
   try{
     if(method === 'GET')
     {
-      const { token } = req.params.token;
-      const check = await conn.query('SELECT * FROM user WHERE kakaoId=?', [user.kakaoId]);
+      const check = await conn.query('SELECT * FROM user WHERE uId=?', [user.uId]);
       if(!check.appToken || check.appToken === '0'){
-        await conn.query('UPDATE user SET appToken=? WHERE kakaoId=?', [token, user.kakaoId]);
+        await conn.query('UPDATE user SET appToken=? WHERE uId=?', [token, user.uId]);
       }
       else{
         res.redirect('/');
