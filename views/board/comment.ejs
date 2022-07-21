@@ -1,4 +1,5 @@
 <div class="comment" aid="<%= article.id %>" uid="<%= comment.comment_user_ID %>" cid="<%= comment.id %>" pid="<%= comment.comment_parent_ID %>" gid="<%= comment.comment_group_ID %>">
+  <% if (!comment.block) { %>
   <% if (comment.comment_parent_ID) { %>
   <div class="isReply"></div>
   <% } %>
@@ -52,4 +53,7 @@
     </div>
     <div class="commentEtc" id="commentEtc"></div>
   </div>
+  <% } else { %>
+    <div class="block">차단한 이용자의 댓글입니다</div>
+  <% } %>
 </div>
