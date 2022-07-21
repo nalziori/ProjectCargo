@@ -224,11 +224,11 @@ const authCheckout = async (req, res, next, userInfo) => {
 exports.getappToken = doAsync(async (req, res, next) => {
   const { method } = req;
   const user = req.session.user;
+  const conn = await pool.getConnection();
   try{
     if(method === 'GET')
     {
       const { token } = req.params.token;
-      const conn = await pool.getConnection();
       await conn.query('UPDATE user SET appToken=? WHERE kakaoId=?', [token, user.kakaoId]);
     }
     else {
