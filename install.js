@@ -1541,7 +1541,7 @@ const user = async () => {
         emailAuthentication tinyint DEFAULT '0',
         permission int DEFAULT '1',
         workingUser tinyint unsigned DEFAULT '0',
-        appToken varchar(50) DEFAULT '0',
+        appToken varchar(300) DEFAULT '0',
         point int DEFAULT '0',
         realName varchar(45) DEFAULT NULL,
         realNameAuthentication tinyint DEFAULT '0',
