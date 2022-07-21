@@ -229,7 +229,13 @@ exports.getappToken = doAsync(async (req, res, next) => {
     if(method === 'GET')
     {
       const { token } = req.params.token;
-      await conn.query('UPDATE user SET appToken=? WHERE kakaoId=?', [token, user.kakaoId]);
+      const check = await conn.query('SELECT * FROM user WHERE kakaoId=?', [user.kakaoId]);
+      if(!check.appToken || check.appToken === '0'){
+        await conn.query('UPDATE user SET appToken=? WHERE kakaoId=?', [token, user.kakaoId]);
+      }
+      else{
+        res.redirect('/');
+      }
     }
     else {
       if(!token){
@@ -244,8 +250,6 @@ exports.getappToken = doAsync(async (req, res, next) => {
     }
   }finally{
     conn.release();
-    res.redirect('/');
-
   }
 })
 
