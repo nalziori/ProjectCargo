@@ -380,8 +380,6 @@ class KakaoLogin {
   }
 }
 
-
-
 module.exports = {
   AppleLogin,
   GoogleLogin,

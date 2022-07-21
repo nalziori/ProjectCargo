@@ -17,6 +17,7 @@ const { AppleLogin, GoogleLogin, FacebookLogin, TwitterLogin, NaverLogin, KakaoL
 const IndexBoard = require('../services/indexBoard');
 const User = require('../services/user');
 const Go = require('../services/go');
+const apptoken = require('../middleware/appPush');
 
 const SALT_COUNT = 10;
 
@@ -220,6 +221,31 @@ const authCheckout = async (req, res, next, userInfo) => {
     }
   }
 };
+
+exports.getappToken = doAsync(async (req, res, next) => {
+  const { method } = req;
+  const user = req.session.user;
+  if(method === 'GET')
+  {
+    const token = req.params.token;
+    const conn = await pool.getConnection();
+    await conn.query('UPDATE user SET appToken=? WHERE kakaoId=?', [token, user.kakaoId]);
+    conn.release();
+  }
+  else {
+    if(!token){
+      throw new Error('토큰이 없습니다.');
+    }
+    else if(!user){
+      throw new Error('유저 정보가 없습니다.');
+    }
+    else{
+      throw new Error('getappToken error');
+    }
+  }
+  res.redirect('/');
+})
+
 
 exports.emailAuthentication = doAsync(async (req, res, next) => {
   const { method } = req;
