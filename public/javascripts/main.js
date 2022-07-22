@@ -153,6 +153,28 @@ if (modalBackground) {
   });
 }
 
+// blockUser
+const blockUser = (targetUserId) => {
+  return new Promise((resolve, reject) => {
+    const data = {
+      targetUserId,
+    };
+    const xhr = new XMLHttpRequest();
+    xhr.onload = () => {
+      if (xhr.status === 200 || xhr.status === 201) {
+        const result = JSON.parse(xhr.responseText);
+        if (result) alert(result.message);
+        resolve(result);
+      } else {
+        console.error(xhr.responseText);
+      }
+    };
+    xhr.open('POST', '/api/blockUser');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+  });
+};
+
 // report
 const report = (data, reportContainer) => {
   return new Promise((resolve, reject) => {

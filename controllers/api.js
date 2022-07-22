@@ -8,6 +8,8 @@ const { getGeoLocation } = require('../middleware/offline');
 const imageUpload = require('../middleware/imageUpload');
 const doAsync = require('../middleware/doAsync');
 const config = require('../middleware/config');
+const User = require('../services/user');
+const UserBlockUser = require('../services/userBlockUser');
 const Article = require('../services/article');
 const Comment = require('../services/comment');
 const Image = require('../services/image');
@@ -105,6 +107,42 @@ exports.userImage = doAsync(async (req, res, next) => {
     });
   } finally {
     conn.release();
+  }
+});
+
+exports.blockUser = doAsync(async (req, res, next) => {
+  const { targetUserId } = req.body;
+  const user = res.locals.user;
+  if (user && targetUserId) {
+    if (user.id !== Number(targetUserId)) {
+      const conn = await pool.getConnection();
+      try {
+        const userBlockUserClass = new UserBlockUser(req, res, conn);
+        try {
+          const data = {
+            userId: user.id,
+            targetUserId,
+          };
+          await userBlockUserClass.create(data);
+          res.send({
+            status: true,
+            message: `해당유저를 차단하였습니다`,
+          });
+        } catch (e) {
+          res.send({
+            status: false,
+            message: e.message,
+          });
+        }
+      } finally {
+        conn.release();
+      }
+    } else {
+      res.send({
+        status: false,
+        message: `자기자신을 차단할 수 없습니다`,
+      });
+    }
   }
 });
 
@@ -402,6 +440,25 @@ exports.getComments = doAsync(async (req, res, next) => {
     const board = boards.find(board => board.id === Number(boardId));
     const commentsClass = new Comment(req, res, conn);
     const comments = await commentsClass.getComments(articleId, board);
+
+    // Block Users
+    const userBlockUserClass = new UserBlockUser(req, res, conn);
+    const blockUsers = await userBlockUserClass.getUsers(user?.id);
+    comments.forEach(comment => {
+      const match = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === comment.comment_user_ID);
+      if (match) {
+        comment.block = true;
+        comment.content = `차단된 사용자의 댓글입니다`;
+      }
+      comment.replies.forEach(reply => {
+        const replyMatch = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === reply.comment_user_ID);
+        if (replyMatch) {
+          reply.block = true;
+          reply.content = `차단된 사용자의 댓글입니다`;
+        }
+      });
+    });
+    
     if (comments) {
       res.send({
         message: '댓글 가져오기 성공',
