@@ -47,6 +47,7 @@ router.use('*', doAsync(async (req, res, next) => {
 }));
 
 router.get('/', controller.index);
+router.get('/catch', controller.index);
 router.get('/catch/:token', controller.catchToken);
 router.get('/go/:slug', controller.go);
 
