@@ -435,6 +435,28 @@ exports.index = doAsync(async (req, res, next) => {
   }
 });
 
+
+exports.catch = doAsync(async (req, res, next) => {
+  const index = res.locals.setting.index;
+  if (index === 'basic') {
+    const conn = await pool.getConnection();
+    try {
+      const indexBoard = new IndexBoard(req, res, conn);
+      const indexBoardGroups = await indexBoard.get('index');
+      addLog(req, `/catch`);
+      res.render('layout', {
+        type: 'index',
+        pageTitle: `${res.locals.setting.siteName}`,
+        indexBoardGroups,
+      });
+    } finally {
+      conn.release();
+    }
+  } else {
+    next();
+  }
+});
+
 exports.go = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
   try {
