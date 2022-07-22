@@ -220,8 +220,8 @@ const authCheckout = async (req, res, next, userInfo) => {
     }
   }
 };
-/*
-exports.getappToken = doAsync(async (req, res, next) => {
+
+exports.catchToken = doAsync(async (req, res, next) => {
   const { method } = req;
   const user = req.session.user;
   const token = req.params.token;
@@ -234,7 +234,7 @@ exports.getappToken = doAsync(async (req, res, next) => {
         await conn.query('UPDATE user SET appToken=? WHERE uId=?', [token, user.uId]);
       }
       else{
-        res.redirect('/');
+        throw new Error('이미 토큰이 있습니다.');
       }
     }
     else {
@@ -245,14 +245,14 @@ exports.getappToken = doAsync(async (req, res, next) => {
         throw new Error('유저 정보가 없습니다.');
       }
       else{
-        throw new Error('getappToken error');
+        throw new Error('catchToken error');
       }
     }
   }finally{
     conn.release();
   }
 })
-*/
+
 
 exports.emailAuthentication = doAsync(async (req, res, next) => {
   const { method } = req;
