@@ -435,7 +435,7 @@ exports.index = doAsync(async (req, res, next) => {
   }
 });
 
-
+/*
 exports.catch = doAsync(async (req, res, next) => {
   const index = res.locals.setting.index;
   if (index === 'basic') {
@@ -455,7 +455,7 @@ exports.catch = doAsync(async (req, res, next) => {
   } else {
     next();
   }
-});
+});*/
 
 exports.go = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
