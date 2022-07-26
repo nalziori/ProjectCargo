@@ -227,6 +227,7 @@ require('./middleware/flash').init(app);
 const { isAdmin } = require('./middleware/permission');
 
 app.use('/', indexRouter);
+app.use('/catch', indexRouter);
 app.use('/', userRouter);
 app.use('/admin', isAdmin, adminRouter);
 app.use('/api', apiRouter);
