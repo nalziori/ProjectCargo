@@ -290,6 +290,13 @@ if (newCommentBtn) {
               newComment.querySelector('textarea').value = '';
               if (nickNameInput) nickNameInput.value = '';
               if (passwordInput) passwordInput.value = '';
+              var reloadcheck = confirm('댓글이 작성되었습니다.');
+              if(reloadcheck){
+                location.reload();
+              }
+              else{
+                location.reload();
+              }
             }
           }
         } else {
@@ -446,7 +453,7 @@ const addEvent = async () => {
       if (commentEditBtn) {
         commentEditBtn.addEventListener('click', () => {
           const nickNameText = comment.querySelector('.nickName .text').textContent;
-          const commentContent = comment.querySelector('#commentContent').textContent;
+          const commentContent = comment.querySelector('#commentContent').innerText;
           if (commentEditBtn.textContent === `수정`) {
             commentEditBtn.textContent = `수정 취소`;
             if (commentReplyBtn.textContent === `답변 취소`) commentReplyBtn.textContent = `답변`;
