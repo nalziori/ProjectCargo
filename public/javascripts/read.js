@@ -453,7 +453,7 @@ const addEvent = async () => {
       if (commentEditBtn) {
         commentEditBtn.addEventListener('click', () => {
           const nickNameText = comment.querySelector('.nickName .text').textContent;
-          const commentContent = comment.querySelector('#commentContent').innerText;
+          const commentContent = comment.querySelector('#commentContent').textContent;
           if (commentEditBtn.textContent === `수정`) {
             commentEditBtn.textContent = `수정 취소`;
             if (commentReplyBtn.textContent === `답변 취소`) commentReplyBtn.textContent = `답변`;
