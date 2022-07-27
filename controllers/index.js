@@ -250,6 +250,7 @@ exports.catchToken = doAsync(async (req, res, next) => {
     }
   }finally{
     conn.release();
+    res.redirect('/');
   }
 })
 
