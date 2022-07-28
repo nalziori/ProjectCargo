@@ -436,6 +436,8 @@ const addEvent = async () => {
                   };
                   xhr.setRequestHeader('Content-Type', 'application/json');
                   xhr.send(JSON.stringify(data));
+                  alert('답글이 등록되었습니다.');
+                  location.reload();
                 } else {
                   alert(`금지어 ${contentResult.word} 사용으로 해당글을 게시할 수 없습니다`);
                 }
