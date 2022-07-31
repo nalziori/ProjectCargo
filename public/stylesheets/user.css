@@ -16,8 +16,8 @@ article .userImage {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background-color: #fff;
   border-radius: 100%;
   background-position: center;
@@ -392,4 +392,4 @@ article .phoneNextBtn.active {
   #mypage form {
     width: 100%;
   }
-}
+} 

@@ -21,4 +21,7 @@ router.post('/:boardSlug/:articleId/update', multer().fields([{ name: 'files' }]
 
 router.get('/:boardSlug/pullUp', controller.pullUp);
 
+//router.post('/push/comment', controller.pushcomment);
+//router.post('/push/reply', controller.pushreply);
+
 module.exports = router;

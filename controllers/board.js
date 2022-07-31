@@ -11,6 +11,7 @@ const User = require('../services/user');
 const Alarm = require('../services/alarm');
 const UserGroupBoard = require('../services/userGroupBoard');
 const UserBlockUser = require('../services/userBlockUser');
+//const pushmessage = require('../middleware/pushnotification');
 
 exports.all = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
@@ -753,3 +754,57 @@ exports.pullUp = doAsync(async (req, res, next) => {
     conn.release();
   }
 });
+
+/*
+const push = new pushmessage();
+//푸시 발송
+exports.pushcomment = doAsync(async (req, res, next) => {
+  const conn = await poll.connection();
+  try{ 
+    const { link, articleId } = req.body;  //게시글 페이지 주소, 게시물 아이디
+    const push_user_id = await conn.query("SELECT article_user_ID FROM user id=?", [articleId]);
+    const token = await conn.query("SELECT appToken FROM user WHERE id=?", [push_user_id]);
+    const player_id_array = new Array();
+    player_id_array.push(token);
+    const push_target_all = new Array();
+    const { data } = push.composebody(
+      link,
+      "내 게시물에 댓글이 달렸습니다.",
+      "내 게시물에 댓글이 달렸어요 어서 확인해보세요!",
+      push_target_all,
+      player_id_array,
+      "../public/asset/vetween_logo.png",
+    );
+    push.config();
+    const {id} = await push.createNotification(data);
+    await viewNotification(id);
+  }catch(error){
+    console.log('fail to push noti');
+  }
+});
+
+exports.pushreply = doAsync(async (req, res, next) => {
+  const conn = await poll.connection();
+  try{ 
+    const { link, articleId } = req.body;  //게시글 페이지 주소, 게시물 아이디
+    const push_user_id = await conn.query("SELECT article_user_ID FROM user id=?", [articleId]);
+    const token = await conn.query("SELECT appToken FROM user WHERE id=?", [push_user_id]);
+    const player_id_array = new Array();
+    player_id_array.push(token);
+    const push_target_all = new Array();
+    const { data } = push.composebody(
+      link,
+      "내 댓글에 답글이 달렸습니다.",
+      "내 댓글에 답글이 달렸어요! 어서 확인해보세요!",
+      push_target_all,
+      player_id_array,
+      "../public/asset/vetween_logo.png",
+    );
+    push.config();
+    const {id} = await push.createNotification(data);
+    await viewNotification(id);
+  }catch(error){
+    console.log('fail to push noti');
+  }
+});
+*/
