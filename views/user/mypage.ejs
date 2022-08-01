@@ -12,6 +12,12 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
   <% } %>
+  .container{
+    width: 500px;
+    flex-direction: column;
+    align-items: center;
+  }
+
   button {
   width: 100%;
   height: 50px;
@@ -34,6 +40,9 @@ button a{
 
 .newbuttons{
   width:400px;
+  justify-content: center;
+  padding: 0px;
+  border: 0;
 }
 .newbuttons > div{
   width: 100%;
@@ -46,33 +55,34 @@ button a{
   
 </style>
 <article id="mypage">
-  <h1>마이페이지</h1>
-  <div class="userImage">
-    <label for="imageUpload"></label>
-    <input type="file" name="userImage" id="imageUpload">
-  </div>
-  <form action="/mypage" method="POST">
-    <div class="permission">회원등급 : <%= user.permissionName %></div>
-    <div class="nickName">
-      <div><h3>닉네임 변경</h3></div>
-      <div><input type="text" name="nickName" value="<%= user.nickName %>" placeholder="닉네임"></div>
+  <div clsas="container">
+    <h1>마이페이지</h1>
+    <div class="userImage">
+      <label for="imageUpload"></label>
+      <input type="file" name="userImage" id="imageUpload">
     </div>
-    <div class="password">
-      <div><input type="password" name="oldPassword" placeholder="기존 비밀번호"></div>
-      <div><input type="password" name="password" placeholder="비밀번호"></div>
-      <div><input type="password" name="passwordCheck" placeholder="비밀번호 확인"></div>
-    </div>
-    <div><button>닉네임 변경</button></div>
-    <div class="second"><a href="/mypage/article"><button type="button" class="qnaBtn">내가 쓴 게시글</button></a></div>
-    <!--<div class="second"><a href="/qna"><button type="button" class="qnaBtn">1:1 문의</button></a></div>-
-    <% if (locals.setting.useWithdraw) { %>
-    <div class="second"><a href="/mypage/withdraw"><button type="button" id="withdraw">회원 탈퇴</button></a></div>
-    <% } %>
-    <% if (locals.setting.usePointWithdraw) { %>
-    <div class="pointWithdraw"><a href="/mypage/pointWithdraw"><button type="button">포인트 출금신청</button></a></div>
-    <% } %>-->
-  </form>
-  <% const globalAlarms = locals.alarms.filter(a => a.status === 1) %>
+    <form action="/mypage" method="POST">
+      <div class="permission">회원등급 : <%= user.permissionName %></div>
+      <div class="nickName">
+        <div><h3>닉네임 변경</h3></div>
+        <div><input type="text" name="nickName" value="<%= user.nickName %>" placeholder="닉네임"></div>
+      </div>
+      <div class="password">
+        <div><input type="password" name="oldPassword" placeholder="기존 비밀번호"></div>
+        <div><input type="password" name="password" placeholder="비밀번호"></div>
+        <div><input type="password" name="passwordCheck" placeholder="비밀번호 확인"></div>
+      </div>
+      <div><button>닉네임 변경</button></div>
+      <div class="second"><a href="/mypage/article"><button type="button" class="qnaBtn">내가 쓴 게시글</button></a></div>
+      <!--<div class="second"><a href="/qna"><button type="button" class="qnaBtn">1:1 문의</button></a></div>-
+      <% if (locals.setting.useWithdraw) { %>
+      <div class="second"><a href="/mypage/withdraw"><button type="button" id="withdraw">회원 탈퇴</button></a></div>
+      <% } %>
+      <% if (locals.setting.usePointWithdraw) { %>
+      <div class="pointWithdraw"><a href="/mypage/pointWithdraw"><button type="button">포인트 출금신청</button></a></div>
+      <% } %>-->
+    </form>
+    <% const globalAlarms = locals.alarms.filter(a => a.status === 1) %>
     <div class="newbuttons">
       <div>
         <% if (globalAlarms.length) { %> getAlarm<% } %>
@@ -87,8 +97,9 @@ button a{
           <% } %>
         </a></button>
       </div>
-    <div class="second"><button type="button" class="qnaBtn">
-      <a href="https://pf.kakao.com/_kixhxkb/chat"><img src="/assets/social/kakao.svg" onerror="this.style.display='none';" style="width:30px; height:30px; margin-right:10px; vertical-align: middle;"/>카카오톡 채널로 인증하기</button></a>
+      <div class="second"><button type="button" class="qnaBtn">
+        <a href="https://pf.kakao.com/_kixhxkb/chat"><img src="/assets/social/kakao.svg" onerror="this.style.display='none';" style="width:30px; height:30px; margin-right:10px; vertical-align: middle;"/>카카오톡 채널로 인증하기</button></a>
+      </div>
     </div>
   </div>
 </article>
