@@ -11,7 +11,7 @@ const User = require('../services/user');
 const Alarm = require('../services/alarm');
 const UserGroupBoard = require('../services/userGroupBoard');
 const UserBlockUser = require('../services/userBlockUser');
-//const pushmessage = require('../middleware/pushnotification');
+const pushmessage = require('../middleware/pushnotification');
 
 exports.all = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
