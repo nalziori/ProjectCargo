@@ -15,51 +15,67 @@
   .container{
     width: 500px;
     flex-direction: column;
-    align-items: center;
+    align-items:center;
+  }
+
+  article .imagecontainer{
+    width: 100%;
+    height: 100px;
+    margin-bottom:20px;
+    justify-content: center;
+  }
+  
+  .imagecontainer .userImage{
+    position:relative;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
   }
 
   button {
-  width: 100%;
-  height: 50px;
-  font-size: 1em;
-  color: #fff;
-  background-color: rgb(66, 75, 87);
-  padding: 10px;
-  border: 0;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-button a{
-  color : white;
-  width: 100%;
-}
+    width: 100%;
+    height: 50px;
+    font-size: 1em;
+    color: #fff;
+    background-color: rgb(66, 75, 87);
+    padding: 10px;
+    border: 0;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  button a{
+    color : white;
+    width: 100%;  
+  }
 
-.newbuttons{
-  width:400px;
-  justify-content: center;
-  padding: 0px;
-  border: 0;
-}
-.newbuttons > div{
-  width: 100%;
-  padding: 0px;
-  border: 0;
-  margin-bottom: 0px;
-  justify-content: center;
-}
+  .newbuttons{
+    width:400px;
+    justify-content: center;
+    padding: 0px;
+    border: 0;  
+  }
+  .newbuttons > div{
+    width: 100%;
+    padding: 0px;
+    border: 0;
+    margin-bottom: 0px;
+    justify-content: center;
+  }
 
   
 </style>
 <article id="mypage">
   <div clsas="container">
     <h1>마이페이지</h1>
-    <div class="userImage">
-      <label for="imageUpload"></label>
-      <input type="file" name="userImage" id="imageUpload">
+    <div class="imagecontainer">
+      <div class="userImage">
+        <label for="imageUpload"></label>
+        <input type="file" name="userImage" id="imageUpload">
+      </div>
     </div>
     <form action="/mypage" method="POST">
       <div class="permission">회원등급 : <%= user.permissionName %></div>
@@ -85,7 +101,7 @@ button a{
     <% const globalAlarms = locals.alarms.filter(a => a.status === 1) %>
     <div class="newbuttons">
       <div>
-        <% if (globalAlarms.length) { %> getAlarm<% } %>
+        <% if (globalAlarms.length) { %> <% getAlarm } %>
         <button><a href="/alarm">
         <% newAlarms = locals.alarms.filter(a => a.status === 1) %>
           <% if (newAlarms.length) { %>
