@@ -755,7 +755,7 @@ exports.pullUp = doAsync(async (req, res, next) => {
   }
 });
 
-/*
+
 const push = new pushmessage();
 //푸시 발송
 exports.pushcomment = doAsync(async (req, res, next) => {
@@ -763,7 +763,8 @@ exports.pushcomment = doAsync(async (req, res, next) => {
   try{ 
     const { link, articleId } = req.body;  //게시글 페이지 주소, 게시물 아이디
     const push_user_id = await conn.query("SELECT article_user_ID FROM user id=?", [articleId]);
-    const token = await conn.query("SELECT appToken FROM user WHERE id=?", [push_user_id]);
+    //const token = await conn.query("SELECT appToken FROM user WHERE id=?", [push_user_id]);
+    const token = req.session.token;
     const player_id_array = new Array();
     player_id_array.push(token);
     const push_target_all = new Array();
@@ -807,4 +808,3 @@ exports.pushreply = doAsync(async (req, res, next) => {
     console.log('fail to push noti');
   }
 });
-*/

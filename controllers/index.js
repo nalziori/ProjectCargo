@@ -229,13 +229,9 @@ exports.catchToken = doAsync(async (req, res, next) => {
   try{
     if(method === 'GET')
     {
-      const check = await conn.query('SELECT * FROM user WHERE uId=?', [user.uId]);
-      if(!check.appToken || check.appToken === '0'){
-        await conn.query('UPDATE user SET appToken=? WHERE uId=?', [token, user.uId]);
-      }
-      else{
-        throw new Error('이미 토큰이 있습니다.');
-      }
+      await conn.query('UPDATE user SET appToken=? WHERE uId=?', [token, user.uId]);
+      req.session.token = token;
+      req.session.save();
     }
     else {
       if(!token){
