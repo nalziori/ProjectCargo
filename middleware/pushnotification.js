@@ -2,6 +2,8 @@ const axios = require('axios').default;
 const queryString = require('query-string');
 const { urlencoded } = require('express');
 const { post } = require('request');
+const doAsync = require('./doAsync');
+const onesignalsdk = require('../public/javascripts/OneSignalSDKWorker');
 
 class pushmessage{
     constructor(){
@@ -74,6 +76,16 @@ class pushmessage{
         } catch(error){
             console.log(error);
         }
+    }
+
+    async getplayerid(){
+        const conn = pool.connection();
+        const onesignal = new onesignalsdk();
+        onesignal.push(function(){
+            onesignal.getUserId(function(userId){
+              await conn.query('UPDATE user SET onesignal_id=? WHERE id=?', [userId, req.session.user.id]);
+            })
+        })
     }
 }
 
