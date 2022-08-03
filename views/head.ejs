@@ -51,15 +51,19 @@
     OneSignal.push(function () {
         OneSignal.init(initConfig);
     });
-    OneSignal.push(function(){
-      OneSignal.getUserId(function(userId){
-        var check=0;
-        if(!check){
-          check = check+1;
-          location.href = `https://vetween.kr/catch/${userId}`;
+    var check=0;
+    if(!check){
+      check=check+1;
+      OneSignal.isPushNotificationsEnabled(function(isEnabled) {
+        if (isEnabled) {  
+          OneSignal.push(function(){
+            OneSignal.getUserId(function(userId){
+              location.href = `https://vetween.kr/catch/${userId}`;
+            })
+          })
         }
-      })
-    })
+      });
+    }
 </script>
 
 
