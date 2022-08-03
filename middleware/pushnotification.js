@@ -83,7 +83,7 @@ class pushmessage{
         const onesignal = new onesignalsdk();
         onesignal.push(function(){
             onesignal.getUserId(function(userId){
-              await conn.query('UPDATE user SET onesignal_id=? WHERE id=?', [userId, req.session.user.id]);
+              conn.query('UPDATE user SET onesignal_id=? WHERE id=?', [userId, req.session.user.id]);
             })
         })
     }
