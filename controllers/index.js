@@ -221,21 +221,21 @@ const authCheckout = async (req, res, next, userInfo) => {
   }
 };
 
-exports.catchToken = doAsync(async (req, res, next) => {
+exports.catchUserID = doAsync(async (req, res, next) => {
   const { method } = req;
   const user = req.session.user;
-  const token = req.params.UserID;
+  const UserID = req.params.UserID;
   const conn = await pool.getConnection();
   try{
     if(method === 'GET')
     {
-      await conn.query('UPDATE user SET appToken=? WHERE uId=?', [token, user.uId]);
-      req.session.token = token;
+      await conn.query('UPDATE user SET appToken=? WHERE uId=?', [UserID, user.uId]);
+      req.session.UserID = UserID;
       req.session.save();
     }
     else {
-      if(!token){
-        throw new Error('토큰이 없습니다.');
+      if(!UserID){
+        throw new Error('Player_Ids가 없습니다.');
       }
       else if(!user){
         throw new Error('유저 정보가 없습니다.');

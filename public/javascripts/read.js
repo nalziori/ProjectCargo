@@ -456,7 +456,7 @@ const addEvent = async () => {
                     if (xhr1.status === 200 || xhr1.status === 201) {
                       body = {
                       link,
-                      articleId
+                      commentParentId
                     }
                     }else {
                       console.error(xhr.responseText);

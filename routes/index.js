@@ -48,7 +48,7 @@ router.use('*', doAsync(async (req, res, next) => {
 
 router.get('/', controller.index);
 router.get('/catch', controller.index);
-router.get('/catch/:UserID', controller.catchToken);
+router.get('/catch/:UserID', controller.catchUserID);
 router.get('/go/:slug', controller.go);
 
 // Chat Room

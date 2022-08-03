@@ -77,17 +77,6 @@ class pushmessage{
             console.log(error);
         }
     }
-/*
-    async getplayerid(){
-        const conn = pool.connection();
-        const onesignal = new onesignalsdk();
-        onesignal.push(function(){
-            onesignal.getUserId(function(userId){
-              conn.query('UPDATE user SET onesignal_id=? WHERE id=?', [userId, req.session.user.id]);
-            })
-        })
-    }
-    */
 }
 
 

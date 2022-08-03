@@ -762,7 +762,6 @@ exports.pushcomment = doAsync(async (req, res, next) => {
   try{ 
     const { link, articleId } = req.body;  //게시글 페이지 주소, 게시물 아이디
     const push_user_id = await conn.query("SELECT article_user_ID FROM user id=?", [articleId]);
-    push.getplayerid();
     const playerID = await conn.query("SELECT onesignal_id FROM user WHERE id=?", [push_user_id]);
     const player_id_array = new Array();
     if(playerID){
@@ -792,10 +791,8 @@ exports.pushcomment = doAsync(async (req, res, next) => {
 exports.pushreply = doAsync(async (req, res, next) => {
   const conn = await poll.connection();
   try{ 
-    const { link, articleId } = req.body;  //게시글 페이지 주소, 게시물 아이디
-    const push_user_id = await conn.query("SELECT article_user_ID FROM user id=?", [articleId]);
-    push.getplayerid();
-    const playerID = await conn.query("SELECT onesignal_id FROM user WHERE id=?", [push_user_id]);
+    const { link, commentParentId } = req.body;  //게시글 페이지 주소, 게시물 아이디
+    const playerID = await conn.query("SELECT onesignal_id FROM user WHERE id=?", [commentParentId]);
     const player_id_array = new Array();
     if(playerID){
       player_id_array.push(playerID);
