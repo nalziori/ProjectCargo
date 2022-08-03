@@ -224,7 +224,7 @@ const authCheckout = async (req, res, next, userInfo) => {
 exports.catchToken = doAsync(async (req, res, next) => {
   const { method } = req;
   const user = req.session.user;
-  const token = req.params.token;
+  const token = req.params.UserID;
   const conn = await pool.getConnection();
   try{
     if(method === 'GET')

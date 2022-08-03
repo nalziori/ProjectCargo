@@ -765,7 +765,13 @@ exports.pushcomment = doAsync(async (req, res, next) => {
     push.getplayerid();
     const playerID = await conn.query("SELECT onesignal_id FROM user WHERE id=?", [push_user_id]);
     const player_id_array = new Array();
-    player_id_array.push(playerID);
+    if(playerID){
+      player_id_array.push(playerID);
+    }
+    else{
+      const token = await conn.query("SELECT appToken FROM user WHERE id=?", [push_user_id]);
+      player_id_array.push(token);
+    }
     const push_target_all = new Array();
     const { data } = push.composebody(
       link,
@@ -791,7 +797,13 @@ exports.pushreply = doAsync(async (req, res, next) => {
     push.getplayerid();
     const playerID = await conn.query("SELECT onesignal_id FROM user WHERE id=?", [push_user_id]);
     const player_id_array = new Array();
-    player_id_array.push(playerID);
+    if(playerID){
+      player_id_array.push(playerID);
+    }
+    else{
+      const token = await conn.query("SELECT appToken FROM user WHERE id=?", [push_user_id]);
+      player_id_array.push(token);
+    }
     const push_target_all = new Array();
     const { data } = push.composebody(
       link,
