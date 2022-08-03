@@ -51,6 +51,15 @@
     OneSignal.push(function () {
         OneSignal.init(initConfig);
     });
+    OneSignal.push(function(){
+      OneSignal.on('subscriptionChange', function(isSubscribed){
+        OneSignal.push(function(){
+          OneSignal.getUserId(function(userId){
+            location.href = `https://vetween.kr/catch/${userId}`;
+          })
+        })
+      })
+    })
 </script>
 
 
