@@ -9,28 +9,15 @@ OneSignal.push(function () {
     OneSignal.init(initConfig);
 });
 
-function once(fn, context){
-    var result;
-    return function(){
-        if(fn){
-            result = fn.apply(context || this, arguments);
-            fn=null;
+OneSignal.push(function () {
+    // Occurs when the user's subscription changes to a new value.
+    OneSignal.on('subscriptionChange', function (isSubscribed) {
+        if (isSubscribed) {
+            OneSignal.getUserId(function (userId) {
+                // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316
+                location.href('https://vetween.kr/catch/' + userId);
+            });
         }
-        return result;
-    }
-}
-
-OneSignal.isPushNotificationsEnabled(function(isEnabled) {
-    if (isEnabled) {  
-        OneSignal.push(function(){
-            once(OneSignal.getUserId(function(userId){
-                location.href('https://vetween.kr/catch/'+userId);
-                var mytime = setTimeout(function(){
-                    location.href('https://vetween.kr/catch/'+userId);
-                }, 1000);
-                clearTimeout(mytime);
-            }))
-        })
-    }
-});    
+    });
+});
 
