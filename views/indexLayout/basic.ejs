@@ -1,7 +1,7 @@
 <script>
   window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
     window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
-      console.log(result);
+      document.write(result);
     });
   });
 </script>
