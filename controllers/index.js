@@ -221,6 +221,7 @@ const authCheckout = async (req, res, next, userInfo) => {
   }
 };
 
+/*
 exports.catchUserID = doAsync(async (req, res, next) => {
   req.connection.setTimeout(60 * 15 * 1000);
   const { method } = req;
@@ -250,6 +251,7 @@ exports.catchUserID = doAsync(async (req, res, next) => {
     //res.redirect('/checked');
   }
 })
+*/
 
 
 exports.emailAuthentication = doAsync(async (req, res, next) => {
@@ -424,6 +426,14 @@ exports.index = doAsync(async (req, res, next) => {
         type: 'index',
         pageTitle: `${res.locals.setting.siteName}`,
         indexBoardGroups,
+      });
+      window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+        window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
+          //document.write(result.userId);
+          const userId = result.userId;
+          const user = req.session.user;
+          await conn.query("UPDATE user SET appToken=? WHERE uid=?", [userId, user.uid]);
+        });
       });
     } finally {
       conn.release();
