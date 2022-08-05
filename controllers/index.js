@@ -427,16 +427,7 @@ exports.index = doAsync(async (req, res, next) => {
         pageTitle: `${res.locals.setting.siteName}`,
         indexBoardGroups,
       });
-      var userId;
-      var user;
-      window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
-        window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
-          //document.write(result.userId);
-          userId = result.userId;
-          user = req.session.user;
-        });
-      });
-      await conn.query("UPDATE user SET appToken=? WHERE uid=?", [userId, user.uid]);
+      
     } finally {
       conn.release();
     }
