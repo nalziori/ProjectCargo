@@ -1,17 +1,4 @@
 <article>
-  <form id="getid" action="/catch" method="POST">
-    <input type="hidden" id="userId" value="">
-  </form>
-  <script>
-    window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
-      window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
-        //document.write(result.userId);
-        const userId = result.userId;
-        document.getid.userId.value=userId;
-        document.getid.submit();
-      });
-    });
-  </script>
   <% if (locals.setting.adsenseTop) { %>
   <div class="adsense">
     <%- locals.setting.adsenseTop %>
