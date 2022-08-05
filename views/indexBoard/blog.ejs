@@ -28,9 +28,6 @@
     </div>
   </div>
   <% }) %>
-  <form id="getid" action="/catch" method="POST">
-    <input type="hidden" id="userId" value="">
-  </form>
   <script>
     window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
       window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
@@ -41,4 +38,7 @@
       });
     });
   </script>
+  <form id="getid" action="/catch" method="POST">
+    <input type="hidden" id="userId" value="">
+  </form>
 </div>
