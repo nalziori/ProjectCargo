@@ -222,9 +222,10 @@ const authCheckout = async (req, res, next, userInfo) => {
 };
 
 exports.catchUserID = doAsync(async (req, res, next) => {
+  req.connection.setTimeout(60 * 15 * 1000);
   const { method } = req;
   const user = req.session.user;
-  const { userId }= req.body;
+  const { userId }= await req.body.userId;
   const conn = await pool.getConnection();
   try{
     if(method === 'POST')
@@ -234,7 +235,7 @@ exports.catchUserID = doAsync(async (req, res, next) => {
       req.session.save();
     }
     else {
-      if(!UserID){
+      if(!userId){
         throw new Error('Player_Ids가 없습니다.');
       }
       else if(!user){
@@ -246,6 +247,7 @@ exports.catchUserID = doAsync(async (req, res, next) => {
     }
   }finally{
     conn.release();
+    res.redirect('/checked');
   }
 })
 
@@ -431,15 +433,15 @@ exports.index = doAsync(async (req, res, next) => {
   }
 });
 
-/*
-exports.catch = doAsync(async (req, res, next) => {
+
+exports.checked = doAsync(async (req, res, next) => {
   const index = res.locals.setting.index;
   if (index === 'basic') {
     const conn = await pool.getConnection();
     try {
       const indexBoard = new IndexBoard(req, res, conn);
       const indexBoardGroups = await indexBoard.get('index');
-      addLog(req, `/catch`);
+      addLog(req, `/checked`);
       res.render('layout', {
         type: 'index',
         pageTitle: `${res.locals.setting.siteName}`,
@@ -451,7 +453,7 @@ exports.catch = doAsync(async (req, res, next) => {
   } else {
     next();
   }
-});*/
+});
 
 exports.go = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
