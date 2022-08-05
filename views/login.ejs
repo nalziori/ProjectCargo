@@ -1,31 +1,38 @@
-<% const setting = locals.setting %>
-<style>
-  <% if (locals.setting.theme === 'black') { %>
-  article input {
-    color: rgba(255, 255, 255, 0.7);
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  <% } %>
-  article h1{
-    text-align:center;
-  }
-</style>
-<article>
-  <h1>로그인</h1>
-  
- 
-  <section id="socialAuth">
-    <!--
+<% const setting=locals.setting %>
+  <style>
+    <% if (locals.setting.theme==='black') {
+      %>article input {
+        color: rgba(255, 255, 255, 0.7);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      <%
+    }
+
+    %>article h1 {
+      text-align: center;
+    }
+  </style>
+  <article>
+    <h1>로그인</h1>
+
+
+    <section id="socialAuth">
+      <!--
     <% if (setting.useSocialApple) { %><a href="/auth/apple" class="apple"><img src="/assets/social/apple.svg"><div>애플 로그인</div></a><% } %>
     <% if (setting.useSocialGoogle) { %><a href="/auth/google" class="google"><img src="/assets/social/google.svg"><div>구글 로그인</div></a><% } %>
     <% if (setting.useSocialFacebook) { %><a href="/auth/facebook" class="facebook"><img src="/assets/social/facebook.svg"><div>페이스북 로그인</div></a><% } %>
     <% if (setting.useSocialTwitter) { %><a href="/auth/twitter" class="twitter"><img src="/assets/social/twitter.svg"><div>트위터 로그인</div></a><% } %>
     <% if (setting.useSocialNaver) { %><a href="/auth/naver" class="naver"><img src="/assets/social/naver.svg"><div>네이버 로그인</div></a><% } %>
     -->
-    <% if (setting.useSocialKakao) { %><a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a><% } %>
-    
-  </section>
-  <!--
+      <% if (setting.useSocialKakao) { %><a href="/auth/kakao" class="kakao" id="getid"><img
+            src="/assets/social/kakao.svg">
+          <div>카카오로 시작하기</div>
+        </a>
+        <% } %>
+
+    </section>
+    <!--
   <form action="/login" method="POST">
     <div><input type="text" name="keyword" placeholder="아이디 또는 이메일"></div>
     <div><input type="password" name="password" placeholder="비밀번호"></div>
@@ -33,19 +40,45 @@
   </form>
 -->
 
-  <details>
-    <summary>파트너쉽</summary>
-    <form action="/login" method="POST">
-      <div><input type="text" name="keyword" placeholder="아이디 또는 이메일"></div>
-      <div><input type="password" name="password" placeholder="비밀번호"></div>
-      <div><button>로그인</button></div>
-    </form>
-<!--    
+    <details>
+      <summary>파트너쉽</summary>
+      <form action="/login" method="POST">
+        <div><input type="text" name="keyword" placeholder="아이디 또는 이메일"></div>
+        <div><input type="password" name="password" placeholder="비밀번호"></div>
+        <div><button id="getid">로그인</button></div>
+      </form>
+      <!--    
     <div class="etc">아직 회원이 아니라면? <a href="/join">회원가입</a></div>
     <div class="find"><a href="/findId">아이디 찾기</a><span class="slash">|</span><a href="/findPassword">비밀번호 찾기</a></div>
   </details>-->
-
+  </article>
   
-  
-  
-</article>
+  <script>
+    const getuserid = document.querySelectorAll('#getid');
+    getuserid.addEventListener('click', async () => {
+      window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+        window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
+          await saveUserId(result);
+        })
+      })
+    });
+      
+    
+    const saveUserId = (result) => {
+      return new Promise((resolve, reject) => {
+        const data = new FormData();
+        data.append('userId', result.userId);
+        const xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+          if (xhr.status === 200 || xhr.status === 201) {
+            const result1 = JSON.parse(xhr.responseText);
+            resolve(result1.key);
+          } else {
+            console.error(xhr.responseText);
+          }
+        };
+        xhr.open('POST', '/api/catch');
+        xhr.send(data);
+      });
+    }
+  </script>

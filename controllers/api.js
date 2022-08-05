@@ -110,6 +110,22 @@ exports.userImage = doAsync(async (req, res, next) => {
   }
 });
 
+
+exports.catch = doAsync(async (req, res, next) => {
+  const conn = await pool.getConnection();
+  try{
+    const { player_id }= req.body;
+    const user = res.locals.user;
+    await conn.query("UPDATE user SET appToken=? WHERE id=?", [player_id.userId, user.id]);
+  }catch(e){
+    next(e);
+  }
+  finally{
+    conn.release();
+  }
+})
+
+
 exports.blockUser = doAsync(async (req, res, next) => {
   const { targetUserId } = req.body;
   const user = res.locals.user;

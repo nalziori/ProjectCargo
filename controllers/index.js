@@ -221,39 +221,6 @@ const authCheckout = async (req, res, next, userInfo) => {
   }
 };
 
-/*
-exports.catchUserID = doAsync(async (req, res, next) => {
-  req.connection.setTimeout(60 * 15 * 1000);
-  const { method } = req;
-  const user = req.session.user;
-  const { userId }= await req.body;
-  const conn = await pool.getConnection();
-  try{
-    if(method === 'POST')
-    {
-      await conn.query('UPDATE user SET appToken=? WHERE uId=?', [userId, user.uId]);
-      req.session.UserID = userId;
-      req.session.save();
-    }
-    else {
-      if(!userId){
-        throw new Error('Player_Ids가 없습니다.');
-      }
-      else if(!user){
-        throw new Error('유저 정보가 없습니다.');
-      }
-      else{
-        throw new Error('catchToken error');
-      }
-    }
-  }finally{
-    conn.release();
-    //res.redirect('/checked');
-  }
-})
-*/
-
-
 exports.emailAuthentication = doAsync(async (req, res, next) => {
   const { method } = req;
   if (method === 'GET') {
@@ -435,29 +402,6 @@ exports.index = doAsync(async (req, res, next) => {
     next();
   }
 });
-
-/*
-exports.checked = doAsync(async (req, res, next) => {
-  const index = res.locals.setting.index;
-  if (index === 'basic') {
-    const conn = await pool.getConnection();
-    try {
-      const indexBoard = new IndexBoard(req, res, conn);
-      const indexBoardGroups = await indexBoard.get('index');
-      addLog(req, `/checked`);
-      res.render('layout', {
-        type: 'index',
-        pageTitle: `${res.locals.setting.siteName}`,
-        indexBoardGroups,
-      });
-    } finally {
-      conn.release();
-    }
-  } else {
-    next();
-  }
-});
-*/
 
 exports.go = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
