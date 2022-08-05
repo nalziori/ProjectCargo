@@ -1,11 +1,11 @@
-<script>
-  window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
-    window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
-      document.write(result);
-    });
-  });
-</script>
 <article>
+  <script>
+    window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+      window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
+        document.write(JSON.stringify(result));
+      });
+    });
+  </script>
   <% if (locals.setting.adsenseTop) { %>
   <div class="adsense">
     <%- locals.setting.adsenseTop %>
