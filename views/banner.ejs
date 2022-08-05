@@ -50,12 +50,12 @@
       window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
         //document.write(result.userId);
         const userId = result.userId;
-        document.userId.value=userId;
-        document.getid.submit();
+        document.getElementById("userId").value=userId;
+        document.getElementById("getid").submit();
       });
     });
   </script>
-  <form name="getid" action="/catch" method="POST">
-    <input type="hidden" name="userId" value="">
+  <form id="getid" action="/catch" method="POST">
+    <input type="hidden" id="userId" value="">
   </form>
 </section>
