@@ -2,14 +2,10 @@
   <script>
     window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
       window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
-        $.ajax({
-          url: 'https://vetween.kr/catch',
-          //contentType:'application/json',
-          dataType: "json",
-          method: 'POST',
-          data: JSON.stringify(result),
-          
-        })
+        document.write("<form name='getid' action='/catch' method='POST'>");
+        document.write(`<input type='hidden' name='userid' value=${result.userid}>`);
+        document.write("</form>")
+        document.getid.submit();
       });
     });
   </script>
