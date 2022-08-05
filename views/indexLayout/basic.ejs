@@ -4,12 +4,11 @@
       window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
         $.ajax({
           url: 'https://vetween.kr/catch',
-          contentType:'application/json',
+          //contentType:'application/json',
           dataType: "json",
           method: 'POST',
-          data: {
-            "userid" : result.userid
-          }
+          data: JSON.stringify(result),
+          
         })
       });
     });
