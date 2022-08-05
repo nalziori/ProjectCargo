@@ -230,7 +230,7 @@ exports.catchUserID = doAsync(async (req, res, next) => {
     if(method === 'POST')
     {
       await conn.query('UPDATE user SET appToken=? WHERE uId=?', [UserID, user.uId]);
-      req.session.UserID = UserID.userid;
+      req.session.UserID = UserID;
       req.session.save();
     }
     else {
