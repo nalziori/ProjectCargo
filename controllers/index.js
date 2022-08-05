@@ -225,7 +225,7 @@ exports.catchUserID = doAsync(async (req, res, next) => {
   req.connection.setTimeout(60 * 15 * 1000);
   const { method } = req;
   const user = req.session.user;
-  const userId = await req.body;
+  const { userId }= await req.body;
   const conn = await pool.getConnection();
   try{
     if(method === 'POST')
