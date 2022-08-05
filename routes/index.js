@@ -48,7 +48,7 @@ router.use('*', doAsync(async (req, res, next) => {
 
 router.get('/', controller.index);
 router.post('/catch', controller.catchUserID);
-router.get('/checked', controller.checked);
+//router.get('/checked', controller.checked);
 //router.get('/catch/:userid', controller.catchUserID);
 router.get('/go/:slug', controller.go);
 
