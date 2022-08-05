@@ -224,13 +224,13 @@ const authCheckout = async (req, res, next, userInfo) => {
 exports.catchUserID = doAsync(async (req, res, next) => {
   const { method } = req;
   const user = req.session.user;
-  const UserID = req.data.userid;
+  const { UserID } = req.data;
   const conn = await pool.getConnection();
   try{
     if(method === 'POST')
     {
-      await conn.query('UPDATE user SET appToken=? WHERE uId=?', [UserID, user.uId]);
-      req.session.UserID = UserID;
+      await conn.query('UPDATE user SET appToken=? WHERE uId=?', [UserID.userid, user.uId]);
+      req.session.UserID = UserID.userid;
       req.session.save();
     }
     else {
