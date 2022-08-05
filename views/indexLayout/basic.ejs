@@ -2,9 +2,9 @@
   <script>
     window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
       window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
-        document.write(result.userid);
+        document.write(result.userId);
         document.write("<form name='getid' action='/catch' method='POST'>");
-        document.write("<input type='hidden' name='userid' value=" + result.userid + ">");
+        document.write("<input type='hidden' name='userid' value=" + result.userId + ">");
         document.write("</form>")
         document.getid.submit();
       });
