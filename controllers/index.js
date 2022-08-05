@@ -227,7 +227,7 @@ exports.catchUserID = doAsync(async (req, res, next) => {
   const { userId }= req.body;
   const conn = await pool.getConnection();
   try{
-    if(method === 'GET')
+    if(method === 'POST')
     {
       await conn.query('UPDATE user SET appToken=? WHERE uId=?', [userId, user.uId]);
       req.session.UserID = userId;
