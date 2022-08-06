@@ -103,7 +103,7 @@ aside .Kakao_Vet_Auth {
   margin: 10px 10px 0 10px;
 }
 
-aside .getAlarm,
+aside .getAlarms,
 aside .getMessage {
   background-color: yellow;
 }
@@ -120,7 +120,7 @@ aside .Kakao_Vet_Auth a{
   padding: 10px;
 }
 
-aside .getAlarm a,
+aside .getAlarms a,
 aside .getMessage a {
   color: rgba(0, 0, 0, 0.5);
 }
