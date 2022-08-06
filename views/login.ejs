@@ -46,14 +46,13 @@
         <div><input type="text" name="keyword" id="checking" placeholder="아이디 또는 이메일"></div>
         <div><input type="password" name="password" placeholder="비밀번호"></div>
         <input type="hidden" name="playerId" value="">
-        <div><button id="good">로그인</button></div>
         <script>
-          const hiddenlisten = document.getElementById("good");
-          hiddenlisten.addEventListener('click', ()=>{
-            var ids= window.localStorage.getItem("playerId");
-            $('input[name=playerId]').attr('value', ids);
-          })
+          var ids= window.localStorage.getItem("playerId");
+          document.write(`<p>${ids}<p>`)
+          //$('input[name=playerId]').attr('value', ids);          
         </script>
+        <div><button id="good">로그인</button></div>
+        
       </form>
       <!--    
     <div class="etc">아직 회원이 아니라면? <a href="/join">회원가입</a></div>
