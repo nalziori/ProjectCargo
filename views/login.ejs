@@ -43,11 +43,12 @@
     <details>
       <summary>파트너쉽</summary>
       <form action="/login" method="POST">
-        <div><input type="text" name="keyword" id="checking" placeholder="아이디 또는 이메일"></div>
+        <div><input type="text" name="keyword" placeholder="아이디 또는 이메일"></div>
         <div><input type="password" name="password" placeholder="비밀번호"></div>
-        <input type="text" name="playerId" value="">
+        <div><input type="text" name="playerId" value="" placeholder=""></div>
         <script>
           var ids= window.localStorage.getItem("playerId");
+          $('input[name=playerId]').attr('placeholder', ids); 
           $('input[name=playerId]').attr('value', ids);          
         </script>
         <div><button id="good">로그인</button></div>
