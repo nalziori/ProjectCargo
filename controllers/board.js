@@ -754,7 +754,7 @@ exports.pullUp = doAsync(async (req, res, next) => {
     conn.release();
   }
 });
-
+/*
 const push = new pushmessage();
 //푸시 발송
 exports.pushcomment = doAsync(async (req, res, next) => {
@@ -817,3 +817,4 @@ exports.pushreply = doAsync(async (req, res, next) => {
     console.log('fail to push noti');
   }
 });
+*/

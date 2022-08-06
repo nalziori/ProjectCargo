@@ -292,22 +292,6 @@ if (newCommentBtn) {
               if (passwordInput) passwordInput.value = '';
               alert('댓글이 등록되었습니다.');
               location.reload();
-              var link = document.location.href;
-              const xhr = new XMLHttpRequest();
-              var body;
-              xhr.onload = () => {
-                if (xhr.status === 200 || xhr.status === 201) {
-                  body = {
-                    link,
-                    articleId
-                  }
-                }else {
-                  console.error(xhr.responseText);
-                }
-              };
-              xhr.open('POST', '/board/push/comment');
-              xhr.setRequestHeader('Content-Type', 'application/json');
-              xhr.send(JSON.stringify(body));
             }
           }
         } else {
@@ -449,22 +433,6 @@ const addEvent = async () => {
                   xhr.send(JSON.stringify(data));
                   alert('답글이 등록되었습니다.');
                   location.reload();
-                  var link = document.location.href;
-                  const xhr1 = new XMLHttpRequest();
-                  var body;
-                  xhr1.onload = () => {
-                    if (xhr1.status === 200 || xhr1.status === 201) {
-                      body = {
-                      link,
-                      commentParentId
-                    }
-                    }else {
-                      console.error(xhr.responseText);
-                    }
-                  };
-                  xhr.open('POST', '/board/push/reply');
-                  xhr.setRequestHeader('Content-Type', 'application/json');
-                  xhr.send(JSON.stringify(body));
                 } else {
                   alert(`금지어 ${contentResult.word} 사용으로 해당글을 게시할 수 없습니다`);
                 }
