@@ -184,8 +184,7 @@ const authCheckout = async (req, res, next, userInfo) => {
         const user = socialIdResult[0];
         req.session.user = user;
         req.session.save(() => {
-          await conn.query(`UPDATE user SET appToken=? WHERE ${type}id=?`, [localStorage.getItem(req.session.user.id), id]);
-          localStorage.removeItem("playerId");
+          
         });
       } else { // 회원가입
         // 이메일 조회
