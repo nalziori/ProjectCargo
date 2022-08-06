@@ -17,7 +17,6 @@ const { AppleLogin, GoogleLogin, FacebookLogin, TwitterLogin, NaverLogin, KakaoL
 const IndexBoard = require('../services/indexBoard');
 const User = require('../services/user');
 const Go = require('../services/go');
-const PlayerId = require('../services/playerid');
 const { pathToFileURL } = require('url');
 
 const SALT_COUNT = 10;
