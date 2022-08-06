@@ -101,7 +101,7 @@
     <% const globalAlarms = locals.alarms.filter(a => a.status === 1) %>
     <div class="newbuttons">
       <div>
-        <% if (globalAlarms.length) { %> <% getAlarm } %>
+        <% if (globalAlarms.length) { %> <% getAlarms } %>
         <button><a href="/alarm">
         <% newAlarms = locals.alarms.filter(a => a.status === 1) %>
           <% if (newAlarms.length) { %>

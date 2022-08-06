@@ -31,11 +31,11 @@
   aside .admin a:active {
     background-color: rgba(0, 0, 0, 0.5);
   }
-  aside .getAlarms {
+  aside .getAlarm {
     background-color: yellow;
   }
-  aside .getAlarms a:hover,
-  aside .getAlarms a:active {
+  aside .getAlarm a:hover,
+  aside .getAlarm a:active {
     background-color: yellow;
   }
   aside .joinAndFindPassword,
@@ -91,7 +91,7 @@
         <div class="logout"><a href="/logout">로그아웃</a></div>
       </div>
       <% const globalAlarms = locals.alarms.filter(a => a.status === 1) %>
-      <div class="alarm <% if (globalAlarms.length) { %> getAlarms<% } %>">
+      <div class="alarm <% if (globalAlarms.length) { %> getAlarm<% } %>">
         <a href="/alarm">
           <% newAlarms = locals.alarms.filter(a => a.status === 1) %>
           <% if (newAlarms.length) { %>
