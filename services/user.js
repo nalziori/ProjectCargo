@@ -12,14 +12,14 @@ class User extends Class {
     data = Object.assign({
       keyword: null,
       password: null,
-      playerId: null
+      playerId: null,
     }, data);
     const { keyword, password, playerId } = data;
     const user = await this.getByUidOrEmail(keyword);
     if (user) {
       const passwordCheckResult = await this.passwordCheck(user, password);
       if (passwordCheckResult) {
-        await this.conn.query('UPDATE user SET appToken=? WHERE uid=?', [playerId, keyword]);
+        await this.conn.query('UPDATE user SET appToken=? WHERE id=?', [playerId, user.id]);
         return user;
       } else {
         throw new Error('비밀번호가 일치하지 않습니다');
