@@ -65,16 +65,16 @@ exports.authNaver = doAsync(async (req, res, next) => {
 
 exports.authKakao = doAsync(async (req, res, next) => {
   const setting = res.locals.setting;
-  const { playerId } = req.param;
+  //const { playerId } = req.param;
   const { socialKakaoClientId, socialKakaoClientSecret } = setting;
-  if(playerId){
+  /*if(playerId){
     const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback/:${playerId}`);
     res.redirect(kakaoAuthUrl);
   }
-  else{
+  else{*/
     const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback/`);
     res.redirect(kakaoAuthUrl);
-  }
+ // }
 });
 
 exports.authAppleCallback = doAsync(async (req, res, next) => {
