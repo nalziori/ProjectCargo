@@ -154,15 +154,14 @@ exports.authNaverCallback = doAsync(async (req, res, next) => {
 
 exports.authKakaoCallback = doAsync(async (req, res, next) => {
   const { code } = req.query;
-  const { playerId }= req.param;
+  //const { playerId }= req.param;
   const user = await kakao.auth(code);
   const result = await authCheckout(req, res, next, user);
   if (result) {
-    if(playerId){
+    /*if(playerId){
       const conn=await pool.connection();
       await conn.query('UPDATE user SET appToken=? WHERE id=?', playerId, user.id);
-      conn.release();
-    }
+    }*/
     res.redirect('/');
   } else {
     flash.create({
