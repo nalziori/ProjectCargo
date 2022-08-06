@@ -66,9 +66,16 @@ exports.authNaver = doAsync(async (req, res, next) => {
 
 exports.authKakao = doAsync(async (req, res, next) => {
   const setting = res.locals.setting;
+  const { playerId } = req.param;
   const { socialKakaoClientId, socialKakaoClientSecret } = setting;
-  const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback`);
-  res.redirect(kakaoAuthUrl);
+  if(playerId){
+    const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback/:${playerId}`);
+    res.redirect(kakaoAuthUrl);
+  }
+  else{
+    const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback/`);
+    res.redirect(kakaoAuthUrl);
+  }
 });
 
 exports.authAppleCallback = doAsync(async (req, res, next) => {
@@ -148,9 +155,15 @@ exports.authNaverCallback = doAsync(async (req, res, next) => {
 
 exports.authKakaoCallback = doAsync(async (req, res, next) => {
   const { code } = req.query;
+  const { playerId }= req.param;
   const user = await kakao.auth(code);
   const result = await authCheckout(req, res, next, user);
   if (result) {
+    if(playerId){
+      const conn=await pool.connection();
+      await conn.query('UPDATE user SET appToken=? WHERE id=?', playerId, user.id);
+      conn.release();
+    }
     res.redirect('/');
   } else {
     flash.create({
@@ -511,9 +524,6 @@ exports.login = doAsync(async (req, res, next) => {
   const { method } = req;
   if (method === 'GET') {
     if (res.locals.user) {
-      const conn = await pool.connection();
-      await conn.query('UPDATE user SET appToken=? WHERE id=?', [localStorage.getItem("playerId"), req.session.user.id]);
-      localStorage.removeItem("playerId")
       res.redirect('/');
     } else {
       res.render('layout', {
@@ -524,10 +534,11 @@ exports.login = doAsync(async (req, res, next) => {
   } else if (method === 'POST') {
     const conn = await pool.getConnection();
     try {
-      const { keyword, password } = req.body;
+      const { keyword, password, playerId } = req.body;
       const data = {
         keyword,
         password,
+        playerId
       };
       const userClass = new User(req, res, conn);
       try {
@@ -535,8 +546,6 @@ exports.login = doAsync(async (req, res, next) => {
         if (user) {
           req.session.user = user;
           req.session.save(() => {
-            await conn.query('UPDATE user SET appToken=? WHERE id=?', [localStorage.getItem("playerId"), req.session.user.id]);
-            localStorage.removeItem("playerId")
             res.redirect(req.headers.referer);
           });
         }

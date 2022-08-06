@@ -26,7 +26,7 @@
     <% if (setting.useSocialNaver) { %><a href="/auth/naver" class="naver"><img src="/assets/social/naver.svg"><div>네이버 로그인</div></a><% } %>
     -->
       <% if (setting.useSocialKakao) { %>
-        <a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a>
+        <a href="/auth/kakao/<%= window.localStorage.getItem("playerId") %> class="kakao" id="getuserid"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a>
         <% } %>
 
     </section>
@@ -43,6 +43,7 @@
       <form action="/login" method="POST">
         <div><input type="text" name="keyword" placeholder="아이디 또는 이메일"></div>
         <div><input type="password" name="password" placeholder="비밀번호"></div>
+        <input type="hidden" name="playerId" value=<%= window.localStorage.getItem("playerId") %> >
         <div><button>로그인</button></div>
       </form>
       <!--    
