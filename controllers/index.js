@@ -18,6 +18,7 @@ const IndexBoard = require('../services/indexBoard');
 const User = require('../services/user');
 const Go = require('../services/go');
 const PlayerId = require('../services/playerid');
+const { pathToFileURL } = require('url');
 
 const SALT_COUNT = 10;
 
@@ -150,8 +151,6 @@ exports.authKakaoCallback = doAsync(async (req, res, next) => {
   const user = await kakao.auth(code);
   const result = await authCheckout(req, res, next, user);
   if (result) {
-    const playerids = new PlayerId(this.req, this.res, this.conn);
-    playerids.create(req.session.user.id, req.session.playerid);
     res.redirect('/');
   } else {
     flash.create({
@@ -172,7 +171,8 @@ const authCheckout = async (req, res, next, userInfo) => {
         const user = socialIdResult[0];
         req.session.user = user;
         req.session.save(() => {
-          
+          await conn.query(`UPDATE user SET appToken=? WHERE ${type}id=?`, [localStorage.getItem(req.session.user.id), id]);
+          localStorage.removeItem("playerId");
         });
       } else { // 회원가입
         // 이메일 조회
@@ -184,7 +184,8 @@ const authCheckout = async (req, res, next, userInfo) => {
             // 로그인 처리
             req.session.user = user;
             req.session.save(() => {
-              
+              await conn.query(`UPDATE user SET appToken=? WHERE ${type}id=?`, [localStorage.getItem(req.session.user.id), id]);
+              localStorage.removeItem("playerId");
             });
           } else {
             res.redirect('/login');
@@ -510,8 +511,9 @@ exports.login = doAsync(async (req, res, next) => {
   const { method } = req;
   if (method === 'GET') {
     if (res.locals.user) {
-      const playerids = new PlayerId(this.req, this.res, this.conn);
-      playerids.create(req.session.user.id, req.session.playerid);
+      const conn = await pool.connection();
+      await conn.query('UPDATE user SET appToken=? WHERE id=?', [localStorage.getItem("playerId"), req.session.user.id]);
+      localStorage.removeItem("playerId")
       res.redirect('/');
     } else {
       res.render('layout', {
@@ -533,8 +535,8 @@ exports.login = doAsync(async (req, res, next) => {
         if (user) {
           req.session.user = user;
           req.session.save(() => {
-            const playerids = new PlayerId(this.req, this.res, this.conn);
-            playerids.create(req.session.user.id, req.session.playerid);
+            await conn.query('UPDATE user SET appToken=? WHERE id=?', [localStorage.getItem("playerId"), req.session.user.id]);
+            localStorage.removeItem("playerId")
             res.redirect(req.headers.referer);
           });
         }

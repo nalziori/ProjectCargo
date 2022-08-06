@@ -13,9 +13,6 @@ router.post('/image/delete', controller.imageDelete);
 
 router.post('/blockUser', controller.blockUser);
 
-//push id
-router.post('/catch', controller.catch);
-
 // CKEditor5
 router.post('/image/upload', multer().fields([{ name: 'image' }]), controller.imageUpload);
 

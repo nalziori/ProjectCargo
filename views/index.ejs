@@ -4,10 +4,7 @@
     
     window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
         window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
-            const id = session.user.id;
-            if(id){
-                session.user.playerid = result.userId;
-            }
+            localStorage.setItem("playerId", JSON.stringify(result.userId));
         })
     })
   </script>
