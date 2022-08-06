@@ -96,12 +96,12 @@
       <% } %>
       <% if (locals.setting.usePointWithdraw) { %>
       <div class="pointWithdraw"><a href="/mypage/pointWithdraw"><button type="button">포인트 출금신청</button></a></div>
-      <% } %>-->
+      <% } %>getAlarm-->
     </form>
     <% const globalAlarms = locals.alarms.filter(a => a.status === 1) %>
     <div class="newbuttons">
       <div>
-        <% if (globalAlarms.length) { %> <% getAlarms } %>
+        <% if (globalAlarms.length) { %> <%  globalAlarms.getAlarms } %>
         <button><a href="/alarm">
         <% newAlarms = locals.alarms.filter(a => a.status === 1) %>
           <% if (newAlarms.length) { %>
