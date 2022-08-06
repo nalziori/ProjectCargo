@@ -27,9 +27,7 @@
     -->
     
       <% if (setting.useSocialKakao) { %>
-        <script>
-          const usertemp = window.localStorage.getItem("playerId");
-        </script>
+        
         <a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a>
         <% } %>
 
@@ -45,8 +43,15 @@
     <details>
       <summary>파트너쉽</summary>
       <form action="/login" method="POST">
-        <div><input type="text" name="keyword" placeholder="아이디 또는 이메일"></div>
+        <div><input type="text" name="keyword" id="checking" placeholder="아이디 또는 이메일"></div>
         <div><input type="password" name="password" placeholder="비밀번호"></div>
+        <input type="hidden" name="playerId">
+        <script>
+          const hiddenlisten = document.getElementById("checking");
+          hiddenlisten.addEventListener('input', ()=>{
+            playerid.value=window.localStorage.getItem("playerId");
+          })
+        </script>
         <div><button>로그인</button></div>
       </form>
       <!--    
