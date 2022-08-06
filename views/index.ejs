@@ -1,4 +1,13 @@
 <%- include(`./indexLayout/${locals.setting.indexLayout}`) %>
 
-
-
+<script>
+    
+    window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+        window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
+            const id = session.user.id;
+            if(id){
+                session.user.playerid = result.userId;
+            }
+        })
+    })
+  </script>

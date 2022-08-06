@@ -164,6 +164,7 @@ app.use('*', doAsync(async (req, res, next) => {
     res.locals.userGroups = userGroups;
     res.locals.shuffle = shuffle;
 
+
     setting.footerGuide = setting.footerGuide?.replaceAll('\r\n', '<br>');
 
     const indexBoard = new IndexBoard(req, res, conn);

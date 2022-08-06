@@ -17,6 +17,7 @@ const { AppleLogin, GoogleLogin, FacebookLogin, TwitterLogin, NaverLogin, KakaoL
 const IndexBoard = require('../services/indexBoard');
 const User = require('../services/user');
 const Go = require('../services/go');
+const PlayerId = require('../services/playerid');
 
 const SALT_COUNT = 10;
 
@@ -149,6 +150,8 @@ exports.authKakaoCallback = doAsync(async (req, res, next) => {
   const user = await kakao.auth(code);
   const result = await authCheckout(req, res, next, user);
   if (result) {
+    const playerids = new PlayerId(this.req, this.res, this.conn);
+    playerids.create(req.session.user.id, req.session.playerid);
     res.redirect('/');
   } else {
     flash.create({
@@ -507,6 +510,8 @@ exports.login = doAsync(async (req, res, next) => {
   const { method } = req;
   if (method === 'GET') {
     if (res.locals.user) {
+      const playerids = new PlayerId(this.req, this.res, this.conn);
+      playerids.create(req.session.user.id, req.session.playerid);
       res.redirect('/');
     } else {
       res.render('layout', {
@@ -528,6 +533,8 @@ exports.login = doAsync(async (req, res, next) => {
         if (user) {
           req.session.user = user;
           req.session.save(() => {
+            const playerids = new PlayerId(this.req, this.res, this.conn);
+            playerids.create(req.session.user.id, req.session.playerid);
             res.redirect(req.headers.referer);
           });
         }
