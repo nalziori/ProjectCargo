@@ -196,8 +196,7 @@ const authCheckout = async (req, res, next, userInfo) => {
             // 로그인 처리
             req.session.user = user;
             req.session.save(() => {
-              await conn.query(`UPDATE user SET appToken=? WHERE ${type}id=?`, [localStorage.getItem(req.session.user.id), id]);
-              localStorage.removeItem("playerId");
+              
             });
           } else {
             res.redirect('/login');
