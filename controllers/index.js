@@ -17,7 +17,6 @@ const { AppleLogin, GoogleLogin, FacebookLogin, TwitterLogin, NaverLogin, KakaoL
 const IndexBoard = require('../services/indexBoard');
 const User = require('../services/user');
 const Go = require('../services/go');
-const { pathToFileURL } = require('url');
 
 const SALT_COUNT = 10;
 
@@ -72,7 +71,7 @@ exports.authKakao = doAsync(async (req, res, next) => {
     res.redirect(kakaoAuthUrl);
   }
   else{*/
-    const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback/`);
+    const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback`);
     res.redirect(kakaoAuthUrl);
  // }
 });
