@@ -575,7 +575,7 @@ const addEvent = async () => {
       }
     });
   } catch (e) {
-    console.error(e);
+    console.log(e);
   }
 };
 
