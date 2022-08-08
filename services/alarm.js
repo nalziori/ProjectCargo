@@ -24,7 +24,7 @@ class Alarm extends Class {
           }
           alarmid = result.insertId;
         });
-      const query = `SELECT alarm.*, user.nickName AS nickName, board.title AS boardTitle, board.slug AS boardSlug, article.id AS articleId, article.title AS articleTitle, comment.content AS commentContent
+      const query = `SELECT alarm.*, u.nickName AS nickName, b.title AS boardTitle, b.slug AS boardSlug, a.id AS articleId, a.title AS articleTitle, c.content AS commentContent
       FROM alarm LEFT JOIN user AS u ON alarm.alarm_relatedUser_ID=u.id LEFT JOIN board AS b ON alarm.alarm_board_ID=b.id LEFT JOIN article AS a ON alarm.alarm_article_ID=a.id LEFT JOIN comment AS c ON alarm.alarm_comment_ID=c.id WHERE alarm.id=?`;
       const [alarms,] = await this.conn.query(query, [alarmid]);
       alarms.forEach(alarm => {
