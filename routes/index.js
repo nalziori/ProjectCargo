@@ -18,7 +18,7 @@ router.get('/auth/google/callback', controller.authGoogleCallback);
 router.get('/auth/facebook/callback', controller.authFacebookCallback);
 router.get('/auth/twitter/callback', controller.authTwitterCallback);
 router.get('/auth/naver/callback', controller.authNaverCallback);
-router.get('/auth/kakao/callback/', controller.authKakaoCallback);
+router.get('/auth/kakao/callback', controller.authKakaoCallback);
 
 router.get('/join', controller.join);
 router.post('/join', controller.join);

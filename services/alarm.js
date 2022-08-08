@@ -35,7 +35,6 @@ class Alarm extends Class {
             notification.config();
             if (notification) {
               async () => {
-                const push_target_all = new Array();
                 const player_id_array = new Array();
                 const player = await this.conn.query("SELECT * FROM user WHERE id=?", [alarm.alarm_user_ID]);
                 player_id_array.push(player.appToken);
@@ -43,7 +42,6 @@ class Alarm extends Class {
                   `https://vetween.kr/${alarm.boardSlug}/${alarm.articleId}`,
                   `게시글 ${alarm.articleTitle}에 새로운 댓글이 달렸습니다.`,
                   "내 게시글에 새로운 댓글이 달렸어요! 어서 확인해보세요!",
-                  push_target_all,
                   player_id_array,
                   "../public/asset/vetween_logo.png",
                 ));
@@ -55,7 +53,6 @@ class Alarm extends Class {
             notification_reply.config();
             if (notification_reply) {
               async () => {
-                const push_target_all_reply = new Array();
                 const player_id_array_reply = new Array();
                 const player_reply = await this.conn.query("SELECT * FROM user WHERE id=?", [alarm.alarm_user_ID]);
                 player_id_array.push(player_reply.appToken);
@@ -63,7 +60,6 @@ class Alarm extends Class {
                   `https://vetween.kr/${alarm.boardSlug}/${alarm.articleId}`,
                   `내 댓글에 새로운 대댓글이 달렸습니다`,
                   "내 댓글에 새로운 대댓글이 달렸어요! 어서 확인해보세요!",
-                  push_target_all_reply,
                   player_id_array_reply,
                   "../public/asset/vetween_logo.png",
                 ));
