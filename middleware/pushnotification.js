@@ -38,6 +38,7 @@ class pushmessage{
         const options = options_bulider("post", "notifications", body);
         try{
             const res = await axios(options);
+            console.log(res.body);
             return res.body;
         } catch (error) {
                console.error(error);

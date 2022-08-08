@@ -15,7 +15,7 @@ class Alarm extends Class {
     }, data);
     const { type, userId, relatedUserId, boardId, articleId, commentId, messageId } = data;
     if (userId !== relatedUserId) {
-      var alarmid;
+      let alarmid;
       this.conn.query(`INSERT INTO alarm (type, alarm_user_ID, alarm_relatedUser_ID, alarm_board_ID, alarm_article_ID, alarm_comment_ID, alarm_message_ID) VALUES (?, ?, ?, ?, ?, ?, ?)`,
         [type, userId, relatedUserId, boardId, articleId, commentId, messageId],
         function (error, result) {
@@ -25,16 +25,7 @@ class Alarm extends Class {
           alarmid = result.insertId;
         });
       const query = `SELECT alarm.*, user.nickName AS nickName, board.title AS boardTitle, board.slug AS boardSlug, article.id AS articleId, article.title AS articleTitle, comment.content AS commentContent
-      FROM alarm
-      LEFT JOIN user AS user
-      ON alarm.alarm_relatedUser_ID=user.id
-      LEFT JOIN board AS board
-      ON alarm.alarm_board_ID=board.id
-      LEFT JOIN article AS article
-      ON alarm.alarm_article_ID=article.id
-      LEFT JOIN comment AS comment
-      ON alarm.alarm_comment_ID=comment.id
-      WHERE alarm.id=?`;
+      FROM alarm LEFT JOIN user AS u ON alarm.alarm_relatedUser_ID=u.id LEFT JOIN board AS b ON alarm.alarm_board_ID=b.id LEFT JOIN article AS a ON alarm.alarm_article_ID=a.id LEFT JOIN comment AS c ON alarm.alarm_comment_ID=c.id WHERE alarm.id=?`;
       const [alarms,] = await this.conn.query(query, alarmid);
       alarms.forEach(alarm => {
         alarm.datetime = datetime(alarm.createdAt);
