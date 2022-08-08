@@ -24,54 +24,50 @@ class Alarm extends Class {
           }
           alarmid = result.insertId;
         });
-      const query = `SELECT alarm.*, u.nickName AS nickName, b.title AS boardTitle, b.slug AS boardSlug, a.id AS articleId, a.title AS articleTitle, c.content AS commentContent
-      FROM alarm LEFT JOIN user AS u ON alarm.alarm_relatedUser_ID=u.id LEFT JOIN board AS b ON alarm.alarm_board_ID=b.id LEFT JOIN article AS a ON alarm.alarm_article_ID=a.id LEFT JOIN comment AS c ON alarm.alarm_comment_ID=c.id WHERE alarm.id=?`;
-      const [alarms,] = await this.conn.query(query, [alarmid]);
-      alarms.forEach(alarm => {
-        alarm.datetime = datetime(alarm.createdAt);
-        switch (alarm.type) {
-          case 'newComment':
-            const notification = new push();
-            notification.config();
-            if (notification) {
-              async () => {
-                const player_id_array = new Array();
-                const player = await this.conn.query("SELECT * FROM user WHERE id=?", [alarm.alarm_user_ID]);
-                player_id_array.push(player.appToken);
-                notification.createNotification(notification.composebody(
-                  `https://vetween.kr/${alarm.boardSlug}/${alarm.articleId}`,
-                  `게시글 ${alarm.articleTitle}에 새로운 댓글이 달렸습니다.`,
-                  "내 게시글에 새로운 댓글이 달렸어요! 어서 확인해보세요!",
-                  player_id_array,
-                  "../public/asset/vetween_logo.png",
-                ));
-              }
+      const alarm = await this.conn.query('SELECT * FROM alarm WHERE id=?', [alarmid]);
+      switch (alarm.type) {
+        case 'newComment':
+          const notification = new push();
+          notification.config();
+          if (notification) {
+            async () => {
+              const player_id_array = new Array();
+              const player = await this.conn.query("SELECT * FROM user WHERE id=?", [alarm.alarm_user_ID]);
+              player_id_array.push(player.appToken);
+              notification.createNotification(notification.composebody(
+                `https://vetween.kr/${alarm.boardSlug}/${alarm.articleId}`,
+                `게시글 ${alarm.articleTitle}에 새로운 댓글이 달렸습니다.`,
+                "내 게시글에 새로운 댓글이 달렸어요! 어서 확인해보세요!",
+                player_id_array,
+                "../public/asset/vetween_logo.png",
+              ));
             }
-            break;
-          case 'replyComment':
-            const notification_reply = new push();
-            notification_reply.config();
-            if (notification_reply) {
-              async () => {
-                const player_id_array_reply = new Array();
-                const player_reply = await this.conn.query("SELECT * FROM user WHERE id=?", [alarm.alarm_user_ID]);
-                player_id_array.push(player_reply.appToken);
-                notification_reply.createNotification(notification_reply.composebody(
-                  `https://vetween.kr/${alarm.boardSlug}/${alarm.articleId}`,
-                  `내 댓글에 새로운 대댓글이 달렸습니다`,
-                  "내 댓글에 새로운 대댓글이 달렸어요! 어서 확인해보세요!",
-                  player_id_array_reply,
-                  "../public/asset/vetween_logo.png",
-                ));
-              }
+          }
+          break;
+        case 'replyComment':
+          const notification_reply = new push();
+          notification_reply.config();
+          if (notification_reply) {
+            async () => {
+              const player_id_array_reply = new Array();
+              const player_reply = await this.conn.query("SELECT * FROM user WHERE id=?", [alarm.alarm_user_ID]);
+              player_id_array.push(player_reply.appToken);
+              notification_reply.createNotification(notification_reply.composebody(
+                `https://vetween.kr/${alarm.boardSlug}/${alarm.articleId}`,
+                `내 댓글에 새로운 대댓글이 달렸습니다`,
+                "내 댓글에 새로운 대댓글이 달렸어요! 어서 확인해보세요!",
+                player_id_array_reply,
+                "../public/asset/vetween_logo.png",
+              ));
             }
-            break;
-          default :
-            this.conn.release();
-        }
-      });
-    }
+          }
+          break;
+        default:
+          this.conn.release();
+      }
+    };
   }
+
 
 
   async getAlarms(user) {
