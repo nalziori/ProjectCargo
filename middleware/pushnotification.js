@@ -68,8 +68,6 @@ class pushmessage {
             const body = {
                 app_id: this.ONESIGANL_APP_ID,
                 included_segments: ['Subscribed Users'],
-                name: 'BETWEEN',
-                app_id: app_id,
                 include_player_ids: player_id_array,
                 headings: { "en": push_title },   //푸시 타이틀
                 contents: { "en": push_content },   //푸시 내용
