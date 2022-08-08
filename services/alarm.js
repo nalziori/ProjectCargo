@@ -23,44 +23,35 @@ class Alarm extends Class {
             console.log(error);
           }
           alarmid = result.insertId;
+          console.log(alarmid);
         });
       const alarm = await this.conn.query('SELECT * FROM alarm WHERE id=?', [alarmid]);
       switch (alarm.type) {
         case 'newComment':
           const notification = new push();
-          notification.config();
-          if (notification) {
-            async () => {
-              const player_id_array = new Array();
-              const player = await this.conn.query("SELECT * FROM user WHERE id=?", [alarm.alarm_user_ID]);
-              player_id_array.push(player.appToken);
-              notification.createNotification(notification.composebody(
-                `https://vetween.kr/${alarm.boardSlug}/${alarm.articleId}`,
-                `게시글 ${alarm.articleTitle}에 새로운 댓글이 달렸습니다.`,
-                "내 게시글에 새로운 댓글이 달렸어요! 어서 확인해보세요!",
-                player_id_array,
-                "../public/asset/vetween_logo.png",
-              ));
-            }
-          }
+          const player_id_array = new Array();
+          const player = await this.conn.query("SELECT * FROM user WHERE id=?", [alarm.alarm_user_ID]);
+          player_id_array.push(player.appToken);
+          notification.createNotification(notification.composebody(
+            `https://vetween.kr/${alarm.boardSlug}/${alarm.articleId}`,
+            `게시글 ${alarm.articleTitle}에 새로운 댓글이 달렸습니다.`,
+            "내 게시글에 새로운 댓글이 달렸어요! 어서 확인해보세요!",
+            player_id_array,
+            "../public/asset/vetween_logo.png",
+          ));
           break;
         case 'replyComment':
           const notification_reply = new push();
-          notification_reply.config();
-          if (notification_reply) {
-            async () => {
-              const player_id_array_reply = new Array();
-              const player_reply = await this.conn.query("SELECT * FROM user WHERE id=?", [alarm.alarm_user_ID]);
-              player_id_array.push(player_reply.appToken);
-              notification_reply.createNotification(notification_reply.composebody(
-                `https://vetween.kr/${alarm.boardSlug}/${alarm.articleId}`,
-                `내 댓글에 새로운 대댓글이 달렸습니다`,
-                "내 댓글에 새로운 대댓글이 달렸어요! 어서 확인해보세요!",
-                player_id_array_reply,
-                "../public/asset/vetween_logo.png",
-              ));
-            }
-          }
+          const player_id_array_reply = new Array();
+          const player_reply = await this.conn.query("SELECT * FROM user WHERE id=?", [alarm.alarm_user_ID]);
+          player_id_array_reply.push(player_reply.appToken);
+          notification_reply.createNotification(notification_reply.composebody(
+            `https://vetween.kr/${alarm.boardSlug}/${alarm.articleId}`,
+            `내 댓글에 새로운 대댓글이 달렸습니다`,
+            "내 댓글에 새로운 대댓글이 달렸어요! 어서 확인해보세요!",
+            player_id_array_reply,
+            "../public/asset/vetween_logo.png",
+          ));
           break;
         default:
           this.conn.release();
