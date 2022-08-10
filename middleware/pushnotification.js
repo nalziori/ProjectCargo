@@ -3,7 +3,7 @@ const queryString = require('query-string');
 const { urlencoded } = require('express');
 const { post } = require('request');
 const doAsync = require('./doAsync');
-const onesignalsdk = require('../OneSignalSDKWorker');
+//const onesignalsdk = require('../OneSignalSDKWorker');
 
 
 class pushmessage {
