@@ -560,7 +560,8 @@ exports.login = doAsync(async (req, res, next) => {
 
 exports.logout = doAsync(async (req, res, next) => {
   req.session.destroy(() => {
-    res.redirect(req.headers.referer);
+    //res.redirect(req.headers.referer);
+    res.redirect('/login');
   });
 });
 
