@@ -413,14 +413,15 @@ class Comment extends Class {
       const b = comment.comment_user_ID;
       const [before, ] = await this.conn.query('SELECT * FROM comment WHERE id=?',[comment.id]);
       var code = before[0].anonymous_code;
+      const user = await this.conn.query('SELECT * FROM user WHERE id=?',[comment.comment_user_ID]);
       if(a == b){
         comment.nickName = '익명(작성자)';
-        comment.permissionName = null;
+        comment.permissionName = user.permissionName;
       }
       //기존 유저 댓글 처리
       else if(code == 0){
         comment.nickName = '익명';
-        comment.permissionName = null;
+        comment.permissionName = user.permissionName;
       }
       else{
         const query = 'SELECT * FROM comment WHERE comment_user_ID = ? AND comment_article_ID=?';
@@ -428,7 +429,7 @@ class Comment extends Class {
         await this.conn.query('UPDATE comment SET anonymous_code=? WHERE comment_user_ID=? AND comment_article_ID=?', [usedID.anonymous_code, usedID.comment_user_ID, usedID.comment_article_ID]);
         var code = usedID[0].anonymous_code;
         comment.nickName = '익명' + code;
-        comment.permissionName = null;
+        comment.permissionName = user.permissionName;
       }
     }
 
