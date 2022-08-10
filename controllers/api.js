@@ -18,6 +18,7 @@ const Alarm = require('../services/alarm');
 const Report = require('../services/report');
 const UserGroupBoard = require('../services/userGroupBoard');
 const checkBlockWordsFunc = require('../middleware/blockWords');
+const Push = require('../middleware/pushnotification');
 
 /* AWS S3 */
 const AWS = require('aws-sdk');
@@ -491,6 +492,17 @@ exports.newComment = doAsync(async (req, res, next) => {
     if (userGroupCommentPermission) {
       console.log(userGroupCommentPermission);
       const result = await commentClass.create(articleId, data);
+      const notification = new Push();
+      const player_id_array = new Array();
+      const player = await this.conn.query("SELECT * FROM user WHERE uid=?", [keyword]);
+      player_id_array.push(player.appToken);
+      notification.createNotification(notification.composebody(
+        `https://vetween.kr/`,
+        `테스트`,
+        "테스트",
+        player_id_array,
+        "",
+      ));
       if (result) {
         res.send({
           message: '댓글 등록 성공',
