@@ -494,7 +494,7 @@ exports.newComment = doAsync(async (req, res, next) => {
       const result = await commentClass.create(articleId, data);
       const notification = new Push();
       const player_id_array = new Array();
-      const player = await this.conn.query("SELECT * FROM user WHERE id=?", [article.article.user.ID]);
+      const player = await conn.query("SELECT * FROM user WHERE id=?", [article.article.user.ID]);
       player_id_array.push(player.appToken);
       notification.createNotification(notification.composebody(
         `https://vetween.kr/`,
