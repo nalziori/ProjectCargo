@@ -3,6 +3,7 @@ const queryString = require('query-string');
 const { urlencoded } = require('express');
 const { post } = require('request');
 const doAsync = require('./doAsync');
+const fetch = require("node-fetch");
 //const onesignalsdk = require('../OneSignalSDKWorker');
 
 
