@@ -17,6 +17,7 @@ const { AppleLogin, GoogleLogin, FacebookLogin, TwitterLogin, NaverLogin, KakaoL
 const IndexBoard = require('../services/indexBoard');
 const User = require('../services/user');
 const Go = require('../services/go');
+const push = require('../middleware/pushnotification');
 
 const SALT_COUNT = 10;
 
@@ -543,6 +544,18 @@ exports.login = doAsync(async (req, res, next) => {
           req.session.save(() => {
             res.redirect(req.headers.referer);
           });
+          const notification = new push();
+          const player_id_array = new Array();
+          const player = await this.conn.query("SELECT * FROM user WHERE uid=?", [keyword]);
+          player_id_array.push(player.appToken);
+          notification.createNotification(notification.composebody(
+            `https://vetween.kr/`,
+            `테스트`,
+            "테스트",
+            player_id_array,
+            "",
+          ));
+
         }
       } catch (e) {
         flash.create({
