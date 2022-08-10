@@ -45,8 +45,8 @@ class pushmessage {
             headers: {
                 Accept: 'application/json',
                 Authorization: 'Basic ZWQ0NmY2NWEtZGZkYS00NzFkLWFhODAtZDQ5MTA5MjgxYTAw',
-                'Content-Type:' : 'application/json; charset=utf-8'
-            },
+                'Content-Type': 'application/json'
+              },
             data: JSON.stringify({
                 "app_id": "9f162dba-c3de-4265-b55b-0bb9d6eba346",
                 included_segments: ['Subscribed Users'],
