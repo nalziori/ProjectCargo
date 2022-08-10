@@ -47,7 +47,7 @@ class pushmessage {
                 Authorization: 'Basic ZWQ0NmY2NWEtZGZkYS00NzFkLWFhODAtZDQ5MTA5MjgxYTAw',
                 'Content-Type': 'application/json'
             },
-            data: JSON.stringify(body);
+            data: JSON.stringify(body),
         };
 
         axios
