@@ -39,7 +39,7 @@ class pushmessage {
 
 
 
-    async createNotification(data_param, push_title, push_content, player_id_array, img_url) {
+    async createNotification(data_param, push_title, push_content, player_id_array) {
         const options = {
             method: 'POST',
             headers: {
@@ -54,12 +54,13 @@ class pushmessage {
                 headings: { "en": push_title },   //푸시 타이틀
                 contents: { "en": push_content },   //푸시 내용
                 data: data_param,   //이동 url
+                /*
                 large_icon: "icon_96", //표시 icon
                 small_icon: "icon_48",  //상태바 표시 icon
                 big_picture: img_url,   //안드로이드 푸시 이미지
                 ios_attachments: { "id1": img_url },   //iOS 푸시 이미지
                 ios_badgeType: "Increase",   //ios badge counter
-                ios_badgeCount: 1,           //ios badge counter by 1
+                ios_badgeCount: 1,           //ios badge counter by 1*/
             },
         };
 

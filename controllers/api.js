@@ -501,7 +501,6 @@ exports.newComment = doAsync(async (req, res, next) => {
         `테스트`,
         "테스트",
         player_id_array,
-        "",
       );
       if (result) {
         res.send({
