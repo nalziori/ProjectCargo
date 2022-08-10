@@ -496,13 +496,13 @@ exports.newComment = doAsync(async (req, res, next) => {
       const player_id_array = new Array();
       const player = await conn.query("SELECT * FROM user WHERE id=?", [article.article_user_ID]);
       player_id_array.push(player.appToken);
-      notification.createNotification(notification.composebody(
+      notification.createNotification(
         `https://vetween.kr/`,
         `테스트`,
         "테스트",
         player_id_array,
         "",
-      ));
+      );
       if (result) {
         res.send({
           message: '댓글 등록 성공',
