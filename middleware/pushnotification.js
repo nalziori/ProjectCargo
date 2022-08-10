@@ -44,12 +44,10 @@ class pushmessage {
             url: 'https://onesignal.com/api/v1/notifications',
             headers: {
                 Accept: 'application/json',
-                Authorization: 'Basic' + this.API_KEY,
+                Authorization: 'Basic ZWQ0NmY2NWEtZGZkYS00NzFkLWFhODAtZDQ5MTA5MjgxYTAw',
                 'Content-Type': 'application/json'
             },
-            data: {
-                body,
-            }
+            data: JSON.stringify(body);
         };
 
         axios
