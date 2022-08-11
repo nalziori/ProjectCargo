@@ -5,7 +5,9 @@
     window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
         window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
             window.localStorage.setItem("playerId", result.userId);
-            window.document.write(JSON.stringify(result));
+            if(!result){
+                alert('no player ids');
+            }
         })
     })
   </script>
