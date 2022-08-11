@@ -493,14 +493,13 @@ exports.newComment = doAsync(async (req, res, next) => {
       console.log(userGroupCommentPermission);
       const result = await commentClass.create(articleId, data);
       const notification = new Push();
-      const player_id_array = new Array();
-      const player = await conn.query("SELECT * FROM user WHERE id=?", [article.article_user_ID]);
-      player_id_array.push(player.appToken);
+      //const player_id_array = new Array();
+      //const player = await conn.query("SELECT * FROM user WHERE id=?", [article.article_user_ID]);
+      //player_id_array.push(player.appToken);
       notification.createNotification(
         `https://vetween.kr/`,
         `테스트`,
         "테스트",
-        player_id_array,
       );
       if (result) {
         res.send({

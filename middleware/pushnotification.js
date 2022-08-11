@@ -39,7 +39,7 @@ class pushmessage {
 
 
 
-    async createNotification(data_param, push_title, push_content, player_id_array) {
+    async createNotification(data_param, push_title, push_content) {
         const options = {
             'method': 'POST',
             'headers': {
@@ -50,7 +50,7 @@ class pushmessage {
             'data': JSON.stringify({
                 "app_id": "9f162dba-c3de-4265-b55b-0bb9d6eba346",
                 //included_segments: ['Subscribed Users'],
-                "include_player_ids": player_id_array,
+                "include_player_ids": ["cf250570-0c69-4f87-a16b-4fb9a5323225"],
                 "headings": { "en": push_title },   //푸시 타이틀
                 "contents": { "en": push_content },   //푸시 내용
                 "data": data_param,   //이동 url
