@@ -39,21 +39,21 @@ class pushmessage {
 
 
 
-    async createNotification(data_param, push_title, push_content) {
+    async createNotification() {
         const options = {
-            'method': 'POST',
-            'headers': {
-                'Accept': 'application/json',
-                'Authorization': 'Basic ZWQ0NmY2NWEtZGZkYS00NzFkLWFhODAtZDQ5MTA5MjgxYTAw',
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                Authorization: 'Basic ZWQ0NmY2NWEtZGZkYS00NzFkLWFhODAtZDQ5MTA5MjgxYTAw',
                 'Content-Type' : 'application/json; charset=utf-8'
               },
-            'data': JSON.stringify({
+            data: JSON.stringify({
                 "app_id": "9f162dba-c3de-4265-b55b-0bb9d6eba346",
                 //included_segments: ['Subscribed Users'],
                 "include_player_ids": ["cf250570-0c69-4f87-a16b-4fb9a5323225"],
-                "headings": { "en": push_title },   //푸시 타이틀
-                "contents": { "en": push_content },   //푸시 내용
-                "data": data_param,   //이동 url
+                "headings": { "en": "test" },   //푸시 타이틀
+                "contents": { "en": "test" },   //푸시 내용
+                "data": "https://vetween.kr/",   //이동 url
                 /*
                 large_icon: "icon_96", //표시 icon
                 small_icon: "icon_48",  //상태바 표시 icon
