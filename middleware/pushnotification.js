@@ -49,7 +49,7 @@ class pushmessage {
               },
             data: {
                 app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
-                included_segments: ['Subscribed Users'],
+                //included_segments: ['Subscribed Users'],
                 include_player_ids: player_id_array,
                 headings: { "en": push_title },   //푸시 타이틀
                 contents: { "en": push_content },   //푸시 내용

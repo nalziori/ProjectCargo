@@ -413,7 +413,7 @@ class Comment extends Class {
       const b = comment.comment_user_ID;
       const [before, ] = await this.conn.query('SELECT * FROM comment WHERE id=?',[comment.id]);
       var code = before[0].anonymous_code;
-      const user = await this.conn.query('SELECT * FROM user WHERE id=?',[comment.comment_user_ID]);
+      const user = await this.conn.query('SELECT * FROM user WHERE id=?',[before[0].comment_user_ID]);
       if(a == b){
         comment.nickName = '익명(작성자)';
         comment.permissionName = user.permissionName;
