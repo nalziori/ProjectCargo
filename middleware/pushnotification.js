@@ -43,11 +43,11 @@ class pushmessage {
         const options = {
             method: 'POST',
             headers: {
-                //Accept: 'application/json',
+                Accept: 'application/json',
                 Authorization: 'Basic ZWQ0NmY2NWEtZGZkYS00NzFkLWFhODAtZDQ5MTA5MjgxYTAw',
                 'Content-Type' : 'application/json; charset=utf-8'
               },
-            data: {
+            data: JSON.stringify({
                 app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
                 //included_segments: ['Subscribed Users'],
                 include_player_ids: player_id_array,
@@ -61,7 +61,7 @@ class pushmessage {
                 ios_attachments: { "id1": img_url },   //iOS 푸시 이미지
                 ios_badgeType: "Increase",   //ios badge counter
                 ios_badgeCount: 1,           //ios badge counter by 1*/
-            },
+            }),
         };
 
         await fetch('https://onesignal.com/api/v1/notifications', options)
