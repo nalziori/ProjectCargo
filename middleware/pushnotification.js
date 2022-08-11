@@ -41,19 +41,19 @@ class pushmessage {
 
     async createNotification(data_param, push_title, push_content, player_id_array) {
         const options = {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                Authorization: 'Basic ZWQ0NmY2NWEtZGZkYS00NzFkLWFhODAtZDQ5MTA5MjgxYTAw',
-                //'Content-Type' : 'application/json; charset=utf-8'
+            'method': 'POST',
+            'headers': {
+                'Accept': 'application/json',
+                'Authorization': 'Basic ZWQ0NmY2NWEtZGZkYS00NzFkLWFhODAtZDQ5MTA5MjgxYTAw',
+                'Content-Type' : 'application/json; charset=utf-8'
               },
-            data: JSON.stringify({
-                app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
+            'data': JSON.stringify({
+                "app_id": "9f162dba-c3de-4265-b55b-0bb9d6eba346",
                 //included_segments: ['Subscribed Users'],
-                include_player_ids: player_id_array,
-                headings: { "en": push_title },   //푸시 타이틀
-                contents: { "en": push_content },   //푸시 내용
-                data: data_param,   //이동 url
+                "include_player_ids": player_id_array,
+                "headings": { "en": push_title },   //푸시 타이틀
+                "contents": { "en": push_content },   //푸시 내용
+                "data": data_param,   //이동 url
                 /*
                 large_icon: "icon_96", //표시 icon
                 small_icon: "icon_48",  //상태바 표시 icon
