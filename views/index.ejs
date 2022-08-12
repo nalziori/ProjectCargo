@@ -2,13 +2,13 @@
 <script>
     window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
         window.flutter_inappwebview.callHandler('UserInfo').then(function(result) {
-            console.log(result);
-            alert(JSON.stringify(result));
+            //console.log(result);
+            //alert(JSON.stringify(result));
             const ids = JSON.stringify(result);
-            alert(result.userId);
+            //alert(result.userId);
             window.localStorage.setItem("userId", result.userId);
-            const ids2 = window.localStorage.getItem("userId");
-            alert(ids2);
+            //const ids2 = window.localStorage.getItem("userId");
+            //alert(ids2);
         });
     });
 </script>
