@@ -493,16 +493,14 @@ exports.newComment = doAsync(async (req, res, next) => {
       console.log(userGroupCommentPermission);
       const result = await commentClass.create(articleId, data);
       const notification = new Push();
-      //const player_id_array = new Array();
-      //const player = await conn.query("SELECT * FROM user WHERE id=?", [article.article_user_ID]);
-      //player_id_array.push(player.appToken);
-      // notification.createNotification(
-        
-      // );
+      const player_id_array = new Array();
+      const player = await conn.query("SELECT * FROM user WHERE id=?", [article.article_user_ID]);
+      player_id_array.push(player.appToken);
+      
       var message = { 
         app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
         contents: {"en": "test"},
-        include_player_ids: ["cf250570-0c69-4f87-a16b-4fb9a5323225"],
+        include_player_ids: ["cf250570-0c69-4f87-a16b-4fb9a5323225"],//=>player_id_array
         data: {'custom_url' : "https://vetween.kr/"}
       };
       notification.sendNotification(message);
@@ -546,6 +544,18 @@ exports.replyComment = doAsync(async (req, res, next) => {
     const userGroupCommentPermission = await userGroupBoardClass.check(article.article_board_ID, 'commentPermission');
     if (userGroupCommentPermission) {
       const result = await commentClass.reply(commentParentId, data);
+      const notification = new Push();
+      const player_id_array = new Array();
+      const player = await conn.query("SELECT * FROM user WHERE id=?", [article.article_user_ID]);
+      player_id_array.push(player.appToken);
+      
+      var message = { 
+        app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
+        contents: {"en": "test"},
+        include_player_ids: ["cf250570-0c69-4f87-a16b-4fb9a5323225"],//=>player_id_array
+        data: {'custom_url' : "https://vetween.kr/"}
+      };
+      notification.sendNotification(message);
       res.send(result);
     } else {
       res.send(false);
