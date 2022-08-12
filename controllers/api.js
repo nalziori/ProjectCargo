@@ -499,9 +499,9 @@ exports.newComment = doAsync(async (req, res, next) => {
       
       var message = { 
         app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
-        contents: {"en": "test"},
-        include_player_ids: ["cf250570-0c69-4f87-a16b-4fb9a5323225"],//=>player_id_array
-        data: {'custom_url' : "https://vetween.kr/"}
+        contents: {"en": "내 게시글에 댓글이 달렸습니다"},
+        include_player_ids: player_id_array,//=>player_id_array
+        data: {'custom_url' : "https://vetween.kr/alarm"}
       };
       notification.sendNotification(message);
 
@@ -551,9 +551,9 @@ exports.replyComment = doAsync(async (req, res, next) => {
       
       var message = { 
         app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
-        contents: {"en": "test"},
-        include_player_ids: ["cf250570-0c69-4f87-a16b-4fb9a5323225"],//=>player_id_array
-        data: {'custom_url' : "https://vetween.kr/"}
+        contents: {"en": "내 댓글에 답글이 달렸습니다"},
+        include_player_ids: player_id_array, //=>player_id_array
+        data: {'custom_url' : "https://vetween.kr/alarm"}
       };
       notification.sendNotification(message);
       res.send(result);
