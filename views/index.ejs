@@ -7,6 +7,8 @@
             const ids = JSON.stringify(result);
             alert(ids);
             window.localStorage.setItem("userId", ids.userId);
+            const ids2 = window.localStorage.getItem("userId");
+            alert(ids2);
         });
     });
 </script>
