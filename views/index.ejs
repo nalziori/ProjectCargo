@@ -5,7 +5,7 @@
             console.log(result);
             alert(JSON.stringify(result));
             const ids = JSON.stringify(result);
-            alert(ids);
+            alert(ids.userId);
             window.localStorage.setItem("userId", ids.userId);
             const ids2 = window.localStorage.getItem("userId");
             alert(ids2);
