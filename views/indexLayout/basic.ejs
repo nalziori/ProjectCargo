@@ -17,23 +17,3 @@
     <%- include('../banner', { position: 'indexBottom' }); %>
   <% } %>
 </article>
-<script>
-  window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
-      window.flutter_inappwebview.callHandler('UserInfo', '*** Message From Server JS ***').then(function(result) {
-          window.localStorage.setItem("playerId", result.userId);
-          if(!result){
-              alert('no player ids');
-          }
-          else{
-              alert(JSON.stringify(result));
-          }
-      })
-  })
-  const ids = window.localStorage.getItem("playerId");
-  if(ids){
-    alert("yes " + ids);
-  }
-  else{
-    alert("no");
-  }
-</script>
