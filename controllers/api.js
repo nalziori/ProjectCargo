@@ -502,7 +502,7 @@ exports.newComment = doAsync(async (req, res, next) => {
       var message = { 
         app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
         contents: {"en": "내 게시글에 댓글이 달렸습니다"},
-        include_player_ids: player_id_array[0],//=>player_id_array
+        include_player_ids: [player_id_array[0],],//=>player_id_array
         data: {'custom_url' : "https://vetween.kr/alarm"}
       };
       notification.sendNotification(message);
@@ -554,7 +554,7 @@ exports.replyComment = doAsync(async (req, res, next) => {
       var message = { 
         app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
         contents: {"en": "내 댓글에 답글이 달렸습니다"},
-        include_player_ids: player_id_array[0], //=>player_id_array
+        include_player_ids: [player_id_array[0],], //=>player_id_array
         data: {'custom_url' : "https://vetween.kr/alarm"}
       };
       notification.sendNotification(message);
