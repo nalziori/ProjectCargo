@@ -496,10 +496,9 @@ exports.newComment = doAsync(async (req, res, next) => {
       const player_id_array = new Array();
       const player = await conn.query("SELECT * FROM user WHERE id=?", [article.article_user_ID]);
       player_id_array.push(player.appToken);
-      if(player_id_array.length() > 0)
-      {
-        console.log(player_id_array);
-      }
+      
+      console.log(player_id_array);
+      
       var message = { 
         app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
         contents: {"en": "내 게시글에 댓글이 달렸습니다"},
