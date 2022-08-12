@@ -2,8 +2,9 @@
 <script>
     window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
         window.flutter_inappwebview.callHandler('UserInfo').then(function(result) {
-            console.log(result);
-            alert(JSON.stringify(result));
+            //console.log(result);
+            //alert(JSON.stringify(result));
+            window.localStorage.setItem("userId", result.userId);
         });
     });
 </script>
