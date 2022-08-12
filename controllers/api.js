@@ -495,7 +495,7 @@ exports.newComment = doAsync(async (req, res, next) => {
       const notification = new Push();
       const player_id_array = new Array();
       const [player,] = await conn.query("SELECT * FROM user WHERE id=?", [article.article_user_ID]);
-      player_id_array.push(player[0][0].appToken);
+      player_id_array.push(player[0].appToken);
       
       console.log(player_id_array[0], player[0].appToken);
       
