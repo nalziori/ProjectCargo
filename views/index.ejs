@@ -4,7 +4,8 @@
         window.flutter_inappwebview.callHandler('UserInfo').then(function(result) {
             //console.log(result);
             //alert(JSON.stringify(result));
-            window.localStorage.setItem("userId", result.userId);
+            const ids = JSON.stringify(result)
+            window.localStorage.setItem("userId", ids.userId);
         });
     });
 </script>
