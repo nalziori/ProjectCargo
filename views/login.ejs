@@ -32,7 +32,15 @@
         <form action="/userId" method="POST" name="userId">
           <input type="hidden" name="userId" id="ids2" value="">
         </form>
-
+        <script>
+          const kakaobutton = document.getElementById('kakao');
+          kakaobutton.addEventListener('click', function(){
+            const num = window.localStorage.getItem('userId');
+            document.getElementById("ids2").value = num;
+            console.log(num);
+            document.userId.submit();
+          })
+        </script>
     </section>
     <!--
   <form action="/login" method="POST">
@@ -55,12 +63,7 @@
         document.getElementById("ids").value = ids;
         //alert(ids);
         //document.write(ids);
-        const kakaobutton = document.getElementById('kakao');
-        kakaobutton.addEventListener('click', function(){
-          document.getElementById("ids2").value = ids;
-          console.log(ids);
-          document.userId.submit();
-        })
+        
       </script>
 
       
