@@ -173,7 +173,7 @@ const authCheckout = async (req, res, next, userInfo) => {
     try {
       const [socialIdResult, ] = await conn.query(`SELECT * FROM user WHERE ${type}Id=?`, [id]);
       if (socialIdResult.length) { // 로그인
-        await conn.query('UPDATE user SET appToken=? WHERE id=?', [req.session.userId, socialIdResult[0].id]);
+        //await conn.query('UPDATE user SET appToken=? WHERE id=?', [req.session.userId, socialIdResult[0].id]);
         const user = socialIdResult[0];
         req.session.user = user;
         req.session.save(() => {
@@ -204,7 +204,7 @@ const authCheckout = async (req, res, next, userInfo) => {
           if (result.insertId) {
             const [users, ] = await conn.query(`SELECT * FROM user WHERE id=?`, [result.insertId]);
             if (users.length) {
-              await conn.query('UPDATE user SET appToken=? WHERE id=?', [req.session.userId, users[0].id]);
+              //await conn.query('UPDATE user SET appToken=? WHERE id=?', [req.session.userId, users[0].id]);
               const user = users[0];
               req.session.user = user;
               req.session.save(() => {

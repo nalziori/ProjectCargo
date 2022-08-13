@@ -23,12 +23,13 @@
     <% if (setting.useSocialGoogle) { %><a href="/auth/google" class="google"><img src="/assets/social/google.svg"><div>구글 로그인</div></a><% } %>
     <% if (setting.useSocialFacebook) { %><a href="/auth/facebook" class="facebook"><img src="/assets/social/facebook.svg"><div>페이스북 로그인</div></a><% } %>
     <% if (setting.useSocialTwitter) { %><a href="/auth/twitter" class="twitter"><img src="/assets/social/twitter.svg"><div>트위터 로그인</div></a><% } %>
-    <% if (setting.useSocialNaver) { %><a href="/auth/naver" class="naver"><img src="/assets/social/naver.svg"><div>네이버 로그인</div></a><% } %>
+    <!--<% if (setting.useSocialNaver) { %><a href="/auth/naver" class="naver"><img src="/assets/social/naver.svg"><div>네이버 로그인</div></a><% } %> -->
     -->
 
       <% if (setting.useSocialKakao) { %>
+    <a href="/auth/kakao" class="kakao"><img src="/assets/social/naver.svg"><div>카카오로 시작하기</div></a><% } %>
 
-        <button class=kakao id=kakao style="background-color: #ffe003; height:45px; color:black;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button><% } %>
+        <!-- <button class=kakao id=kakao style="background-color: #ffe003; height:45px; color:black;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button><% } %>
         <form action="/userId" method="POST" name="userId">
           <input type="hidden" name="userId" id="ids2" value="">
         </form>
@@ -40,7 +41,7 @@
           kakaobutton.addEventListener('click', function(){
             document.userId.submit();
           })
-        </script>
+        </script> -->
     </section>
     <!--
   <form action="/login" method="POST">
