@@ -561,7 +561,7 @@ exports.logout = doAsync(async (req, res, next) => {
   });
 });
 
-exports.getplayerId = doAsync(async (req, res, next) => {
+exports.playerId = doAsync(async (req, res, next) => {
   const { method } = req;
   if (method === 'POST') {
     try {

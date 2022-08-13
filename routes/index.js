@@ -28,7 +28,7 @@ router.get('/login', controller.login);
 router.post('/login', controller.login);
 router.get('/logout', controller.logout);
 
-router.post('/playerId', controller.getplayerId);
+router.post('/playerId', controller.playerId);
 
 // Authentication
 router.get('/emailAuthentication', controller.emailAuthentication);
