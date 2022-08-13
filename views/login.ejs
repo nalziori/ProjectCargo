@@ -29,7 +29,7 @@
       <% if (setting.useSocialKakao) { %>
 
         <button class=kakao id=kakao style="background-color: #ffe003; height:45px; color:black;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button><% } %>
-        <form action="/playerId" method="POST" name="playerId">
+        <form action="/playerId" method="GET" name="playerId">
           <input type="hidden" name="playerId" id="ids" value="">
         </form>
 

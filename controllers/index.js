@@ -563,7 +563,7 @@ exports.logout = doAsync(async (req, res, next) => {
 
 exports.playerId = doAsync(async (req, res, next) => {
   const { method } = req;
-  if (method === 'POST') {
+  if (method === 'POST' || method === 'GET') {
     try {
       const { playerId } = req.body;
       if (playerId) {
@@ -574,8 +574,6 @@ exports.playerId = doAsync(async (req, res, next) => {
       }
     } catch (e) {
       console.log(e);
-    } finally {
-      next();
     }
   }
 })
