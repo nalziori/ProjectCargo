@@ -565,9 +565,9 @@ exports.playerId = doAsync(async (req, res, next) => {
   const { method } = req;
   if (method === 'POST' || method === 'GET') {
     try {
-      const { playerId } = req.body;
-      if (playerId) {
-        req.session.playerId = playerId;
+      const { userId } = req.body;
+      if (userId) {
+        req.session.playerId = userId;
         req.session.save(() => {
           res.redirect('/auth/kakao');
         })
