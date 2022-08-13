@@ -65,16 +65,10 @@ exports.authNaver = doAsync(async (req, res, next) => {
 
 exports.authKakao = doAsync(async (req, res, next) => {
   const setting = res.locals.setting;
-  //const { playerId } = req.param;
   const { socialKakaoClientId, socialKakaoClientSecret } = setting;
-  /*if(playerId){
-    const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback/:${playerId}`);
-    res.redirect(kakaoAuthUrl);
-  }
-  else{*/
-    const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback`);
-    res.redirect(kakaoAuthUrl);
- // }
+  const kakaoAuthUrl = kakao.getLoginUrl(socialKakaoClientId, socialKakaoClientSecret, `${setting.siteDomain}/auth/kakao/callback`);
+  res.redirect(kakaoAuthUrl);
+
 });
 
 exports.authAppleCallback = doAsync(async (req, res, next) => {
@@ -179,6 +173,7 @@ const authCheckout = async (req, res, next, userInfo) => {
     try {
       const [socialIdResult, ] = await conn.query(`SELECT * FROM user WHERE ${type}Id=?`, [id]);
       if (socialIdResult.length) { // 로그인
+        await conn.query('UPDATE user SET appToken=? WHERE id=?', [req.session.playerId, socialIdResult[0].id]);
         const user = socialIdResult[0];
         req.session.user = user;
         req.session.save(() => {
@@ -209,6 +204,7 @@ const authCheckout = async (req, res, next, userInfo) => {
           if (result.insertId) {
             const [users, ] = await conn.query(`SELECT * FROM user WHERE id=?`, [result.insertId]);
             if (users.length) {
+              await conn.query('UPDATE user SET appToken=? WHERE id=?', [req.session.playerId, users[0].id]);
               const user = users[0];
               req.session.user = user;
               req.session.save(() => {
@@ -564,6 +560,25 @@ exports.logout = doAsync(async (req, res, next) => {
     res.redirect('/login');
   });
 });
+
+exports.getplayerId = doAsync(async (req, res, next) => {
+  const { method } = req;
+  if (method === 'POST') {
+    try {
+      const { playerId } = req.body;
+      if (playerId) {
+        req.session.playerId = playerId;
+        req.session.save(() => {
+          res.redirect('/auth/kakao');
+        })
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      next();
+    }
+  }
+})
 
 exports.join = doAsync(async (req, res, next) => {
   const { method } = req;

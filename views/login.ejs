@@ -28,15 +28,10 @@
 
       <% if (setting.useSocialKakao) { %>
 
-        <a href='/auth/kakao' class="kakao"><button id=kakao style="background-color: #ffe003; height:45px; color:black;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button></a><% } %>
-        
-        <script>
-          // const kakaobutton = document.getElementById('kakao');
-          // kakaobutton.addEventListener('click', function(){
-
-          // })
-          alert('/auth/kakao' + ids);
-        </script>
+        <button class=kakao id=kakao style="background-color: #ffe003; height:45px; color:black;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button><% } %>
+        <form action="/playerId" method="POST" name="playerId">
+          <input type="hidden" name="playerId" id="ids" value="">
+        </form>
 
     </section>
     <!--
@@ -60,6 +55,12 @@
         document.getElementById("ids").value = ids;
         //alert(ids);
         //document.write(ids);
+        const kakaobutton = document.getElementById('kakao');
+        kakaobutton.addEventListener('click', function(){
+        var ids = window.localStorage.getItem("userId");
+          document.getElementById("ids").value = ids;
+          document.playerId.submit();
+        })
       </script>
 
       
