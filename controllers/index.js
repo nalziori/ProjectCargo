@@ -563,7 +563,7 @@ exports.logout = doAsync(async (req, res, next) => {
 
 exports.userId = doAsync(async (req, res, next) => {
   const { method } = req;
-  if (method === 'POST' || method === 'GET') {
+  if (method === 'POST') {
     try {
       const { userId } = req.body;
       if (userId) {
