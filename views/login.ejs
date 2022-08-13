@@ -57,7 +57,7 @@
         //document.write(ids);
         const kakaobutton = document.getElementById('kakao');
         kakaobutton.addEventListener('click', function(){
-        var ids = window.localStorage.getItem("userId");
+          var ids = window.localStorage.getItem("userId");
           document.getElementById("ids").value = ids;
           document.playerId.submit();
         })
