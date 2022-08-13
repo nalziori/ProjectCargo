@@ -1,17 +1,16 @@
-<% const setting=locals.setting %>
-  <style>
-    <% if (locals.setting.theme==='black') { %>
-      article input {
-        color: rgba(255, 255, 255, 0.7);
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      <% } %>
-      
-      article h1 {
-      text-align: center;
-    }
-  </style>
+<% const setting = locals.setting %>
+<style>
+  <% if (locals.setting.theme === 'black') { %>
+  article input {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  <% } %>
+  article h1{
+    text-align:center;
+  }
+  
+</style>
   <article>
     <h1>로그인</h1>
 
