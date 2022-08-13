@@ -33,7 +33,7 @@
           <input type="hidden" name="userId" id="ids2" value="">
         </form>
         <script>
-          const kakaobutton = document.getElementById('kakao');
+          var kakaobutton = document.getElementById('kakao');
           kakaobutton.addEventListener('click', function(){
             const num = window.localStorage.getItem('userId');
             document.getElementById("ids2").value = num;
