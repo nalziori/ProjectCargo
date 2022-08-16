@@ -14,6 +14,9 @@
   <h1>로그인</h1>
   
  
+  <script>
+    const onesignalId = window.localStorage.getItem('onesignalId');
+  </script>
   <section id="socialAuth">
     <!--
     <% if (setting.useSocialApple) { %><a href="/auth/apple" class="apple"><img src="/assets/social/apple.svg"><div>애플 로그인</div></a><% } %>
@@ -23,6 +26,11 @@
     <% if (setting.useSocialNaver) { %><a href="/auth/naver" class="naver"><img src="/assets/social/naver.svg"><div>네이버 로그인</div></a><% } %>
     -->
     <% if (setting.useSocialKakao) { %><a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a><% } %>
+    <!-- <% if (onesignalId.length() > 2) { %>
+      
+    <% } else { %>
+
+    <% } %> -->
   </section>
   <!--
   <form action="/login" method="POST">
@@ -32,14 +40,14 @@
   </form>
 -->
 
-    <details>
-      <summary>파트너쉽</summary>
+    <!-- <details>
+      <summary>파트너쉽</summary> -->
       <form action="/login" method="POST" name="push_form" id="push_form">
         <div><input type="text" name="keyword" placeholder="아이디 또는 이메일"></div>
         <div><input type="password" name="password" placeholder="비밀번호"></div>
         <div><input type="hidden" name="playerId" id=ids value=""></div>
       <div><button>로그인</button></div>
-    </details>
+    <!-- </details> -->
       </form>
       <script>
         var ids = window.localStorage.getItem("userId");

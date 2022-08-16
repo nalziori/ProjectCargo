@@ -84,7 +84,7 @@
       }
     </style>
 <% } %>
-<!-- 
+
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
 <script>
 //Another way to initialize OneSignal
@@ -92,9 +92,22 @@ window.OneSignal = window.OneSignal || [];
   
 OneSignal.push(function() {
   OneSignal.init({
-    appId: "9f162dba-c3de-4265-b55b-0bb9d6eba346"
+    appId: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
     // Your other init settings
   });
 });
+
+OneSignal.push(function() {
+  OneSignal.isPushNotificationsEnabled().then(function(isEnabled) {
+    if (isEnabled)
+      OneSignal.getUserId().then(function(userId) {
+        window.localStorage.setItem('onesignalId', userId);
+        //console.log("OneSignal User ID:", userId);
+    // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
+  });
+    else
+      window.localStorage.setItem('onesignalId', "");
+  });
+});
 </script>
- -->
+
