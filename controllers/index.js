@@ -526,10 +526,11 @@ exports.login = doAsync(async (req, res, next) => {
   } else if (method === 'POST') {
     const conn = await pool.getConnection();
     try {
-      const { keyword, password, playerId } = req.body;
+      const { keyword, password, onesignalId, playerId } = req.body;
       const data = {
         keyword,
         password,
+        onesignalId,
         playerId
       };
       const userClass = new User(req, res, conn);
@@ -561,22 +562,6 @@ exports.logout = doAsync(async (req, res, next) => {
   });
 });
 
-// exports.userId = doAsync(async (req, res, next) => {
-//   const { method } = req;
-//   if (method === 'POST') {
-//     try {
-//       const { userId } = req.body;
-//       if (userId) {
-//         req.session.userId = userId;
-//         req.session.save(() => {
-//           res.redirect('/auth/kakao');
-//         })
-//       }
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   }
-// })
 
 exports.join = doAsync(async (req, res, next) => {
   const { method } = req;

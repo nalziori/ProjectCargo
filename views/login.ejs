@@ -13,10 +13,6 @@
 <article>
   <h1>로그인</h1>
   
- 
-  <script>
-    const onesignalId = window.localStorage.getItem('onesignalId');
-  </script>
   <section id="socialAuth">
     <!--
     <% if (setting.useSocialApple) { %><a href="/auth/apple" class="apple"><img src="/assets/social/apple.svg"><div>애플 로그인</div></a><% } %>
@@ -25,8 +21,30 @@
     <% if (setting.useSocialTwitter) { %><a href="/auth/twitter" class="twitter"><img src="/assets/social/twitter.svg"><div>트위터 로그인</div></a><% } %>
     <% if (setting.useSocialNaver) { %><a href="/auth/naver" class="naver"><img src="/assets/social/naver.svg"><div>네이버 로그인</div></a><% } %>
       -->
-    <% if (setting.useSocialKakao) { %><a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a><% } %>
-  
+    <% if (setting.useSocialKakao) { %>
+      <!-- <a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a> -->
+      <button class=kakao id=kakao style="background-color: #ffe003; height:45px; color:black;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button>
+      <% } %>
+    <% var onesignalId = window.localStorage.getItem('onesignalId'); %>
+    <% if(onesignalId) { %>
+      <form action="/login" method="POST" name="getid" id="getid">
+        <input type="hidden" name="keyword" value="">
+        <input type="hidden" name="password" value="">
+        <input type="hidden" name="onesignalId" id="onesignalId" value="">
+        <input type="hidden" name="playerId" id="ids" value="">
+      </form>
+      <script>
+        function sleep(ms){
+          return new Promise((r)=>setTimeout(r, ms));
+        }
+        document.getElementById("onesiganlId").value = onesignalId;
+        const sendform=document.getElementById("kakao");
+        sendform.addEventListener('click', function(){
+          sleep(60000).then(() => document.getid.submit());          
+        })
+      </script>
+    <% }%>
+
   </section>
   <!--
   <form action="/login" method="POST">
@@ -41,7 +59,8 @@
       <form action="/login" method="POST" name="push_form" id="push_form">
         <div><input type="text" name="keyword" placeholder="아이디 또는 이메일"></div>
         <div><input type="password" name="password" placeholder="비밀번호"></div>
-        <div><input type="hidden" name="playerId" id=ids value=""></div>
+        <input type="hidden" name="onesignalId" id="onesignalId" value="">
+        <div><input type="hidden" name="playerId" id="ids" value=""></div>
       <div><button>로그인</button></div>
     </details>
       </form>
