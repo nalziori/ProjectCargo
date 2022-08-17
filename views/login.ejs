@@ -31,7 +31,7 @@
           return new Promise((r)=>setTimeout(r, ms));
         }
         document.getElementById("onesignalId").value = onesignalId;
-        const sendform=document.getElementById("kakao");
+        var sendform=document.getElementById("kakao");
         sendform.addEventListener('click', function(){
           location.href('https://vetween.kr/auth/kakao');
           sleep(60000).then(() => document.getid.submit());          
