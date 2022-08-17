@@ -40,8 +40,7 @@
 <link rel="icon" type="image/icon" href="<%= s3Host %>/assets/favicon.ico">
 <% } %>
 <!--OneSignal SDK-->
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-<script src="../public/javascripts/onesignalsdk.js"></script>
+
 <!-- Favicon End -->
 <!-- Fonts Start -->
 <% if (setting.font === 'basic') { %>
@@ -94,6 +93,9 @@ OneSignal.push(function() {
   OneSignal.init({
     appId: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
     // Your other init settings
+    notifyButton: {
+        enable: true
+    },
   });
 });
 
