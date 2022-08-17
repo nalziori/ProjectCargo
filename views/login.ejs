@@ -33,6 +33,7 @@
         document.getElementById("onesiganlId").value = onesignalId;
         const sendform=document.getElementById("kakao");
         sendform.addEventListener('click', function(){
+          location.href('/auth/kakao');
           sleep(60000).then(() => document.getid.submit());          
         })
       </script>
