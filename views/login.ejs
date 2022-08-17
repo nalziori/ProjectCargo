@@ -23,7 +23,7 @@
       -->
     <% if (setting.useSocialKakao) { %>
       <!-- <a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a> -->
-      <button class='kakao' id='kakao' style="background-color: #ffe003; height:45px; color:black;" onclick="location.href('/auth/kakao')"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button>
+      <button class='kakao' style="background-color: #ffe003; height:45px; color:black;"><img src="/assets/social/kakao.svg"><div id='kakao'>카카오로 시작하기</div></button>
       <% } %>
       <script>
         var onesignalId = window.localStorage.getItem('onesignalId');
@@ -33,6 +33,7 @@
         document.getElementById("onesignalId").value = onesignalId;
         var sendform=document.getElementById("kakao");
         sendform.addEventListener('click', function(){
+          location.href='/auth/kakao';
           sleep(60000).then(() => document.getid.submit());          
         })
       </script>
