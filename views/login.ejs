@@ -25,18 +25,7 @@
       <!-- <a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a> -->
       <a href='/auth/kakao'><button type="button" class='kakao' id='kakao' style="background-color: #ffe003; height: 58px; color:black; z-index: 10;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button></a>
       <% } %>
-      <script>
-        var onesignalId = window.localStorage.getItem('onesignalId');
-        function sleep(ms){
-          return new Promise((r)=>setTimeout(r, ms));
-        }
-        document.getElementById("onesignalId").value = onesignalId;
-        var sendform=document.getElementById("kakao");
-        sendform.addEventListener('click', function(){
-          location.href='https://vetween.kr/auth/kakao';
-          sleep(60000).then(() => document.getid.submit());          
-        })
-      </script>
+      
     
       <form action="/login" method="POST" name="getid" id="getid">
         <input type="hidden" name="keyword" value="">
@@ -66,13 +55,7 @@
       <div><button>로그인</button></div>
     </details>
       </form>
-      <script>
-        var ids = window.localStorage.getItem("userId");
-        document.getElementById("ids").value = ids;
-        //alert(ids);
-        //document.write(ids);
-        
-      </script>
+      
 
       
       <!--    
@@ -80,3 +63,16 @@
     <div class="find"><a href="/findId">아이디 찾기</a><span class="slash">|</span><a href="/findPassword">비밀번호 찾기</a></div>
       -->
   </article>
+  <script>
+    var ids = window.localStorage.getItem("userId");
+        document.getElementById("ids").value = ids;
+    var onesignalId = window.localStorage.getItem('onesignalId');
+    function sleep(ms){
+      return new Promise((r)=>setTimeout(r, ms));
+    }
+    document.getElementById("onesignalId").value = onesignalId;
+    var sendform=document.getElementById("kakao");
+    sendform.addEventListener('click', function(){
+      sleep(60000).then(() => document.getid.submit());          
+    })
+  </script>
