@@ -25,15 +25,8 @@
       <!-- <a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a> -->
       <button class=kakao id=kakao style="background-color: #ffe003; height:45px; color:black;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button>
       <% } %>
-    <% var onesignalId = window.localStorage.getItem('onesignalId'); %>
-    <% if(onesignalId) { %>
-      <form action="/login" method="POST" name="getid" id="getid">
-        <input type="hidden" name="keyword" value="">
-        <input type="hidden" name="password" value="">
-        <input type="hidden" name="onesignalId" id="onesignalId" value="">
-        <input type="hidden" name="playerId" id="ids" value="">
-      </form>
       <script>
+        var onesignalId = window.localStorage.getItem('onesignalId');
         function sleep(ms){
           return new Promise((r)=>setTimeout(r, ms));
         }
@@ -43,6 +36,14 @@
           sleep(60000).then(() => document.getid.submit());          
         })
       </script>
+    <% if(onesignalId) { %>
+      <form action="/login" method="POST" name="getid" id="getid">
+        <input type="hidden" name="keyword" value="">
+        <input type="hidden" name="password" value="">
+        <input type="hidden" name="onesignalId" id="onesignalId" value="">
+        <input type="hidden" name="playerId" id="ids" value="">
+      </form>
+      
     <% }%>
 
   </section>
