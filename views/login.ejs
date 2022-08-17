@@ -23,7 +23,7 @@
       -->
     <% if (setting.useSocialKakao) { %>
       <!-- <a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a> -->
-      <button type="button" class='kakao' id='kakao' style="background-color: #ffe003; height:45px; color:black; z-index: 10;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button>
+      <button type="button" class='kakao' id='kakao' style="background-color: #ffe003; height:45px; color:black; z-index: 10;"><img src="/assets/social/kakao.svg"><a href='/auth/kakao'><div>카카오로 시작하기</div></a></button>
       <% } %>
       <script>
         var onesignalId = window.localStorage.getItem('onesignalId');
