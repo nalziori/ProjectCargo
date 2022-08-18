@@ -87,16 +87,6 @@
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
 <script>
 //Another way to initialize OneSignal
-if('serviceWorker' in navigator) {
-  window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('OneSignalSDKWorker.js')
-      .then((reg)=>{
-        console.log('Service worker registered.', reg);
-      })
-      .catch(e => console.log(e));
-  })
-}
-
 
 window.OneSignal = window.OneSignal || [];
   
