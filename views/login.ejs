@@ -1,50 +1,40 @@
-<% const setting = locals.setting %>
-<style>
-  <% if (locals.setting.theme === 'black') { %>
-  article input {
-    color: rgba(255, 255, 255, 0.7);
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  <% } %>
-  article h1{
-    text-align:center;
-  }
-</style>
-<article>
-  <h1>로그인</h1>
-  
-  <section id="socialAuth">
-    <!--
+<% const setting=locals.setting %>
+  <style>
+    <% if (locals.setting.theme==='black') {
+      %>article input {
+        color: rgba(255, 255, 255, 0.7);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      <%
+    }
+
+    %>article h1 {
+      text-align: center;
+    }
+  </style>
+  <article>
+    <h1>로그인</h1>
+
+    <section id="socialAuth">
+      <!--
     <% if (setting.useSocialApple) { %><a href="/auth/apple" class="apple"><img src="/assets/social/apple.svg"><div>애플 로그인</div></a><% } %>
     <% if (setting.useSocialGoogle) { %><a href="/auth/google" class="google"><img src="/assets/social/google.svg"><div>구글 로그인</div></a><% } %>
     <% if (setting.useSocialFacebook) { %><a href="/auth/facebook" class="facebook"><img src="/assets/social/facebook.svg"><div>페이스북 로그인</div></a><% } %>
     <% if (setting.useSocialTwitter) { %><a href="/auth/twitter" class="twitter"><img src="/assets/social/twitter.svg"><div>트위터 로그인</div></a><% } %>
     <% if (setting.useSocialNaver) { %><a href="/auth/naver" class="naver"><img src="/assets/social/naver.svg"><div>네이버 로그인</div></a><% } %>
       -->
-    <% if (setting.useSocialKakao) { %>
-      <!-- <a href="/auth/kakao" class="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a> -->
-      <a href='/auth/kakao'><button type="button" class='kakao' id='kakao' style="background-color: #ffe003; height: 58px; color:black; z-index: 10;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button></a>
-      <% } %>
-      
-    
-      <form action="/login" method="POST" name="getid" id="getid">
-        <input type="hidden" name="keyword" value="">
-        <input type="hidden" name="password" value="">
-        <input type="hidden" name="onesignalId" id="onesignalId" value="">
-        <input type="hidden" name="playerId" id="ids" value="">
-      </form>
-      
-   
-
-  </section>
-  <!--
-  <form action="/login" method="POST">
-    <div><input type="text" name="keyword" placeholder="아이디 또는 이메일"></div>
-    <div><input type="password" name="password" placeholder="비밀번호"></div>
-    <div><button>로그인</button></div>
-  </form>
--->
-
+      <% if (setting.useSocialKakao) { %>
+        <a href="/auth/kakao" class="kakao" id="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a>
+        <!-- <a href='/auth/kakao'><button type="button" class='kakao' id='kakao' style="background-color: #ffe003; height: 58px; color:black; z-index: 10;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button></a> -->
+        <% } %>
+          <form action="/login" method="POST" name="getid" id="getid">
+            <input type="hidden" name="keyword" value="">
+            <input type="hidden" name="password" value="">
+            <input type="hidden" name="onesignalId" id="onesignalId" value="">
+            <input type="hidden" name="playerId" id="ids" value="">
+          </form>
+    </section>
     <details>
       <summary>파트너쉽</summary>
       <form action="/login" method="POST" name="push_form" id="push_form">
@@ -52,27 +42,33 @@
         <div><input type="password" name="password" placeholder="비밀번호"></div>
         <input type="hidden" name="onesignalId" id="onesignalId" value="">
         <div><input type="hidden" name="playerId" id="ids" value=""></div>
-      <div><button>로그인</button></div>
+        <div><button>로그인</button></div>
     </details>
-      </form>
-      
+    </form>
+    <script>
+      var ids = window.localStorage.getItem("userId");
+      document.getElementById("ids").value = ids;
+      var onesignalId = window.localStorage.getItem('onesignalId');
+      document.getElementById("onesignalId").value = onesignalId;
+      function sleep(ms) {
+        return new Promise((r) => setTimeout(r, ms));
+      }
+      var sendform = document.getElementById("kakao");
+      sendform.addEventListener('click', function () {
+        sleep(60000).then(() => document.getid.submit());
+      })
+    </script>
 
-      
-      <!--    
+
+    <!--
+  <form action="/login" method="POST">
+    <div><input type="text" name="keyword" placeholder="아이디 또는 이메일"></div>
+    <div><input type="password" name="password" placeholder="비밀번호"></div>
+    <div><button>로그인</button></div>
+  </form>
+-->
+    <!--    
     <div class="etc">아직 회원이 아니라면? <a href="/join">회원가입</a></div>
     <div class="find"><a href="/findId">아이디 찾기</a><span class="slash">|</span><a href="/findPassword">비밀번호 찾기</a></div>
       -->
   </article>
-  <script>
-    var ids = window.localStorage.getItem("userId");
-        document.getElementById("ids").value = ids;
-    var onesignalId = window.localStorage.getItem('onesignalId');
-    function sleep(ms){
-      return new Promise((r)=>setTimeout(r, ms));
-    }
-    document.getElementById("onesignalId").value = onesignalId;
-    var sendform=document.getElementById("kakao");
-    sendform.addEventListener('click', function(){
-      sleep(60000).then(() => document.getid.submit());          
-    })
-  </script>
