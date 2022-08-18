@@ -18,7 +18,7 @@ class User extends Class {
     }, data);
     const { keyword, password, onesignalId, playerId } = data;
     
-    if(keyword.length() < 2){
+    if(keyword.length < 2){
       const keyword1 = function(req, res){
         return req.session.user.id;
       }
