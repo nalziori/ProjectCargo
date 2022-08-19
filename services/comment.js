@@ -416,10 +416,10 @@ class Comment extends Class {
       const user = await this.conn.query('SELECT * FROM user WHERE id=?',[before[0].comment_user_ID]);
       if(a == b){
         comment.nickName = '익명(작성자)';
-        if(user.permissionName === '수의대생'){
-          comment.permissionName = user.permissionName;
-        } else if(user.permissionName === '관리자' ){
-          comment.permissionName = null;
+        if(user.permission == 3){
+          comment.permissionName = '수의대생';
+        } else if(user.permission == 10 ){
+          comment.permissionName = '관리자';
         } else {
           comment.permissionName = '수의사';
         }
@@ -427,26 +427,28 @@ class Comment extends Class {
       //기존 유저 댓글 처리
       else if(code == 0){
         comment.nickName = '익명';
-        if(user.permissionName === '수의대생'){
-          comment.permissionName = user.permissionName;
-        } else if(user.permissionName === '관리자' ){
-          comment.permissionName = null;
+        if(user.permission == 3){
+          comment.permissionName = '수의대생';
+        } else if(user.permission == 10 ){
+          comment.permissionName = '관리자';
         } else {
           comment.permissionName = '수의사';
-        }      }
+        }
+      }
       else{
         const query = 'SELECT * FROM comment WHERE comment_user_ID = ? AND comment_article_ID=?';
         const [usedID,] = await this.conn.query(query, [comment.comment_user_ID, comment.comment_article_ID]);
         await this.conn.query('UPDATE comment SET anonymous_code=? WHERE comment_user_ID=? AND comment_article_ID=?', [usedID.anonymous_code, usedID.comment_user_ID, usedID.comment_article_ID]);
         var code = usedID[0].anonymous_code;
         comment.nickName = '익명' + code;
-        if(user.permissionName === '수의대생'){
-          comment.permissionName = user.permissionName;
-        } else if(user.permissionName === '관리자' ){
-          comment.permissionName = null;
+        if(user.permission == 3){
+          comment.permissionName = '수의대생';
+        } else if(user.permission == 10 ){
+          comment.permissionName = '관리자';
         } else {
           comment.permissionName = '수의사';
-        }      }
+        }
+      }
     }
 
     // 등급 이미지
