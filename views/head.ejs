@@ -90,15 +90,21 @@
 
 window.OneSignal = window.OneSignal || [];
   
-OneSignal.push(function() {
-  OneSignal.init({
+
+  var initConfig = {
     appId: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
     // Your other init settings
     notifyButton: {
         enable: true
     },
+  };
+
+OneSignal.push(function () {
+        OneSignal.SERVICE_WORKER_PARAM = { scope: '/views/' };
+        OneSignal.SERVICE_WORKER_PATH = 'views/OneSignalSDKWorker.js'
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = 'views/OneSignalSDKWorker.js'
+        OneSignal.init(initConfig);
   });
-});
 
 OneSignal.push(function() {
   OneSignal.isPushNotificationsEnabled().then(function(isEnabled) {
