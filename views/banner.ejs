@@ -22,7 +22,51 @@
       border-radius: 0;
     <% } %>
   }
+  /* .container{
+    overflow: hidden;
+  }
+  .img_wrap{
+    position: absolute;
+    overflow: hidden;
+  }
+  .rollimgs{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  } */
 </style>
+<!-- <% if (position === 'indexTop') { %>
+<section class="banner_box banner__box__<%= position %>">
+  <div class="wrap_center">
+    <div class="img_wrap">
+      <ul class="rollimgs">
+        <% banner.forEach(banner => {%>
+        <li><div class="banner" id="banner<%= banner.id %>"><a href="<%= banner.link %>"<% if (banner.newPage) { %> target="_blank"<% } %>><img src="<%= locals.s3Host %>/banner/<%= banner.image %>" alt="<%= banner.image %>"></a></div></li>
+          <% if (banner.desktopHide) { %>
+          <style>
+            @media (min-width: 1281px) {
+              #banner<%= banner.id %> {
+                display: none;
+              }
+            }
+          </style>
+          <% } %>
+          <% if (banner.mobileHide) { %>
+          <style>
+            @media (max-width: 1280px) {
+              #banner<%= banner.id %> {
+                display: none;
+              }
+            }
+          </style>
+          <% } %>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<} else { %> -->
 <section class="banner_box banner__box__<%= position %>">
   <% banners.forEach(banner => { %>
     <div class="banner" id="banner<%= banner.id %>"><a href="<%= banner.link %>"<% if (banner.newPage) { %> target="_blank"<% } %>><img src="<%= locals.s3Host %>/banner/<%= banner.image %>" alt="<%= banner.image %>"></a></div>
@@ -46,3 +90,4 @@
     <% } %>
   <% }) %>
 </section>
+<!-- <% } %> -->
