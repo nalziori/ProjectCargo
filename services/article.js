@@ -459,7 +459,14 @@ class Article extends Class {
     // 익명
     if (article.useAnonymous && (article.article_user_ID !== this.user?.id && !this.user?.isAdmin) && !article.authorIsAdmin) {
       article.nickName = '익명';
-      article.permissionName = null;
+      if(article.permission == 3) {
+        article.permissionName = '수의대생';
+      } else if(article.permission == 10)
+      {
+        article.permissionName = '관리자';
+      } else{
+        article.permissionName = '수의사';
+      }
     }
 
     // 유튜브
