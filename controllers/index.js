@@ -18,6 +18,7 @@ const IndexBoard = require('../services/indexBoard');
 const User = require('../services/user');
 const Go = require('../services/go');
 const push = require('../middleware/pushnotification');
+// const serviceworker_onesignal = require('../public/javascripts/OneSignalSDKWorker');
 
 const SALT_COUNT = 10;
 
@@ -427,6 +428,11 @@ exports.go = doAsync(async (req, res, next) => {
     conn.release();
   }
 });
+
+// exports.publicworker = doAsync(async(req, res, next) => {
+//   const a = getscripts;
+//   res.redirect(a);
+// })
 
 exports.chatRoom = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
