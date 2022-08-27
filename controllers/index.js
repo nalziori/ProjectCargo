@@ -430,7 +430,7 @@ exports.go = doAsync(async (req, res, next) => {
 
 exports.getids = doAsync(async(req, res, next) => {
   try{
-    const playerId = req.query.playerId;
+    const {playerId} = req.body;
     req.session.playerId = playerId;
     req.session.save(() => {
       res.redirect('/auth/kakao');
