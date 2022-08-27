@@ -18,7 +18,6 @@ const IndexBoard = require('../services/indexBoard');
 const User = require('../services/user');
 const Go = require('../services/go');
 const push = require('../middleware/pushnotification');
-// const serviceworker_onesignal = require('../public/javascripts/OneSignalSDKWorker');
 
 const SALT_COUNT = 10;
 
@@ -149,14 +148,14 @@ exports.authNaverCallback = doAsync(async (req, res, next) => {
 
 exports.authKakaoCallback = doAsync(async (req, res, next) => {
   const { code } = req.query;
-  //const { playerId }= req.param;
   const user = await kakao.auth(code);
   const result = await authCheckout(req, res, next, user);
   if (result) {
-    /*if(playerId){
+    const playerId = req.session.playerId;
+    if(playerId !== "none"){
       const conn=await pool.connection();
       await conn.query('UPDATE user SET appToken=? WHERE id=?', playerId, user.id);
-    }*/
+    }
     res.redirect('/');
   } else {
     flash.create({
@@ -429,10 +428,19 @@ exports.go = doAsync(async (req, res, next) => {
   }
 });
 
-// exports.publicworker = doAsync(async(req, res, next) => {
-//   const a = getscripts;
-//   res.redirect(a);
-// })
+exports.getids = doAsync(async(req, res, next) => {
+  try{
+    const playerId = req.query.playerId;
+    req.session.playerId = playerId;
+    req.session.save(() => {
+      res.redirect('/auth/kakao');
+    });
+  }catch(e){
+    console.error(e);
+  }finally{
+    next();
+  }
+})
 
 exports.chatRoom = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
@@ -532,11 +540,10 @@ exports.login = doAsync(async (req, res, next) => {
   } else if (method === 'POST') {
     const conn = await pool.getConnection();
     try {
-      const { keyword, password, onesignalId, playerId } = req.body;
+      const { keyword, password, playerId } = req.body;
       const data = {
         keyword,
         password,
-        onesignalId,
         playerId
       };
       const userClass = new User(req, res, conn);

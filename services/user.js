@@ -13,45 +13,24 @@ class User extends Class {
     data = Object.assign({
       keyword: null,
       password: null,
-      onesignalId: null,
       playerId: null,
     }, data);
-    const { keyword, password, onesignalId, playerId } = data;
-    
-    if(keyword.length < 2){
-      const keyword1 = function(req, res){
-        return req.session.user.id;
-      }
-      const user = await this.getByUidOrEmail(keyword1);
-      if(user){
-        if(!onesignalId && playerId)
-        {
-          await this.conn.query('UPDATE user SET appToken=? WHERE id=?', [playerId, user.id]);
-        } else if(!playerId && onesignalId){
-          await this.conn.query('UPDATE user SET onesignal_id=? WHERE id=?', [onesignalId, user.id]);
-        } else if(!playerId && !onesignalId){
-          console.log("no ids");
-        } else{
-          await this.conn.query('UPDATE user SET appToken=?, onesignal_id=? WHERE id=?', [playerId, onesignalId, user.id]);
-        }
+    const { keyword, password, playerId } = data;
+
+    const user = await this.getByUidOrEmail(keyword);
+    if (user) {
+      const passwordCheckResult = await this.passwordCheck(user, password);
+      if (passwordCheckResult) {
+        await this.conn.query('UPDATE user SET appToken=? WHERE id=?', [playerId, user.id]);
         return user;
-      }
-    }
-    else{
-      const user = await this.getByUidOrEmail(keyword);
-      if (user) {
-        const passwordCheckResult = await this.passwordCheck(user, password);
-        if (passwordCheckResult) {
-          await this.conn.query('UPDATE user SET appToken=? WHERE id=?', [playerId, user.id]);
-          return user;
-        } else {
-          throw new Error('비밀번호가 일치하지 않습니다');
-        }
       } else {
-        throw new Error('아이디 또는 이메일이 존재하지 않습니다');
+        throw new Error('비밀번호가 일치하지 않습니다');
       }
-    }  
+    } else {
+      throw new Error('아이디 또는 이메일이 존재하지 않습니다');
+    }
   }
+
 
   async getUsersByPagination (data, listCount) {
     data = Object.assign({
