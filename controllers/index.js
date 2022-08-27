@@ -155,6 +155,7 @@ exports.authKakaoCallback = doAsync(async (req, res, next) => {
     if(playerId !== "none"){
       const conn=await pool.connection();
       await conn.query('UPDATE user SET appToken=? WHERE id=?', playerId, user.id);
+      console.log(playerId);
     }
     res.redirect('/');
   } else {
