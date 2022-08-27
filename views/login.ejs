@@ -25,16 +25,16 @@
     <% if (setting.useSocialTwitter) { %><a href="/auth/twitter" class="twitter"><img src="/assets/social/twitter.svg"><div>트위터 로그인</div></a><% } %>
     <% if (setting.useSocialNaver) { %><a href="/auth/naver" class="naver"><img src="/assets/social/naver.svg"><div>네이버 로그인</div></a><% } %>
       -->
-      <script>
-        var ids = window.localStorage.getItem("userId");
-        if(ids){
-          document.getElementById("ids").value = ids;
-        } else{
-          document.getElementById("ids").value = "none";
-          ids = "none";
-        }
-        const url = '/getids/?playerId=' + ids;
-      </script>
+      
+        <% var ids = window.localStorage.getItem("userId"); %>
+        <% if(ids){ %>
+          <%   document.getElementById("ids").value = ids; %>
+          <% } else{ %>
+            <% document.getElementById("ids").value = "none"; %>
+            <% ids = "none"; %>
+            <% } %>
+            <% const url = '/getids/?playerId=' + ids; %>
+      
       <% if (setting.useSocialKakao) { %>
         <a href=<%= url %> class="kakao" id="kakao"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></a>
         <!-- <a href='/auth/kakao'><button type="button" class='kakao' id='kakao' style="background-color: #ffe003; height: 58px; color:black; z-index: 10;"><img src="/assets/social/kakao.svg"><div>카카오로 시작하기</div></button></a> -->
