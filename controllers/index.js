@@ -438,7 +438,7 @@ exports.getids = doAsync(async(req, res, next) => {
   }catch(e){
     console.error(e);
   }finally{
-    next();
+    
   }
 })
 
