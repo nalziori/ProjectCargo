@@ -551,7 +551,7 @@ exports.replyComment = doAsync(async (req, res, next) => {
       const player_id_array = new Array();
       const [player, ]= await conn.query("SELECT * FROM user WHERE id=?", [article.article_user_ID]);
       player_id_array.push(player[0].appToken);
-      console.log(player_id_array[0], player.appToken);
+      console.log(player_id_array[0], player[0].appToken);
       
       var message = { 
         app_id: "9f162dba-c3de-4265-b55b-0bb9d6eba346",
