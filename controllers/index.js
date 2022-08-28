@@ -151,10 +151,10 @@ exports.authKakaoCallback = doAsync(async (req, res, next) => {
   const user = await kakao.auth(code);
   const result = await authCheckout(req, res, next, user);
   if (result) {
-    const playerId = req.session.playerId;
-    if(playerId !== "none"){
+    const {playerId} = req.session.playerId;
+    if(playerId[0] !== "none"){
       const conn=await pool.connection();
-      await conn.query('UPDATE user SET appToken=? WHERE id=?', playerId, user.id);
+      await conn.query('UPDATE user SET appToken=? WHERE id=?', playerId[0], user.id);
       console.log(playerId);
     }
     res.redirect('/');
@@ -434,9 +434,9 @@ exports.getids = doAsync(async(req, res, next) => {
     const { playerId } = req.body;
     flash.create({
       status: false,
-      message: playerId[0],
+      message: `${playerId}`,
     });
-    req.session.playerId = playerId;
+    req.session.playerId = {playerId};
     req.session.save(() => {
       res.redirect('/auth/kakao');
     });
