@@ -432,7 +432,10 @@ exports.go = doAsync(async (req, res, next) => {
 exports.getids = doAsync(async(req, res, next) => {
   try{
     const { playerId } = req.body;
-    console.log(playerId);
+    flash.create({
+      status: false,
+      message: playerId[0],
+    });
     req.session.playerId = playerId;
     req.session.save(() => {
       res.redirect('/auth/kakao');
