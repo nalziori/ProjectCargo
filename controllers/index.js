@@ -151,10 +151,10 @@ exports.authKakaoCallback = doAsync(async (req, res, next) => {
   const user = await kakao.auth(code);
   const result = await authCheckout(req, res, next, user);
   if (result) {
-    const {playerId} = req.session.playerId;
-    if(playerId[0] !== "none"){
+    const playerId = req.session.playerId;
+    if(playerId !== "none"){
       const conn=await pool.connection();
-      await conn.query('UPDATE user SET appToken=? WHERE id=?', playerId[0], user.id);
+      await conn.query('UPDATE user SET appToken=? WHERE id=?', playerId, user.id);
       console.log(playerId);
     }
     res.redirect('/');
@@ -174,7 +174,7 @@ const authCheckout = async (req, res, next, userInfo) => {
     try {
       const [socialIdResult, ] = await conn.query(`SELECT * FROM user WHERE ${type}Id=?`, [id]);
       if (socialIdResult.length) { // 로그인
-        //await conn.query('UPDATE user SET appToken=? WHERE id=?', [req.session.userId, socialIdResult[0].id]);
+        await conn.query('UPDATE user SET appToken=? WHERE id=?', [req.session.playerId, socialIdResult[0].id]);
         const user = socialIdResult[0];
         req.session.user = user;
         req.session.save(() => {
@@ -205,7 +205,7 @@ const authCheckout = async (req, res, next, userInfo) => {
           if (result.insertId) {
             const [users, ] = await conn.query(`SELECT * FROM user WHERE id=?`, [result.insertId]);
             if (users.length) {
-              //await conn.query('UPDATE user SET appToken=? WHERE id=?', [req.session.userId, users[0].id]);
+              await conn.query('UPDATE user SET appToken=? WHERE id=?', [req.session.playerId, users[0].id]);
               const user = users[0];
               req.session.user = user;
               req.session.save(() => {
@@ -431,13 +431,13 @@ exports.go = doAsync(async (req, res, next) => {
 
 exports.getids = doAsync(async(req, res, next) => {
   try{
-    const { playerId } = req.body;
-    flash.create({
-      status: false,
-      message: `${playerId}`,
-    });
-    req.session.playerId = {playerId};
+    const playerId = req.body.playerId;
+    req.session.playerId = playerId;
     req.session.save(() => {
+      flash.create({
+        status: false,
+        message: playerId,
+      });
       res.redirect('/auth/kakao');
     });
   }catch(e){
