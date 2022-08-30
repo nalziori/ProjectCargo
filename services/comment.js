@@ -145,16 +145,35 @@ class Comment extends Class {
     (comment_user_ID, comment_article_ID, comment_parent_ID, comment_group_ID, content, nickName, password)
     VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
-    const [result, ] = await this.conn.query(insertQuery, [this.user?.id, comment.comment_article_ID, comment.id, comment.comment_group_ID, content, nickName, hash]);
-    if (comment.id === comment.comment_group_ID) {
-      await this.conn.query(`UPDATE comment SET replyCount=replyCount+1 WHERE id=?`, [comment.id]);
+    const [result,] = await this.conn.query(insertQuery, [this.user?.id, comment.comment_article_ID, comment.id, comment.comment_group_ID, content, nickName, hash]);
+    const query = 'SELECT * FROM comment WHERE comment_article_ID=?';
+    const [repple,] = await this.conn.query(query, [articleId]);
+    var check = 0;
+    const [temp,] = await this.conn.query('SELECT * FROM comment WHERE comment_article_ID=? AND content=?', [articleId, content]);
+    for (var i = 0; i < repple.length; i++) {
+      const a = repple[i].comment_user_ID;
+      const b = temp[0].comment_user_ID;
+      if (a == b) {
+        check = check + 1;
+        break;
+      }
+    }
+
+    if (comment.id === comment.comment_group_ID && check < 2) {
+      await this.conn.query('UPDATE article SET commentCount=commentCount+1,anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
+      await this.conn.query(`UPDATE comment SET replyCount=replyCount+1  WHERE id=?`, [comment.id]);
+      const [temp_article,] = await this.conn.query('SELECT * FROM article WHERE id=?', [comment.comment_article_ID]);
+      const code = temp_article[0].anonymous_count;
+      await this.conn.query('UPDATE comment SET anonymous_code=? WHERE comment_user_ID=? AND content=?', [code, this.user?.id, content]);
     } else {
+      await this.conn.query('UPDATE article SET commentCount=commentCount+1, updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
       await this.conn.query(`UPDATE comment SET replyCount=replyCount+1 WHERE id=?`, [comment.id]);
       await this.conn.query(`UPDATE comment SET replyCount=replyCount+1 WHERE id=?`, [comment.comment_group_ID]);
+      const [temp_article,] = await this.conn.query('SELECT * FROM article WHERE id=?', [comment.comment_article_ID]);
+      const code = temp_article[0].anonymous_count;
+      await this.conn.query('UPDATE comment SET anonymous_code=? WHERE comment_user_ID=? AND content=?', [code, this.user?.id, content]);
     }
-    await this.conn.query(`UPDATE article SET commentCount=commentCount+1, updatedAt=NOW() WHERE id=?`, [comment.comment_article_ID]);
     // 포인트
-    
     if (this.user) {
       const pointClass = new Point(this.req, this.res, this.conn);
       const pointData = {
