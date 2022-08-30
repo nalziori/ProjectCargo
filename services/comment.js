@@ -147,9 +147,9 @@ class Comment extends Class {
 
     const [result,] = await this.conn.query(insertQuery, [this.user?.id, comment.comment_article_ID, comment.id, comment.comment_group_ID, content, nickName, hash]);
     const query = 'SELECT * FROM comment WHERE comment_article_ID=?';
-    const [repple,] = await this.conn.query(query, [articleId]);
+    const [repple,] = await this.conn.query(query, [comment.comment_article_ID]);
     var check = 0;
-    const [temp,] = await this.conn.query('SELECT * FROM comment WHERE comment_article_ID=? AND content=?', [articleId, content]);
+    const [temp,] = await this.conn.query('SELECT * FROM comment WHERE comment_article_ID=? AND content=?', [comment.comment_article_ID, content]);
     for (var i = 0; i < repple.length; i++) {
       const a = repple[i].comment_user_ID;
       const b = temp[0].comment_user_ID;
