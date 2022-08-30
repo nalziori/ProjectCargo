@@ -444,7 +444,7 @@ exports.getComments = doAsync(async (req, res, next) => {
 
     // Block Users
     const userBlockUserClass = new UserBlockUser(req, res, conn);
-    const blockUsers = await userBlockUserClass.getUsers(user?.id);
+    const blockUsers = await userBlockUserClass.getUsers(this.user?.id);
     comments.forEach(comment => {
       const match = blockUsers.find(blockUser => blockUser.userBlockUser_targetUser_ID === comment.comment_user_ID);
       if (match) {
