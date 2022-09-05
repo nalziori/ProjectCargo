@@ -42,8 +42,8 @@ class Comment extends Class {
     const article = await articleClass.get(articleId);
     const board = await boardClass.getById(article.article_board_ID);
 
-    const tagRegex = new RegExp(/<[^>]*>/g);
-    content = content.replace(tagRegex, '');
+    // const tagRegex = new RegExp(/<[^>]*>/g);
+    // content = content.replace(tagRegex, '');
 
     // 비회원
     let hash = null;
@@ -130,8 +130,8 @@ class Comment extends Class {
     const article = await articleClass.get(comment.comment_article_ID);
     const board = await boardClass.getById(article.article_board_ID);
 
-    const tagRegex = new RegExp(/<[^>]*>/g);
-    content = content.replace(tagRegex, '');
+    // const tagRegex = new RegExp(/<[^>]*>/g);
+    // content = content.replace(tagRegex, '');
 
     // 비회원
     let hash = null;

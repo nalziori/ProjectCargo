@@ -266,7 +266,10 @@ if (newCommentBtn) {
   newCommentBtn.addEventListener('click', async () => {
     try {
       const { isLogin, message } = await getUser();
-      const content = newComment.querySelector('textarea').value;
+      const contents = newComment.querySelector('textarea').value;
+      var doc = contents;
+      var regURL = new RegExp("(http|https|ftp|telnet|news|irc)://([-/.a-zA-Z0-9_~#%$?&=:200-377()]+)","gi");
+      const content = doc.replace(regURL,"<a href='$1://$2' target='_blank' style='color: blue; text-decoration: underline; text-underline-position:under;'>$1://$2</a>");
       const contentResult = await blockWordsCheck(content);
       if (contentResult.status) {
         const board = await getBoard(boardId);
@@ -408,7 +411,10 @@ const addEvent = async () => {
               etcText.focus();
               const replyCompleteBtn = comment.querySelector('#etcComplete');
               replyCompleteBtn.addEventListener('click', async () => {
-                const content = comment.querySelector('#etcText').value;
+                const contents = comment.querySelector('#etcText').value;
+                var doc = contents;
+                var regURL = new RegExp("(http|https|ftp|telnet|news|irc)://([-/.a-zA-Z0-9_~#%$?&=:200-377()]+)","gi");
+                const content = doc.replace(regURL,"<a href='$1://$2' target='_blank' style='color: blue; text-decoration: underline; text-underline-position:under;'>$1://$2</a>");
                 const contentResult = await blockWordsCheck(content);
                 if (contentResult.status) {
                   const nickName = comment.querySelector('input[name="nickName"]')?.value;
