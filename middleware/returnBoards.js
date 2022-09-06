@@ -24,8 +24,8 @@ const getPopularityArticle = async (boardId, listCount, exceptBoards) => {
           LEFT JOIN user AS u
           ON a.article_user_ID = u.id
           WHERE a.status = 2
-          AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -7 DAY), '%Y-%m-%d')
-          ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC
+          AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -3 DAY), '%Y-%m-%d')
+          ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC
           LIMIT ${listCount}`;
         } else {
           let exceptQuery = '';
@@ -45,9 +45,9 @@ const getPopularityArticle = async (boardId, listCount, exceptBoards) => {
           LEFT JOIN user AS u
           ON a.article_user_ID = u.id
           WHERE a.status = 2
-          AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -7 DAY), '%Y-%m-%d')
+          AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -3 DAY), '%Y-%m-%d')
           ${exceptQuery}
-          ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC
+          ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC
           LIMIT ${listCount}`;
         }
         
