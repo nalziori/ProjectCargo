@@ -79,7 +79,7 @@ const getPopularityArticle = async (boardId, listCount, exceptBoards) => {
             WHERE a.status = 2
             AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -1 MONTH), '%Y-%m-%d')
             ${exceptArticlesQuery}
-            ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC
+            ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC
             LIMIT ${listCount - articles.length}`;
           } else {
             let exceptBoardsQuery = '';
@@ -102,7 +102,7 @@ const getPopularityArticle = async (boardId, listCount, exceptBoards) => {
             AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -1 MONTH), '%Y-%m-%d')
             ${exceptBoardsQuery}
             ${exceptArticlesQuery}
-            ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC
+            ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC
             LIMIT ${listCount - articles.length}`;
           }
           const [monthArticles, ] = await conn.query(monthQuery);
@@ -208,8 +208,8 @@ const getPopularityArticle = async (boardId, listCount, exceptBoards) => {
           ON a.article_category_ID = c.id
           WHERE a.article_board_ID = ?
           AND a.status = 2
-          AND a.createdAt >= date_format(date_add(NOW(), INTERVAL - 7 DAY), '%Y-%m-%d')
-          ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC
+          AND a.createdAt >= date_format(date_add(NOW(), INTERVAL - 3 DAY), '%Y-%m-%d')
+          ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC
           LIMIT ${listCount}`;
 
           const [weekArticles, ] = await conn.query(weekQuery, id);
@@ -241,7 +241,7 @@ const getPopularityArticle = async (boardId, listCount, exceptBoards) => {
             AND a.status = 2
             AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -1 MONTH), '%Y-%m-%d')
             ${exceptArticlesQuery}
-            ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC
+            ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC
             LIMIT ${listCount}`;
           }
           const [monthArticles, ] = await conn.query(monthQuery, [id]);
@@ -272,7 +272,7 @@ const getPopularityArticle = async (boardId, listCount, exceptBoards) => {
             WHERE a.article_board_ID = ?
             AND a.status = 2
             ${exceptArticlesQuery}
-            ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC
+            ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC
             LIMIT ${listCount}`;
           }
           const [totalArticles, ] = await conn.query(totalQuery, [id]);
