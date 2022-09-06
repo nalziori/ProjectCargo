@@ -59,7 +59,7 @@
                         <td>
                           
                           <select name="permission">
-                            <option value="0"<% if (user.permission === 0) { %> selected<% } %>>차단</option>
+                            <!-- <option value="0"<% if (user.permission === 0) { %> selected<% } %>>차단</option> -->
                             <% locals.permissions.forEach(permission => { %>
                               <option value="<%= permission.permission %>"<% if (user.permission === permission.permission) { %> selected<% } %>><%= permission.title %></option>
                             <% }) %>
@@ -135,7 +135,7 @@
                       <td><input type="text" name="birthday" placeholder="생일"></td>
                       <td>
                         <select name="permission">
-                          <option value="0">차단</option>
+                          <!-- <option value="0">차단</option> -->
                           <option value="1" selected>1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
