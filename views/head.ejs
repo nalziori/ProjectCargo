@@ -97,12 +97,29 @@ window.OneSignal = window.OneSignal || [];
     notifyButton: {
         enable: true
     },
+    promptOptions: {
+      customlink: {
+        enabled: true, /* Required to use the Custom Link */
+        style: "button", /* Has value of 'button' or 'link' */
+        size: "medium", /* One of 'small', 'medium', or 'large' */
+        color: {
+          button: '#E12D30', /* Color of the button background if style = "button" */
+          text: '#FFFFFF', /* Color of the prompt's text */
+        },
+        text: {
+          subscribe: "푸쉬 알림 ON", /* Prompt's text when not subscribed */
+          unsubscribe: "푸쉬 알림 OFF", /* Prompt's text when subscribed */
+          explanation: "푸쉬 알림 설정을 해주세요", /* Optional text appearing before the prompt button */
+        },
+        unsubscribeEnabled: true, /* Controls whether the prompt is visible after subscription */
+      }
+    }
   };
 
 OneSignal.push(function () {
-        OneSignal.SERVICE_WORKER_PARAM = { scope: '/public/javascripts/' };
-        OneSignal.SERVICE_WORKER_PATH = 'public/javascripts/OneSignalSDKWorker.js'
-        OneSignal.SERVICE_WORKER_UPDATER_PATH = 'public/javascripts/OneSignalSDKWorker.js'
+        OneSignal.SERVICE_WORKER_PARAM = { scope: '/views/' };
+        OneSignal.SERVICE_WORKER_PATH = 'views/OneSignalSDKWorker.js'
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = 'views/OneSignalSDKWorker.js'
         OneSignal.init(initConfig);
   });
 
