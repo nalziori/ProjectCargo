@@ -125,13 +125,13 @@ class Article extends Class {
     if (type === 'best') queryString += `AND (a.likeCount >= 5 OR a.viewCount >= 100)\n`;
     if (type === 'bestDay') {
       queryString += `AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -1 DAY), '%Y-%m-%d')\n`;
-      orderQueryString = `ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC`;
-    } else if (type === 'bestWeek') {
-      queryString += `AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -7 DAY), '%Y-%m-%d')\n`;
-      orderQueryString = `ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC`;
+      orderQueryString = `ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC`;
+    } else if (type === 'bestWeek') {//3일
+      queryString += `AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -3 DAY), '%Y-%m-%d')\n`;
+      orderQueryString = `ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC`;
     } else if (type === 'bestMonth') {
       queryString += `AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -30 DAY), '%Y-%m-%d')\n`;
-      orderQueryString = `ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC`;
+      orderQueryString = `ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC`;
     }
     const pnQuery = `SELECT count(*) AS count
     FROM article AS a
