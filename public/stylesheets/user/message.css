@@ -114,6 +114,10 @@ article .item {
   align-items: center;
 }
 
+article .item a{
+  display: block;
+}
+
 article .item .info {
   color: #9da5b6;
   /* padding: 5px 0; */
@@ -130,6 +134,7 @@ article .read {
 
 article .read a {
   color: #fff;
+  display: block;
 }
 
 article .item .etc {
