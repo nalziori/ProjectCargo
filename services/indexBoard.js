@@ -112,7 +112,7 @@ class IndexBoard extends Class {
   returnBestQuery (date, articleBoardQuery) {
     let queryString = '';
     if (date === 'week') {
-      queryString += `AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -7 DAY), '%Y-%m-%d')`;
+      queryString += `AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -3 DAY), '%Y-%m-%d')`;
     } else if (date === 'month') {
       queryString += `AND a.createdAt >= date_format(date_add(NOW(), INTERVAL -1 MONTH), '%Y-%m-%d')`;
     }
@@ -124,7 +124,7 @@ class IndexBoard extends Class {
     ON a.article_category_ID = c.id
     ${articleBoardQuery}
     ${queryString}
-    ORDER BY (a.viewCount * 0.3) + (a.likeCount * 0.7) DESC
+    ORDER BY (a.viewCount * 0.5) + (a.likeCount * 0.5) DESC
     LIMIT ?`;
     return query;
   }
