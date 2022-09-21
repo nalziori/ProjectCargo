@@ -495,6 +495,8 @@ exports.newComment = doAsync(async (req, res, next) => {
       const notification = new Push();
       const player_id_array = new Array();
       const [player,] = await conn.query("SELECT * FROM user WHERE id=?", [article.article_user_ID]);
+      const [self_comment,] = await conn.query("SELECT * FROM user WHERE id=?", [this.user?.id])
+      console.log(self_comment[0].nickName);
       if (!(player[0].nickName === nickName)) {
         player_id_array.push(player[0].appToken);
 
