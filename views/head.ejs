@@ -15,6 +15,7 @@
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <script src="/javascripts/main.js" defer></script>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="/javascripts/OneSignalSDKWorker.js"></script>
 <% if (setting.naverSiteVerification) { %>
 <%- setting.naverSiteVerification %>
 <% } %>
@@ -116,9 +117,9 @@ window.OneSignal = window.OneSignal || [];
   };
 
 OneSignal.push(function () {
-        OneSignal.SERVICE_WORKER_PARAM = { scope: '/views/' };
-        OneSignal.SERVICE_WORKER_PATH = 'views/OneSignalSDKWorker.js'
-        OneSignal.SERVICE_WORKER_UPDATER_PATH = 'views/OneSignalSDKWorker.js'
+        OneSignal.SERVICE_WORKER_PARAM = { scope: '/public/javascripts/' };
+        OneSignal.SERVICE_WORKER_PATH = 'public/javascripts/OneSignalSDKWorker.js'
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = 'public/javascripts/OneSignalSDKWorker.js'
         OneSignal.init(initConfig);
   });
 
