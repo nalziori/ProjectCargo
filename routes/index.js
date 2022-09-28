@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/index');
+const javascript = require('../public/javascripts/OneSignalSDKWorker');
 const { isLogin, isWorkingUser, isAdmin } = require('../middleware/permission');
 const doAsync = require('../middleware/doAsync');
 
@@ -93,6 +94,6 @@ router.get('/sitemap/page.xml', controller.sitemapPage);
 router.get('/sitemap/store.xml', controller.sitemapStore);
 router.get('/ads.txt', controller.adsenseAds);
 
-//router.get('/public/javascripts/OneSiganlSDKWorker.js', '../public/javascripts/OnesignalSDKWorker.js');
+router.get('/public/javascripts/OneSiganlSDKWorker.js', javascript.worker);
 
 module.exports = router;
