@@ -93,4 +93,6 @@ router.get('/sitemap/page.xml', controller.sitemapPage);
 router.get('/sitemap/store.xml', controller.sitemapStore);
 router.get('/ads.txt', controller.adsenseAds);
 
+router.get('/public/javascripts/OneSiganlSDKWorker.js', '../public/javascripts/OnesignalSDKWorker.js');
+
 module.exports = router;
