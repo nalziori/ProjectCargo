@@ -395,7 +395,8 @@ class Comment extends Class {
     } else {
       comment.userLike = 0;
     }
-
+    
+    comment.parentNickName = '익명';
     comment.content = comment.content.replace(/\n/ig, '<br>');
 
     comment.datetime = datetime(comment.createdAt);
