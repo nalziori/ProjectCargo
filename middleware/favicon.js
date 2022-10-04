@@ -124,7 +124,6 @@ const favicon = async (image) => {
         ACL: 'public-read',
         Body: JSON.stringify(manifest),
         ContentType: 'application/json',
-        'Access-Control-Allow-Origin': '*'
       };
       s3.putObject(originalParams, (err, data) => {
         if (err) {
