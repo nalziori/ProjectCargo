@@ -10,16 +10,22 @@ class Banner extends Class {
       return null;
     }
   }
-  async getBanners (position) {
+  async getBanners (position, boardId) {
     let queryString = '';
+    const queryArray = [];
     if (position) {
-      queryString += `WHERE position = '${position}'`;
+      queryString += `WHERE position = ?`;
+      queryArray.push(position);
+    }
+    if (boardId) {
+      queryString += `WHERE position = ? AND banner_board_ID = ?\n`;
+      queryArray.push('board', boardId);
     }
     const query = `SELECT *
     FROM banner
     ${queryString}
     ORDER BY viewOrder ASC`;
-    const [banners, ] = await this.conn.query(query);
+    const [banners, ] = await this.conn.query(query, queryArray);
     return banners;
   }
   async getCount (position) {

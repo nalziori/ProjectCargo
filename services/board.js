@@ -101,6 +101,7 @@ class Board extends Class {
       useUserGroupPermission: board.useUserGroupPermission,
       useUserAlarm: board.useUserAlarm,
       useAdminAlarm: board.useAdminAlarm,
+      useViewCount: board.useViewCount,
       useCustomField01: board.useCustomField01,
       useCustomField02: board.useCustomField02,
       useCustomField03: board.useCustomField03,
@@ -122,15 +123,15 @@ class Board extends Class {
       customFieldTitle09: board.customFieldTitle09,
       customFieldTitle10: board.customFieldTitle10,
     }, data);
-    const { title, slug, type, listCount, listPermission, readPermission, writePermission, commentPermission, writePoint, commentPoint, readPoint, useSecret, useAnonymous, useOnce, useLinks, useFiles, useUserGroupPermission, useUserAlarm, useAdminAlarm } = data;
+    const { title, slug, type, listCount, listPermission, readPermission, writePermission, commentPermission, writePoint, commentPoint, readPoint, useSecret, useAnonymous, useOnce, useLinks, useFiles, useUserGroupPermission, useUserAlarm, useAdminAlarm, useViewCount } = data;
     const { useCustomField01, useCustomField02, useCustomField03, useCustomField04, useCustomField05, useCustomField06, useCustomField07, useCustomField08, useCustomField09, useCustomField10 } = data;
     const { customFieldTitle01, customFieldTitle02, customFieldTitle03, customFieldTitle04, customFieldTitle05, customFieldTitle06, customFieldTitle07, customFieldTitle08, customFieldTitle09, customFieldTitle10 } = data;
-    const query = `UPDATE board SET title=?, slug=?, type=?, listCount=?, listPermission=?, readPermission=?, writePermission=?, commentPermission=?, writePoint=?, commentPoint=?, readPoint=?, useSecret=?, useAnonymous=?, useOnce=?, useLinks=?, useFiles=?, useUserGroupPermission=?, useUserAlarm=?, useAdminAlarm=?,
+    const query = `UPDATE board SET title=?, slug=?, type=?, listCount=?, listPermission=?, readPermission=?, writePermission=?, commentPermission=?, writePoint=?, commentPoint=?, readPoint=?, useSecret=?, useAnonymous=?, useOnce=?, useLinks=?, useFiles=?, useUserGroupPermission=?, useUserAlarm=?, useAdminAlarm=?, useViewCount=?,
     useCustomField01=?, useCustomField02=?, useCustomField03=?, useCustomField04=?, useCustomField05=?, useCustomField06=?, useCustomField07=?, useCustomField08=?, useCustomField09=?, useCustomField10=?,
     customFieldTitle01=?, customFieldTitle02=?, customFieldTitle03=?, customFieldTitle04=?, customFieldTitle05=?, customFieldTitle06=?, customFieldTitle07=?, customFieldTitle08=?, customFieldTitle09=?, customFieldTitle10=?
     WHERE id=?`;
     await this.conn.query(query, [
-      title, slug.trim(), type, listCount, listPermission, readPermission, writePermission, commentPermission, writePoint, commentPoint, readPoint, useSecret, useAnonymous, useOnce, useLinks, useFiles, useUserGroupPermission, useUserAlarm, useAdminAlarm,
+      title, slug.trim(), type, listCount, listPermission, readPermission, writePermission, commentPermission, writePoint, commentPoint, readPoint, useSecret, useAnonymous, useOnce, useLinks, useFiles, useUserGroupPermission, useUserAlarm, useAdminAlarm, useViewCount,
       useCustomField01, useCustomField02, useCustomField03, useCustomField04, useCustomField05, useCustomField06, useCustomField07, useCustomField08, useCustomField09, useCustomField10,
       customFieldTitle01, customFieldTitle02, customFieldTitle03, customFieldTitle04, customFieldTitle05, customFieldTitle06, customFieldTitle07, customFieldTitle08, customFieldTitle09, customFieldTitle10,
       boardId,

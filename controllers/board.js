@@ -250,6 +250,8 @@ exports.list = doAsync(async (req, res, next) => {
             article.permissionImage = null;
           }
         });
+
+        const boardBanners = res.locals.banners.filter(banner => banner.banner_board_ID === board.id);
         res.render('layout', {
           pageTitle: `${board.title} - ${res.locals.setting.siteName}`,
           type: 'list',
@@ -263,6 +265,7 @@ exports.list = doAsync(async (req, res, next) => {
           pn,
           searchUrl: board.slug,
           blockUsers,
+          boardBanners,
         });
       } else { // 리스트 권한이 없을 때
         flash.create({

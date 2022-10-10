@@ -397,15 +397,18 @@ exports.boardDetail = doAsync(async (req, res, next) => {
     const userGroups = await userGroupClass.getUserGroupsByBoardId(boardId);
     if (method === 'GET') {
       const board = await boardClass.getById(boardId, { categories: true });
+      const bannerClass = new Banner(req, res, conn);
+      const banners = await bannerClass.getBanners(null, boardId);
       res.render('admin/boardDetail', {
         pageTitle: ``,
         board,
         userGroups,
+        banners,
       });
     } else if (method === 'POST') {
       const { submit } = req.body;
       if (submit === 'detail') {
-        const { writePoint, commentPoint, readPoint, useSecret, useAnonymous, useOnce, useLinks, useFiles, useUserGroupPermission, useUserAlarm, useAdminAlarm } = req.body;
+        const { writePoint, commentPoint, readPoint, useSecret, useAnonymous, useOnce, useLinks, useFiles, useUserGroupPermission, useUserAlarm, useAdminAlarm, useViewCount } = req.body;
         const data = {
           writePoint,
           commentPoint,
@@ -418,6 +421,7 @@ exports.boardDetail = doAsync(async (req, res, next) => {
           useUserGroupPermission,
           useUserAlarm,
           useAdminAlarm,
+          useViewCount,
         };
         await boardClass.update(boardId, data);
       } else if (submit === 'customField') {
@@ -1224,15 +1228,15 @@ exports.bannerDetail = doAsync(async (req, res, next) => {
 exports.bannerNew = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
   try {
-    const { position, link, viewOrder } = req.body;
+    const { boardId, position, link, viewOrder } = req.body;
     const newPage = req.body.newPage || 0;
     if (req.files.image) {
       const image = req.files.image[0];
       const key = await imageUpload(image, 'banner');
       const query = `INSERT INTO banner
-      (position, image, link, viewOrder, newPage)
-      VALUES (?, ?, ?, ?, ?)`;
-      const [result, ] = await conn.query(query, [position, key, link, viewOrder, newPage]);
+      (banner_board_ID, position, image, link, viewOrder, newPage)
+      VALUES (?, ?, ?, ?, ?, ?)`;
+      const [result, ] = await conn.query(query, [boardId, position, key, link, viewOrder, newPage]);
       if (result.insertId) {
         flash.create({
           status: true,
