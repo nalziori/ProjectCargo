@@ -348,7 +348,7 @@ class KakaoLogin {
       }
     }).then(function (res) {
       console.log(res.data);
-    }).catch(e => console.error(e))
+    }).catch(e => console.error(e.data))
     return logoutKakao;
   }
 
