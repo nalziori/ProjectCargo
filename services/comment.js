@@ -85,6 +85,7 @@ class Comment extends Class {
           console.log("wrote before once");
         } else if (wrote_before == 2) {  //처음 쓰는 사람
           const update_commentcount = await this.conn.query('UPDATE article SET anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [articleId]);
+          console.log("익명 업데이트 " + update_commentcount);
           const [get_anonymous_count] = await this.conn.query('SELECT * FROM article WHERE id=?', [articleId]);
           // const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=?, updatedAt=NOW() WHERE id=?', [get_anonymous_count.anonymous_count, result.insertId]);
           set_anonymous = get_anonymous_count[0].anonymous_count;
@@ -190,6 +191,7 @@ class Comment extends Class {
           console.log("wrote before once");
         } else if (wrote_before == 2) {  //처음 쓰는 사람
           const update_anonymouscount = await this.conn.query('UPDATE article SET anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
+          console.log("익명 업데이트 " + update_commentcount);
           const update_replycount = await this.conn.query('UPDATE comment SET replyCount=replycount+1, updatedAt=NOW() WHERE comment_user_ID=?', [comment.id]);
           const [get_anonymous_count] = await this.conn.query('SELECT * FROM article WHERE id=?', [comment.comment_article_ID]);
           // const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=?, updatedAt=NOW() WHERE id=?', [get_anonymous_count.anonymous_count, result.insertId]);
