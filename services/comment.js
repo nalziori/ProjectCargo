@@ -71,7 +71,7 @@ class Comment extends Class {
         var written_comment = 0;  //이전에 작성한 코멘트 
         if (all_comments_of_article.length) { //코멘트가 있을때
           for (var i = 0; i <= all_comments_of_article.length; i++) {
-            if (all_comments_of_article[i].comment_user_Id == this.user?.id) {
+            if (all_comments_of_article[i].comment_user_ID == this.user?.id) {
               wrote_before = 1;
               written_comment = i;
               break;
@@ -185,19 +185,20 @@ class Comment extends Class {
 
     const [result,] = await this.conn.query(insertQuery, [this.user?.id, comment.comment_article_ID, comment.id, comment.comment_group_ID, content, nickName, hash]);
     if (result.insertId) {
-      const article_writer = await this.conn.query('SELECT * FROM article WHERE id=?', [articleId]);
+      const article_writer = await this.conn.query('SELECT * FROM article WHERE id=?', [comment.comment_article_ID]);
       if (this.user?.id == article_writer.article_user_ID) {   //작성자 댓글
-        const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [articleId]);
+        const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
+        const update_replycount = await this.conn.query('UPDATE comment SET replyCount=replyCount+1, updatedAt=NOW() WHERE comment_user_ID=?', [comment.id]);
         const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=0, updatedAt=NOW() WHERE id=?', [result.insertId]);
       }
       else {
         const query = 'SELECT * FROM comment WHERE comment_article_ID=?';
-        const [all_comments_of_article] = await this.conn.query(query, [articleId]);
+        const [all_comments_of_article] = await this.conn.query(query, [comment.comment_article_ID]);
         var wrote_before = 0;
         var written_comment = 0;  //이전에 작성한 코멘트 
         if (all_comments_of_article.length) { //코멘트가 있을때
           for (var i = 0; i <= all_comments_of_article.length; i++) {
-            if (all_comments_of_article[i].comment_user_Id == this.user?.id) {
+            if (all_comments_of_article[i].comment_user_ID == this.user?.id) {
               wrote_before = 1;
               written_comment = i;
               break;
@@ -207,19 +208,21 @@ class Comment extends Class {
             }
           }
           if (wrote_before == 1) {  //쓴적 있는 사람
-            const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [articleId]);
+            const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
+            const update_replycount = await this.conn.query('UPDATE comment SET replyCount=replyCount+1, updatedAt=NOW() WHERE comment_user_ID=?', [comment.id]);
             const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=?, updatedAt=NOW() WHERE id=?', [all_comments_of_article[written_comment].anonymous_code, result.insertId]);
             console.log("wrote before once");
           } else if (wrote_before == 2) {  //처음 쓰는 사람
-            const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [articleId]);
-            const get_anonymous_count = await this.conn.query('SELECT * FROM article WHERE id=?', [articleId]);
+            const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
+            const update_replycount = await this.conn.query('UPDATE comment SET replyCount=replyCount+1, updatedAt=NOW() WHERE comment_user_ID=?', [comment.id]);
+            const get_anonymous_count = await this.conn.query('SELECT * FROM article WHERE id=?', [comment.comment_article_ID]);
             const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=?, updatedAt=NOW() WHERE id=?', [get_anonymous_count.anonymous_count, result.insertId]);
             console.log("never wrote ever");
           } else {  //반복문 에러
             console.log("loop error");
           }
         } else {  //코멘트가 없을때 => 에러임 코멘트 저장 후에 시작되기 때문
-          const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [articleId]);
+          const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
           console.log("comments read length error");
         }
       }
