@@ -68,8 +68,9 @@ class Comment extends Class {
       var written_comment = 0;  //이전에 작성한 코멘트 
       if (all_comments_of_article.length) { //코멘트가 있을때
         for (var i = 0; i <= all_comments_of_article.length; i++) {
-          console.log(all_comments_of_article[i].comment_user_ID);
+          console.log("long one " + all_comments_of_article[i].comment_user_ID);
           const id = all_comments_of_article[i].comment_user_ID;
+          console.log("id " +id);
           if (id == this.user?.id) {
             wrote_before = 1;
             written_comment = i;
