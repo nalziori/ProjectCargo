@@ -332,6 +332,26 @@ class KakaoLogin {
     .catch(e => console.error(e));
     return token;
   }
+
+  async logout(kakaoid){
+    const APP_ADMIN_KEY = '6cefa63c0e421c342288e4ab89665318';
+    const logoutKakao = await axios({
+      method: 'POST',
+      url: 'https://kapi.kakao.com/v1/user/logout',
+      headers: {
+        'Content-Type' : 'application/x-www-form-urlencoded',
+        'Authorization': `KakaoAK ${APP_ADMIN_KEY}`
+      },
+      data:{
+        "target_id_type": "user_id",
+        "target_id": kakaoid,
+      }
+    }).then(function (res) {
+      console.log(res.data);
+    }).catch(e => console.error(e))
+    return logoutKakao;
+  }
+
   /*
   async unlinkUser (token) {
     const userCut = await axios({
