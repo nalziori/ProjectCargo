@@ -55,6 +55,7 @@ class Comment extends Class {
     //anonymous code init
     var set_anonymous;
     const article_writer = await this.conn.query('SELECT * FROM article WHERE id=?', [articleId]);
+    console.log(article_writer.article_user_ID, this.user?.id);
     if (this.user?.id == article_writer.article_user_ID) {   //작성자 댓글
       //const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [articleId]);
       //const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=0, updatedAt=NOW() WHERE id=?', [result.insertId]);
