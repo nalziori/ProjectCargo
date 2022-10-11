@@ -103,7 +103,7 @@ class Comment extends Class {
     const [result,] = await this.conn.query(query, [this.user?.id, articleId, content, nickName, hash, set_anonymous]);
     if (result.insertId) {
       // 포인트
-      const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [articleId]);
+      const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1, updatedAt=NOW() WHERE id=?', [articleId]);
 
       if (this.user) {
         const pointClass = new Point(this.req, this.res, this.conn);
@@ -207,7 +207,7 @@ class Comment extends Class {
 
     const [result,] = await this.conn.query(insertQuery, [this.user?.id, comment.comment_article_ID, comment.id, comment.comment_group_ID, content, nickName, hash, set_anonymous]);
     if (result.insertId) {
-      const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
+      const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1, updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
       // 포인트
       if (this.user) {
         const pointClass = new Point(this.req, this.res, this.conn);
