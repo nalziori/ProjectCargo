@@ -85,9 +85,9 @@ class Comment extends Class {
           console.log("wrote before once");
         } else if (wrote_before == 2) {  //처음 쓰는 사람
           const update_commentcount = await this.conn.query('UPDATE article SET anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [articleId]);
-          const get_anonymous_count = await this.conn.query('SELECT * FROM article WHERE id=?', [articleId]);
+          const [get_anonymous_count] = await this.conn.query('SELECT * FROM article WHERE id=?', [articleId]);
           // const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=?, updatedAt=NOW() WHERE id=?', [get_anonymous_count.anonymous_count, result.insertId]);
-          set_anonymous = get_anonymous_count.anonymous_count;
+          set_anonymous = get_anonymous_count[0].anonymous_count;
           console.log("never wrote ever");
         } else {  //반복문 에러
           console.log("loop error");
