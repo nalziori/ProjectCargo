@@ -294,7 +294,7 @@ class Comment extends Class {
         }
       }
     }
-  }
+  
   async remove(commentId, data) {
     const comment = await this.get(commentId);
     data = Object.assign({
