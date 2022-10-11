@@ -174,7 +174,7 @@ class Comment extends Class {
       var written_comment = 0;  //이전에 작성한 코멘트 
       if (all_comments_of_article.length) { //코멘트가 있을때
         for (var i = 0; i <= all_comments_of_article.length; i++) {
-          if (all_comments_of_article[i].comment_user_ID == this.user?.id) {
+          if (all_comments_of_article[i]?.comment_user_ID == this.user?.id) {
             wrote_before = 1;
             written_comment = i;
             break;
@@ -191,9 +191,9 @@ class Comment extends Class {
         } else if (wrote_before == 2) {  //처음 쓰는 사람
           const update_anonymouscount = await this.conn.query('UPDATE article SET anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
           const update_replycount = await this.conn.query('UPDATE comment SET replyCount=replycount+1, updatedAt=NOW() WHERE comment_user_ID=?', [comment.id]);
-          const get_anonymous_count = await this.conn.query('SELECT * FROM article WHERE id=?', [comment.comment_article_ID]);
+          const [get_anonymous_count] = await this.conn.query('SELECT * FROM article WHERE id=?', [comment.comment_article_ID]);
           // const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=?, updatedAt=NOW() WHERE id=?', [get_anonymous_count.anonymous_count, result.insertId]);
-          set_anonymous = get_anonymous_count;
+          set_anonymous = get_anonymous_count[0].anonymous_count;
           console.log("never wrote ever");
         } else {  //반복문 에러
           console.log("loop error");
