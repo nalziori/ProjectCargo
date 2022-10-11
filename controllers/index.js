@@ -576,7 +576,9 @@ exports.logout = doAsync(async (req, res, next) => {
   var kakaoid;
   try{
     const getidtank = conn.query("SELECT * FROM user WHERE id=?", req.session.id);
+    console.log(getidtank+" "+req.session.id);
     kakaoid = getidtank.kakaoId;
+    console.log(kakaoid);
   }finally{
     conn.release();
   }
