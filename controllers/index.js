@@ -585,7 +585,7 @@ exports.logout = doAsync(async (req, res, next) => {
   req.session.destroy(() => {
     //res.redirect(req.headers.referer);
     const returnid = kakao.logout(kakaoid);
-    console.log("kakao logout success return = " + JSON.stringify(returnid));
+    console.log("kakao logout success return = " + JSON.stringify(returnid.data));
     res.redirect('/login');
   });
 });
