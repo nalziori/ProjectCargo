@@ -575,8 +575,8 @@ exports.logout = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
   var kakaoid;
   try{
-    const {getidtank} = conn.query("SELECT * FROM user WHERE id=?", req.session.user.id);
-    console.log(JSON.stringify(getidtank[0])+" "+req.session.user.id);
+    const getidtank = await conn.query("SELECT * FROM user WHERE id=?", req.session.user.id);
+    console.log(JSON.stringify(getidtank)+" "+req.session.user.id);
     kakaoid = getidtank.kakaoId;
     console.log(kakaoid);
   }finally{
