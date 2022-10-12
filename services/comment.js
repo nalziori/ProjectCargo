@@ -108,8 +108,11 @@ class Comment extends Class {
     VALUES (?, ?, ?, ?, ?, ?)`;
 
     const [result,] = await this.conn.query(query, [this.user?.id, articleId, content, nickName, hash, set_anonymous]);
-    console.log(result[0]);
+    console.log(result);
     const add_group_id = await this.conn.query("UPDATE comment SET comment_group_ID=? WHERE id=?", [result.insertId, result.insertId]);
+    if(add_group_id.length){
+      console.log("comment_group_ID = " + result.insertId);
+    }
     if (result.insertId) {
       // 포인트
       const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1, updatedAt=NOW() WHERE id=?', [articleId]);
