@@ -7,7 +7,7 @@ const Point = require('./point');
 const Alarm = require('./alarm');
 const datetime = require('../middleware/datetime');
 const config = require('../middleware/config');
-//const { stringify } = require('crypto-js/enc-base64');
+
 
 const SALT_COUNT = 10;
 
@@ -86,6 +86,7 @@ class Comment extends Class {
         } else if (wrote_before == 2) {  //처음 쓰는 사람
           const update_commentcount = await this.conn.query('UPDATE article SET anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [articleId]);
           console.log("익명 업데이트 " + update_commentcount);
+          
           const [get_anonymous_count] = await this.conn.query('SELECT * FROM article WHERE id=?', [articleId]);
           // const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=?, updatedAt=NOW() WHERE id=?', [get_anonymous_count.anonymous_count, result.insertId]);
           set_anonymous = get_anonymous_count[0].anonymous_count;
@@ -98,6 +99,7 @@ class Comment extends Class {
         // const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [articleId]);
         // console.log("comments read length error");
         set_anonymous = 1;
+        const update_anonymouscount = await this.conn.query('UPDATE article SET anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [articleId]);
       }
     }
     // this.conn.beginTransaction();
@@ -106,6 +108,8 @@ class Comment extends Class {
     VALUES (?, ?, ?, ?, ?, ?)`;
 
     const [result,] = await this.conn.query(query, [this.user?.id, articleId, content, nickName, hash, set_anonymous]);
+    console.log(result[0]);
+    const add_group_id = await this.conn.query("UPDATE comment SET comment_group_ID=? WHERE id=?", [result.insertId, result.insertId]);
     if (result.insertId) {
       // 포인트
       const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1, updatedAt=NOW() WHERE id=?', [articleId]);
@@ -186,13 +190,15 @@ class Comment extends Class {
         }
         if (wrote_before == 1) {  //쓴적 있는 사람
           // const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=?, updatedAt=NOW() WHERE id=?', [all_comments_of_article[written_comment].anonymous_code, result.insertId]);
-          const update_replycount = await this.conn.query('UPDATE comment SET replyCount=replycount+1, updatedAt=NOW() WHERE comment_user_ID=?', [comment.id]);
+          const update_replycount = await this.conn.query('UPDATE comment SET replyCount=replyCount+1, updatedAt=NOW() WHERE id=?', [commentId]);
+          console.log(update_replycount);
           set_anonymous = all_comments_of_article[written_comment].anonymous_code;
           console.log("wrote before once");
         } else if (wrote_before == 2) {  //처음 쓰는 사람
           const update_anonymouscount = await this.conn.query('UPDATE article SET anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
           console.log("익명 업데이트 " + update_anonymouscount);
-          const update_replycount = await this.conn.query('UPDATE comment SET replyCount=replycount+1, updatedAt=NOW() WHERE comment_user_ID=?', [comment.id]);
+          const update_replycount = await this.conn.query('UPDATE comment SET replyCount=replyCount+1, updatedAt=NOW() WHERE id=?', [commentId]);
+          console.log(update_anonymouscount);
           const [get_anonymous_count] = await this.conn.query('SELECT * FROM article WHERE id=?', [comment.comment_article_ID]);
           // const set_anonymous_comment = await this.conn.query('UPDATE comment SET anonymout_code=?, updatedAt=NOW() WHERE id=?', [get_anonymous_count.anonymous_count, result.insertId]);
           set_anonymous = get_anonymous_count[0].anonymous_count;
@@ -204,6 +210,7 @@ class Comment extends Class {
         // const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1 updatedAt=NOW() WHERE id=?', [articleId]);
         // console.log("comments read length error");
         set_anonymous = 1;
+        const update_anonymouscount = await this.conn.query('UPDATE article SET anonymous_count=anonymous_count+1, updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
       }
     }
     // this.conn.beginTransaction();
@@ -212,6 +219,7 @@ class Comment extends Class {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
     const [result,] = await this.conn.query(insertQuery, [this.user?.id, comment.comment_article_ID, comment.id, comment.comment_group_ID, content, nickName, hash, set_anonymous]);
+    console.log(result[0]);
     if (result.insertId) {
       const update_commentcount = await this.conn.query('UPDATE article SET commentCount=commentCount+1, updatedAt=NOW() WHERE id=?', [comment.comment_article_ID]);
       // 포인트
