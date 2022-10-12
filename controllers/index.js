@@ -572,8 +572,20 @@ exports.login = doAsync(async (req, res, next) => {
 });
 
 exports.logout = doAsync(async (req, res, next) => {
+  const conn = await pool.getConnection();
+  var kakaoid;
+  try{
+    const [getidtank] = await conn.query("SELECT * FROM user WHERE id=?", [req.session.user.id]);
+    console.log(getidtank[0].kakaoId+" "+req.session.user.id);
+    kakaoid = getidtank[0].kakaoId;
+    console.log(kakaoid);
+  }finally{
+    conn.release();
+  }
   req.session.destroy(() => {
     //res.redirect(req.headers.referer);
+    const returnid = kakao.logout(kakaoid);
+    console.log("kakao logout success return = " + JSON.stringify(returnid.data));
     res.redirect('/login');
   });
 });
