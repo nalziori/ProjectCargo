@@ -131,14 +131,16 @@
           console.log("OneSignal User ID:", userId);
           if(isMobile()){
             window.localStorage.setItem("mobileId", userId);
+            console.log(JSON.stringify("mobileId"));
           }
           else{
             window.localStorage.getItem("webId", userId);
+            console.log(JSON.stringify("webId"));
           }
         });
       }
     });
-    console.log("is it enable" + OneSignal.isPushNotificationsEnabled());
+    console.log("is it enable" + JSON.stringify(OneSignal.isPushNotificationsEnabled()));
   })
 
   function isMobile(){
