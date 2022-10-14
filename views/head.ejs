@@ -132,10 +132,14 @@
           if(isMobile()){
             window.localStorage.setItem("mobileId", userId);
             console.log(JSON.stringify(userId));
+            const a = window.localStorage.getItem("mobileId");
+            console.log(JSON.stringify(a));
           }
           else{
             window.localStorage.getItem("webId", userId);
             console.log(JSON.stringify(userId));
+            const a = window.localStorage.getItem("webId");
+            console.log(JSON.stringify(a));
           }
         });
       }
