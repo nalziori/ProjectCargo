@@ -129,8 +129,25 @@
         OneSignal.getUserId().then(function (userId) {
           window.localStorage.setItem('onesignalId', userId);
           console.log("OneSignal User ID:", userId);
+          if(isMobile()){
+            window.localStorage.setItem("mobileId", userId);
+          }
+          else{
+            window.localStorage.getItem("webId", userId);
+          }
         });
       }
     });
   })
+
+  function isMobile(){
+    var user = navigator.userAgent;
+    var is_mobile = false;
+
+    if(user.indexOf("iPhone") > -1 || user.indexOf("Android") > -1){
+      is_mobile = true;
+    }
+
+    return is_mobile;
+  }
 </script>
