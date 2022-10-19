@@ -331,7 +331,7 @@ const addEvent = async () => {
       const popUpBtn = comment.querySelector('.right');
       const popUpContainer = comment.querySelector('#popUp');
       const reportBtn = popUpContainer.querySelector('.report');
-      const blockBtn = popUpContainer.querySelector('.block');
+      //const blockBtn = popUpContainer.querySelector('.block');
       popUpBtn.addEventListener('click', () => {
         popUpContainer.classList.toggle('active');
       });
@@ -340,9 +340,9 @@ const addEvent = async () => {
         reportId.value = commentId;
         modal.create(reportContainer);
       });
-      blockBtn.addEventListener('click', () => {
-        blockUser(commentUid);
-      });
+      // blockBtn.addEventListener('click', () => {
+      //   blockUser(commentUid);
+      // });
 
       const commentEtc = comment.querySelector('#commentEtc');
 
