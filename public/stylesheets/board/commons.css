@@ -31,9 +31,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 18px;
+  padding: 10px 10px;
   height: 100%;
-  font-size: 80%;
+  font-size: 100%;
 }
 
 #list .category a:hover,
