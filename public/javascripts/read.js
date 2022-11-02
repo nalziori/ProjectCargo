@@ -330,16 +330,16 @@ const addEvent = async () => {
       const commentDeletePopupBtn = comment.querySelector('#commentDeletePopup');
       const popUpBtn = comment.querySelector('.right');
       const popUpContainer = comment.querySelector('#popUp');
-      // const reportBtn = popUpContainer.querySelector('.report');
+      const reportBtn = popUpContainer.querySelector('.report');
       //const blockBtn = popUpContainer.querySelector('.block');
       popUpBtn.addEventListener('click', () => {
         popUpContainer.classList.toggle('active');
       });
-      // reportBtn.addEventListener('click', () => {
-      //   reportType.value = 'comment';
-      //   reportId.value = commentId;
-      //   modal.create(reportContainer);
-      // });
+      reportBtn.addEventListener('click', () => {
+        reportType.value = 'comment';
+        reportId.value = commentId;
+        modal.create(reportContainer);
+      });
       // blockBtn.addEventListener('click', () => {
       //   blockUser(commentUid);
       // });
@@ -407,10 +407,10 @@ const addEvent = async () => {
               }
               line += `</div>`;
               line += `</div>`;
-              function resize(obj){
-                obj.style.height = "1px";
-                obj.style.height = (16+obj.scrollHeight)+"px";
-              }
+              // function resize(obj){
+              //   obj.style.height = "1px";
+              //   obj.style.height = (16+obj.scrollHeight)+"px";
+              // }
               commentEtc.innerHTML = line;
               const etcText = comment.querySelector('#etcText');
               etcText.focus();
