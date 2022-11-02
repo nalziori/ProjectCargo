@@ -332,9 +332,9 @@ const addEvent = async () => {
       const popUpContainer = comment.querySelector('#popUp');
       //const reportBtn = popUpContainer.querySelector('.report');
       //const blockBtn = popUpContainer.querySelector('.block');
-      popUpBtn.addEventListener('click', () => {
-        popUpContainer.classList.toggle('active');
-      });
+      // popUpBtn.addEventListener('click', () => {
+      //   popUpContainer.classList.toggle('active');
+      // });
       // reportBtn.addEventListener('click', () => {
       //   reportType.value = 'comment';
       //   reportId.value = commentId;
