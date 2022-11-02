@@ -35,9 +35,20 @@
                         <div><input type="text" name="uId" value="<%= comment.uId %>"></div>
                         <div class="nickName"><%= comment.nickName %></div>
                       </td>
-                      <td><textarea name="content"><%= comment.content %></textarea></td>
+                      <style>
+                        textarea.content {
+                          min-height: 60px;
+                        }
+                      </style>
+                      <td><textarea name="content" class="content" onkeydown="resize(this)" onkeyup="resize(this)"><%= comment.content %></textarea></td>
                       <td><button name="submit" value="edit">수정</button></td>
                       <td><button name="submit" value="delete">삭제</button></td>
+                      <script>
+                        function resize(obj){
+                          obj.style.height="1px";
+                          obj.style.height = (16+obj.scrollHeight)+"px";
+                        }
+                      </script>
                     </tr>
                   </form>
                   <% }) %>
