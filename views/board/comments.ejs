@@ -51,6 +51,9 @@
   article .commentEtc button:hover {
     background-color: rgba(0, 0, 0, 0.5);
   }
+  textarea .content{
+    min-height: 60px;
+  }
   <% } %>
 </style>
 <div class="commentsTitle">댓글</div>
@@ -63,7 +66,7 @@
   <% } %>
   <div class="contentContainer">
     <% if (locals.user && commentPermission || board.commentPermission === 0) { %>
-      <div class="newCommentContent"><textarea name="content" placeholder="댓글을 작성해주세요"></textarea></div>
+      <div class="newCommentContent"><textarea name="content" class="content" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="댓글을 작성해주세요"></textarea></div>
       <div class="button"><button>등록</button></div>
     <% } else if (locals.user && !commentPermission) { %>
       <div class="newCommentContent"><textarea name="content" placeholder="권한이 없습니다" disabled></textarea></div>
@@ -82,3 +85,10 @@
     <% }) %>
   <% }) %>
 </div>
+
+<script>
+  function resize(obj){
+    obj.style.height = "1px";
+    obj.style.height = (16+obj.scrillHeight)+"px";
+  }
+</script>
