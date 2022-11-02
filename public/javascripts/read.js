@@ -394,18 +394,23 @@ const addEvent = async () => {
                 line += `</div>`;
               }
               line += `<div class="contentContainer">`;
+              line += `<style> textarea .reply{ min-height=60px; }</style>`
               if (isLogin && user.permission >= board.commentPermission || board.commentPermission === 0) {
-                line += `<div class="etcCommentContent"><textarea name="reply" id="etcText" placeholder="답변을 작성해주세요"></textarea></div>`;
+                line += `<div class="etcCommentContent"><textarea name="reply" id="etcText" class="reply" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="답변을 작성해주세요"></textarea></div>`;
                 line += `<div class="button"><button id="etcComplete">등록</button></div>`;
               } else if (isLogin && user.permission < commentPermission) {
-                line += `<div class="etcCommentContent"><textarea name="reply" id="etcText" placeholder="권한이 없습니다" disabled></textarea></div>`;
+                line += `<div class="etcCommentContent"><textarea name="reply" id="etcText" class="reply" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="권한이 없습니다" disabled></textarea></div>`;
                 line += `<div class="button"><button id="etcComplete" disabled>등록</button></div>`;
               } else {
-                line += `<div class="etcCommentContent"><textarea name="reply" id="etcText" placeholder="로그인 필요" disabled></textarea></div>`;
+                line += `<div class="etcCommentContent"><textarea name="reply" id="etcText" class="reply" onkeydown="resize(this)" onkeyup="resize(this)" placeholder="로그인 필요" disabled></textarea></div>`;
                 line += `<div class="button"><button id="etcComplete" disabled>등록</button></div>`;
               }
               line += `</div>`;
               line += `</div>`;
+              function resize(obj){
+                obj.style.height = "1px";
+                obj.style.height = (16+obj.scrollHeight)+"px";
+              }
               commentEtc.innerHTML = line;
               const etcText = comment.querySelector('#etcText');
               etcText.focus();
