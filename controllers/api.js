@@ -593,6 +593,7 @@ exports.editComment = doAsync(async (req, res, next) => {
       nickName,
       password,
     };
+    console.log(content);
     const commentClass = new Comment(req, res, conn);
     const result = await commentClass.update(commentId, data);
     res.send(result);

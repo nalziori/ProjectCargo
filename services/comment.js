@@ -258,8 +258,8 @@ class Comment extends Class {
         password: null,
       }, data);
       let { content, nickName, password } = data;
-      const tagRegex = new RegExp(/<[^>]*>/g);
-      content = content.replace(tagRegex, '');
+      //const tagRegex = new RegExp(/<[^>]*>/g);
+      //content = content.replace(tagRegex, '');
       content = content.replace(/\n/ig, '<br>');
       if (comment.comment_user_ID) {
         if (this.user?.id === comment.comment_user_ID || this.user?.isAdmin) {
