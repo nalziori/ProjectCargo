@@ -499,11 +499,11 @@ const addEvent = async () => {
               var regURL = new RegExp("(http|https|ftp|telnet|news|irc)://([-/.a-zA-Z0-9_~#%$?&=:200-377()]+)","gi");
               console.log(regURL);
               console.log(doc.replace(regURL,"<a href='$1://$2' target='_blank' style='color: blue; text-decoration: underline; text-underline-position:under;'>$1://$2</a>"));
-              const content = doc.replace(regURL,"<a href='$1://$2' target='_blank' style='color: blue; text-decoration: underline; text-underline-position:under;'>$1://$2</a>");
-              console.log(content);
+              const content1 = doc.replace(regURL,"<a href='$1://$2' target='_blank' style='color: blue; text-decoration: underline; text-underline-position:under;'>$1://$2</a>");
+              console.log(content1);
               const data = {
                 commentId,
-                content,
+                content1,
                 nickName,
                 password,
               };
