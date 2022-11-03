@@ -270,8 +270,6 @@ if (newCommentBtn) {
       var doc = contents;
       var regURL = new RegExp("(http|https|ftp|telnet|news|irc)://([-/.a-zA-Z0-9_~#%$?&=:200-377()]+)","gi");
       const content = doc.replace(regURL,"<a href='$1://$2' target='_blank' style='color: blue; text-decoration: underline; text-underline-position:under;'>$1://$2</a>");
-      console.log(regURL);
-      console.log(doc.replace(regURL,"<a href='$1://$2' target='_blank' style='color: blue; text-decoration: underline; text-underline-position:under;'>$1://$2</a>"));
       const contentResult = await blockWordsCheck(content);
       if (contentResult.status) {
         const board = await getBoard(boardId);
@@ -502,6 +500,7 @@ const addEvent = async () => {
               console.log(regURL);
               console.log(doc.replace(regURL,"<a href='$1://$2' target='_blank' style='color: blue; text-decoration: underline; text-underline-position:under;'>$1://$2</a>"));
               const content = doc.replace(regURL,"<a href='$1://$2' target='_blank' style='color: blue; text-decoration: underline; text-underline-position:under;'>$1://$2</a>");
+              console.log(content);
               const data = {
                 commentId,
                 content,
