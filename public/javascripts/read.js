@@ -490,7 +490,7 @@ const addEvent = async () => {
             etcText.innerHTML = text;
             
             const editCompleteBtn = comment.querySelector('#etcComplete');
-            editCompleteBtn.addEventListener('click', () => {
+            editCompleteBtn.addEventListener('click', async () => {
               const contents = comment.querySelector('#etcText').value;
               const nickName = comment.querySelector('input[name="nickName"]')?.value;
               const password = comment.querySelector('input[name="password"]')?.value;
