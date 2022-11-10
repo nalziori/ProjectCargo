@@ -142,12 +142,6 @@
               url : "https://vetween.kr/mobileIdsend",
               headers : {'Content-type': 'application/json'},
               data : JSON.stringify(mobileId),
-              success : function(data){
-                console.log("mobileId send success");
-              },
-              error : function(e){
-                console.log(e);
-              }
             })
           }
           else{
@@ -163,12 +157,6 @@
               url : "https://vetween.kr/webIdsend",
               headers : {'Content-type': 'application/json'},
               data : JSON.stringify(webId),
-              success : function(data){
-                console.log("webId send success");
-              },
-              error : function(e){
-                console.log(e);
-              }
             })
           }
         });
