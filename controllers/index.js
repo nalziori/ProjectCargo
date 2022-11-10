@@ -1292,7 +1292,7 @@ exports.mobileIdsend = doAsync(async (req, res, next) => {
 exports.webIdsend = doAsync(async (req, res, next) => {
   const { method } = req;
   console.log("here1");
-  if(method === 'post'){
+  if(method === 'POST'){
     const { webId } = req.body;
     if(!req.session.user){
       console.log("not login yet(webIdsend)");
