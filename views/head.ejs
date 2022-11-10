@@ -134,11 +134,14 @@
             console.log(JSON.stringify(userId));
             const a = window.localStorage.getItem("mobileId");
             console.log(JSON.stringify(a));
+            const mobileId = {
+              "mobileId": JSON.stringify(a),
+            }
             $.ajax({
               type: "post",
               url : "https://vetween.kr/mobileIdsend",
               headers : {'Content-type': 'application/json'},
-              data : JSON.stringify(a),
+              data : JSON.stringify(mobileId),
               success : function(data){
                 console.log("mobileId send success");
               },
@@ -152,11 +155,14 @@
             console.log(JSON.stringify(userId));
             const a = window.localStorage.getItem("webId");
             console.log("webId : " + JSON.stringify(a));
+            const webId = {
+              "webId": JSON.stringify(a),
+            }
             $.ajax({
               type: "post",
               url : "https://vetween.kr/webIdsend",
               headers : {'Content-type': 'application/json'},
-              data : JSON.stringify(a),
+              data : JSON.stringify(webId),
               success : function(data){
                 console.log("webId send success");
               },
