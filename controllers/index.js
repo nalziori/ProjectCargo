@@ -1283,6 +1283,7 @@ exports.mobileIdsend = doAsync(async (req, res, next) => {
         console.log(e);
       }finally{
         conn.release();
+        res.send("mobileId send success");
       }
     }
   }
@@ -1310,6 +1311,7 @@ exports.webIdsend = doAsync(async (req, res, next) => {
         console.log(e);
       }finally{
         conn.release();
+        res.send("webId send success");
       }
     }
   }
