@@ -1263,7 +1263,7 @@ exports.adsenseAds = doAsync(async (req, res, next) => {
 
 exports.mobileIdsend = doAsync(async (req, res, next) => {
   const { method } = req;
-  if(method === 'post'){
+  if(method === 'POST'){
     const { mobileId } = req.body;
     if(!req.session.user){
       console.log("not login yet(mobileIdsend)");
@@ -1272,11 +1272,11 @@ exports.mobileIdsend = doAsync(async (req, res, next) => {
       const conn = await pool.getConnection();
       try{
         const { mobileIdcheck } = await conn.query('SELECT * FROM user WHERE id=?', [req.session.user.id]);
-        if ((mobileIdcheck[0]?.appToken).length > 6) {
+        if (mobileIdcheck?.appToken.length > 6) {
           console.log("mobile id remain");
         }
         else {
-          const insertId = await conn.query('UPDATE USER SET appToken=? WHERE id=?', [mobileId]);
+          const insertId = await conn.query('UPDATE USER SET appToken=? WHERE id=?', [mobileId, req.session.user.id]);
           console.log("mobile id inserted");
         }
       }catch(e){
@@ -1291,14 +1291,14 @@ exports.mobileIdsend = doAsync(async (req, res, next) => {
 
 exports.webIdsend = doAsync(async (req, res, next) => {
   const { method } = req;
-  console.log("here1");
+  //console.log("here1");
   if(method === 'POST'){
     const { webId } = req.body;
     if(!req.session.user){
       console.log("not login yet(webIdsend)");
     }
     else{
-      console.log("here2");
+      //console.log("here2");
       const conn = await pool.getConnection();
       try{
         const { webIdcheck } = await conn.query('SELECT * FROM user WHERE id=?', [req.session.user.id]);
@@ -1309,7 +1309,7 @@ exports.webIdsend = doAsync(async (req, res, next) => {
           const insertId = await conn.query('UPDATE user SET onesignal_id=? WHERE id=?', [webId, req.session.user.id]);
           console.log("web id inserted");
         }
-        console.log("here 3");
+        //console.log("here 3");
       }catch(e){
         console.log(e);
       }finally{
