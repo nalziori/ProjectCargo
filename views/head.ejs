@@ -135,7 +135,7 @@
             const a = window.localStorage.getItem("mobileId");
             console.log(JSON.stringify(a));
             const mobileId = {
-              "mobileId": JSON.stringify(a),
+              "mobileId": a,
             }
             $.ajax({
               type: "post",
@@ -156,7 +156,7 @@
             const a = window.localStorage.getItem("webId");
             console.log("webId : " + JSON.stringify(a));
             const webId = {
-              "webId": JSON.stringify(a),
+              "webId": a,
             }
             $.ajax({
               type: "post",
