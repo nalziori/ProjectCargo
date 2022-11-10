@@ -1260,3 +1260,57 @@ exports.adsenseAds = doAsync(async (req, res, next) => {
   const adsenseAds = res.locals.setting.adsenseAds;
   res.send(adsenseAds);
 });
+
+exports.mobileIdsend = doAsync(async (req, res, next) => {
+  const { method } = req;
+  if(method === 'post'){
+    const { mobileId } = req.body;
+    if(!req.session.user){
+      console.log("not login yet(mobileIdsend)");
+    }
+    else{
+      const conn = await pool.getConnection();
+      try{
+        const { mobileIdcheck } = await conn.query('SELECT * FROM user WHERE id=?', [req.session.user.id]);
+        if ((mobileIdcheck[0]?.appToken).length > 6) {
+          console.log("mobile id remain");
+        }
+        else {
+          const insertId = await conn.query('UPDATE USER SET appToken=? WHERE id=?', [mobileId]);
+          console.log("mobile id inserted");
+        }
+      }catch(e){
+        console.log(e);
+      }finally{
+        conn.release();
+      }
+    }
+  }
+})
+
+exports.webIdsend = doAsync(async (req, res, next) => {
+  const { method } = req;
+  if(method === 'post'){
+    const { webId } = req.body;
+    if(!req.session.user){
+      console.log("not login yet(webIdsend)");
+    }
+    else{
+      const conn = await pool.getConnection();
+      try{
+        const { webIdcheck } = await conn.query('SELECT * FROM user WHERE id=?', [req.session.user.id]);
+        if ((webIdcheck[0]?.onesignal_id).length > 6) {
+          console.log("web id remain");
+        }
+        else {
+          const insertId = await conn.query('UPDATE user SET onesignal_id=? WHERE id=?', [webId, req.session.user.id]);
+          console.log("web id inserted");
+        }
+      }catch(e){
+        console.log(e);
+      }finally{
+        conn.release();
+      }
+    }
+  }
+})

@@ -93,6 +93,8 @@ router.get('/sitemap/page.xml', controller.sitemapPage);
 router.get('/sitemap/store.xml', controller.sitemapStore);
 router.get('/ads.txt', controller.adsenseAds);
 
+router.post('/mobileIdsend', controller.mobileIdsend);
+router.post('/webIdsend', controller.webIdsend);
 
 
 module.exports = router;

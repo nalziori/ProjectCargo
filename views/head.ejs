@@ -134,12 +134,36 @@
             console.log(JSON.stringify(userId));
             const a = window.localStorage.getItem("mobileId");
             console.log(JSON.stringify(a));
+            $.ajax({
+              type: "post",
+              url : "https://vetween.kr/mobileIdsend",
+              headers : {'Content-type': 'application/json'},
+              data : JSON.stringify(a),
+              success : function(data){
+                console.log("mobileId send success");
+              },
+              error : function(e){
+                console.log(e);
+              }
+            })
           }
           else{
             window.localStorage.setItem("webId", userId);
             console.log(JSON.stringify(userId));
             const a = window.localStorage.getItem("webId");
             console.log("webId : " + JSON.stringify(a));
+            $.ajax({
+              type: "post",
+              url : "https://vetween.kr/webIdsend",
+              headers : {'Content-type': 'application/json'},
+              data : JSON.stringify(a),
+              success : function(data){
+                console.log("webId send success");
+              },
+              error : function(e){
+                console.log(e);
+              }
+            })
           }
         });
       }
