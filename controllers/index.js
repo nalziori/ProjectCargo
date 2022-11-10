@@ -1276,7 +1276,7 @@ exports.mobileIdsend = doAsync(async (req, res, next) => {
           console.log("mobile id remain");
         }
         else {
-          const insertId = await conn.query('UPDATE USER SET appToken=? WHERE id=?', [mobileId, req.session.user.id]);
+          const insertId = await conn.query('UPDATE user SET appToken=? WHERE id=?', [mobileId, req.session.user.id]);
           console.log("mobile id inserted");
         }
       }catch(e){
