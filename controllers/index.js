@@ -1302,7 +1302,7 @@ exports.webIdsend = doAsync(async (req, res, next) => {
       const conn = await pool.getConnection();
       try{
         const { webIdcheck } = await conn.query('SELECT * FROM user WHERE id=?', [req.session.user.id]);
-        if ((webIdcheck[0]?.onesignal_id).length > 6) {
+        if ((webIdcheck?.onesignal_id).length > 6) {
           console.log("web id remain");
         }
         else {
