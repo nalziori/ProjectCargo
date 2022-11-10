@@ -1291,12 +1291,14 @@ exports.mobileIdsend = doAsync(async (req, res, next) => {
 
 exports.webIdsend = doAsync(async (req, res, next) => {
   const { method } = req;
+  console.log("here1");
   if(method === 'post'){
     const { webId } = req.body;
     if(!req.session.user){
       console.log("not login yet(webIdsend)");
     }
     else{
+      console.log("here2");
       const conn = await pool.getConnection();
       try{
         const { webIdcheck } = await conn.query('SELECT * FROM user WHERE id=?', [req.session.user.id]);
@@ -1307,6 +1309,7 @@ exports.webIdsend = doAsync(async (req, res, next) => {
           const insertId = await conn.query('UPDATE user SET onesignal_id=? WHERE id=?', [webId, req.session.user.id]);
           console.log("web id inserted");
         }
+        console.log("here 3");
       }catch(e){
         console.log(e);
       }finally{
