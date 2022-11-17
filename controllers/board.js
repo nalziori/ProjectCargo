@@ -241,6 +241,7 @@ exports.list = doAsync(async (req, res, next) => {
         articles.forEach(async article => {
           if(article.nametag == 1){
             const requestUser = await conn.query('SELECT * FROM user WHERE id=?', [article.article_user_ID]);
+            console.log(requestUser);
             article.nickName = requestUser?.nickName;
           }
         })
@@ -526,17 +527,9 @@ exports.new = doAsync(async (req, res, next) => {
       const board = await boardClass.get(boardSlug);
       const articleClass = new Article(req, res, conn);
       const article = await articleClass.get(articleId);
-      const {  title, content, tags, links, password, customField01, customField02, customField03, customField04, customField05, customField06, customField07, customField08, customField09, customField10 } = req.body;
+      const {  title, content, tags, links, nickName, password, customField01, customField02, customField03, customField04, customField05, customField06, customField07, customField08, customField09, customField10 } = req.body;
       const notice = req.body.notice || 0;
       const nametag = req.body.nametag || 0;
-      var nickName;
-      if(nametag){
-        const requested = await conn.query('SELECT * FROM user WHERE id=?', [req.session.user.id]);
-        nickName = requested?.nickName;
-      }
-      else{
-        nickName = null;
-      }
       const category = req.body.category || null;
       const files = req.files.files;
       const data = {
