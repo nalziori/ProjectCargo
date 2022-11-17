@@ -530,7 +530,7 @@ exports.new = doAsync(async (req, res, next) => {
       const notice = req.body.notice || 0;
       const nametag = req.body.nametag || 0;
       if(nametag){
-        const nickName = await conn.query('SELECT nickName WHERE id=?', [req.session.user.id]);
+        const nickName = await conn.query('SELECT nickName FROM user WHERE id=?', [req.session.user.id]);
       }
       else{
         const nickName = null;
