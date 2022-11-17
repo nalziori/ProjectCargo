@@ -458,7 +458,7 @@ class Article extends Class {
     }
 
     // 익명
-    if (article.useAnonymous && (article.article_user_ID !== this.user?.id && !this.user?.isAdmin) && !article.authorIsAdmin) {
+    if (article.useAnonymous && (article.article_user_ID !== this.user?.id && !this.user?.isAdmin) && !article.authorIsAdmin && !article.nametag) {
       article.nickName = '익명';
       if(article.permission == 3) {
         article.permissionName = '수의대생';
