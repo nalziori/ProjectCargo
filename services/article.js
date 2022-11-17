@@ -283,6 +283,7 @@ class Article extends Class {
       content: article.content,
       tags: null,
       notice: article.notice,
+      nametag: article.nametag,
       viewCount: article.viewCount,
       nickName: article.nickName,
       password: article.password,
@@ -302,7 +303,7 @@ class Article extends Class {
       links: article.links,
       files: null,
     }, data);
-    const { userId, boardId, categoryId, title, tags, notice, viewCount, links, nickName, password, status, updatedAt, createdAt, customField01, customField02, customField03, customField04, customField05, customField06, customField07, customField08, customField09, customField10 } = data;
+    const { userId, boardId, categoryId, title, tags, notice, nametag, viewCount, links, nickName, password, status, updatedAt, createdAt, customField01, customField02, customField03, customField04, customField05, customField06, customField07, customField08, customField09, customField10 } = data;
     let { content, files } = data;
     files = await this.fileCheck(article, files);
     
@@ -362,7 +363,7 @@ class Article extends Class {
       }
     }
     
-    const [result, ] = await this.conn.query(`UPDATE article SET article_user_ID=?, article_board_ID=?, article_category_ID=?, title=?, content=?, notice=?, viewCount=?, links=?, files=?, nickName=?, password=?, status=?, updatedAt=?, createdAt=?, customField01=?, customField02=?, customField03=?, customField04=?, customField05=?, customField06=?, customField07=?, customField08=?, customField09=?, customField10=? WHERE id=?`, [userId, boardId, categoryId, title, content, notice, viewCount, links, files, nickName, hash, status, updatedAt, createdAt, customField01, customField02, customField03, customField04, customField05, customField06, customField07, customField08, customField09, customField10, articleId]);
+    const [result, ] = await this.conn.query(`UPDATE article SET article_user_ID=?, article_board_ID=?, article_category_ID=?, title=?, content=?, notice=?, nametag=?, viewCount=?, links=?, files=?, nickName=?, password=?, status=?, updatedAt=?, createdAt=?, customField01=?, customField02=?, customField03=?, customField04=?, customField05=?, customField06=?, customField07=?, customField08=?, customField09=?, customField10=? WHERE id=?`, [userId, boardId, categoryId, title, content, notice, nametag, viewCount, links, files, nickName, hash, status, updatedAt, createdAt, customField01, customField02, customField03, customField04, customField05, customField06, customField07, customField08, customField09, customField10, articleId]);
     if (result.affectedRows) {
       await this.conn.query(`UPDATE board SET updatedAt=NOW() WHERE id=?`, [boardId]);
       return true;
