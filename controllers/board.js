@@ -531,7 +531,8 @@ exports.new = doAsync(async (req, res, next) => {
       const nametag = req.body.nametag || 0;
       var nickName;
       if(nametag){
-        nickName = await conn.query('SELECT nickName FROM user WHERE id=?', [req.session.user.id]);
+        const requested = await conn.query('SELECT * FROM user WHERE id=?', [req.session.user.id]);
+        nickName = requested?.nickName;
       }
       else{
         nickName = null;
