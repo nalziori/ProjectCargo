@@ -238,11 +238,12 @@ exports.list = doAsync(async (req, res, next) => {
         }
 
         //실제 닉네임 사용시
-        articles.forEach(async article => {
-          if(article.nametag == 1){
-            const requestUser = await conn.query('SELECT * FROM user WHERE id=?', [article.article_user_ID]);
-            console.log(requestUser);
-            article.nickName = requestUser?.nickName;
+        const requestUser = await conn.query('SELECT * FROM user WHERE id=?', [user?.id]);
+        console.log(requestUser);
+        articles.forEach(article => {
+          const match = requestUser.find(()=> article.nametag == 1)
+          if(match){
+            article.nickName = '테스트';
           }
         })
 
