@@ -65,14 +65,14 @@
                   </div>
                   <% } %>
               </div>
-              <div class="checkBox">
-                <div class="nametag">
-                  <label for="nametag">닉네임으로 표시</label>
-                  <input type="checkbox" name="nametag" id="nametag" value="1">
-                </div>
-              </div>
       </div>
       <% } %>
+      <div class="checkBox">
+        <div class="nametag">
+          <label for="nametag">닉네임으로 표시</label>
+          <input type="checkbox" name="nametag" id="nametag" value="1">
+        </div>
+      </div>
         <% if (!locals.user && board.writePermission===0) { %>
           <div class="nonMember">
             <input type="text" name="nickName" placeholder="닉네임">
