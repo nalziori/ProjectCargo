@@ -243,7 +243,7 @@ exports.list = doAsync(async (req, res, next) => {
         articles.forEach(article => {
           const match = requestUser.find(() => article.nametag == 1)
           if (match) {
-            article.nickName = requestUser?.nickName;
+            article.nickName = requestUser[i]?.nickName;
           }
         })
 
@@ -373,15 +373,15 @@ exports.read = doAsync(async (req, res, next) => {
 
               }
 
-              //실제 닉네임 사용시
-              const requestUser = await conn.query('SELECT * FROM user WHERE id=?', [user?.id]);
-              console.log(requestUser);
-              articles.forEach(article => {
-                const match = requestUser.find(() => article.nametag == 1)
-                if (match) {
-                  article.nickName = '테스트';
-                }
-              })
+              // //실제 닉네임 사용시
+              // const requestUser = await conn.query('SELECT * FROM user WHERE id=?', [user?.id]);
+              // console.log(requestUser);
+              // articles.forEach(article => {
+              //   const match = requestUser.find(() => article.nametag == 1)
+              //   if (match) {
+              //     article.nickName = '테스트';
+              //   }
+              // })
 
               // Block Users
               const userBlockUserClass = new UserBlockUser(req, res, conn);
