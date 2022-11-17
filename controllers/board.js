@@ -130,7 +130,7 @@ exports.page = doAsync(async (req, res, next) => {
   const conn = await pool.getConnection();
   try {
     const { page } = req.params;
-    const [pages, ] = await conn.query(`SELECT * FROM page WHERE slug=? AND status=1`, [page]);
+    const [pages,] = await conn.query(`SELECT * FROM page WHERE slug=? AND status=1`, [page]);
     if (pages.length) {
       const page = pages[0];
       addLog(req, `${page.title}`);
@@ -165,7 +165,7 @@ exports.menuAll = doAsync(async (req, res, next) => {
       const subMenus = res.locals.menus.filter(m => m.parentId === menu.id); // TODO: 수정
       let boards = [];
       for await (let subMenu of subMenus) {
-        const [boardResult, ] = await conn.query(`SELECT * FROM board WHERE slug=?`, [subMenu.target]);
+        const [boardResult,] = await conn.query(`SELECT * FROM board WHERE slug=?`, [subMenu.target]);
         if (boardResult.length) {
           const board = boardResult[0];
           const query = `SELECT a.*, b.title AS boardTitle, b.slug AS boardSlug, b.color AS boardColor, c.title AS category, c.color AS categoryColor, u.nickName AS nickName
@@ -179,7 +179,7 @@ exports.menuAll = doAsync(async (req, res, next) => {
           WHERE a.status = 1 AND a.article_board_ID = ?
           ORDER BY a.createdAt DESC
           LIMIT 5`;
-          const [articles, ] = await conn.query(query, [board.id]);
+          const [articles,] = await conn.query(query, [board.id]);
           articles.forEach(a => {
             a.datetime = datetime(a.createdAt);
           });
@@ -233,7 +233,7 @@ exports.list = doAsync(async (req, res, next) => {
         // 한번만 사용 시
         let pullUp = false;
         if (board.useOnce) {
-          const [onceCheckResult, ] = await conn.query(`SELECT * FROM article WHERE article_board_ID=? AND article_user_ID=? AND status=?`, [board?.id, user?.id, 2]);
+          const [onceCheckResult,] = await conn.query(`SELECT * FROM article WHERE article_board_ID=? AND article_user_ID=? AND status=?`, [board?.id, user?.id, 2]);
           if (onceCheckResult.length) pullUp = true;
         }
 
@@ -241,9 +241,9 @@ exports.list = doAsync(async (req, res, next) => {
         const requestUser = await conn.query('SELECT * FROM user WHERE id=?', [user?.id]);
         console.log(requestUser);
         articles.forEach(article => {
-          const match = requestUser.find(()=> article.nametag == 1)
-          if(match){
-            article.nickName = '테스트';
+          const match = requestUser.find(() => article.nametag == 1)
+          if (match) {
+            article.nickName = requestUser?.nickName;
           }
         })
 
@@ -332,7 +332,7 @@ exports.read = doAsync(async (req, res, next) => {
 
               // 로그 추가
               addLog(req, board.title, article.id);
-              
+
               // 조회수 증가
               if (req.cookies[article.id] === undefined) {
                 res.cookie(article.id, req.ip, {
@@ -340,7 +340,7 @@ exports.read = doAsync(async (req, res, next) => {
                 });
                 await conn.query(`UPDATE article SET viewCount=viewCount+1 WHERE id=?`, [article.id]);
               }
-  
+
               // 포인트
               if (!readHistory && article.article_user_ID !== user?.id && !user?.isAdmin) {
                 const data = {
@@ -370,8 +370,18 @@ exports.read = doAsync(async (req, res, next) => {
 
               // 작성자의 다른 게시글
               if (setting.boardAuthorArticle) {
-                
+
               }
+
+              //실제 닉네임 사용시
+              const requestUser = await conn.query('SELECT * FROM user WHERE id=?', [user?.id]);
+              console.log(requestUser);
+              articles.forEach(article => {
+                const match = requestUser.find(() => article.nametag == 1)
+                if (match) {
+                  article.nickName = '테스트';
+                }
+              })
 
               // Block Users
               const userBlockUserClass = new UserBlockUser(req, res, conn);
@@ -469,7 +479,7 @@ exports.new = doAsync(async (req, res, next) => {
           } else {
             const articleId = await articleClass.createTemp(data);
             if (board.useOnce) {
-              const [onceCheckResult, ] = await conn.query(`SELECT * FROM article WHERE article_board_ID=? AND article_user_ID=? AND status=?`, [board?.id, user?.id, 2]);
+              const [onceCheckResult,] = await conn.query(`SELECT * FROM article WHERE article_board_ID=? AND article_user_ID=? AND status=?`, [board?.id, user?.id, 2]);
               if (onceCheckResult.length && !user?.isAdmin) {
                 flash.create({
                   status: false,
@@ -528,7 +538,7 @@ exports.new = doAsync(async (req, res, next) => {
       const board = await boardClass.get(boardSlug);
       const articleClass = new Article(req, res, conn);
       const article = await articleClass.get(articleId);
-      const {  title, content, tags, links, nickName, password, customField01, customField02, customField03, customField04, customField05, customField06, customField07, customField08, customField09, customField10 } = req.body;
+      const { title, content, tags, links, nickName, password, customField01, customField02, customField03, customField04, customField05, customField06, customField07, customField08, customField09, customField10 } = req.body;
       const notice = req.body.notice || 0;
       const nametag = req.body.nametag || 0;
       const category = req.body.category || null;
@@ -576,7 +586,7 @@ exports.new = doAsync(async (req, res, next) => {
               res.redirect(req.headers.referer);
             } else {
               if (board.useOnce) {
-                const [onceCheckResult, ] = await conn.query(`SELECT * FROM article WHERE article_board_ID=? AND article_user_ID=? AND status=?`, [board.id, user.id, 2]);
+                const [onceCheckResult,] = await conn.query(`SELECT * FROM article WHERE article_board_ID=? AND article_user_ID=? AND status=?`, [board.id, user.id, 2]);
                 if (onceCheckResult.length && !user?.isAdmin) {
                   flash.create({
                     status: false,
