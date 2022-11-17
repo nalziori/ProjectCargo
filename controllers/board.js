@@ -243,7 +243,7 @@ exports.list = doAsync(async (req, res, next) => {
         articles.forEach(article => {
           const match = requestUser.find(() => article.nametag == 1)
           if (match) {
-            article.nickName = requestUser[i]?.nickName;
+            article.nickName = requestUser[0]?.nickName;
           }
         })
 
