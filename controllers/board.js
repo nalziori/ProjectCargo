@@ -377,7 +377,7 @@ exports.read = doAsync(async (req, res, next) => {
               const [requestUser,] = await conn.query('SELECT * FROM user WHERE id=?', [article.article_user_ID]);
               const tagcheck = requestUser.find(() => article.nametag == 1)
               if (tagcheck) {
-                article.nickName = '테스트';//requestUser[0]?.nickName;
+                article.nickName = requestUser[0]?.nickName;
               }
               
 
