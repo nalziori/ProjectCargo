@@ -529,11 +529,12 @@ exports.new = doAsync(async (req, res, next) => {
       const {  title, content, tags, links, password, customField01, customField02, customField03, customField04, customField05, customField06, customField07, customField08, customField09, customField10 } = req.body;
       const notice = req.body.notice || 0;
       const nametag = req.body.nametag || 0;
+      var nickName;
       if(nametag){
-        const nickName = await conn.query('SELECT nickName FROM user WHERE id=?', [req.session.user.id]);
+        nickName = await conn.query('SELECT nickName FROM user WHERE id=?', [req.session.user.id]);
       }
       else{
-        const nickName = null;
+        nickName = null;
       }
       const category = req.body.category || null;
       const files = req.files.files;
